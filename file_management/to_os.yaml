@@ -1,0 +1,6 @@
+- hosts: os
+  tasks:
+    - name: Ansible Copy
+      copy:
+        src: /Users/dstreev/temp/kubernetes.repo
+        dest: /etc/yum.repos.d/
