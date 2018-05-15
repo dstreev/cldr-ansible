@@ -1,0 +1,51 @@
+# Requires a Local Repo for HDP, Ambari and HDP-UTILS
+# Repo dirs need to match hdp repo layout.
+- import_playbook: ../setup/openjdk_install.yaml
+
+- hosts: hdp
+  tasks:
+    - name: Download the latest Ambari repo
+      get_url:
+        url: "{{ hortonworks_repo_base_url }}{{ ambari_path }}{{ ambari_ver }}/ambari.repo"
+        dest: /etc/yum.repos.d/
+        backup: yes
+        force: yes
+    - name: Fix URL Paths in repo.
+      replace:
+        path: /etc/yum.repos.d/ambari.repo
+        regexp: '(baseurl=){{ hortonworks_repo_base_url }}(.*)?$'
+        replace: '\1{{ local_repo_base_url }}\2'
+        backup: yes
+
+- hosts: ambari
+  tasks:
+    - name: Install Ambari Server
+      yum:
+        name: ambari-server
+        state: latest
+
+# Required to run db client to init the Database
+- import_playbook: ambari_install_mariadb_client.yaml
+
+# Create DB Instance
+- import_playbook: ambari_db_setup.yaml
+
+# Install JDBC Drivers
+- import_playbook: jdbc_setup.yaml
+
+- hosts: hdp
+  tasks:
+    - name: Install Ambari Agents
+      yum:
+        name: ambari-agent
+        state: latest
+
+- import_playbook: fix_agent_ssl.yaml
+
+# Configuration and Start Agents for Manual Registration
+- hosts: hdp
+  tasks:
+    - name: Reset Ambari Agents
+      shell: ambari-agent reset {{ ambari_server_host }}
+    - name: Start Ambari Agents
+      shell: ambari-agent start

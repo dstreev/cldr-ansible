@@ -1,0 +1,34 @@
+#
+# WIP
+#
+# Based on Article https://community.hortonworks.com/articles/68799/steps-to-fix-ambari-server-agent-expired-certs.html
+# Addresses SSL connection issue with Ambari-Agent on Python 2.7.5+
+- hosts: ambari
+  tasks:
+    - name: Stop Ambari Server
+      shell: ambari-server stop
+    # - name: Backup Keys folder
+    #   shell: mv /var/lib/ambari-server/keys /var/lib/ambari-server/keys-`date +%Y%M%d`
+    # - name: Recreate Keys folder
+    #   shell: mkdir /var/lib/ambari-server/keys
+    - name: Get Keys
+      get_url:
+        url: https://community.hortonworks.com/storage/attachments/9819-keys.zip
+        dest: /tmp
+    - name: Un-archive keys
+      unarchive:
+        src: /tmp/9819-keys.zip
+        dest: /var/lib/ambari-server
+        remote_src: yes
+    - name: Start Ambari-Server
+      shell: ambari-server start
+- hosts: hdp
+  tasks:
+    - name: Stop Ambari Agents
+      shell: ambari-agent stop
+
+    - name: Reset Agents
+      shell: ambari-agent reset {{ ambari_server_host }}
+
+    - name: Start Ambari-Agents
+      shell: ambari-agent start

@@ -1,0 +1,6 @@
+- hosts: hdp
+  tasks:
+    - name: Install OpenJDK
+      yum:
+        name: java-1.8.0-openjdk
+        state: latest

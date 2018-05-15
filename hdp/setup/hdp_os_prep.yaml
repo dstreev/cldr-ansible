@@ -1,0 +1,30 @@
+# Initialize a box for HDP.
+# Set Swappiness
+# Install NTP
+# Disable SELINUX
+# Disable THP
+# Set somaxconn
+# And other LLAP specifics
+- hosts: hdp
+  tasks:
+    - name: Set Swappiness
+      shell: sysctl vm.swappiness=1
+
+    - name: Disable Firewalls
+      systemd:
+        name: firewalld
+        enabled: no
+    - name: Stop Firewalls
+      systemd:
+        name: firewalld
+        state: stopped
+        
+    - name: Install NTP
+
+    - name: Disable SELINUX
+      selinux:
+        state: disabled
+
+    - name: Disable THP
+
+    - name: Set somaxconn

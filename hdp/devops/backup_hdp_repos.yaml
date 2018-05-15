@@ -1,0 +1,18 @@
+- hosts: mysql
+  tasks:
+    - name: Backup Ambari Schema
+      shell: mysqldump -u root --password={{ password }} --databases ambari_{{ db_set }} > mysql_backups/ambari_01.`date +%Y-%m-%d_%H-%M-%S`.sql
+    - name: Backup Hive Schema
+      shell: mysqldump -u root --password={{ password }} --databases hive_{{ db_set }} > mysql_backups/hive_{{ db_set }}.`date +%Y-%m-%d_%H-%M-%S`.sql
+    - name: Backup Oozie Schema
+      shell: mysqldump -u root --password={{ password }} --databases oozie_{{ db_set }} > mysql_backups/oozie_{{ db_set }}.`date +%Y-%m-%d_%H-%M-%S`.sql
+    - name: Backup Druid Schema
+      shell: mysqldump -u root --password={{ password }} --databases druid_{{ db_set }} > mysql_backups/druid_{{ db_set }}.`date +%Y-%m-%d_%H-%M-%S`.sql
+    - name: Backup Ranger Schema
+      shell: mysqldump -u root --password={{ password }} --databases ranger_{{ db_set }} > mysql_backups/ranger_{{ db_set }}.`date +%Y-%m-%d_%H-%M-%S`.sql
+    - name: Backup Ranger KMS Schema
+      shell: mysqldump -u root --password={{ password }} --databases ranger_kms_{{ db_set }} > mysql_backups/ranger_kms_{{ db_set }}.`date +%Y-%m-%d_%H-%M-%S`.sql
+    - name: Backup Registry Schema
+      shell: mysqldump -u root --password={{ password }} --databases registry_{{ db_set }} > mysql_backups/registry_{{ db_set }}.`date +%Y-%m-%d_%H-%M-%S`.sql
+    - name: Backup Superset Schema
+      shell: mysqldump -u root --password={{ password }} --databases superset_{{ db_set }} > mysql_backups/superset_{{ db_set }}.`date +%Y-%m-%d_%H-%M-%S`.sql
