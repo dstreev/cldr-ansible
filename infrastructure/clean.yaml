@@ -1,0 +1,6 @@
+# Cleanup all leftover data directories from an installation
+- hosts: os
+  become: true
+  tasks:
+    - name: Clean Data Directories
+      shell: rm -rf /data/docker_{{ env_instance }}

@@ -1,0 +1,6 @@
+
+- hosts: os
+  become: true
+  tasks:
+    - name: Core Init
+      shell: docker run -it --privileged -P --name core-{{ ansible_hostname }} -d --network home --dns-search=core.local --restart=unless-stopped alpine:latest

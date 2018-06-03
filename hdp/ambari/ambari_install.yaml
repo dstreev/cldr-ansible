@@ -1,51 +1,61 @@
 # Requires a Local Repo for HDP, Ambari and HDP-UTILS
 # Repo dirs need to match hdp repo layout.
-- import_playbook: ../setup/openjdk_install.yaml
+- import_playbook:     ../setup/openjdk_install.yaml
 
-- hosts: hdp
+- hosts:               hdp
+  become:              true
   tasks:
-    - name: Download the latest Ambari repo
-      get_url:
-        url: "{{ hortonworks_repo_base_url }}{{ ambari_path }}{{ ambari_ver }}/ambari.repo"
-        dest: /etc/yum.repos.d/
-        backup: yes
-        force: yes
-    - name: Fix URL Paths in repo.
-      replace:
-        path: /etc/yum.repos.d/ambari.repo
-        regexp: '(baseurl=){{ hortonworks_repo_base_url }}(.*)?$'
-        replace: '\1{{ local_repo_base_url }}\2'
-        backup: yes
+    - name:            Install the Ambari Repo
+      yum_repository:
+        name:          ambari
+        description:   Install the Ambari Repo from our Local Repo Server.
+        state:         present
+        baseurl:       http://{{ repo_server }}/repo/ambari/{{ os_version }}/{{ ambari_major_version }}.x/updates/{{ ambari_version }}
+        repo_gpgcheck: no
+        gpgcheck:      no
 
-- hosts: ambari
+- hosts:               ambari
+  become:              true
   tasks:
-    - name: Install Ambari Server
+    - name:            Install Ambari Server
       yum:
-        name: ambari-server
-        state: latest
+        name:          ambari-server
+        state:         latest
 
 # Required to run db client to init the Database
-- import_playbook: ambari_install_mariadb_client.yaml
+- import_playbook:     ambari_mysql_client.yaml
 
 # Create DB Instance
-- import_playbook: ambari_db_setup.yaml
+- import_playbook:     ambari_mysql_setup.yaml
 
 # Install JDBC Drivers
-- import_playbook: jdbc_setup.yaml
+- import_playbook:     jdbc_setup.yaml
 
-- hosts: hdp
+- hosts:               hdp
   tasks:
-    - name: Install Ambari Agents
+    - name:            Install Ambari Agents
       yum:
-        name: ambari-agent
-        state: latest
+        name:          ambari-agent
+        state:         latest
 
-- import_playbook: fix_agent_ssl.yaml
+- import_playbook:     fix_agent_ssl.yaml
 
 # Configuration and Start Agents for Manual Registration
-- hosts: hdp
+- hosts:               hdp
   tasks:
-    - name: Reset Ambari Agents
-      shell: ambari-agent reset {{ ambari_server_host }}
+    - name:            Reset Ambari Agents
+      shell:           ambari-agent reset {{ ambari_server }}
+
+- import_playbook:     ambari_configure.yaml
+
+- hosts: ambari
+  become: true
+  tasks:
+    - name: Start Ambari-Server
+      shell: ambari-server start
+
+- hosts: hdp
+  become: true
+  tasks:
     - name: Start Ambari Agents
       shell: ambari-agent start

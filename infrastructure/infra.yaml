@@ -1,0 +1,59 @@
+- hosts: db
+  vars:
+    docker_network_name: home
+    mariadb_ver: 10.2
+    centos_ver: 7.4
+  become: true
+
+  tasks:
+    - name: Create Device directory
+      shell: mkdir -p /data/docker_{{ env_instance }}/mariadb
+    - name: Set State of Maria DB container to {{ env_state}}
+      docker_container:
+        name: db-{{ env_instance }}
+        pull: true
+        image: mariadb:{{ mariadb_ver }}
+        privileged: yes
+        hostname: db-{{ env_instance }}.{{ docker_network_name }}
+        env:
+          MYSQL_ROOT_PASSWORD: hortonworks
+          MYSQL_USER: ambari
+          MYSQL_PASSWORD: hortonworks
+        volumes:
+          - "/data/docker_{{ env_instance }}/mariadb:/var/lib/mysql"
+        dns_search_domains:
+          - 'hdp.local'
+        restart: yes
+        ports :
+          - "306{{ env_instance }}:3306"
+        network_mode: '{{ docker_network_name }}'
+        networks:
+          - name : '{{ docker_network_name }}'
+            aliases :
+              - db-{{ env_instance }}.{{ docker_network_name }}
+            # links:
+            #   - hdp-{{ ansible_hostname }}-{{ env_instance }}.core
+        purge_networks: yes
+        state : '{{ env_state }}'
+
+    - name: Set State of Repo container to {{ env_state}}
+      docker_container:
+        name: repo-{{ env_instance }}
+        pull: true
+        image: dstreev/hdp-repo:latest
+        privileged: yes
+        hostname: repo-{{ env_instance }}.{{ docker_network_name }}
+        volumes:
+          - "/var/www/html:/www"
+        dns_search_domains:
+          - "{{ docker_network_name }}"
+        restart: yes
+        network_mode: '{{ docker_network_name }}'
+        networks:
+          - name : '{{ docker_network_name }}'
+            aliases :
+              - repo-{{ env_instance }}.{{ docker_network_name }}
+        purge_networks: yes
+        state : '{{ env_state }}'
+        ports :
+          - "380{{ env_instance }}:80"

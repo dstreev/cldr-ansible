@@ -1,0 +1,17 @@
+# Build and Start the Metastore and Repo
+# - import_playbook: ../infrastructure/infra.yaml
+
+- hosts: hdp
+
+  become: true
+  tasks:
+    - name: Install EPEL Release Repo
+      yum:
+        name: epel-release
+        state: latest
+    - name: Install Python PIP
+      yum:
+        name: python-pip
+        state: latest
+    - name: Install Docker-PY
+      shell: pip install docker-py

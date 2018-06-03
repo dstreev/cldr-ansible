@@ -1,0 +1,49 @@
+# Build and Start the Metastore and Repo
+# - import_playbook: ../infrastructure/infra.yaml
+
+- hosts: hdp
+  vars:
+    docker_network_name: home
+
+  become: true
+  tasks:
+    - name: Create Device directory
+      shell: mkdir -p /data/docker_{{ env_instance }}/hdp/log /data/docker_{{ env_instance }}/hdp/data
+    - name: Set State of HDP Containers to {{ env_state}}
+      docker_container:
+        name: hdp-{{ ansible_hostname }}-{{ env_instance }}
+        pull: true
+        image: dstreev/centos7_sshd:latest
+        privileged: yes
+        hostname: hdp-{{ ansible_hostname }}-{{ env_instance }}.{{ docker_network_name }}
+        volumes:
+          - "/data/docker_{{ env_instance }}/hdp/data:/data"
+          - "/data/docker_{{ env_instance }}/hdp/log/hadoop:/var/log/hadoop"
+          - "/data/docker_{{ env_instance }}/hdp/log/hadoop-yarn:/var/log/hadoop-yarn"
+          - "/data/docker_{{ env_instance }}/hdp/log/hadoop-mapreduce:/var/log/hadoop-mapreduce"
+          - "/data/docker_{{ env_instance }}/hdp/log/hive:/var/log/hive"
+          - "/data/docker_{{ env_instance }}/hdp/log/hbase:/var/log/hbase"
+          - "/data/docker_{{ env_instance }}/hdp/log/oozie:/var/log/oozie"
+          - "/data/docker_{{ env_instance }}/hdp/log/atlas:/var/log/atlas"
+          - "/data/docker_{{ env_instance }}/hdp/log/zookeeper:/var/log/zookeeper"
+          - "/data/docker_{{ env_instance }}/hdp/log/ambari-infra-solr:/var/log/ambari-infra-solr"
+          - "/data/docker_{{ env_instance }}/hdp/log/kafka:/var/log/kafka"
+          - "/data/docker_{{ env_instance }}/hdp/log/ambari-metrics-collector:/var/log/ambari-metrics-collector"
+          - "/data/docker_{{ env_instance }}/hdp/log/ambari-agent:/var/log/ambari-agent"
+          - "/data/docker_{{ env_instance }}/hdp/log/ambari-server:/var/log/ambari-server"
+        dns_search_domains:
+          - '{{ docker_network_name }}'
+        dns_servers:
+        restart: yes
+        restart_policy: unless-stopped
+        network_mode: '{{ docker_network_name }}'
+        networks:
+          - name : '{{ docker_network_name }}'
+            aliases :
+              - hdp-{{ ansible_hostname }}-{{ env_instance }}.{{ docker_network_name }}
+            # links:
+            #   - hdp-{{ ansible_hostname }}-{{ env_instance }}.core
+        purge_networks: yes
+        state : '{{ env_state }}'
+        ports :
+          - "220{{ env_instance }}:22"

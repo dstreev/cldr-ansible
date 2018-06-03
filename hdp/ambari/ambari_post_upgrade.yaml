@@ -1,51 +1,52 @@
-- hosts: hdp
+- hosts:             hdp
+  become:            true
   tasks:
-    - name: Upgrade Ambari InfraStructure Client
+    - name:          Upgrade Ambari InfraStructure Client
       yum:
-        name: ambari-infra-solr-client
-        state: latest
+        name:        ambari-infra-solr-client
+        state:       latest
         update_only: yes
-    - name: Upgrade Ambari InfraStructure Server
+    - name:          Upgrade Ambari InfraStructure Server
       yum:
-        name: ambari-infra-solr
-        state: latest
+        name:        ambari-infra-solr
+        state:       latest
         update_only: yes
-    - name: Upgrade Ambari Log Search
+    - name:          Upgrade Ambari Log Search
       yum:
-        name: ambari-logsearch-logfeeder
-        state: latest
+        name:        ambari-logsearch-logfeeder
+        state:       latest
         update_only: yes
-    - name: Upgrade Ambari Log Search Server
+    - name:          Upgrade Ambari Log Search Server
       yum:
-        name: ambari-logsearch-portal
-        state: latest
+        name:        ambari-logsearch-portal
+        state:       latest
         update_only: yes
-    - name: Upgrade Ambari Metric Monitor
+    - name:          Upgrade Ambari Metric Monitor
       yum:
-        name: ambari-metrics-monitor
-        state: latest
+        name:        ambari-metrics-monitor
+        state:       latest
         update_only: yes
-    - name: Upgrade Ambari Metrics Hadoop Sink
+    - name:          Upgrade Ambari Metrics Hadoop Sink
       yum:
-        name: ambari-metrics-hadoop-sink
-        state: latest
+        name:        ambari-metrics-hadoop-sink
+        state:       latest
         update_only: yes
-    - name: Upgrade Ambari Metrics Collector
+    - name:          Upgrade Ambari Metrics Collector
       yum:
-        name: ambari-metrics-collector
-        state: latest
+        name:        ambari-metrics-collector
+        state:       latest
         update_only: yes
-    - name: Upgrade Ambari Metrics Grafana
+    - name:          Upgrade Ambari Metrics Grafana
       yum:
-        name: ambari-metrics-grafana
-        state: latest
+        name:        ambari-metrics-grafana
+        state:       latest
         update_only: yes
-    - name: Upgrade SmartSense
+    - name:          Upgrade SmartSense
       yum:
-        name: smartsense-hst
-        state: latest
+        name:        smartsense-hst
+        state:       latest
         update_only: yes
-- hosts: ambari
+- hosts:             ambari
   tasks:
-    - name: Upgrade the Ambari SmartSense Views
-      shell: hst upgrade-ambari-service -u {{ ambari_admin_user }} -p {{ ambari_server_port }} -H {{ ambari_server_host }} -P {{ ambari_admin_password }}
+    - name:          Upgrade the Ambari SmartSense Views
+      shell:         hst upgrade-ambari-service -u {{ ambari_admin_user }} -p {{ ambari_server_port }} -H {{ ambari_server_host }} -P {{ ambari_admin_password }}

@@ -1,4 +1,5 @@
 - hosts: hdp
+  become: true
   tasks:
     - name: Install OpenJDK
       yum:

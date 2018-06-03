@@ -1,0 +1,62 @@
+- hosts:     ambari
+  become:    true
+  tasks:
+    - name:  Create ambari database
+      shell: mysql -h {{ db_host }} -u {{ db_user }} -p{{ db_password }} -e "create database if not exists {{ db_ambari_name }}"
+    - name:  Create Hive database
+      shell: mysql -h {{ db_host }} -u {{ db_user }} -p{{ db_password }} -e "create database if not exists {{ db_hive_name }}"
+    - name:  Create Oozie database
+      shell: mysql -h {{ db_host }} -u {{ db_user }} -p{{ db_password }} -e "create database if not exists {{ db_oozie_name }}"
+    - name:  Create Ranger database
+      shell: mysql -h {{ db_host }} -u {{ db_user }} -p{{ db_password }} -e "create database if not exists {{ db_ranger_name }}"
+    - name:  Create Ranger KMS database
+      shell: mysql -h {{ db_host }} -u {{ db_user }} -p{{ db_password }} -e "create database if not exists {{ db_ranger_kms_name }}"
+    - name:  Build schema
+      shell: mysql -h {{ db_host }} -u {{ db_user }} -p{{ db_password }} -D {{ db_ambari_name }} < /var/lib/ambari-server/resources/Ambari-DDL-MySQL-CREATE.sql
+    ## Attempted to use ansible module, no success
+    # - name: Install required Python-Dev libs
+    #   yum:
+    #     name: python-devel
+    #     state: latest
+    # - name: Install require MySql-Dev libs
+    #   yum:
+    #     name: mysql-devel
+    #     state: latest
+    # - name: Upgrade Pip
+    #   shell: pip install --upgrade pip
+    # - name: Install support python libs
+    #   pip:
+    #     name: pymssql
+    #     state: latest
+    # - name: Install jinja 2
+    #   pip:
+    #     name: jinja2
+    #     state: latest
+    # - name: Install Crypto
+    #   pip:
+    #     name: crypto
+    #     state: latest
+    # - name: Install/Upgrade dnspython
+    #   pip:
+    #     name: dnspython
+    #     state: latest
+    # - name: Install MySql python lib
+    #   pip:
+    #     name: mysql
+    #     state: latest
+    #
+    # - name: Create Ambari Schema in DB
+    #   mysql_db:
+    #     login_host: "{{ db_host }}"
+    #     login_user: "{{ db_user }}"
+    #     login_password: "{{ db_password }}"
+    #     name: "{{ ambari_db }}"
+    #     state: present
+    # - name: Create Ambari schema
+    #   mysql_db:
+    #     login_host: "{{ db_host }}"
+    #     login_user: "{{ db_user }}"
+    #     login_password: "{{ db_password }}"
+    #     name: "{{ ambari_db }}"
+    #     state: import
+    #     target: /var/lib/ambari-server/resources/Ambari-DDL-MySQL-CREATE.sql

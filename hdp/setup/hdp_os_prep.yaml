@@ -5,26 +5,38 @@
 # Disable THP
 # Set somaxconn
 # And other LLAP specifics
-- hosts: hdp
+- hosts:         hdp
+  become:        true
   tasks:
-    - name: Set Swappiness
-      shell: sysctl vm.swappiness=1
+    - name: Install sudo
+      yum:
+        name: sudo
+        state: latest
 
-    - name: Disable Firewalls
-      systemd:
-        name: firewalld
-        enabled: no
-    - name: Stop Firewalls
-      systemd:
-        name: firewalld
-        state: stopped
-        
-    - name: Install NTP
+    # Needed to support hdfs dfs commands and HBase Region Server Startup.
+    - name: Install which
+      yum:
+        name: which
+        state: latest
 
-    - name: Disable SELINUX
-      selinux:
-        state: disabled
+    - name:      Set Swappiness
+      shell:     sysctl vm.swappiness=1
 
-    - name: Disable THP
+    # - name:      Disable Firewalls
+    #   systemd:
+    #     name:    firewalld
+    #     enabled: no
+    # - name:      Stop Firewalls
+    #   systemd:
+    #     name:    firewalld
+    #     state:   stopped
 
-    - name: Set somaxconn
+    # - name:    Install NTP
+
+    # - name:      Disable SELINUX
+    #   selinux:
+    #     state:   disabled
+
+    # - name:    Disable THP
+
+    # - name:    Set somaxconn
