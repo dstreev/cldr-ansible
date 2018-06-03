@@ -50,5 +50,6 @@ ansible-playbook -e env_instance=${ENV_INSTANCE} -e env_state=started hdp.yaml
 ./build-host-yaml.sh -i ${ENV_INSTANCE}
 
 ansible-playbook -i `pwd`/hosts/${ENV_INSTANCE}.yaml --extra-vars "@vars/hdp_${HDP_VERSION}.json" -e env_state=started ../hdp/setup/hdp_os_prep.yaml
+ansible-playbook -i `pwd`/hosts/${ENV_INSTANCE}.yaml --extra-vars "@vars/hdp_${HDP_VERSION}.json" -e env_state=started ../hdp/setup/edge_node_config.yaml
 
 ansible-playbook -i `pwd`/hosts/${ENV_INSTANCE}.yaml --extra-vars "@vars/hdp_${HDP_VERSION}.json" -e env_state=started ../hdp/ambari/ambari_install.yaml

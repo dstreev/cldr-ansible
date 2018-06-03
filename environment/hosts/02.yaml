@@ -5,53 +5,53 @@ all:
       hosts:
         os1.core:
           ansible_host:                     os1
-          ansible_port:                     22001
+          ansible_port:                     22002
           ansible_user:                     root
           ansible_ssh_private_key_file:     /Users/dstreev/.ssh/id_rsa_docker
     hdp:
       vars:
-        ambari_server:                      hdp-os02-01.home
-        repo_server:                        repo-01.home
-        db_host:                            db-01.home
+        ambari_server:                      hdp-os02-02.home
+        repo_server:                        repo-02.home
+        db_host:                            db-02.home
       hosts:
         os6.core:
           ansible_host:                     os6
-          ansible_port:                     22001
+          ansible_port:                     22002
           ansible_user:                     root
           ansible_ssh_private_key_file:     /Users/dstreev/.ssh/id_rsa_docker
         os7.core:
           ansible_host:                     os7
-          ansible_port:                     22001
+          ansible_port:                     22002
           ansible_user:                     root
           ansible_ssh_private_key_file:     /Users/dstreev/.ssh/id_rsa_docker
         os10.core:
           ansible_host:                     os10
-          ansible_port:                     22001
+          ansible_port:                     22002
           ansible_user:                     root
           ansible_ssh_private_key_file:     /Users/dstreev/.ssh/id_rsa_docker
         os11.core:
           ansible_host:                     os11
-          ansible_port:                     22001
+          ansible_port:                     22002
           ansible_user:                     root
           ansible_ssh_private_key_file:     /Users/dstreev/.ssh/id_rsa_docker
         os12.core:
           ansible_host:                     os12
-          ansible_port:                     22001
+          ansible_port:                     22002
           ansible_user:                     root
           ansible_ssh_private_key_file:     /Users/dstreev/.ssh/id_rsa_docker
         os13.core:
           ansible_host:                     os13
-          ansible_port:                     22001
+          ansible_port:                     22002
           ansible_user:                     root
           ansible_ssh_private_key_file:     /Users/dstreev/.ssh/id_rsa_docker
         os14.core:
           ansible_host:                     os14
-          ansible_port:                     22001
+          ansible_port:                     22002
           ansible_user:                     root
           ansible_ssh_private_key_file:     /Users/dstreev/.ssh/id_rsa_docker
         os15.core:
           ansible_host:                     os15
-          ansible_port:                     22001
+          ansible_port:                     22002
           ansible_user:                     root
           ansible_ssh_private_key_file:     /Users/dstreev/.ssh/id_rsa_docker
 
@@ -60,12 +60,12 @@ all:
           hosts:
             os3.core:
               ansible_host:                     os3
-              ansible_port:                     22001
+              ansible_port:                     22002
               ansible_user:                     root
               ansible_ssh_private_key_file:     /Users/dstreev/.ssh/id_rsa_docker
             os5.core:
               ansible_host:                     os5
-              ansible_port:                     22001
+              ansible_port:                     22002
               ansible_user:                     root
               ansible_ssh_private_key_file:     /Users/dstreev/.ssh/id_rsa_docker
         children:
@@ -73,10 +73,9 @@ all:
             hosts:
               os4.core:
                 ansible_host:                     os4
-                ansible_port:                     22001
+                ansible_port:                     22002
                 ansible_user:                     root
                 ansible_ssh_private_key_file:     /Users/dstreev/.ssh/id_rsa_docker
-
         ambari:
           vars:
             db_type:                        mysql
@@ -91,7 +90,7 @@ all:
           hosts:
             os2.core:
               ansible_host:                 os2
-              ansible_port:                 22001
+              ansible_port:                 22002
               ansible_user:                 root
               ansible_ssh_private_key_file: /Users/dstreev/.ssh/id_rsa_docker
 

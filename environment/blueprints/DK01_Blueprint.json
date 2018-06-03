@@ -45,16 +45,6 @@
       }
     },
     {
-      "knox-env" : {
-        "properties_attributes" : { },
-        "properties" : {
-          "knox_user" : "knox",
-          "knox_group" : "knox",
-          "knox_pid_dir" : "/var/run/knox"
-        }
-      }
-    },
-    {
       "activity-log4j" : {
         "properties_attributes" : { },
         "properties" : {
@@ -256,14 +246,6 @@
       }
     },
     {
-      "topology" : {
-        "properties_attributes" : { },
-        "properties" : {
-          "content" : "\n        <topology>\n\n            <gateway>\n\n                <provider>\n                    <role>authentication</role>\n                    <name>ShiroProvider</name>\n                    <enabled>true</enabled>\n                    <param>\n                        <name>sessionTimeout</name>\n                        <value>30</value>\n                    </param>\n                    <param>\n                        <name>main.ldapRealm</name>\n                        <value>org.apache.hadoop.gateway.shirorealm.KnoxLdapRealm</value>\n                    </param>\n                    <param>\n                        <name>main.ldapRealm.userDnTemplate</name>\n                        <value>uid={0},ou=people,dc=hadoop,dc=apache,dc=org</value>\n                    </param>\n                    <param>\n                        <name>main.ldapRealm.contextFactory.url</name>\n                        <value>ldap://{{knox_host_name}}:33389</value>\n                    </param>\n                    <param>\n                        <name>main.ldapRealm.contextFactory.authenticationMechanism</name>\n                        <value>simple</value>\n                    </param>\n                    <param>\n                        <name>urls./**</name>\n                        <value>authcBasic</value>\n                    </param>\n                </provider>\n\n                <provider>\n                    <role>identity-assertion</role>\n                    <name>Default</name>\n                    <enabled>true</enabled>\n                </provider>\n\n                <provider>\n                    <role>authorization</role>\n                    <name>AclsAuthz</name>\n                    <enabled>true</enabled>\n                </provider>\n\n            </gateway>\n\n            <service>\n                <role>NAMENODE</role>\n                <url>hdfs://{{namenode_host}}:{{namenode_rpc_port}}</url>\n            </service>\n\n            <service>\n                <role>JOBTRACKER</role>\n                <url>rpc://{{rm_host}}:{{jt_rpc_port}}</url>\n            </service>\n\n            <service>\n                <role>WEBHDFS</role>\n                {{webhdfs_service_urls}}\n            </service>\n\n            <service>\n                <role>WEBHCAT</role>\n                <url>http://{{webhcat_server_host}}:{{templeton_port}}/templeton</url>\n            </service>\n\n            <service>\n                <role>OOZIE</role>\n                <url>http://{{oozie_server_host}}:{{oozie_server_port}}/oozie</url>\n            </service>\n\n            <service>\n                <role>WEBHBASE</role>\n                <url>http://{{hbase_master_host}}:{{hbase_master_port}}</url>\n            </service>\n\n            <service>\n                <role>HIVE</role>\n                <url>http://{{hive_server_host}}:{{hive_http_port}}/{{hive_http_path}}</url>\n            </service>\n\n            <service>\n                <role>RESOURCEMANAGER</role>\n                <url>http://{{rm_host}}:{{rm_port}}/ws</url>\n            </service>\n\n            <service>\n                <role>DRUID-COORDINATOR-UI</role>\n                {{druid_coordinator_urls}}\n            </service>\n\n            <service>\n                <role>DRUID-COORDINATOR</role>\n                {{druid_coordinator_urls}}\n            </service>\n\n            <service>\n                <role>DRUID-OVERLORD-UI</role>\n                {{druid_overlord_urls}}\n            </service>\n\n            <service>\n                <role>DRUID-OVERLORD</role>\n                {{druid_overlord_urls}}\n            </service>\n\n            <service>\n                <role>DRUID-ROUTER</role>\n                {{druid_router_urls}}\n            </service>\n\n            <service>\n                <role>DRUID-BROKER</role>\n                {{druid_broker_urls}}\n            </service>\n\n            <service>\n                <role>ZEPPELINUI</role>\n                {{zeppelin_ui_urls}}\n            </service>\n\n            <service>\n                <role>ZEPPELINWS</role>\n                {{zeppelin_ws_urls}}\n            </service>\n\n        </topology>"
-        }
-      }
-    },
-    {
       "hive-log4j" : {
         "properties_attributes" : { },
         "properties" : {
@@ -339,7 +321,7 @@
           "gateway.host" : "embedded",
           "server.port" : "9000",
           "server.tmp.dir" : "/var/lib/smartsense/hst-server/tmp",
-          "server.url" : "http://hdp-os03-01.home:9000",
+          "server.url" : "http://hdp-os02-01.home:9000",
           "customer.smartsense.id" : "unspecified"
         }
       }
@@ -384,12 +366,6 @@
       }
     },
     {
-      "ranger-knox-audit" : {
-        "properties_attributes" : { },
-        "properties" : { }
-      }
-    },
-    {
       "ams-env" : {
         "properties_attributes" : { },
         "properties" : {
@@ -414,12 +390,6 @@
           "security.admin.protocol.acl" : "*",
           "security.client.protocol.acl" : "*"
         }
-      }
-    },
-    {
-      "ranger-knox-plugin-properties" : {
-        "properties_attributes" : { },
-        "properties" : { }
       }
     },
     {
@@ -485,12 +455,6 @@
       }
     },
     {
-      "ranger-knox-security" : {
-        "properties_attributes" : { },
-        "properties" : { }
-      }
-    },
-    {
       "hiveserver2-interactive-site" : {
         "properties_attributes" : { },
         "properties" : {
@@ -502,17 +466,11 @@
       }
     },
     {
-      "gateway-site" : {
+      "sqoop-atlas-application.properties" : {
         "properties_attributes" : { },
         "properties" : {
-          "java.security.auth.login.config" : "/etc/knox/conf/krb5JAASLogin.conf",
-          "sun.security.krb5.debug" : "false",
-          "gateway.hadoop.kerberos.secured" : "false",
-          "gateway.gateway.conf.dir" : "deployments",
-          "gateway.path" : "gateway",
-          "gateway.websocket.feature.enabled" : "{{websocket_support}}",
-          "gateway.port" : "8443",
-          "java.security.krb5.conf" : "/etc/knox/conf/krb5.conf"
+          "atlas.jaas.KafkaClient.option.renewTicket" : "true",
+          "atlas.jaas.KafkaClient.option.useTicketCache" : "true"
         }
       }
     },
@@ -847,20 +805,6 @@
       }
     },
     {
-      "ranger-knox-policymgr-ssl" : {
-        "properties_attributes" : { },
-        "properties" : { }
-      }
-    },
-    {
-      "knoxsso-topology" : {
-        "properties_attributes" : { },
-        "properties" : {
-          "content" : "\n      <topology>\n          <gateway>\n              <provider>\n                  <role>webappsec</role>\n                  <name>WebAppSec</name>\n                  <enabled>true</enabled>\n                  <param><name>xframe.options.enabled</name><value>true</value></param>\n              </provider>\n\n              <provider>\n                  <role>authentication</role>\n                  <name>ShiroProvider</name>\n                  <enabled>true</enabled>\n                  <param>\n                      <name>sessionTimeout</name>\n                      <value>30</value>\n                  </param>\n                  <param>\n                      <name>redirectToUrl</name>\n                      <value>/gateway/knoxsso/knoxauth/login.html</value>\n                  </param>\n                  <param>\n                      <name>restrictedCookies</name>\n                      <value>rememberme,WWW-Authenticate</value>\n                  </param>\n                  <param>\n                      <name>main.ldapRealm</name>\n                      <value>org.apache.hadoop.gateway.shirorealm.KnoxLdapRealm</value>\n                  </param>\n                  <param>\n                      <name>main.ldapContextFactory</name>\n                      <value>org.apache.hadoop.gateway.shirorealm.KnoxLdapContextFactory</value>\n                  </param>\n                  <param>\n                      <name>main.ldapRealm.contextFactory</name>\n                      <value>$ldapContextFactory</value>\n                  </param>\n                  <param>\n                      <name>main.ldapRealm.userDnTemplate</name>\n                      <value>uid={0},ou=people,dc=hadoop,dc=apache,dc=org</value>\n                  </param>\n                  <param>\n                      <name>main.ldapRealm.contextFactory.url</name>\n                      <value>ldap://localhost:33389</value>\n                  </param>    \n                  <param>\n                      <name>main.ldapRealm.authenticationCachingEnabled</name>\n                      <value>false</value>\n                  </param>\n                  <param>\n                      <name>main.ldapRealm.contextFactory.authenticationMechanism</name>\n                      <value>simple</value>\n                  </param>\n                  <param>\n                      <name>urls./**</name>\n                      <value>authcBasic</value>\n                  </param>\n              </provider>\n\n              <provider>\n                  <role>identity-assertion</role>\n                  <name>Default</name>\n                  <enabled>true</enabled>\n              </provider>\n          </gateway>\n\n          <application>\n            <name>knoxauth</name>\n          </application>\n\n          <service>\n              <role>KNOXSSO</role>\n              <param>\n                  <name>knoxsso.cookie.secure.only</name>\n                  <value>false</value>\n              </param>\n              <param>\n                  <name>knoxsso.token.ttl</name>\n                  <value>30000</value>\n              </param>\n              <param>\n                 <name>knoxsso.redirect.whitelist.regex</name>\n                 <value>^https?:\\/\\/(localhost|127\\.0\\.0\\.1|0:0:0:0:0:0:0:1|::1):[0-9].*$</value>\n              </param>\n          </service>\n\n      </topology>"
-        }
-      }
-    },
-    {
       "slider-log4j" : {
         "properties_attributes" : { },
         "properties" : {
@@ -1003,7 +947,7 @@
           "hbase.regionserver.wal.codec" : "org.apache.hadoop.hbase.regionserver.wal.WALCellCodec",
           "hbase.client.retries.number" : "35",
           "hbase.hstore.compaction.max" : "10",
-          "hbase.zookeeper.quorum" : "%HOSTGROUP::host_group_3%,%HOSTGROUP::host_group_1%,%HOSTGROUP::host_group_2%",
+          "hbase.zookeeper.quorum" : "%HOSTGROUP::host_group_1%,%HOSTGROUP::host_group_3%,%HOSTGROUP::host_group_2%",
           "hbase.regionserver.info.port" : "16030",
           "hbase.hregion.memstore.chunkpool.maxsize" : "1",
           "hbase.rpc.protection" : "authentication",
@@ -1293,19 +1237,11 @@
       }
     },
     {
-      "admin-topology" : {
-        "properties_attributes" : { },
-        "properties" : {
-          "content" : "\n    <topology>\n\n        <gateway>\n\n             <provider>\n                <role>authentication</role>\n                <name>ShiroProvider</name>\n                <enabled>true</enabled>\n                <param>\n                    <name>sessionTimeout</name>\n                    <value>30</value>\n                </param>\n                <param>\n                    <name>main.ldapRealm</name>\n                    <value>org.apache.hadoop.gateway.shirorealm.KnoxLdapRealm</value>\n                </param>\n                <param>\n                    <name>main.ldapRealm.userDnTemplate</name>\n                    <value>uid={0},ou=people,dc=hadoop,dc=apache,dc=org</value>\n                </param>\n                <param>\n                    <name>main.ldapRealm.contextFactory.url</name>\n                    <value>ldap://{{knox_host_name}}:33389</value>\n                </param>\n                <param>\n                    <name>main.ldapRealm.contextFactory.authenticationMechanism</name>\n                    <value>simple</value>\n                </param>\n                <param>\n                    <name>urls./**</name>\n                    <value>authcBasic</value>\n                </param>\n            </provider>\n\n            <provider>\n                <role>authorization</role>\n                <name>AclsAuthz</name>\n                <enabled>true</enabled>\n                <param>\n                    <name>knox.acl</name>\n                    <value>admin;*;*</value>\n                </param>\n            </provider>\n\n            <provider>\n                <role>identity-assertion</role>\n                <name>Default</name>\n                <enabled>true</enabled>\n            </provider>\n\n        </gateway>\n\n        <service>\n            <role>KNOX</role>\n        </service>\n\n    </topology>"
-        }
-      }
-    },
-    {
       "yarn-site" : {
         "properties_attributes" : { },
         "properties" : {
           "yarn.log-aggregation.file-formats" : "IndexedFormat,TFile",
-          "yarn.resourcemanager.zk-address" : "%HOSTGROUP::host_group_3%:2181,%HOSTGROUP::host_group_1%:2181,%HOSTGROUP::host_group_2%:2181",
+          "yarn.resourcemanager.zk-address" : "%HOSTGROUP::host_group_1%:2181,%HOSTGROUP::host_group_3%:2181,%HOSTGROUP::host_group_2%:2181",
           "yarn.nodemanager.container-monitor.interval-ms" : "3000",
           "yarn.timeline-service.entity-group-fs-store.active-dir" : "/ats/active/",
           "yarn.log.server.web-service.url" : "http://%HOSTGROUP::host_group_2%:8188/ws/v1/applicationhistory",
@@ -1317,7 +1253,7 @@
           "yarn.timeline-service.entity-group-fs-store.cleaner-interval-seconds" : "3600",
           "yarn.nodemanager.remote-app-log-dir-suffix" : "logs",
           "yarn.nodemanager.address" : "0.0.0.0:45454",
-          "yarn.resourcemanager.webapp.address" : "%HOSTGROUP::host_group_1%:8088",
+          "yarn.resourcemanager.webapp.address" : "%HOSTGROUP::host_group_2%:8088",
           "yarn.timeline-service.leveldb-timeline-store.ttl-interval-ms" : "300000",
           "yarn.scheduler.maximum-allocation-vcores" : "3",
           "yarn.timeline-service.address" : "%HOSTGROUP::host_group_2%:10200",
@@ -1333,9 +1269,9 @@
           "yarn.timeline-service.http-authentication.simple.anonymous.allowed" : "true",
           "yarn.resourcemanager.zk-state-store.parent-path" : "/rmstore",
           "yarn.timeline-service.leveldb-timeline-store.start-time-read-cache-size" : "10000",
-          "yarn.resourcemanager.admin.address" : "%HOSTGROUP::host_group_1%:8141",
+          "yarn.resourcemanager.admin.address" : "%HOSTGROUP::host_group_2%:8141",
           "yarn.nodemanager.linux-container-executor.cgroups.strict-resource-usage" : "false",
-          "yarn.resourcemanager.resource-tracker.address" : "%HOSTGROUP::host_group_1%:8025",
+          "yarn.resourcemanager.resource-tracker.address" : "%HOSTGROUP::host_group_2%:8025",
           "yarn.nodemanager.delete.debug-delay-sec" : "0",
           "yarn.resourcemanager.fs.state-store.retry-policy-spec" : "2000, 500",
           "yarn.timeline-service.http-authentication.type" : "simple",
@@ -1362,7 +1298,7 @@
           "yarn.resourcemanager.fs.state-store.uri" : " ",
           "yarn.resourcemanager.recovery.enabled" : "true",
           "yarn.timeline-service.entity-group-fs-store.group-id-plugin-classpath" : "",
-          "yarn.resourcemanager.scheduler.address" : "%HOSTGROUP::host_group_1%:8030",
+          "yarn.resourcemanager.scheduler.address" : "%HOSTGROUP::host_group_2%:8030",
           "yarn.timeline-service.client.fd-flush-interval-secs" : "5",
           "yarn.timeline-service.leveldb-timeline-store.start-time-write-cache-size" : "10000",
           "yarn.timeline-service.ttl-ms" : "2678400000",
@@ -1370,7 +1306,7 @@
           "yarn.nodemanager.aux-services.spark2_shuffle.class" : "org.apache.spark.network.yarn.YarnShuffleService",
           "yarn.log.server.url" : "http://%HOSTGROUP::host_group_2%:19888/jobhistory/logs",
           "yarn.timeline-service.entity-group-fs-store.group-id-plugin-classes" : "org.apache.tez.dag.history.logging.ats.TimelineCachePluginImpl",
-          "yarn.resourcemanager.address" : "%HOSTGROUP::host_group_1%:8050",
+          "yarn.resourcemanager.address" : "%HOSTGROUP::host_group_2%:8050",
           "yarn.timeline-service.recovery.enabled" : "true",
           "yarn.nodemanager.recovery.dir" : "{{yarn_log_dir_prefix}}/nodemanager/recovery-state",
           "yarn.resourcemanager.scheduler.monitor.enable" : "false",
@@ -1388,7 +1324,7 @@
           "yarn.timeline-service.leveldb-timeline-store.read-cache-size" : "104857600",
           "yarn.resourcemanager.monitor.capacity.preemption.natural_termination_factor" : "1",
           "yarn.nodemanager.local-dirs" : "/data/hadoop/yarn/local",
-          "yarn.timeline-service.leveldb-timeline-store.path" : "/data/hadoop/yarn/timeline",
+          "yarn.timeline-service.leveldb-timeline-store.path" : "/hadoop/yarn/timeline",
           "yarn.nodemanager.recovery.enabled" : "true",
           "yarn.log-aggregation.file-controller.IndexedFormat.class" : "org.apache.hadoop.yarn.logaggregation.filecontroller.ifile.LogAggregationIndexedFileController",
           "yarn.resourcemanager.zk-timeout-ms" : "10000",
@@ -1402,18 +1338,18 @@
           "yarn.nodemanager.aux-services.spark_shuffle.classpath" : "{{stack_root}}/${hdp.version}/spark/aux/*",
           "yarn.resourcemanager.store.class" : "org.apache.hadoop.yarn.server.resourcemanager.recovery.ZKRMStateStore",
           "yarn.timeline-service.http-authentication.proxyuser.root.groups" : "*",
-          "yarn.timeline-service.leveldb-state-store.path" : "/data/hadoop/yarn/timeline",
+          "yarn.timeline-service.leveldb-state-store.path" : "/hadoop/yarn/timeline",
           "yarn.nodemanager.log.retain-seconds" : "604800",
           "yarn.timeline-service.entity-group-fs-store.done-dir" : "/ats/done/",
           "yarn.nodemanager.disk-health-checker.max-disk-utilization-per-disk-percentage" : "90",
-          "hadoop.registry.zk.quorum" : "%HOSTGROUP::host_group_3%:2181,%HOSTGROUP::host_group_1%:2181,%HOSTGROUP::host_group_2%:2181",
+          "hadoop.registry.zk.quorum" : "%HOSTGROUP::host_group_1%:2181,%HOSTGROUP::host_group_3%:2181,%HOSTGROUP::host_group_2%:2181",
           "yarn.nodemanager.log-aggregation.roll-monitoring-interval-seconds" : "3600",
           "yarn.nodemanager.container-executor.class" : "org.apache.hadoop.yarn.server.nodemanager.DefaultContainerExecutor",
           "yarn.resourcemanager.nodes.exclude-path" : "/etc/hadoop/conf/yarn.exclude",
           "yarn.timeline-service.state-store-class" : "org.apache.hadoop.yarn.server.timeline.recovery.LeveldbTimelineStateStore",
           "yarn.log-aggregation.file-controller.TFile.class" : "org.apache.hadoop.yarn.logaggregation.filecontroller.tfile.LogAggregationTFileController",
           "yarn.nodemanager.bind-host" : "0.0.0.0",
-          "yarn.resourcemanager.hostname" : "%HOSTGROUP::host_group_1%",
+          "yarn.resourcemanager.hostname" : "%HOSTGROUP::host_group_2%",
           "yarn.resourcemanager.monitor.capacity.preemption.total_preemption_per_round" : "0.1",
           "yarn.resourcemanager.connect.retry-interval.ms" : "15000",
           "yarn.timeline-service.webapp.address" : "%HOSTGROUP::host_group_2%:8188",
@@ -1427,7 +1363,7 @@
           "yarn.scheduler.maximum-allocation-mb" : "8192",
           "yarn.nodemanager.vmem-check-enabled" : "false",
           "yarn.timeline-service.entity-group-fs-store.scan-interval-seconds" : "15",
-          "yarn.resourcemanager.webapp.https.address" : "%HOSTGROUP::host_group_1%:8090",
+          "yarn.resourcemanager.webapp.https.address" : "%HOSTGROUP::host_group_2%:8090",
           "yarn.timeline-service.webapp.https.address" : "%HOSTGROUP::host_group_2%:8190",
           "yarn.nodemanager.resource.percentage-physical-cpu-limit" : "80",
           "yarn.nodemanager.vmem-pmem-ratio" : "2.1",
@@ -1449,30 +1385,12 @@
       }
     },
     {
-      "knox-logsearch-conf" : {
-        "properties_attributes" : { },
-        "properties" : {
-          "component_mappings" : "KNOX_GATEWAY:knox_gateway,knox_cli,knox_ldap",
-          "content" : "\n{\n  \"input\":[\n    {\n      \"type\":\"knox_gateway\",\n      \"rowtype\":\"service\",\n      \"path\":\"/var/log/knox/gateway.log\"\n    },\n    {\n      \"type\":\"knox_cli\",\n      \"rowtype\":\"service\",\n      \"path\":\"/var/log/knox/knoxcli.log\"\n    },\n    {\n      \"type\":\"knox_ldap\",\n      \"rowtype\":\"service\",\n      \"path\":\"/var/log/knox/ldap.log\"\n    }\n   ],\n  \"filter\":[\n    {\n      \"filter\":\"grok\",\n      \"conditions\":{\n        \"fields\":{\n          \"type\":[\n            \"knox_gateway\",\n            \"knox_cli\",\n            \"knox_ldap\"\n          ]\n\n        }\n       },\n      \"log4j_format\":\"%d{ISO8601} %-5p %c{2} (%F:%M(%L)) - %m%n\",\n      \"multiline_pattern\":\"^(%{TIMESTAMP_ISO8601:logtime})\",\n      \"message_pattern\":\"(?m)^%{TIMESTAMP_ISO8601:logtime}%{SPACE}%{LOGLEVEL:level}%{SPACE}%{JAVACLASS:logger_name}%{SPACE}\\\\(%{JAVAFILE:file}:%{JAVAMETHOD:method}\\\\(%{INT:line_number}\\\\)\\\\)%{SPACE}-%{SPACE}%{GREEDYDATA:log_message}\",\n      \"post_map_values\":{\n        \"logtime\":{\n          \"map_date\":{\n            \"target_date_pattern\":\"yyyy-MM-dd HH:mm:ss,SSS\"\n          }\n         }\n       }\n     }\n   ]\n }",
-          "service_name" : "Knox"
-        }
-      }
-    },
-    {
       "yarn-logsearch-conf" : {
         "properties_attributes" : { },
         "properties" : {
           "component_mappings" : "RESOURCEMANAGER:yarn_resourcemanager,yarn_historyserver,yarn_jobsummary;NODEMANAGER:yarn_nodemanager;APP_TIMELINE_SERVER:yarn_timelineserver",
           "content" : "\n{\n  \"input\":[\n    {\n      \"type\":\"yarn_nodemanager\",\n      \"rowtype\":\"service\",\n      \"path\":\"{{default('/configurations/yarn-env/yarn_log_dir_prefix', '/var/log/hadoop')}}/{{default('configurations/yarn-env/yarn_user', 'yarn')}}/yarn-{{default('configurations/yarn-env/yarn_user', 'yarn')}}-nodemanager-*.log\"\n    },\n    {\n      \"type\":\"yarn_resourcemanager\",\n      \"rowtype\":\"service\",\n      \"path\":\"{{default('/configurations/yarn-env/yarn_log_dir_prefix', '/var/log/hadoop')}}/{{default('configurations/yarn-env/yarn_user', 'yarn')}}/yarn-{{default('configurations/yarn-env/yarn_user', 'yarn')}}-resourcemanager-*.log\"\n    },\n    {\n      \"type\":\"yarn_timelineserver\",\n      \"rowtype\":\"service\",\n      \"path\":\"{{default('/configurations/yarn-env/yarn_log_dir_prefix', '/var/log/hadoop')}}/{{default('configurations/yarn-env/yarn_user', 'yarn')}}/yarn-{{default('configurations/yarn-env/yarn_user', 'yarn')}}-timelineserver-*.log\"\n    },\n    {\n      \"type\":\"yarn_historyserver\",\n      \"rowtype\":\"service\",\n      \"path\":\"{{default('/configurations/yarn-env/yarn_log_dir_prefix', '/var/log/hadoop')}}/{{default('configurations/yarn-env/yarn_user', 'yarn')}}/yarn-{{default('configurations/yarn-env/yarn_user', 'yarn')}}-historyserver-*.log\"\n    },\n    {\n      \"type\":\"yarn_jobsummary\",\n      \"rowtype\":\"service\",\n      \"path\":\"{{default('/configurations/yarn-env/yarn_log_dir_prefix', '/var/log/hadoop')}}/{{default('configurations/yarn-env/yarn_user', 'yarn')}}/hadoop-mapreduce.jobsummary.log\"\n    }\n   ],\n  \"filter\":[\n    {\n      \"filter\":\"grok\",\n      \"conditions\":{\n        \"fields\":{\n          \"type\":[\n            \"yarn_historyserver\",\n            \"yarn_jobsummary\",\n            \"yarn_nodemanager\",\n            \"yarn_resourcemanager\",\n            \"yarn_timelineserver\"\n          ]\n         }\n       },\n      \"log4j_format\":\"%d{ISO8601} %-5p %c{2} (%F:%M(%L)) - %m%n\",\n      \"multiline_pattern\":\"^(%{TIMESTAMP_ISO8601:logtime})\",\n      \"message_pattern\":\"(?m)^%{TIMESTAMP_ISO8601:logtime}%{SPACE}%{LOGLEVEL:level}%{SPACE}%{JAVACLASS:logger_name}%{SPACE}\\\\(%{JAVAFILE:file}:%{JAVAMETHOD:method}\\\\(%{INT:line_number}\\\\)\\\\)%{SPACE}-%{SPACE}%{GREEDYDATA:log_message}\",\n      \"post_map_values\":{\n        \"logtime\":{\n          \"map_date\":{\n            \"target_date_pattern\":\"yyyy-MM-dd HH:mm:ss,SSS\"\n          }\n         }\n       }\n     }\n   ]\n}",
           "service_name" : "YARN"
-        }
-      }
-    },
-    {
-      "users-ldif" : {
-        "properties_attributes" : { },
-        "properties" : {
-          "content" : "\n# Licensed to the Apache Software Foundation (ASF) under one\n# or more contributor license agreements.  See the NOTICE file\n# distributed with this work for additional information\n# regarding copyright ownership.  The ASF licenses this file\n# to you under the Apache License, Version 2.0 (the\n# \"License\"); you may not use this file except in compliance\n# with the License.  You may obtain a copy of the License at\n#\n#     http://www.apache.org/licenses/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing, software\n# distributed under the License is distributed on an \"AS IS\" BASIS,\n# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n\nversion: 1\n\n# Please replace with site specific values\ndn: dc=hadoop,dc=apache,dc=org\nobjectclass: organization\nobjectclass: dcObject\no: Hadoop\ndc: hadoop\n\n# Entry for a sample people container\n# Please replace with site specific values\ndn: ou=people,dc=hadoop,dc=apache,dc=org\nobjectclass:top\nobjectclass:organizationalUnit\nou: people\n\n# Entry for a sample end user\n# Please replace with site specific values\ndn: uid=guest,ou=people,dc=hadoop,dc=apache,dc=org\nobjectclass:top\nobjectclass:person\nobjectclass:organizationalPerson\nobjectclass:inetOrgPerson\ncn: Guest\nsn: User\nuid: guest\nuserPassword:guest-password\n\n# entry for sample user admin\ndn: uid=admin,ou=people,dc=hadoop,dc=apache,dc=org\nobjectclass:top\nobjectclass:person\nobjectclass:organizationalPerson\nobjectclass:inetOrgPerson\ncn: Admin\nsn: Admin\nuid: admin\nuserPassword:admin-password\n\n# entry for sample user sam\ndn: uid=sam,ou=people,dc=hadoop,dc=apache,dc=org\nobjectclass:top\nobjectclass:person\nobjectclass:organizationalPerson\nobjectclass:inetOrgPerson\ncn: sam\nsn: sam\nuid: sam\nuserPassword:sam-password\n\n# entry for sample user tom\ndn: uid=tom,ou=people,dc=hadoop,dc=apache,dc=org\nobjectclass:top\nobjectclass:person\nobjectclass:organizationalPerson\nobjectclass:inetOrgPerson\ncn: tom\nsn: tom\nuid: tom\nuserPassword:tom-password\n\n# create FIRST Level groups branch\ndn: ou=groups,dc=hadoop,dc=apache,dc=org\nobjectclass:top\nobjectclass:organizationalUnit\nou: groups\ndescription: generic groups branch\n\n# create the analyst group under groups\ndn: cn=analyst,ou=groups,dc=hadoop,dc=apache,dc=org\nobjectclass:top\nobjectclass: groupofnames\ncn: analyst\ndescription:analyst  group\nmember: uid=sam,ou=people,dc=hadoop,dc=apache,dc=org\nmember: uid=tom,ou=people,dc=hadoop,dc=apache,dc=org\n\n\n# create the scientist group under groups\ndn: cn=scientist,ou=groups,dc=hadoop,dc=apache,dc=org\nobjectclass:top\nobjectclass: groupofnames\ncn: scientist\ndescription: scientist group\nmember: uid=sam,ou=people,dc=hadoop,dc=apache,dc=org"
         }
       }
     },
@@ -1513,6 +1431,17 @@
       }
     },
     {
+      "sqoop-env" : {
+        "properties_attributes" : { },
+        "properties" : {
+          "jdbc_drivers" : " ",
+          "sqoop.atlas.hook" : "false",
+          "sqoop_user" : "sqoop",
+          "content" : "\n# Set Hadoop-specific environment variables here.\n\n#Set path to where bin/hadoop is available\n#Set path to where bin/hadoop is available\nexport HADOOP_HOME=${HADOOP_HOME:-{{hadoop_home}}}\n\n#set the path to where bin/hbase is available\nexport HBASE_HOME=${HBASE_HOME:-{{hbase_home}}}\n\n#Set the path to where bin/hive is available\nexport HIVE_HOME=${HIVE_HOME:-{{hive_home}}}\n\n#Set the path for where zookeper config dir is\nexport ZOOCFGDIR=${ZOOCFGDIR:-/etc/zookeeper/conf}\n\n# add libthrift in hive to sqoop class path first so hive imports work\nexport SQOOP_USER_CLASSPATH=\"`ls ${HIVE_HOME}/lib/libthrift-*.jar 2> /dev/null`:${SQOOP_USER_CLASSPATH}\""
+        }
+      }
+    },
+    {
       "yarn-env" : {
         "properties_attributes" : { },
         "properties" : {
@@ -1534,16 +1463,6 @@
       }
     },
     {
-      "gateway-log4j" : {
-        "properties_attributes" : { },
-        "properties" : {
-          "knox_gateway_log_maxfilesize" : "256",
-          "knox_gateway_log_maxbackupindex" : "20",
-          "content" : "\n\n      # Licensed to the Apache Software Foundation (ASF) under one\n      # or more contributor license agreements. See the NOTICE file\n      # distributed with this work for additional information\n      # regarding copyright ownership. The ASF licenses this file\n      # to you under the Apache License, Version 2.0 (the\n      # \"License\"); you may not use this file except in compliance\n      # with the License. You may obtain a copy of the License at\n      #\n      # http://www.apache.org/licenses/LICENSE-2.0\n      #\n      # Unless required by applicable law or agreed to in writing, software\n      # distributed under the License is distributed on an \"AS IS\" BASIS,\n      # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n      # See the License for the specific language governing permissions and\n      # limitations under the License.\n\n      app.log.dir=${launcher.dir}/../logs\n      app.log.file=${launcher.name}.log\n      app.audit.file=${launcher.name}-audit.log\n\n      log4j.rootLogger=ERROR, drfa\n\n      log4j.logger.org.apache.hadoop.gateway=INFO\n      #log4j.logger.org.apache.hadoop.gateway=DEBUG\n\n      #log4j.logger.org.eclipse.jetty=DEBUG\n      #log4j.logger.org.apache.shiro=DEBUG\n      #log4j.logger.org.apache.http=DEBUG\n      #log4j.logger.org.apache.http.client=DEBUG\n      #log4j.logger.org.apache.http.headers=DEBUG\n      #log4j.logger.org.apache.http.wire=DEBUG\n\n      log4j.appender.stdout=org.apache.log4j.ConsoleAppender\n      log4j.appender.stdout.layout=org.apache.log4j.PatternLayout\n      log4j.appender.stdout.layout.ConversionPattern=%d{yy/MM/dd HH:mm:ss} %p %c{2}: %m%n\n\n      log4j.appender.drfa=org.apache.log4j.DailyRollingFileAppender\n      log4j.appender.drfa.File=${app.log.dir}/${app.log.file}\n      log4j.appender.drfa.DatePattern=.yyyy-MM-dd\n      log4j.appender.drfa.layout=org.apache.log4j.PatternLayout\n      log4j.appender.drfa.layout.ConversionPattern=%d{ISO8601} %-5p %c{2} (%F:%M(%L)) - %m%n\n      log4j.appender.drfa.MaxFileSize = {{knox_gateway_log_maxfilesize}}MB\n      log4j.appender.drfa.MaxBackupIndex = {{knox_gateway_log_maxbackupindex}}\n\n      log4j.logger.audit=INFO, auditfile\n      log4j.appender.auditfile=org.apache.log4j.DailyRollingFileAppender\n      log4j.appender.auditfile.File=${app.log.dir}/${app.audit.file}\n      log4j.appender.auditfile.Append = true\n      log4j.appender.auditfile.DatePattern = '.'yyyy-MM-dd\n      log4j.appender.auditfile.layout = org.apache.hadoop.gateway.audit.log4j.layout.AuditLayout"
-        }
-      }
-    },
-    {
       "ranger-hdfs-audit" : {
         "properties_attributes" : { },
         "properties" : { }
@@ -1551,6 +1470,12 @@
     },
     {
       "ranger-hdfs-plugin-properties" : {
+        "properties_attributes" : { },
+        "properties" : { }
+      }
+    },
+    {
+      "sqoop-site" : {
         "properties_attributes" : { },
         "properties" : { }
       }
@@ -1772,7 +1697,7 @@
           "mapreduce.jobhistory.webapp.address" : "%HOSTGROUP::host_group_2%:19888",
           "mapreduce.reduce.shuffle.fetch.retry.enabled" : "1",
           "mapreduce.task.io.sort.factor" : "100",
-          "mapreduce.jobhistory.recovery.store.leveldb.path" : "/data/hadoop/mapreduce/jhs",
+          "mapreduce.jobhistory.recovery.store.leveldb.path" : "/hadoop/mapreduce/jhs",
           "yarn.app.mapreduce.client.job.max-retries" : "60",
           "yarn.app.mapreduce.am.command-opts" : "-Xmx1638m -Dhdp.version=${hdp.version}",
           "mapreduce.map.java.opts" : "-Xmx1638m",
@@ -1870,7 +1795,7 @@
           "hive.metastore.execute.setugi" : "true",
           "hive.tez.smb.number.waves" : "0.5",
           "hive.server2.authentication.spnego.keytab" : "HTTP/_HOST@EXAMPLE.COM",
-          "hive.zookeeper.quorum" : "%HOSTGROUP::host_group_3%:2181,%HOSTGROUP::host_group_1%:2181,%HOSTGROUP::host_group_2%:2181",
+          "hive.zookeeper.quorum" : "%HOSTGROUP::host_group_1%:2181,%HOSTGROUP::host_group_3%:2181,%HOSTGROUP::host_group_2%:2181",
           "hive.mapjoin.bucket.cache.size" : "10000",
           "hive.metastore.kerberos.principal" : "hive/_HOST@EXAMPLE.COM",
           "hive.tez.auto.reducer.parallelism" : "true",
@@ -1938,7 +1863,7 @@
           "hive.metastore.connect.retries" : "24",
           "hive.optimize.reducededuplication.min.reducer" : "4",
           "hive.tez.input.format" : "org.apache.hadoop.hive.ql.io.HiveInputFormat",
-          "hive.cluster.delegation.token.store.zookeeper.connectString" : "%HOSTGROUP::host_group_3%:2181,%HOSTGROUP::host_group_1%:2181,%HOSTGROUP::host_group_2%:2181",
+          "hive.cluster.delegation.token.store.zookeeper.connectString" : "%HOSTGROUP::host_group_1%:2181,%HOSTGROUP::host_group_3%:2181,%HOSTGROUP::host_group_2%:2181",
           "hive.metastore.uris" : "thrift://%HOSTGROUP::host_group_3%:9083",
           "hive.server2.max.start.attempts" : "5",
           "hive.exec.dynamic.partition.mode" : "strict",
@@ -2060,7 +1985,7 @@
       "webhcat-site" : {
         "properties_attributes" : { },
         "properties" : {
-          "templeton.zookeeper.hosts" : "%HOSTGROUP::host_group_3%:2181,%HOSTGROUP::host_group_1%:2181,%HOSTGROUP::host_group_2%:2181",
+          "templeton.zookeeper.hosts" : "%HOSTGROUP::host_group_1%:2181,%HOSTGROUP::host_group_3%:2181,%HOSTGROUP::host_group_2%:2181",
           "webhcat.proxyuser.root.groups" : "*",
           "webhcat.proxyuser.root.hosts" : "hdp-os02-01.home",
           "templeton.hadoop.queue.name" : "default",
@@ -2145,16 +2070,6 @@
           "component_mappings" : "HBASE_MASTER:hbase_master;HBASE_REGIONSERVER:hbase_regionserver;PHOENIX_QUERY_SERVER:hbase_phoenix_server",
           "content" : "\n{\n  \"input\":[\n    {\n      \"type\":\"hbase_master\",\n      \"rowtype\":\"service\",\n      \"path\":\"{{default('/configurations/hbase-env/hbase_log_dir', '/var/log/hbase')}}/hbase-*-master-*.log\"\n    },\n    {\n      \"type\":\"hbase_regionserver\",\n      \"rowtype\":\"service\",\n      \"path\":\"{{default('/configurations/hbase-env/hbase_log_dir', '/var/log/hbase')}}/hbase-*-regionserver-*.log\"\n    },\n    {\n      \"type\":\"hbase_phoenix_server\",\n      \"rowtype\":\"service\",\n      \"path\":\"{{default('/configurations/hbase-env/hbase_log_dir', '/var/log/hbase')}}/phoenix-*-server.log\"\n    }\n   ],\n  \"filter\":[\n    {\n      \"filter\":\"grok\",\n      \"conditions\":{\n        \"fields\":{\n          \"type\":[\n            \"hbase_master\",\n            \"hbase_regionserver\"\n          ]\n         }\n       },\n      \"log4j_format\":\"%d{ISO8601} %-5p [%t] %c{2}: %m%n\",\n      \"multiline_pattern\":\"^(%{TIMESTAMP_ISO8601:logtime})\",\n      \"message_pattern\":\"(?m)^%{TIMESTAMP_ISO8601:logtime}%{SPACE}%{LOGLEVEL:level}%{SPACE}\\\\[%{DATA:thread_name}\\\\]%{SPACE}%{JAVACLASS:logger_name}:%{SPACE}%{GREEDYDATA:log_message}\",\n      \"post_map_values\":{\n        \"logtime\":{\n          \"map_date\":{\n            \"target_date_pattern\":\"yyyy-MM-dd HH:mm:ss,SSS\"\n          }\n         }\n       }\n     },\n    {\n      \"filter\":\"grok\",\n      \"conditions\":{\n        \"fields\":{\n          \"type\":[\n            \"hbase_phoenix_server\"\n          ]\n         }\n      },\n      \"log4j_format\":\"%d{ISO8601} %-5p [%t] %c{2}: %m%n\",\n      \"multiline_pattern\":\"^(%{TIMESTAMP_ISO8601:logtime})\",\n      \"message_pattern\":\"(?m)^%{TIMESTAMP_ISO8601:logtime}%{SPACE}%{LOGLEVEL:level}%{SPACE}%{JAVACLASS:logger_name}:%{SPACE}%{GREEDYDATA:log_message}\",\n      \"post_map_values\":{\n        \"logtime\":{\n          \"map_date\":{\n            \"target_date_pattern\":\"yyyy-MM-dd HH:mm:ss,SSS\"\n          }\n         }\n       }\n     }\n   ]\n }",
           "service_name" : "HBase"
-        }
-      }
-    },
-    {
-      "ldap-log4j" : {
-        "properties_attributes" : { },
-        "properties" : {
-          "knox_ldap_log_maxbackupindex" : "20",
-          "knox_ldap_log_maxfilesize" : "256",
-          "content" : "\n        # Licensed to the Apache Software Foundation (ASF) under one\n        # or more contributor license agreements.  See the NOTICE file\n        # distributed with this work for additional information\n        # regarding copyright ownership.  The ASF licenses this file\n        # to you under the Apache License, Version 2.0 (the\n        # \"License\"); you may not use this file except in compliance\n        # with the License.  You may obtain a copy of the License at\n        #\n        #     http://www.apache.org/licenses/LICENSE-2.0\n        #\n        # Unless required by applicable law or agreed to in writing, software\n        # distributed under the License is distributed on an \"AS IS\" BASIS,\n        # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n        # See the License for the specific language governing permissions and\n        # limitations under the License.\n\n        app.log.dir=${launcher.dir}/../logs\n        app.log.file=${launcher.name}.log\n\n        log4j.rootLogger=ERROR, drfa\n        log4j.logger.org.apache.directory.server.ldap.LdapServer=INFO\n        log4j.logger.org.apache.directory=WARN\n\n        log4j.appender.stdout=org.apache.log4j.ConsoleAppender\n        log4j.appender.stdout.layout=org.apache.log4j.PatternLayout\n        log4j.appender.stdout.layout.ConversionPattern=%d{yy/MM/dd HH:mm:ss} %p %c{2}: %m%n\n\n        log4j.appender.drfa=org.apache.log4j.DailyRollingFileAppender\n        log4j.appender.drfa.File=${app.log.dir}/${app.log.file}\n        log4j.appender.drfa.DatePattern=.yyyy-MM-dd\n        log4j.appender.drfa.layout=org.apache.log4j.PatternLayout\n        log4j.appender.drfa.layout.ConversionPattern=%d{ISO8601} %-5p %c{2} (%F:%M(%L)) - %m%n\n        log4j.appender.drfa.MaxFileSize = {{knox_ldap_log_maxfilesize}}MB\n        log4j.appender.drfa.MaxBackupIndex = {{knox_ldap_log_maxbackupindex}}"
         }
       }
     },
@@ -2294,9 +2209,6 @@
           "name" : "SECONDARY_NAMENODE"
         },
         {
-          "name" : "ACTIVITY_EXPLORER"
-        },
-        {
           "name" : "HST_AGENT"
         },
         {
@@ -2309,9 +2221,6 @@
           "name" : "ZOOKEEPER_SERVER"
         },
         {
-          "name" : "HST_SERVER"
-        },
-        {
           "name" : "HISTORYSERVER"
         },
         {
@@ -2322,6 +2231,9 @@
         },
         {
           "name" : "APP_TIMELINE_SERVER"
+        },
+        {
+          "name" : "RESOURCEMANAGER"
         }
       ],
       "configurations" : [ ],
@@ -2331,28 +2243,19 @@
     {
       "components" : [
         {
-          "name" : "ACTIVITY_ANALYZER"
-        },
-        {
-          "name" : "HST_AGENT"
-        },
-        {
-          "name" : "MAPREDUCE2_CLIENT"
-        },
-        {
           "name" : "YARN_CLIENT"
         },
         {
           "name" : "HDFS_CLIENT"
         },
         {
-          "name" : "ZOOKEEPER_SERVER"
-        },
-        {
-          "name" : "AMBARI_SERVER"
+          "name" : "HST_SERVER"
         },
         {
           "name" : "METRICS_MONITOR"
+        },
+        {
+          "name" : "INFRA_SOLR_CLIENT"
         },
         {
           "name" : "NAMENODE"
@@ -2361,7 +2264,31 @@
           "name" : "TEZ_CLIENT"
         },
         {
-          "name" : "RESOURCEMANAGER"
+          "name" : "SPARK2_JOBHISTORYSERVER"
+        },
+        {
+          "name" : "ACTIVITY_ANALYZER"
+        },
+        {
+          "name" : "ACTIVITY_EXPLORER"
+        },
+        {
+          "name" : "HST_AGENT"
+        },
+        {
+          "name" : "MAPREDUCE2_CLIENT"
+        },
+        {
+          "name" : "ZOOKEEPER_SERVER"
+        },
+        {
+          "name" : "AMBARI_SERVER"
+        },
+        {
+          "name" : "INFRA_SOLR"
+        },
+        {
+          "name" : "METRICS_GRAFANA"
         }
       ],
       "configurations" : [ ],
@@ -2378,6 +2305,9 @@
         },
         {
           "name" : "HDFS_CLIENT"
+        },
+        {
+          "name" : "SQOOP"
         },
         {
           "name" : "SPARK2_CLIENT"
@@ -2423,16 +2353,28 @@
         },
         {
           "name" : "HIVE_CLIENT"
+        },
+        {
+          "name" : "METRICS_COLLECTOR"
         }
       ],
       "configurations" : [ ],
       "name" : "host_group_4",
-      "cardinality" : "2"
+      "cardinality" : "1"
     },
     {
       "components" : [
         {
+          "name" : "YARN_CLIENT"
+        },
+        {
+          "name" : "HDFS_CLIENT"
+        },
+        {
           "name" : "HIVE_SERVER"
+        },
+        {
+          "name" : "SQOOP"
         },
         {
           "name" : "SPARK2_CLIENT"
@@ -2456,22 +2398,19 @@
           "name" : "ZOOKEEPER_CLIENT"
         },
         {
-          "name" : "KNOX_GATEWAY"
-        },
-        {
           "name" : "HCAT"
         },
         {
-          "name" : "SPARK2_JOBHISTORYSERVER"
+          "name" : "PIG"
         },
         {
           "name" : "WEBHCAT_SERVER"
         },
         {
-          "name" : "ACTIVITY_ANALYZER"
+          "name" : "HST_AGENT"
         },
         {
-          "name" : "HST_AGENT"
+          "name" : "MAPREDUCE2_CLIENT"
         },
         {
           "name" : "SLIDER"
@@ -2483,28 +2422,7 @@
           "name" : "OOZIE_CLIENT"
         },
         {
-          "name" : "METRICS_COLLECTOR"
-        },
-        {
-          "name" : "METRICS_GRAFANA"
-        },
-        {
-          "name" : "YARN_CLIENT"
-        },
-        {
-          "name" : "HDFS_CLIENT"
-        },
-        {
-          "name" : "PIG"
-        },
-        {
-          "name" : "MAPREDUCE2_CLIENT"
-        },
-        {
           "name" : "HBASE_CLIENT"
-        },
-        {
-          "name" : "INFRA_SOLR"
         },
         {
           "name" : "OOZIE_SERVER"
@@ -2536,8 +2454,72 @@
         }
       ],
       "configurations" : [ ],
+      "name" : "host_group_6",
+      "cardinality" : "6"
+    },
+    {
+      "components" : [
+        {
+          "name" : "NODEMANAGER"
+        },
+        {
+          "name" : "YARN_CLIENT"
+        },
+        {
+          "name" : "HDFS_CLIENT"
+        },
+        {
+          "name" : "SQOOP"
+        },
+        {
+          "name" : "SPARK2_CLIENT"
+        },
+        {
+          "name" : "METRICS_MONITOR"
+        },
+        {
+          "name" : "INFRA_SOLR_CLIENT"
+        },
+        {
+          "name" : "TEZ_CLIENT"
+        },
+        {
+          "name" : "ZOOKEEPER_CLIENT"
+        },
+        {
+          "name" : "HCAT"
+        },
+        {
+          "name" : "PIG"
+        },
+        {
+          "name" : "HST_AGENT"
+        },
+        {
+          "name" : "MAPREDUCE2_CLIENT"
+        },
+        {
+          "name" : "SLIDER"
+        },
+        {
+          "name" : "OOZIE_CLIENT"
+        },
+        {
+          "name" : "HBASE_REGIONSERVER"
+        },
+        {
+          "name" : "DATANODE"
+        },
+        {
+          "name" : "HBASE_CLIENT"
+        },
+        {
+          "name" : "HIVE_CLIENT"
+        }
+      ],
+      "configurations" : [ ],
       "name" : "host_group_5",
-      "cardinality" : "7"
+      "cardinality" : "2"
     }
   ],
   "settings" : [

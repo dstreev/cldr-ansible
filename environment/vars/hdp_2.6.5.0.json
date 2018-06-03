@@ -8,3 +8,6 @@ db_type: "mysql"
 db_user: "root"
 db_password: "hortonworks"
 db_ambari_name: "ambari"
+
+hadoop_cli_bin_link: "https://github.com/dstreev/hadoop-cli/releases/download/1.0.7.2.7-bin/hadoop-cli-1.0.7-SNAPSHOT-2.7.tar.gz"
+hadoop_cli_version: "2.7"

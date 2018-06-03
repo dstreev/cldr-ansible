@@ -14,21 +14,6 @@ all:
         repo_server:                        repo-ENV_INSTANCE.home
         db_host:                            db-ENV_INSTANCE.home
       hosts:
-        os3.core:
-          ansible_host:                     os3
-          ansible_port:                     220ENV_INSTANCE
-          ansible_user:                     root
-          ansible_ssh_private_key_file:     /Users/dstreev/.ssh/id_rsa_docker
-        os4.core:
-          ansible_host:                     os4
-          ansible_port:                     220ENV_INSTANCE
-          ansible_user:                     root
-          ansible_ssh_private_key_file:     /Users/dstreev/.ssh/id_rsa_docker
-        os5.core:
-          ansible_host:                     os5
-          ansible_port:                     220ENV_INSTANCE
-          ansible_user:                     root
-          ansible_ssh_private_key_file:     /Users/dstreev/.ssh/id_rsa_docker
         os6.core:
           ansible_host:                     os6
           ansible_port:                     220ENV_INSTANCE
@@ -71,6 +56,27 @@ all:
           ansible_ssh_private_key_file:     /Users/dstreev/.ssh/id_rsa_docker
 
       children:
+        edge:
+          hosts:
+            os3.core:
+              ansible_host:                     os3
+              ansible_port:                     220ENV_INSTANCE
+              ansible_user:                     root
+              ansible_ssh_private_key_file:     /Users/dstreev/.ssh/id_rsa_docker
+            os5.core:
+              ansible_host:                     os5
+              ansible_port:                     220ENV_INSTANCE
+              ansible_user:                     root
+              ansible_ssh_private_key_file:     /Users/dstreev/.ssh/id_rsa_docker
+          children:
+            sdlc:
+              hosts:
+                os4.core:
+                  ansible_host:                     os4
+                  ansible_port:                     220ENV_INSTANCE
+                  ansible_user:                     root
+                  ansible_ssh_private_key_file:     /Users/dstreev/.ssh/id_rsa_docker
+
         ambari:
           vars:
             db_type:                        mysql

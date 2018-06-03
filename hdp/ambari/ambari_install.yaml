@@ -48,14 +48,4 @@
 
 - import_playbook:     ambari_configure.yaml
 
-- hosts: ambari
-  become: true
-  tasks:
-    - name: Start Ambari-Server
-      shell: ambari-server start
-
-- hosts: hdp
-  become: true
-  tasks:
-    - name: Start Ambari Agents
-      shell: ambari-agent start
+- import_playbook:     ambari_start.yaml

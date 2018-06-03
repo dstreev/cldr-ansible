@@ -1,0 +1,93 @@
+{
+    "blueprint": "DK01",
+    "default_password": "admin",
+    "configurations": [
+
+    ],
+    "host_groups": [
+        {
+            "name": "host_group_1",
+            "configurations": [
+
+            ],
+            "hosts": [
+                {
+                    "fqdn": "hdp-os02-01.home"
+                }
+            ]
+        },
+        {
+            "name": "host_group_2",
+            "configurations": [
+
+            ],
+            "hosts": [
+                {
+                    "fqdn": "hdp-os03-01.home"
+                }
+            ]
+        },
+        {
+            "name": "host_group_3",
+            "configurations": [
+
+            ],
+            "hosts": [
+                {
+                    "fqdn": "hdp-os04-01.home"
+                }
+            ]
+        },
+        {
+            "name": "host_group_4",
+            "configurations": [
+
+            ],
+            "hosts": [
+                {
+                    "fqdn": "hdp-os05-01.home"
+                }
+            ]
+        },
+        {
+            "name": "host_group_5",
+            "configurations": [
+
+            ],
+            "hosts": [
+                {
+                    "fqdn": "hdp-os06-01.home"
+                },
+                {
+                    "fqdn": "hdp-os15-01.home"
+                }
+            ]
+        },
+        {
+            "name": "host_group_6",
+            "configurations": [
+
+            ],
+            "hosts": [
+                {
+                    "fqdn": "hdp-os07-01.home"
+                },
+                {
+                    "fqdn": "hdp-os10-01.home"
+                },
+                {
+                    "fqdn": "hdp-os11-01.home"
+                },
+                {
+                    "fqdn": "hdp-os12-01.home"
+                },
+                {
+                    "fqdn": "hdp-os13-01.home"
+                },
+                {
+                    "fqdn": "hdp-os14-01.home"
+                }
+            ]
+        }
+    ]
+}
