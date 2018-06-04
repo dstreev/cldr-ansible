@@ -9,3 +9,4 @@
       shell: ambari-server setup --jdbc-driver=/usr/share/java/mysql-connector-java.jar --jdbc-db={{ db_type }}
     - name: Configure Ambari Server DB Connection and Java Home
       shell: ambari-server setup --database={{ db_type }} --databasehost={{ db_host }} --databaseport=3306 --databaseusername={{ db_user }} --databasepassword={{ db_password }} --databasename={{ db_ambari_name }} --enable-lzo-under-gpl-license --java-home=/usr/lib/jvm/jre-1.8.0-openjdk -s
+# TODO: setup ldap, security, ssl

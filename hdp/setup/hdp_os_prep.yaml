@@ -19,6 +19,14 @@
         name: which
         state: latest
 
+    - name: Install nscd
+      yum:
+        name: nscd
+        state: latest
+
+    - name: Start nscd
+      shell: nscd
+
     - name:      Set Swappiness
       shell:     sysctl vm.swappiness=1
 

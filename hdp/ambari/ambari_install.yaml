@@ -1,6 +1,8 @@
 # Requires a Local Repo for HDP, Ambari and HDP-UTILS
 # Repo dirs need to match hdp repo layout.
-- import_playbook:     ../setup/openjdk_install.yaml
+
+# MOVED THE IMAGE
+#- import_playbook:     ../setup/openjdk_install.yaml
 
 - hosts:               hdp
   become:              true

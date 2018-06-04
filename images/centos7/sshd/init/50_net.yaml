@@ -1,0 +1,13 @@
+- hosts: all
+  become: true
+
+  tasks:
+    - name: Copy over net conf
+      copy:
+        src: 50_net.conf
+        dest: /etc/sysctl.d/50_net.conf
+        owner: root
+        mode: 0644
+    - name: Reload Sysctl
+      shell: sysctl --system
+      

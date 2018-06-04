@@ -2,4 +2,4 @@
 
 # Bring down swarm
 ansible hdp -b -a 'docker swarm leave'
-ansible os1 -b -a 'docker swarm leave --force'
+ansible os01 -b -a 'docker swarm leave --force'

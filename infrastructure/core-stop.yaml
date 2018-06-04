@@ -1,0 +1,6 @@
+
+- hosts: os
+  become: true
+  tasks:
+    - name: Core Stop
+      shell: docker stop core-{{ ansible_hostname }}

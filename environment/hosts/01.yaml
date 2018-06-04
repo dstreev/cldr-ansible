@@ -4,7 +4,7 @@ all:
     db:
       hosts:
         os1.core:
-          ansible_host:                     os1
+          ansible_host:                     os01
           ansible_port:                     22001
           ansible_user:                     root
           ansible_ssh_private_key_file:     /Users/dstreev/.ssh/id_rsa_docker
@@ -15,12 +15,12 @@ all:
         db_host:                            db-01.home
       hosts:
         os6.core:
-          ansible_host:                     os6
+          ansible_host:                     os06
           ansible_port:                     22001
           ansible_user:                     root
           ansible_ssh_private_key_file:     /Users/dstreev/.ssh/id_rsa_docker
         os7.core:
-          ansible_host:                     os7
+          ansible_host:                     os07
           ansible_port:                     22001
           ansible_user:                     root
           ansible_ssh_private_key_file:     /Users/dstreev/.ssh/id_rsa_docker
@@ -59,23 +59,23 @@ all:
         edge:
           hosts:
             os3.core:
-              ansible_host:                     os3
+              ansible_host:                     os03
               ansible_port:                     22001
               ansible_user:                     root
               ansible_ssh_private_key_file:     /Users/dstreev/.ssh/id_rsa_docker
             os5.core:
-              ansible_host:                     os5
+              ansible_host:                     os05
               ansible_port:                     22001
               ansible_user:                     root
               ansible_ssh_private_key_file:     /Users/dstreev/.ssh/id_rsa_docker
-        children:
-          sdlc:
-            hosts:
-              os4.core:
-                ansible_host:                     os4
-                ansible_port:                     22001
-                ansible_user:                     root
-                ansible_ssh_private_key_file:     /Users/dstreev/.ssh/id_rsa_docker
+          children:
+            sdlc:
+              hosts:
+                os4.core:
+                  ansible_host:                     os04
+                  ansible_port:                     22001
+                  ansible_user:                     root
+                  ansible_ssh_private_key_file:     /Users/dstreev/.ssh/id_rsa_docker
 
         ambari:
           vars:
@@ -90,7 +90,7 @@ all:
 
           hosts:
             os2.core:
-              ansible_host:                 os2
+              ansible_host:                 os02
               ansible_port:                 22001
               ansible_user:                 root
               ansible_ssh_private_key_file: /Users/dstreev/.ssh/id_rsa_docker
