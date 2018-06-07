@@ -4,3 +4,6 @@
 
 # Ansible
 *.retry
+
+# Init Files
+ipa-server-install-options

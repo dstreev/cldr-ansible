@@ -15,6 +15,9 @@
         baseurl:       http://{{ repo_server }}/repo/ambari/{{ os_version }}/{{ ambari_major_version }}.x/updates/{{ ambari_version }}
         repo_gpgcheck: no
         gpgcheck:      no
+      tags:
+        - agent
+        - server
 
 - hosts:               ambari
   become:              true
@@ -23,6 +26,8 @@
       yum:
         name:          ambari-server
         state:         latest
+      tags:
+        - server
 
 # Required to run db client to init the Database
 - import_playbook:     ambari_mysql_client.yaml
@@ -39,6 +44,8 @@
       yum:
         name:          ambari-agent
         state:         latest
+      tags:
+        - agent
 
 - import_playbook:     fix_agent_ssl.yaml
 
@@ -47,6 +54,8 @@
   tasks:
     - name:            Reset Ambari Agents
       shell:           ambari-agent reset {{ ambari_server }}
+      tags:
+        - agent
 
 - import_playbook:     ambari_configure.yaml
 

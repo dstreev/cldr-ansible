@@ -3,16 +3,38 @@
   tasks:
     - name:  Create ambari database
       shell: mysql -h {{ db_host }} -u {{ db_user }} -p{{ db_password }} -e "create database if not exists {{ db_ambari_name }}"
+      tags:
+        - server
     - name:  Create Hive database
       shell: mysql -h {{ db_host }} -u {{ db_user }} -p{{ db_password }} -e "create database if not exists {{ db_hive_name }}"
+      tags:
+        - server
     - name:  Create Oozie database
       shell: mysql -h {{ db_host }} -u {{ db_user }} -p{{ db_password }} -e "create database if not exists {{ db_oozie_name }}"
+      tags:
+        - server
     - name:  Create Ranger database
       shell: mysql -h {{ db_host }} -u {{ db_user }} -p{{ db_password }} -e "create database if not exists {{ db_ranger_name }}"
+      tags:
+        - server
     - name:  Create Ranger KMS database
       shell: mysql -h {{ db_host }} -u {{ db_user }} -p{{ db_password }} -e "create database if not exists {{ db_ranger_kms_name }}"
-    - name:  Build schema
+      tags:
+        - server
+
+    - name:  Create Druid
+      shell: mysql -h {{ db_host }} -u {{ db_user }} -p{{ db_password }} -e "create database if not exists {{ db_druid_name }}"
+      tags:
+        - server
+    - name:  Create Superset
+      shell: mysql -h {{ db_host }} -u {{ db_user }} -p{{ db_password }} -e "create database if not exists {{ db_superset_name }}"
+      tags:
+        - server
+
+    - name:  Build Ambari Schema
       shell: mysql -h {{ db_host }} -u {{ db_user }} -p{{ db_password }} -D {{ db_ambari_name }} < /var/lib/ambari-server/resources/Ambari-DDL-MySQL-CREATE.sql
+      tags:
+        - server
     ## Attempted to use ansible module, no success
     # - name: Install required Python-Dev libs
     #   yum:

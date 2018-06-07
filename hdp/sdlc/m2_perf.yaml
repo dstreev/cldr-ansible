@@ -1,0 +1,19 @@
+- hosts: sdlc
+  become: true
+  become_user: '{{ user }}'
+
+  tasks:
+    - name: Create Perf Local Directory
+      file:
+        path: /home/{{ user }}/perf
+        state: directory
+        owner: '{{ user }}'
+        mode: 0744
+    - name: Get MR Teragen/Sort Script
+      get_url:
+        url: https://gist.githubusercontent.com/dstreev/23500ef927467abf97bfba38ef500b03/raw/8e098bdb0c601126590dd9885897d4bf305fc40d/TeraGen_Sort_MR2.sh
+        dest: /home/{{ user }}/perf/TeraGen_Sort_MR2.sh
+        force: yes
+        mode: 0744
+    - name: Teragen/Sort SmokeTest
+      shell: /home/{{ user }}/perf/TeraGen_Sort_MR2.sh --size {{ smoke_tgs_size }} --mappers {{ smoke_tgs_mappers }} --reducers {{ smoke_tgs_reducers }}

@@ -11,3 +11,5 @@
         path:        /etc/ambari-agent/conf/ambari-agent.ini
         line:        force_https_protocol=PROTOCOL_TLSv1_2
         backup:      yes
+      tags:
+        - agent

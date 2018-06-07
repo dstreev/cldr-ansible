@@ -1,121 +1,175 @@
 # Build out the Repos
-- hosts:            repo
-  become: true
+- hosts:                repo
+  become:               true
 
   tasks:
-    - name:         Create base download directory
+    - name:             Create base download directory
       file:
-        path:       "{{ dest_dir }}"
-        state:      directory
-        mode:       0700
-    - name:         Create www repo dir
+        path:           "{{ dest_dir }}"
+        state:          directory
+        mode:           0700
+    - name:             Create www repo dir
       file:
-        path:       "{{ repo_base_dir }}"
-        state:      directory
-        mode:       0755
-    - name:         Get the HDP Binaries
+        path:           "{{ repo_base_dir }}"
+        state:          directory
+        mode:           0755
+    - name:             Get the HDP Binaries
       get_url:
-        url:        http://public-repo-1.hortonworks.com/HDP/{{ os_version }}/{{ hdp_major_version }}.x/updates/{{ hdp_version }}/HDP-{{ hdp_version }}-{{ os_version }}-rpm.tar.gz
-        dest:       "{{ dest_dir }}/HDP-{{ hdp_version }}-{{ os_version }}-rpm.tar.gz"
-        force:      no
-    - name:         Create target HDP Output directory
+        url:            https://{{ base_repo }}-repo-1.hortonworks.com/HDP/{{ os_version }}/{{ hdp_major_version }}.x/updates/{{ hdp_version }}/HDP-{{ hdp_version }}-{{ os_version }}-rpm.tar.gz
+        dest:           "{{ dest_dir }}/HDP-{{ hdp_version }}-{{ os_version }}-rpm.tar.gz"
+        force:          no
+        validate_certs: false
+      tags:
+        - hdp
+    - name:             Create target HDP Output directory
       file:
-        path:       "{{ dest_dir }}/packages/HDP-{{ hdp_version }}"
-        state:      directory
-        mode:       0755
-    - name:         Unpack HDP Repo Package
+        path:           "{{ dest_dir }}/packages/HDP-{{ hdp_version }}"
+        state:          directory
+        mode:           0755
+      tags:
+        - hdp
+    - name:             Unpack HDP Repo Package
       unarchive:
-        src:        "{{ dest_dir }}/HDP-{{ hdp_version }}-{{ os_version }}-rpm.tar.gz"
-        dest:       "{{ dest_dir }}/packages/HDP-{{ hdp_version }}"
-        remote_src: yes
-    - name:         Remove previous HDP version
-      shell:        rm -rf {{ repo_base_dir }}/HDP/{{ os_version }}/{{ hdp_major_version }}.x/updates/{{ hdp_version }}
-    - name:         Create Repo Directory for HDP
+        src:            "{{ dest_dir }}/HDP-{{ hdp_version }}-{{ os_version }}-rpm.tar.gz"
+        dest:           "{{ dest_dir }}/packages/HDP-{{ hdp_version }}"
+        remote_src:     yes
+      tags:
+        - hdp
+    - name:             Remove previous HDP version
+      shell:            rm -rf {{ repo_base_dir }}/HDP/{{ os_version }}/{{ hdp_major_version }}.x/updates/{{ hdp_version }}
+      tags:
+        - hdp
+    - name:             Create Repo Directory for HDP
       file:
-        path:       "{{ repo_base_dir }}/HDP/{{ os_version }}/{{ hdp_major_version }}.x/updates/{{ hdp_version }}"
-        state:      directory
-        mode:       0755
-    - name:         Move HDP package to httpd www dir
-      shell:        mv -f {{ dest_dir }}/packages/HDP-{{ hdp_version }}/HDP/{{ os_version }}/{{ hdp_version }}*/* {{ repo_base_dir }}/HDP/{{ os_version }}/{{ hdp_major_version }}.x/updates/{{ hdp_version }}
-    - name:         Remove remnant package location
+        path:           "{{ repo_base_dir }}/HDP/{{ os_version }}/{{ hdp_major_version }}.x/updates/{{ hdp_version }}"
+        state:          directory
+        mode:           0755
+      tags:
+        - hdp
+    - name:             Move HDP package to httpd www dir
+      shell:            mv -f {{ dest_dir }}/packages/HDP-{{ hdp_version }}/HDP/{{ os_version }}/{{ hdp_version }}*/* {{ repo_base_dir }}/HDP/{{ os_version }}/{{ hdp_major_version }}.x/updates/{{ hdp_version }}
+      tags:
+        - hdp
+    - name:             Remove remnant package location
       file:
-        path:       "{{ dest_dir }}/packages/HDP-{{ hdp_version }}"
-        state:      absent
+        path:           "{{ dest_dir }}/packages/HDP-{{ hdp_version }}"
+        state:          absent
+      tags:
+        - hdp
 
-    - name:         Get the Ambari Binaries
+    - name:             Get the Ambari Binaries
       get_url:
-        url:        http://public-repo-1.hortonworks.com/ambari/{{ os_version }}/{{ ambari_major_version }}.x/updates/{{ ambari_version }}/ambari-{{ ambari_version }}-{{ os_version }}.tar.gz
-        dest:       "{{ dest_dir }}/ambari-{{ ambari_version }}-{{ os_version }}.tar.gz"
-        force:      no
-    - name:         Create target Ambari Output directory
+        url:            https://{{ base_repo }}-repo-1.hortonworks.com/ambari/{{ os_version }}/{{ ambari_major_version }}.x/updates/{{ ambari_version }}/ambari-{{ ambari_version }}-{{ os_version }}.tar.gz
+        dest:           "{{ dest_dir }}/ambari-{{ ambari_version }}-{{ os_version }}.tar.gz"
+        force:          no
+        validate_certs: false
+      tags:
+        - ambari
+    - name:             Create target Ambari Output directory
       file:
-        path:       "{{ dest_dir }}/packages/AMBARI-{{ ambari_version }}"
-        state:      directory
-        mode:       0755
-    - name:         Unpack AMBARI Repo Package
+        path:           "{{ dest_dir }}/packages/AMBARI-{{ ambari_version }}"
+        state:          directory
+        mode:           0755
+      tags:
+        - ambari
+    - name:             Unpack AMBARI Repo Package
       unarchive:
-        src:        "{{ dest_dir }}/ambari-{{ ambari_version }}-{{ os_version }}.tar.gz"
-        dest:       "{{ dest_dir }}/packages/AMBARI-{{ ambari_version }}"
-        remote_src: yes
-    - name:         Create Repo Directory for Ambari
+        src:            "{{ dest_dir }}/ambari-{{ ambari_version }}-{{ os_version }}.tar.gz"
+        dest:           "{{ dest_dir }}/packages/AMBARI-{{ ambari_version }}"
+        remote_src:     yes
+      tags:
+        - ambari
+    - name:             Create Repo Directory for Ambari
       file:
-        path:       "{{ repo_base_dir }}/ambari/{{ os_version }}/{{ ambari_major_version }}.x/updates/{{ ambari_version }}"
-        state:      directory
-        mode:       0755
-    - name:         Move Ambari Package to httpd www dir
-      shell:        mv -f {{ dest_dir }}/packages/AMBARI-{{ ambari_version }}/ambari/{{ os_version }}/{{ ambari_version }}*/* {{ repo_base_dir }}/ambari/{{ os_version }}/{{ ambari_major_version }}.x/updates/{{ ambari_version }}
+        path:           "{{ repo_base_dir }}/ambari/{{ os_version }}/{{ ambari_major_version }}.x/updates/{{ ambari_version }}"
+        state:          directory
+        mode:           0755
+      tags:
+        - ambari
+    - name:             Move Ambari Package to httpd www dir
+      shell:            mv -f {{ dest_dir }}/packages/AMBARI-{{ ambari_version }}/ambari/{{ os_version }}/{{ ambari_version }}*/* {{ repo_base_dir }}/ambari/{{ os_version }}/{{ ambari_major_version }}.x/updates/{{ ambari_version }}
+      tags:
+        - ambari
 
-    - name:         Remove remnant Ambari package location
+    - name:             Remove remnant Ambari package location
       file:
-        path:       "{{ dest_dir }}/packages/AMBARI-{{ ambari_version }}"
-        state:      absent
+        path:           "{{ dest_dir }}/packages/AMBARI-{{ ambari_version }}"
+        state:          absent
+      tags:
+        - ambari
 
-    - name:         Get the HDP Utils Binaries
+    - name:             Get the HDP Utils Binaries
       get_url:
-        url:        http://public-repo-1.hortonworks.com/HDP-UTILS-{{ hdp_utils_version }}/repos/{{ os_version }}/HDP-UTILS-{{ hdp_utils_version }}-{{ os_version }}.tar.gz
-        dest:       "{{ dest_dir }}/HDP-UTILS-{{ hdp_utils_version }}-{{ os_version }}.tar.gz"
-        force:      no
-    - name:         Create target HDP Utils Output directory
+        url:            https://{{ base_repo }}-repo-1.hortonworks.com/HDP-UTILS-{{ hdp_utils_version }}/repos/{{ os_version }}/HDP-UTILS-{{ hdp_utils_version }}-{{ os_version }}.tar.gz
+        dest:           "{{ dest_dir }}/HDP-UTILS-{{ hdp_utils_version }}-{{ os_version }}.tar.gz"
+        force:          no
+        validate_certs: false
+      tags:
+        - hdp-utils
+    - name:             Create target HDP Utils Output directory
       file:
-        path:       "{{ dest_dir }}/packages/HDP-UTILS-{{ hdp_utils_version }}"
-        state:      directory
-        mode:       0755
-    - name:         Unpack HDP-UTILS Repo Package
+        path:           "{{ dest_dir }}/packages/HDP-UTILS-{{ hdp_utils_version }}"
+        state:          directory
+        mode:           0755
+      tags:
+        - hdp-utils
+    - name:             Unpack HDP-UTILS Repo Package
       unarchive:
-        src:        "{{ dest_dir }}/HDP-UTILS-{{ hdp_utils_version }}-{{ os_version }}.tar.gz"
-        dest:       "{{ dest_dir }}/packages/HDP-UTILS-{{ hdp_utils_version }}"
-        remote_src: yes
-    - name:         Remove previous HDP-UTILS version
-      shell:        rm -rf {{ repo_base_dir }}/HDP-UTILS-{{ hdp_utils_version }}/repos/{{ os_version }}
-    - name:         Create Repo Directory for HDP-UTILS
+        src:            "{{ dest_dir }}/HDP-UTILS-{{ hdp_utils_version }}-{{ os_version }}.tar.gz"
+        dest:           "{{ dest_dir }}/packages/HDP-UTILS-{{ hdp_utils_version }}"
+        remote_src:     yes
+      tags:
+        - hdp-utils
+    - name:             Remove previous HDP-UTILS version
+      shell:            rm -rf {{ repo_base_dir }}/HDP-UTILS-{{ hdp_utils_version }}/repos/{{ os_version }}
+      tags:
+        - hdp-utils
+    - name:             Create Repo Directory for HDP-UTILS
       file:
-        path:       "{{ repo_base_dir }}/HDP-UTILS-{{ hdp_utils_version }}/repos/{{ os_version }}"
-        state:      directory
-        mode:       0755
-    - name:         Move HDP-UTILS Package to httpd www dir
-      shell:        mv -f {{ dest_dir }}/packages/HDP-UTILS-{{ hdp_utils_version }}/* {{ repo_base_dir }}/HDP-UTILS-{{ hdp_utils_version }}/repos/{{ os_version }}
+        path:           "{{ repo_base_dir }}/HDP-UTILS-{{ hdp_utils_version }}/repos/{{ os_version }}"
+        state:          directory
+        mode:           0755
+      tags:
+        - hdp-utils
+    - name:             Move HDP-UTILS Package to httpd www dir
+      shell:            mv -f {{ dest_dir }}/packages/HDP-UTILS-{{ hdp_utils_version }}/* {{ repo_base_dir }}/HDP-UTILS-{{ hdp_utils_version }}/repos/{{ os_version }}
+      tags:
+        - hdp-utils
 
-    - name:         Get the HDP GPL Utils Binaries
+    - name:             Get the HDP GPL Utils Binaries
       get_url:
-        url:        http://public-repo-1.hortonworks.com/HDP-GPL/{{ os_version }}/{{ hdp_major_version }}.x/updates/{{ hdp_version }}/HDP-GPL-{{ hdp_version }}-{{ os_version }}-gpl.tar.gz
-        dest:       "{{ dest_dir }}/HDP-GPL-{{ hdp_version }}-{{ os_version }}-gpl.tar.gz"
-        force:      no
-    - name:         Create target HDP Utils GPL Output directory
+        url:            https://{{ base_repo }}-repo-1.hortonworks.com/HDP-GPL/{{ os_version }}/{{ hdp_major_version }}.x/updates/{{ hdp_gpl_version }}/HDP-GPL-{{ hdp_gpl_version }}-{{ os_version }}-rpm.tar.gz
+        dest:           "{{ dest_dir }}/HDP-GPL-{{ hdp_gpl_version }}-{{ os_version }}-gpl.tar.gz"
+        force:          no
+        validate_certs: false
+      tags:
+        - hdp-gpl-utils
+    - name:             Create target HDP Utils GPL Output directory
       file:
-        path:       "{{ dest_dir }}/packages/HDP-GPL-{{ hdp_version }}"
-        state:      directory
-        mode:       0755
-    - name:         Unpack HDP-UTILS-GPL Repo Package
+        path:           "{{ dest_dir }}/packages/HDP-GPL-{{ hdp_gpl_version }}"
+        state:          directory
+        mode:           0755
+      tags:
+        - hdp-gpl-utils
+    - name:             Unpack HDP-UTILS-GPL Repo Package
       unarchive:
-        src:        "{{ dest_dir }}/HDP-GPL-{{ hdp_version }}-{{ os_version }}-gpl.tar.gz"
-        dest:       "{{ dest_dir }}/packages/HDP-GPL-{{ hdp_version }}"
-        remote_src: yes
-    - name:         Remove previous HDP-UTILS-GPL version
-      shell:        rm -rf {{ repo_base_dir }}/HDP-GPL/{{ os_version }}/{{ hdp_major_version }}.x/updates/{{ hdp_version }}
-    - name:         Create Repo Directory for HDP-GPL
+        src:            "{{ dest_dir }}/HDP-GPL-{{ hdp_gpl_version }}-{{ os_version }}-gpl.tar.gz"
+        dest:           "{{ dest_dir }}/packages/HDP-GPL-{{ hdp_gpl_version }}"
+        remote_src:     yes
+      tags:
+        - hdp-gpl-utils
+    - name:             Remove previous HDP-UTILS-GPL version
+      shell:            rm -rf {{ repo_base_dir }}/HDP-GPL/{{ os_version }}/{{ hdp_major_version }}.x/updates/{{ hdp_gpl_version }}
+      tags:
+        - hdp-gpl-utils
+    - name:             Create Repo Directory for HDP-GPL
       file:
-        path:       "{{ repo_base_dir }}/HDP-GPL/{{ os_version }}/{{ hdp_major_version }}.x/updates/{{ hdp_version }}"
-        state:      directory
-        mode:       0755
-    - name:         Move HDP-GPL Package to httpd www dir
-      shell:        mv -f {{ dest_dir }}/packages/HDP-GPL-{{ hdp_version }}/HDP-GPL/{{ os_version }}/{{ hdp_version }}*/* {{ repo_base_dir }}/HDP-GPL/{{ os_version }}/{{ hdp_major_version }}.x/updates/{{ hdp_version }}/
+        path:           "{{ repo_base_dir }}/HDP-GPL/{{ os_version }}/{{ hdp_major_version }}.x/updates/{{ hdp_gpl_version }}"
+        state:          directory
+        mode:           0755
+      tags:
+        - hdp-gpl-utils
+    - name:             Move HDP-GPL Package to httpd www dir
+      shell:            mv -f {{ dest_dir }}/packages/HDP-GPL-{{ hdp_gpl_version }}/HDP-GPL/{{ os_version }}/{{ hdp_gpl_hdp_version }}*/* {{ repo_base_dir }}/HDP-GPL/{{ os_version }}/{{ hdp_major_version }}.x/updates/{{ hdp_gpl_version }}/
+      tags:
+        - hdp-gpl-utils

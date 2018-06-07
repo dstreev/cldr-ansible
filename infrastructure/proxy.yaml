@@ -1,0 +1,34 @@
+- hosts: db
+  vars:
+    docker_network_name: home
+
+  become: true
+
+  tasks:
+    - name: Create Device directory
+      shell: mkdir -p /data/docker_proxy/hdp/data
+    - name: Set State of HDP Containers to Started
+      docker_container:
+        name: proxy
+        pull: true
+        image: dstreev/centos7_sshd:latest
+        privileged: yes
+        hostname: proxy.{{ docker_network_name }}
+        volumes:
+          - "/data/docker_proxy/hdp/data:/data"
+        dns_search_domains:
+          - '{{ docker_network_name }}'
+        dns_servers:
+        restart: yes
+        restart_policy: unless-stopped
+        network_mode: '{{ docker_network_name }}'
+        networks:
+          - name : '{{ docker_network_name }}'
+            aliases :
+              - proxy.{{ docker_network_name }}
+            # links:
+            #   - hdp-{{ ansible_hostname }}-{{ env_instance }}.core
+        purge_networks: yes
+        state : started
+        ports :
+          - "22199:22"

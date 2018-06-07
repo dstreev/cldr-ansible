@@ -1,0 +1,48 @@
+- hosts: hdp
+  become: true
+
+  tasks:
+    - name: Create user on systems (local accounts)
+      user:
+        name: '{{ user }}'
+        shell: /bin/bash
+        generate_ssh_key: yes
+        ssh_key_bits: 2048
+        ssh_key_file: .ssh/id_rsa
+        groups: hadoop
+      tags:
+        - local
+- hosts: ldap
+  tasks:
+    - name: Create User in LDAP
+      ldap_entry:
+        bind_dn: '{{ ldap_bind_dn }}'
+        bind_pw: '{{ ldap_bind_password }}'
+        dn: '{{ base_user_dn}}'
+        server_uri: '{{ ldap_uri }}'
+        # Support Self-Signed Certs
+        validate_certs: no
+        state: present
+      tags:
+        - ldap
+
+- hosts: sdlc
+  become: true
+  become_user: hdfs
+
+  vars:
+    hs2_jdbc_url: jdbc:hive2://{{ zookeeper_server }}:2181/;serviceDiscoveryMode=zooKeeper;zooKeeperNamespace=hiveserver2
+    hive_superuser: hive
+    hive_superpassword: hive
+
+  tasks:
+    - name: Create User Home Directories in hdfs
+      shell: hdfs dfs -mkdir -p /user/{{ user }}/datasets/external;hdfs dfs -chown -R {{ user }}:hadoop /user/{{ user }}
+      tags:
+        - local
+        - ldap
+    - name: Create Private User Database
+      shell: /usr/hdp/current/hive-client/bin/beeline -u "{{ hs2_jdbc_url}}" -n {{ hive_superuser }} -p {{ hive_superpassword }} -e "create database if not exists priv_{{ user }} LOCATION '/user/{{ user }}/datasets/internal.db'"
+      tags:
+        - local
+        - ldap

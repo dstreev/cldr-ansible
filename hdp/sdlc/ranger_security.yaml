@@ -1,0 +1,176 @@
+- hosts:                       sdlc
+
+  tasks:
+    # REST Calls with Ansible: https://linuxctl.com/2017/01/ansible---interacting-with-external-rest-api/
+
+    # Setup Hive User with Access to
+    # - /tmp (recursive).  This is where the tpcds generated files will go.
+    # - /apps/hive/warehouse (recursive)
+    # - /user/*/datasets (recursive)
+    - name:                    Hive HDFS Permissions
+      uri:
+        url:                   '{{ ranger_url_base }}/service/public/v2/api/policy'
+        body_format:           json
+        body:
+          '{
+            "isEnabled":       true,
+            "service":         "{{ cluster_name }}_hadoop",
+            "name":            "HDP BP - Hive Superuser Access",
+            "description":     "Best Practices HDFS Permissions for Hive Superuser doas-false",
+            "isAuditEnabled":  true,
+            "resources":       {
+              "path":          {
+                "values":      ["/apps/hive/warehouse", "/user/*/datasets", "/tmp"],
+                "isExcludes":  false,
+                "isRecursive": true
+              }
+            },
+            "policyItems":     [{
+              "accesses":      [{
+                "type":        "read",
+                "isAllowed":   true
+              }, {
+                "type":        "write",
+                "isAllowed":   true
+              }, {
+                "type":        "execute",
+                "isAllowed":   true
+              }],
+              "users":         ["hive"],
+              "groups":        [],
+              "conditions":    [],
+              "delegateAdmin": false
+            }]
+          }'
+        method:                POST
+        user:                  '{{ ranger_admin_user }}'
+        password:              '{{ ranger_admin_password }}'
+        force_basic_auth:      yes
+        headers:
+          Content-Type:        "application/json; charset=utf8"
+          X-XSRF-HEADER:       "valid"
+          User-Agent:          "Ansible HDP Best Practices"
+    - name:                    User Home Directory
+      uri:
+        url:                   '{{ ranger_url_base }}/service/public/v2/api/policy'
+        body_format:           json
+        body:
+          '{
+            "isEnabled":       true,
+            "service":         "{{ cluster_name }}_hadoop",
+            "name":            "HDP BP - User Home Directory Access",
+            "description":     "Best Practices HDFS Permissions user home directory",
+            "isAuditEnabled":  true,
+            "resources":       {
+              "path":          {
+                "values":      ["/user/{USER}"],
+                "isExcludes":  false,
+                "isRecursive": true
+              }
+            },
+            "policyItems":     [{
+              "accesses":      [{
+                "type":        "read",
+                "isAllowed":   true
+              }, {
+                "type":        "write",
+                "isAllowed":   true
+              }, {
+                "type":        "execute",
+                "isAllowed":   true
+              }],
+              "users":         ["{USER}"],
+              "groups":        [],
+              "conditions":    [],
+              "delegateAdmin": false
+            }]
+          }'
+        method:                POST
+        user:                  '{{ ranger_admin_user }}'
+        password:              '{{ ranger_admin_password }}'
+        force_basic_auth:      yes
+        headers:
+          Content-Type:        "application/json; charset=utf8"
+          X-XSRF-HEADER:       "valid"
+          User-Agent:          "Ansible HDP Best Practices"
+          
+    - name:                    Hive Private User Databases
+      uri:
+        url:                   '{{ ranger_url_base }}/service/public/v2/api/policy'
+        body_format:           json
+        body:
+          '{
+            "isEnabled":       true,
+            "service":         "{{ cluster_name }}_hive",
+            "name":            "HDP BP - Private Databases",
+            "description":     "Private User Database Access",
+            "isAuditEnabled":  true,
+            "resources":       {
+              "database":      {
+                "values":      ["priv_{USER}"],
+                "isExcludes":  false,
+                "isRecursive": false
+              },
+              "column":        {
+                "values":      ["*"],
+                "isExcludes":  false,
+                "isRecursive": false
+              },
+              "table":         {
+                "values":      ["*"],
+                "isExcludes":  false,
+                "isRecursive": false
+              }
+            },
+            "policyItems":     [{
+              "accesses":      [{
+                "type":        "select",
+                "isAllowed":   true
+              }, {
+                "type":        "update",
+                "isAllowed":   true
+              }, {
+                "type":        "create",
+                "isAllowed":   true
+              }, {
+                "type":        "drop",
+                "isAllowed":   true
+              }, {
+                "type":        "alter",
+                "isAllowed":   true
+              }, {
+                "type":        "index",
+                "isAllowed":   true
+              }, {
+                "type":        "lock",
+                "isAllowed":   true
+              }, {
+                "type":        "all",
+                "isAllowed":   true
+              }, {
+                "type":        "read",
+                "isAllowed":   true
+              }, {
+                "type":        "write",
+                "isAllowed":   true
+              }, {
+                "type":        "repladmin",
+                "isAllowed":   true
+              }, {
+                "type":        "serviceadmin",
+                "isAllowed":   true
+              }],
+              "users":         ["{USER}"],
+              "groups":        [],
+              "conditions":    [],
+              "delegateAdmin": false
+            }]
+          }'
+        method:                POST
+        user:                  '{{ ranger_admin_user }}'
+        password:              '{{ ranger_admin_password }}'
+        force_basic_auth:      yes
+        headers:
+          Content-Type:        "application/json; charset=utf8"
+          X-XSRF-HEADER:       "valid"
+          User-Agent:          "Ansible HDP Best Practices"

@@ -1,61 +1,61 @@
 # HDP Environment 01 Servers
 all:
   vars:
-    env_instance:                               'ENV_INSTANCE'
-    cluster_name:                               DKENV_INSTANCE
+    env_instance:                               '03'
+    cluster_name:                               DK03
   children:
     db:
       hosts:
         os1.core:
           ansible_host:                         os01
-          ansible_port:                         220ENV_INSTANCE
+          ansible_port:                         22003
           ansible_user:                         root
           ansible_ssh_private_key_file:         /Users/dstreev/.ssh/id_rsa_docker
     hdp:
       vars:
-        ambari_server:                          hdp-os02-ENV_INSTANCE.home
-        zookeeper_server:                       hdp-os03-ENV_INSTANCE.home
-        repo_server:                            repo-ENV_INSTANCE.home
-        db_host:                                db-ENV_INSTANCE.home
+        ambari_server:                          hdp-os02-03.home
+        zookeeper_server:                       hdp-os03-03.home
+        repo_server:                            repo-03.home
+        db_host:                                db-03.home
       hosts:
         os6.core:
           ansible_host:                         os06
-          ansible_port:                         220ENV_INSTANCE
+          ansible_port:                         22003
           ansible_user:                         root
           ansible_ssh_private_key_file:         /Users/dstreev/.ssh/id_rsa_docker
         os7.core:
           ansible_host:                         os07
-          ansible_port:                         220ENV_INSTANCE
+          ansible_port:                         22003
           ansible_user:                         root
           ansible_ssh_private_key_file:         /Users/dstreev/.ssh/id_rsa_docker
         os10.core:
           ansible_host:                         os10
-          ansible_port:                         220ENV_INSTANCE
+          ansible_port:                         22003
           ansible_user:                         root
           ansible_ssh_private_key_file:         /Users/dstreev/.ssh/id_rsa_docker
         os11.core:
           ansible_host:                         os11
-          ansible_port:                         220ENV_INSTANCE
+          ansible_port:                         22003
           ansible_user:                         root
           ansible_ssh_private_key_file:         /Users/dstreev/.ssh/id_rsa_docker
         os12.core:
           ansible_host:                         os12
-          ansible_port:                         220ENV_INSTANCE
+          ansible_port:                         22003
           ansible_user:                         root
           ansible_ssh_private_key_file:         /Users/dstreev/.ssh/id_rsa_docker
         os13.core:
           ansible_host:                         os13
-          ansible_port:                         220ENV_INSTANCE
+          ansible_port:                         22003
           ansible_user:                         root
           ansible_ssh_private_key_file:         /Users/dstreev/.ssh/id_rsa_docker
         os14.core:
           ansible_host:                         os14
-          ansible_port:                         220ENV_INSTANCE
+          ansible_port:                         22003
           ansible_user:                         root
           ansible_ssh_private_key_file:         /Users/dstreev/.ssh/id_rsa_docker
         os15.core:
           ansible_host:                         os15
-          ansible_port:                         220ENV_INSTANCE
+          ansible_port:                         22003
           ansible_user:                         root
           ansible_ssh_private_key_file:         /Users/dstreev/.ssh/id_rsa_docker
 
@@ -64,29 +64,29 @@ all:
           hosts:
             os3.core:
               ansible_host:                     os03
-              ansible_port:                     220ENV_INSTANCE
+              ansible_port:                     22003
               ansible_user:                     root
               ansible_ssh_private_key_file:     /Users/dstreev/.ssh/id_rsa_docker
             os5.core:
               ansible_host:                     os05
-              ansible_port:                     220ENV_INSTANCE
+              ansible_port:                     22003
               ansible_user:                     root
               ansible_ssh_private_key_file:     /Users/dstreev/.ssh/id_rsa_docker
           children:
             sdlc:
               vars:
-                user: NEEDS_TO_BE_SET
+                user: dstreev
                 smoke_tgs_size: 1Gb
                 smoke_tgs_mappers: 4
                 smoke_tgs_reducers: 4
                 tpcds_size: 50
-                ranger_url_base: NEEDS_TO_BE_SET
+                ranger_url_base: http://hdp-os04-03.home:6080
                 ranger_admin_user: admin
                 ranger_admin_password: admin
               hosts:
                 os4.core:
                   ansible_host:                 os04
-                  ansible_port:                 220ENV_INSTANCE
+                  ansible_port:                 22003
                   ansible_user:                 root
                   ansible_ssh_private_key_file: /Users/dstreev/.ssh/id_rsa_docker
 
@@ -106,7 +106,7 @@ all:
           hosts:
             os2.core:
               ansible_host:                     os02
-              ansible_port:                     220ENV_INSTANCE
+              ansible_port:                     22003
               ansible_user:                     root
               ansible_ssh_private_key_file:     /Users/dstreev/.ssh/id_rsa_docker
 

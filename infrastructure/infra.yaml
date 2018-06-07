@@ -22,10 +22,11 @@
         volumes:
           - "/data/docker_{{ env_instance }}/mariadb:/var/lib/mysql"
         restart: yes
+        restart_policy: unless-stopped
         ports :
           - "306{{ env_instance }}:3306"
         dns_search_domains:
-          - '{{ docker_network_name }}'          
+          - '{{ docker_network_name }}'
         network_mode: '{{ docker_network_name }}'
         networks:
           - name : '{{ docker_network_name }}'
@@ -48,6 +49,7 @@
         ports :
           - "380{{ env_instance }}:80"
         restart: yes
+        restart_policy: unless-stopped
         dns_search_domains:
           - '{{ docker_network_name }}'
         network_mode: '{{ docker_network_name }}'

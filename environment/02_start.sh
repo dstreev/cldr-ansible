@@ -43,6 +43,8 @@ fi
 # fi
 
 cd `dirname $0`
+# ansible-playbook ../infrastructure/core-kill.yaml
+# ansible-playbook ../infrastructure/core-init.yaml
 
 ansible-playbook -e env_instance=${ENV_INSTANCE} -e env_state=started ../infrastructure/infra.yaml
 ansible-playbook -e env_instance=${ENV_INSTANCE} -e env_state=started hdp.yaml

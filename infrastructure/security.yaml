@@ -1,0 +1,51 @@
+####################################################
+##  Build out and configure LDAP and an MIT KDC
+####################################################
+
+- hosts: db
+  vars:
+    docker_network_name: home
+  become: true
+
+  ## WIP
+
+  tasks:
+    # - name: Create IDM Data directory
+    #   copy:
+    #     src:
+    - name: Create Target Directory on Host for IPA Data.
+      file:
+        path: /data/ipa_{{ env_instance }}/ldap
+        owner: root
+        mode: 0744
+        state: present
+        state: directory
+    - name: Copy Initialization file to host
+      copy:
+        src: /Users/dstreev/projects/david/ansible-playground/infrastructure/init/ipa-server-install-options
+        dest: /data/ipa_{{ env_instance }}/ldap/ipa-server-install-options
+    - name: Set State of IDM container to {{ env_state}}
+      docker_container:
+        name: ldap-{{ env_instance }}
+        pull: true
+        image: freeipa/freeipa-server
+        #privileged: yes
+        hostname: ipa-{{ env_instance }}.{{ docker_network_name }}
+        volumes:
+          - "/data/ipa_{{ env_instance }}/ldap:/data"
+        restart: yes
+        restart_policy: unless-stopped
+        ports :
+          - "389{{ env_instance }}:389"
+          - "336{{ env_instance }}:636"
+        dns_search_domains:
+          - '{{ docker_network_name }}'
+        network_mode: '{{ docker_network_name }}'
+        networks:
+          - name : '{{ docker_network_name }}'
+            aliases :
+              - db-{{ env_instance }}.{{ docker_network_name }}
+            # links:
+            #   - hdp-{{ ansible_hostname }}-{{ env_instance }}.core
+        purge_networks: yes
+        state : '{{ env_state }}'

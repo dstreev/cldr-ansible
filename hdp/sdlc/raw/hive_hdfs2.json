@@ -1,0 +1,30 @@
+{
+  "isEnabled": true,
+  "service": "DK01_hadoop",
+  "name": "Hive - Superuser Access 2",
+  "description": "",
+  "isAuditEnabled": true,
+  "resources": {
+    "path": {
+      "values": ["/apps/hive/warehouse2", "/user/*/datasets2"],
+      "isExcludes": false,
+      "isRecursive": true
+    }
+  },
+  "policyItems": [{
+    "accesses": [{
+      "type": "read",
+      "isAllowed": true
+    }, {
+      "type": "write",
+      "isAllowed": true
+    }, {
+      "type": "execute",
+      "isAllowed": true
+    }],
+    "users": ["hive"],
+    "groups": [],
+    "conditions": [],
+    "delegateAdmin": false
+  }]
+}

@@ -27,4 +27,3 @@ cd `dirname $0`
 
 ansible-playbook -e env_instance=${ENV_INSTANCE} -e env_state=absent ../infrastructure/infra.yaml
 ansible-playbook -e env_instance=${ENV_INSTANCE} -e env_state=absent hdp.yaml
-ansible-playbook -e env_instance=${ENV_INSTANCE} ../infrastructure/clean.yaml

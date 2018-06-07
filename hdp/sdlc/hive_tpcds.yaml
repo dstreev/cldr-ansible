@@ -1,0 +1,33 @@
+#######################################################
+# Requires the Ranger Hive/HDFS Best Practive Policies.
+#######################################################
+
+- hosts: sdlc
+  become: true
+  become_user: '{{ user }}'
+
+  vars:
+    hive_testbench: https://github.com/hortonworks/hive-testbench.git
+
+  tasks:
+    - name: Create Hive TPCPS Local Directory
+      file:
+        path: /home/{{ user }}/hive-testbench
+        state: directory
+        owner: '{{ user }}'
+        mode: 0744
+    - name: Clone TPCDS (Hive-testbench)
+      git:
+        repo: https://github.com/hortonworks/hive-testbench.git
+        dest: /home/{{ user }}/hive-testbench
+
+    - name: Build TPCDS
+      shell: cd /home/{{ user }}/hive-testbench; ./tpcds-build.sh
+      tags:
+        - build
+    - name: Build TPCDS Dataset
+      shell: cd /home/{{ user }}/hive-testbench; ./tpcds-setup.sh {{ tpcds_size }}
+      tags:
+        - build
+        - gen
+    # - name: Run Queries

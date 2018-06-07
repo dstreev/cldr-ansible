@@ -1,0 +1,30 @@
+{
+  "isEnabled": true,
+  "service": "{{ cluster_name }}_hadoop",
+  "name": "HDP BP - Hive Superuser Access",
+  "description": "Best Practices HDFS Permissions for Hive Superuser doas-false",
+  "isAuditEnabled": true,
+  "resources": {
+    "path": {
+      "values": ["/apps/hive/warehouse", "/user/*/datasets", "/tmp"],
+      "isExcludes": false,
+      "isRecursive": true
+    }
+  },
+  "policyItems": [{
+    "accesses": [{
+      "type": "read",
+      "isAllowed": true
+    }, {
+      "type": "write",
+      "isAllowed": true
+    }, {
+      "type": "execute",
+      "isAllowed": true
+    }],
+    "users": ["hive"],
+    "groups": [],
+    "conditions": [],
+    "delegateAdmin": false
+  }]
+}

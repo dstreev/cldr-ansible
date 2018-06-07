@@ -1,0 +1,4 @@
+# Remove file extension and populate below entries
+--realm=EXAMPLE.TEST
+--ds-password=tobeconfigured
+--admin-password=tobeconfigured

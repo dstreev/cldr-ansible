@@ -1,0 +1,10 @@
+- hosts: working
+  become: true
+
+  tasks:
+    - name: Add Mount to fstab
+      lineinfile:
+        path: /etc/fstab
+        line: /dev/sdb1     /data_1                       xfs     defaults        0 0
+        state: present
+    

@@ -1,33 +1,33 @@
 {
-  "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts?fields=Hosts/host_name,host_components,Hosts/ip,Hosts/total_mem,Hosts/os_arch,Hosts/os_type,Hosts/rack_info,Hosts/cpu_count,Hosts/disk_info,metrics/disk,Hosts/ph_cpu_count",
+  "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts?fields=Hosts/host_name,host_components,Hosts/ip,Hosts/total_mem,Hosts/os_arch,Hosts/os_type,Hosts/rack_info,Hosts/cpu_count,Hosts/disk_info,metrics/disk,Hosts/ph_cpu_count",
   "items" : [
     {
-      "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os02-01.home",
+      "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os02-01.home",
       "Hosts" : {
         "cluster_name" : "DK01",
         "cpu_count" : 4,
         "disk_info" : [
           {
-            "available" : "45100560",
+            "available" : "42164460",
             "device" : "overlay",
-            "used" : "62678084",
-            "percent" : "59%",
+            "used" : "65614184",
+            "percent" : "61%",
             "size" : "107778644",
             "type" : "overlay",
             "mountpoint" : "/"
           },
           {
-            "available" : "45100560",
+            "available" : "42164460",
             "device" : "/dev/mapper/cl_os2-root",
-            "used" : "62678084",
-            "percent" : "59%",
+            "used" : "65614184",
+            "percent" : "61%",
             "size" : "107778644",
             "type" : "xfs",
             "mountpoint" : "/data"
           }
         ],
         "host_name" : "hdp-os02-01.home",
-        "ip" : "192.168.44.32",
+        "ip" : "192.168.44.17",
         "os_arch" : "x86_64",
         "os_type" : "centos7",
         "ph_cpu_count" : 4,
@@ -36,19 +36,19 @@
       },
       "metrics" : {
         "disk" : {
-          "disk_free" : 43.01,
+          "disk_free" : 40.21,
           "disk_total" : 102.79,
-          "read_bytes" : 3.689355264E9,
-          "read_count" : 112979.0,
-          "read_time" : 40176.0,
-          "write_bytes" : 7.8661705728E10,
-          "write_count" : 1308281.0,
-          "write_time" : 7.7965239E7
+          "read_bytes" : 3.723583488E9,
+          "read_count" : 117002.0,
+          "read_time" : 42276.0,
+          "write_bytes" : 1.62703515648E11,
+          "write_count" : 2918655.0,
+          "write_time" : 1.80172149E8
         }
       },
       "host_components" : [
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os02-01.home/host_components/ACTIVITY_ANALYZER",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os02-01.home/host_components/ACTIVITY_ANALYZER",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "ACTIVITY_ANALYZER",
@@ -56,15 +56,15 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os02-01.home/host_components/ACTIVITY_EXPLORER",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os02-01.home/host_components/ATLAS_CLIENT",
           "HostRoles" : {
             "cluster_name" : "DK01",
-            "component_name" : "ACTIVITY_EXPLORER",
+            "component_name" : "ATLAS_CLIENT",
             "host_name" : "hdp-os02-01.home"
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os02-01.home/host_components/HDFS_CLIENT",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os02-01.home/host_components/HDFS_CLIENT",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "HDFS_CLIENT",
@@ -72,7 +72,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os02-01.home/host_components/HST_AGENT",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os02-01.home/host_components/HST_AGENT",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "HST_AGENT",
@@ -80,7 +80,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os02-01.home/host_components/HST_SERVER",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os02-01.home/host_components/HST_SERVER",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "HST_SERVER",
@@ -88,7 +88,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os02-01.home/host_components/INFRA_SOLR",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os02-01.home/host_components/INFRA_SOLR",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "INFRA_SOLR",
@@ -96,7 +96,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os02-01.home/host_components/INFRA_SOLR_CLIENT",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os02-01.home/host_components/INFRA_SOLR_CLIENT",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "INFRA_SOLR_CLIENT",
@@ -104,7 +104,15 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os02-01.home/host_components/MAPREDUCE2_CLIENT",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os02-01.home/host_components/JOURNALNODE",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "JOURNALNODE",
+            "host_name" : "hdp-os02-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os02-01.home/host_components/MAPREDUCE2_CLIENT",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "MAPREDUCE2_CLIENT",
@@ -112,7 +120,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os02-01.home/host_components/METRICS_GRAFANA",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os02-01.home/host_components/METRICS_GRAFANA",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "METRICS_GRAFANA",
@@ -120,7 +128,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os02-01.home/host_components/METRICS_MONITOR",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os02-01.home/host_components/METRICS_MONITOR",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "METRICS_MONITOR",
@@ -128,7 +136,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os02-01.home/host_components/NAMENODE",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os02-01.home/host_components/NAMENODE",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "NAMENODE",
@@ -136,15 +144,23 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os02-01.home/host_components/SPARK2_JOBHISTORYSERVER",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os02-01.home/host_components/RESOURCEMANAGER",
           "HostRoles" : {
             "cluster_name" : "DK01",
-            "component_name" : "SPARK2_JOBHISTORYSERVER",
+            "component_name" : "RESOURCEMANAGER",
             "host_name" : "hdp-os02-01.home"
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os02-01.home/host_components/TEZ_CLIENT",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os02-01.home/host_components/SPARK2_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "SPARK2_CLIENT",
+            "host_name" : "hdp-os02-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os02-01.home/host_components/TEZ_CLIENT",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "TEZ_CLIENT",
@@ -152,7 +168,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os02-01.home/host_components/YARN_CLIENT",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os02-01.home/host_components/YARN_CLIENT",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "YARN_CLIENT",
@@ -160,7 +176,15 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os02-01.home/host_components/ZOOKEEPER_SERVER",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os02-01.home/host_components/ZKFC",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "ZKFC",
+            "host_name" : "hdp-os02-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os02-01.home/host_components/ZOOKEEPER_SERVER",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "ZOOKEEPER_SERVER",
@@ -170,32 +194,32 @@
       ]
     },
     {
-      "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os03-01.home",
+      "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os03-01.home",
       "Hosts" : {
         "cluster_name" : "DK01",
         "cpu_count" : 4,
         "disk_info" : [
           {
-            "available" : "149428820",
+            "available" : "142760296",
             "device" : "overlay",
-            "used" : "341257552",
-            "percent" : "70%",
+            "used" : "347926076",
+            "percent" : "71%",
             "size" : "490686372",
             "type" : "overlay",
             "mountpoint" : "/"
           },
           {
-            "available" : "149428820",
+            "available" : "142760296",
             "device" : "/dev/mapper/cl_os3-root",
-            "used" : "341257552",
-            "percent" : "70%",
+            "used" : "347926076",
+            "percent" : "71%",
             "size" : "490686372",
             "type" : "xfs",
             "mountpoint" : "/data"
           }
         ],
         "host_name" : "hdp-os03-01.home",
-        "ip" : "192.168.44.36",
+        "ip" : "192.168.44.18",
         "os_arch" : "x86_64",
         "os_type" : "centos7",
         "ph_cpu_count" : 4,
@@ -204,19 +228,19 @@
       },
       "metrics" : {
         "disk" : {
-          "disk_free" : 142.51,
+          "disk_free" : 136.15,
           "disk_total" : 467.95,
-          "read_bytes" : 2.109138432E9,
-          "read_count" : 75412.0,
-          "read_time" : 20934.0,
-          "write_bytes" : 3.550005248E10,
-          "write_count" : 1222920.0,
-          "write_time" : 6704008.0
+          "read_bytes" : 2.145846784E9,
+          "read_count" : 79122.0,
+          "read_time" : 21557.0,
+          "write_bytes" : 8.4918013952E10,
+          "write_count" : 2522392.0,
+          "write_time" : 1.8264098E7
         }
       },
       "host_components" : [
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os03-01.home/host_components/APP_TIMELINE_SERVER",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os03-01.home/host_components/APP_TIMELINE_SERVER",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "APP_TIMELINE_SERVER",
@@ -224,7 +248,31 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os03-01.home/host_components/HDFS_CLIENT",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os03-01.home/host_components/ATLAS_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "ATLAS_CLIENT",
+            "host_name" : "hdp-os03-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os03-01.home/host_components/HBASE_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "HBASE_CLIENT",
+            "host_name" : "hdp-os03-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os03-01.home/host_components/HCAT",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "HCAT",
+            "host_name" : "hdp-os03-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os03-01.home/host_components/HDFS_CLIENT",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "HDFS_CLIENT",
@@ -232,7 +280,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os03-01.home/host_components/HISTORYSERVER",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os03-01.home/host_components/HISTORYSERVER",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "HISTORYSERVER",
@@ -240,7 +288,15 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os03-01.home/host_components/HST_AGENT",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os03-01.home/host_components/HIVE_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "HIVE_CLIENT",
+            "host_name" : "hdp-os03-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os03-01.home/host_components/HST_AGENT",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "HST_AGENT",
@@ -248,7 +304,31 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os03-01.home/host_components/METRICS_MONITOR",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os03-01.home/host_components/INFRA_SOLR_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "INFRA_SOLR_CLIENT",
+            "host_name" : "hdp-os03-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os03-01.home/host_components/JOURNALNODE",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "JOURNALNODE",
+            "host_name" : "hdp-os03-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os03-01.home/host_components/MAPREDUCE2_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "MAPREDUCE2_CLIENT",
+            "host_name" : "hdp-os03-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os03-01.home/host_components/METRICS_MONITOR",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "METRICS_MONITOR",
@@ -256,7 +336,31 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os03-01.home/host_components/RESOURCEMANAGER",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os03-01.home/host_components/NAMENODE",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "NAMENODE",
+            "host_name" : "hdp-os03-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os03-01.home/host_components/OOZIE_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "OOZIE_CLIENT",
+            "host_name" : "hdp-os03-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os03-01.home/host_components/PIG",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "PIG",
+            "host_name" : "hdp-os03-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os03-01.home/host_components/RESOURCEMANAGER",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "RESOURCEMANAGER",
@@ -264,15 +368,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os03-01.home/host_components/SECONDARY_NAMENODE",
-          "HostRoles" : {
-            "cluster_name" : "DK01",
-            "component_name" : "SECONDARY_NAMENODE",
-            "host_name" : "hdp-os03-01.home"
-          }
-        },
-        {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os03-01.home/host_components/SLIDER",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os03-01.home/host_components/SLIDER",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "SLIDER",
@@ -280,7 +376,15 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os03-01.home/host_components/TEZ_CLIENT",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os03-01.home/host_components/SPARK2_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "SPARK2_CLIENT",
+            "host_name" : "hdp-os03-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os03-01.home/host_components/TEZ_CLIENT",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "TEZ_CLIENT",
@@ -288,7 +392,31 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os03-01.home/host_components/ZOOKEEPER_SERVER",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os03-01.home/host_components/YARN_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "YARN_CLIENT",
+            "host_name" : "hdp-os03-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os03-01.home/host_components/ZKFC",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "ZKFC",
+            "host_name" : "hdp-os03-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os03-01.home/host_components/ZOOKEEPER_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "ZOOKEEPER_CLIENT",
+            "host_name" : "hdp-os03-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os03-01.home/host_components/ZOOKEEPER_SERVER",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "ZOOKEEPER_SERVER",
@@ -298,32 +426,32 @@
       ]
     },
     {
-      "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home",
+      "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home",
       "Hosts" : {
         "cluster_name" : "DK01",
         "cpu_count" : 4,
         "disk_info" : [
           {
-            "available" : "439735852",
+            "available" : "433566616",
             "device" : "overlay",
-            "used" : "50745820",
-            "percent" : "11%",
+            "used" : "56915056",
+            "percent" : "12%",
             "size" : "490481672",
             "type" : "overlay",
             "mountpoint" : "/"
           },
           {
-            "available" : "439735852",
+            "available" : "433566616",
             "device" : "/dev/mapper/cl_os4-root",
-            "used" : "50745820",
-            "percent" : "11%",
+            "used" : "56915056",
+            "percent" : "12%",
             "size" : "490481672",
             "type" : "xfs",
             "mountpoint" : "/data"
           }
         ],
         "host_name" : "hdp-os04-01.home",
-        "ip" : "192.168.44.34",
+        "ip" : "192.168.44.21",
         "os_arch" : "x86_64",
         "os_type" : "centos7",
         "ph_cpu_count" : 4,
@@ -332,19 +460,51 @@
       },
       "metrics" : {
         "disk" : {
-          "disk_free" : 419.36,
+          "disk_free" : 413.48,
           "disk_total" : 467.76,
-          "read_bytes" : 2.123907072E9,
-          "read_count" : 79208.0,
-          "read_time" : 26746.0,
-          "write_bytes" : 6.4280109056E10,
-          "write_count" : 1232882.0,
-          "write_time" : 1.3890784E7
+          "read_bytes" : 2.690615296E9,
+          "read_count" : 112508.0,
+          "read_time" : 68265.0,
+          "write_bytes" : 1.3540880384E11,
+          "write_count" : 3133643.0,
+          "write_time" : 2.864844E7
         }
       },
       "host_components" : [
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/HBASE_CLIENT",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/ACTIVITY_ANALYZER",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "ACTIVITY_ANALYZER",
+            "host_name" : "hdp-os04-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/ACTIVITY_EXPLORER",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "ACTIVITY_EXPLORER",
+            "host_name" : "hdp-os04-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/ATLAS_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "ATLAS_CLIENT",
+            "host_name" : "hdp-os04-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/DRUID_COORDINATOR",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "DRUID_COORDINATOR",
+            "host_name" : "hdp-os04-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/HBASE_CLIENT",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "HBASE_CLIENT",
@@ -352,7 +512,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/HBASE_MASTER",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/HBASE_MASTER",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "HBASE_MASTER",
@@ -360,7 +520,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/HCAT",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/HCAT",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "HCAT",
@@ -368,7 +528,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/HDFS_CLIENT",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/HDFS_CLIENT",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "HDFS_CLIENT",
@@ -376,7 +536,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/HIVE_CLIENT",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/HIVE_CLIENT",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "HIVE_CLIENT",
@@ -384,7 +544,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/HIVE_METASTORE",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/HIVE_METASTORE",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "HIVE_METASTORE",
@@ -392,7 +552,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/HIVE_SERVER",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/HIVE_SERVER",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "HIVE_SERVER",
@@ -400,7 +560,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/HST_AGENT",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/HST_AGENT",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "HST_AGENT",
@@ -408,7 +568,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/INFRA_SOLR_CLIENT",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/INFRA_SOLR_CLIENT",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "INFRA_SOLR_CLIENT",
@@ -416,7 +576,23 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/MAPREDUCE2_CLIENT",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/JOURNALNODE",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "JOURNALNODE",
+            "host_name" : "hdp-os04-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/KNOX_GATEWAY",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "KNOX_GATEWAY",
+            "host_name" : "hdp-os04-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/MAPREDUCE2_CLIENT",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "MAPREDUCE2_CLIENT",
@@ -424,7 +600,15 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/METRICS_MONITOR",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/METRICS_COLLECTOR",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "METRICS_COLLECTOR",
+            "host_name" : "hdp-os04-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/METRICS_MONITOR",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "METRICS_MONITOR",
@@ -432,7 +616,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/OOZIE_CLIENT",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/OOZIE_CLIENT",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "OOZIE_CLIENT",
@@ -440,7 +624,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/OOZIE_SERVER",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/OOZIE_SERVER",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "OOZIE_SERVER",
@@ -448,7 +632,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/PIG",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/PIG",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "PIG",
@@ -456,7 +640,31 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/SLIDER",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/RANGER_ADMIN",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "RANGER_ADMIN",
+            "host_name" : "hdp-os04-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/RANGER_KMS_SERVER",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "RANGER_KMS_SERVER",
+            "host_name" : "hdp-os04-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/RANGER_USERSYNC",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "RANGER_USERSYNC",
+            "host_name" : "hdp-os04-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/SLIDER",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "SLIDER",
@@ -464,7 +672,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/SPARK2_CLIENT",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/SPARK2_CLIENT",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "SPARK2_CLIENT",
@@ -472,15 +680,15 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/SQOOP",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/SPARK2_JOBHISTORYSERVER",
           "HostRoles" : {
             "cluster_name" : "DK01",
-            "component_name" : "SQOOP",
+            "component_name" : "SPARK2_JOBHISTORYSERVER",
             "host_name" : "hdp-os04-01.home"
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/TEZ_CLIENT",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/TEZ_CLIENT",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "TEZ_CLIENT",
@@ -488,7 +696,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/WEBHCAT_SERVER",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/WEBHCAT_SERVER",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "WEBHCAT_SERVER",
@@ -496,7 +704,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/YARN_CLIENT",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/YARN_CLIENT",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "YARN_CLIENT",
@@ -504,7 +712,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/ZOOKEEPER_CLIENT",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/ZOOKEEPER_CLIENT",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "ZOOKEEPER_CLIENT",
@@ -512,7 +720,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/ZOOKEEPER_SERVER",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os04-01.home/host_components/ZOOKEEPER_SERVER",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "ZOOKEEPER_SERVER",
@@ -522,31 +730,239 @@
       ]
     },
     {
-      "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os05-01.home",
+      "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os05-01.home",
       "Hosts" : {
         "cluster_name" : "DK01",
         "cpu_count" : 4,
         "disk_info" : [
           {
-            "available" : "457970648",
+            "available" : "454378296",
             "device" : "overlay",
-            "used" : "32511024",
-            "percent" : "7%",
+            "used" : "36103376",
+            "percent" : "8%",
             "size" : "490481672",
             "type" : "overlay",
             "mountpoint" : "/"
           },
           {
-            "available" : "457970648",
+            "available" : "454378296",
             "device" : "/dev/mapper/cl_os5-root",
-            "used" : "32511024",
-            "percent" : "7%",
+            "used" : "36103376",
+            "percent" : "8%",
             "size" : "490481672",
             "type" : "xfs",
             "mountpoint" : "/data"
           }
         ],
         "host_name" : "hdp-os05-01.home",
+        "ip" : "192.168.44.20",
+        "os_arch" : "x86_64",
+        "os_type" : "centos7",
+        "ph_cpu_count" : 4,
+        "rack_info" : "/default-rack",
+        "total_mem" : 16084576
+      },
+      "metrics" : {
+        "disk" : {
+          "disk_free" : 433.33,
+          "disk_total" : 467.76,
+          "read_bytes" : 1.934084096E9,
+          "read_count" : 71806.0,
+          "read_time" : 21992.0,
+          "write_bytes" : 1.24383092736E11,
+          "write_count" : 2231562.0,
+          "write_time" : 2.3402991E7
+        }
+      },
+      "host_components" : [
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os05-01.home/host_components/ATLAS_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "ATLAS_CLIENT",
+            "host_name" : "hdp-os05-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os05-01.home/host_components/DATANODE",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "DATANODE",
+            "host_name" : "hdp-os05-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os05-01.home/host_components/HBASE_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "HBASE_CLIENT",
+            "host_name" : "hdp-os05-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os05-01.home/host_components/HBASE_REGIONSERVER",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "HBASE_REGIONSERVER",
+            "host_name" : "hdp-os05-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os05-01.home/host_components/HCAT",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "HCAT",
+            "host_name" : "hdp-os05-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os05-01.home/host_components/HDFS_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "HDFS_CLIENT",
+            "host_name" : "hdp-os05-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os05-01.home/host_components/HIVE_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "HIVE_CLIENT",
+            "host_name" : "hdp-os05-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os05-01.home/host_components/HST_AGENT",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "HST_AGENT",
+            "host_name" : "hdp-os05-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os05-01.home/host_components/INFRA_SOLR_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "INFRA_SOLR_CLIENT",
+            "host_name" : "hdp-os05-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os05-01.home/host_components/MAPREDUCE2_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "MAPREDUCE2_CLIENT",
+            "host_name" : "hdp-os05-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os05-01.home/host_components/METRICS_MONITOR",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "METRICS_MONITOR",
+            "host_name" : "hdp-os05-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os05-01.home/host_components/NODEMANAGER",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "NODEMANAGER",
+            "host_name" : "hdp-os05-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os05-01.home/host_components/OOZIE_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "OOZIE_CLIENT",
+            "host_name" : "hdp-os05-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os05-01.home/host_components/PIG",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "PIG",
+            "host_name" : "hdp-os05-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os05-01.home/host_components/SLIDER",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "SLIDER",
+            "host_name" : "hdp-os05-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os05-01.home/host_components/SPARK2_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "SPARK2_CLIENT",
+            "host_name" : "hdp-os05-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os05-01.home/host_components/TEZ_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "TEZ_CLIENT",
+            "host_name" : "hdp-os05-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os05-01.home/host_components/YARN_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "YARN_CLIENT",
+            "host_name" : "hdp-os05-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os05-01.home/host_components/ZEPPELIN_MASTER",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "ZEPPELIN_MASTER",
+            "host_name" : "hdp-os05-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os05-01.home/host_components/ZOOKEEPER_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "ZOOKEEPER_CLIENT",
+            "host_name" : "hdp-os05-01.home"
+          }
+        }
+      ]
+    },
+    {
+      "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os06-01.home",
+      "Hosts" : {
+        "cluster_name" : "DK01",
+        "cpu_count" : 4,
+        "disk_info" : [
+          {
+            "available" : "454236836",
+            "device" : "overlay",
+            "used" : "36244836",
+            "percent" : "8%",
+            "size" : "490481672",
+            "type" : "overlay",
+            "mountpoint" : "/"
+          },
+          {
+            "available" : "454236836",
+            "device" : "/dev/mapper/cl_os6-root",
+            "used" : "36244836",
+            "percent" : "8%",
+            "size" : "490481672",
+            "type" : "xfs",
+            "mountpoint" : "/data"
+          }
+        ],
+        "host_name" : "hdp-os06-01.home",
         "ip" : "192.168.44.33",
         "os_arch" : "x86_64",
         "os_type" : "centos7",
@@ -556,227 +972,19 @@
       },
       "metrics" : {
         "disk" : {
-          "disk_free" : 436.76,
+          "disk_free" : 433.19,
           "disk_total" : 467.76,
-          "read_bytes" : 1.845387264E9,
-          "read_count" : 67864.0,
-          "read_time" : 21092.0,
-          "write_bytes" : 5.7736830976E10,
-          "write_count" : 1017087.0,
-          "write_time" : 1.0919622E7
+          "read_bytes" : 1.988071424E9,
+          "read_count" : 77022.0,
+          "read_time" : 18003.0,
+          "write_bytes" : 7.4299506688E10,
+          "write_count" : 1924203.0,
+          "write_time" : 1.6018033E7
         }
       },
       "host_components" : [
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os05-01.home/host_components/DATANODE",
-          "HostRoles" : {
-            "cluster_name" : "DK01",
-            "component_name" : "DATANODE",
-            "host_name" : "hdp-os05-01.home"
-          }
-        },
-        {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os05-01.home/host_components/HBASE_CLIENT",
-          "HostRoles" : {
-            "cluster_name" : "DK01",
-            "component_name" : "HBASE_CLIENT",
-            "host_name" : "hdp-os05-01.home"
-          }
-        },
-        {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os05-01.home/host_components/HBASE_REGIONSERVER",
-          "HostRoles" : {
-            "cluster_name" : "DK01",
-            "component_name" : "HBASE_REGIONSERVER",
-            "host_name" : "hdp-os05-01.home"
-          }
-        },
-        {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os05-01.home/host_components/HCAT",
-          "HostRoles" : {
-            "cluster_name" : "DK01",
-            "component_name" : "HCAT",
-            "host_name" : "hdp-os05-01.home"
-          }
-        },
-        {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os05-01.home/host_components/HDFS_CLIENT",
-          "HostRoles" : {
-            "cluster_name" : "DK01",
-            "component_name" : "HDFS_CLIENT",
-            "host_name" : "hdp-os05-01.home"
-          }
-        },
-        {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os05-01.home/host_components/HIVE_CLIENT",
-          "HostRoles" : {
-            "cluster_name" : "DK01",
-            "component_name" : "HIVE_CLIENT",
-            "host_name" : "hdp-os05-01.home"
-          }
-        },
-        {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os05-01.home/host_components/HST_AGENT",
-          "HostRoles" : {
-            "cluster_name" : "DK01",
-            "component_name" : "HST_AGENT",
-            "host_name" : "hdp-os05-01.home"
-          }
-        },
-        {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os05-01.home/host_components/INFRA_SOLR_CLIENT",
-          "HostRoles" : {
-            "cluster_name" : "DK01",
-            "component_name" : "INFRA_SOLR_CLIENT",
-            "host_name" : "hdp-os05-01.home"
-          }
-        },
-        {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os05-01.home/host_components/MAPREDUCE2_CLIENT",
-          "HostRoles" : {
-            "cluster_name" : "DK01",
-            "component_name" : "MAPREDUCE2_CLIENT",
-            "host_name" : "hdp-os05-01.home"
-          }
-        },
-        {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os05-01.home/host_components/METRICS_COLLECTOR",
-          "HostRoles" : {
-            "cluster_name" : "DK01",
-            "component_name" : "METRICS_COLLECTOR",
-            "host_name" : "hdp-os05-01.home"
-          }
-        },
-        {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os05-01.home/host_components/METRICS_MONITOR",
-          "HostRoles" : {
-            "cluster_name" : "DK01",
-            "component_name" : "METRICS_MONITOR",
-            "host_name" : "hdp-os05-01.home"
-          }
-        },
-        {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os05-01.home/host_components/NODEMANAGER",
-          "HostRoles" : {
-            "cluster_name" : "DK01",
-            "component_name" : "NODEMANAGER",
-            "host_name" : "hdp-os05-01.home"
-          }
-        },
-        {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os05-01.home/host_components/OOZIE_CLIENT",
-          "HostRoles" : {
-            "cluster_name" : "DK01",
-            "component_name" : "OOZIE_CLIENT",
-            "host_name" : "hdp-os05-01.home"
-          }
-        },
-        {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os05-01.home/host_components/PIG",
-          "HostRoles" : {
-            "cluster_name" : "DK01",
-            "component_name" : "PIG",
-            "host_name" : "hdp-os05-01.home"
-          }
-        },
-        {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os05-01.home/host_components/SLIDER",
-          "HostRoles" : {
-            "cluster_name" : "DK01",
-            "component_name" : "SLIDER",
-            "host_name" : "hdp-os05-01.home"
-          }
-        },
-        {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os05-01.home/host_components/SPARK2_CLIENT",
-          "HostRoles" : {
-            "cluster_name" : "DK01",
-            "component_name" : "SPARK2_CLIENT",
-            "host_name" : "hdp-os05-01.home"
-          }
-        },
-        {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os05-01.home/host_components/SQOOP",
-          "HostRoles" : {
-            "cluster_name" : "DK01",
-            "component_name" : "SQOOP",
-            "host_name" : "hdp-os05-01.home"
-          }
-        },
-        {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os05-01.home/host_components/TEZ_CLIENT",
-          "HostRoles" : {
-            "cluster_name" : "DK01",
-            "component_name" : "TEZ_CLIENT",
-            "host_name" : "hdp-os05-01.home"
-          }
-        },
-        {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os05-01.home/host_components/YARN_CLIENT",
-          "HostRoles" : {
-            "cluster_name" : "DK01",
-            "component_name" : "YARN_CLIENT",
-            "host_name" : "hdp-os05-01.home"
-          }
-        },
-        {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os05-01.home/host_components/ZOOKEEPER_CLIENT",
-          "HostRoles" : {
-            "cluster_name" : "DK01",
-            "component_name" : "ZOOKEEPER_CLIENT",
-            "host_name" : "hdp-os05-01.home"
-          }
-        }
-      ]
-    },
-    {
-      "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os06-01.home",
-      "Hosts" : {
-        "cluster_name" : "DK01",
-        "cpu_count" : 4,
-        "disk_info" : [
-          {
-            "available" : "453968224",
-            "device" : "overlay",
-            "used" : "36513448",
-            "percent" : "8%",
-            "size" : "490481672",
-            "type" : "overlay",
-            "mountpoint" : "/"
-          },
-          {
-            "available" : "453968224",
-            "device" : "/dev/mapper/cl_os6-root",
-            "used" : "36513448",
-            "percent" : "8%",
-            "size" : "490481672",
-            "type" : "xfs",
-            "mountpoint" : "/data"
-          }
-        ],
-        "host_name" : "hdp-os06-01.home",
-        "ip" : "192.168.44.35",
-        "os_arch" : "x86_64",
-        "os_type" : "centos7",
-        "ph_cpu_count" : 4,
-        "rack_info" : "/default-rack",
-        "total_mem" : 16084576
-      },
-      "metrics" : {
-        "disk" : {
-          "disk_free" : 432.94,
-          "disk_total" : 467.76,
-          "read_bytes" : 1.892640768E9,
-          "read_count" : 73204.0,
-          "read_time" : 17169.0,
-          "write_bytes" : 4.1320931328E10,
-          "write_count" : 939803.0,
-          "write_time" : 7976675.0
-        }
-      },
-      "host_components" : [
-        {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os06-01.home/host_components/DATANODE",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os06-01.home/host_components/DATANODE",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "DATANODE",
@@ -784,15 +992,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os06-01.home/host_components/HBASE_CLIENT",
-          "HostRoles" : {
-            "cluster_name" : "DK01",
-            "component_name" : "HBASE_CLIENT",
-            "host_name" : "hdp-os06-01.home"
-          }
-        },
-        {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os06-01.home/host_components/HBASE_REGIONSERVER",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os06-01.home/host_components/HBASE_REGIONSERVER",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "HBASE_REGIONSERVER",
@@ -800,31 +1000,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os06-01.home/host_components/HCAT",
-          "HostRoles" : {
-            "cluster_name" : "DK01",
-            "component_name" : "HCAT",
-            "host_name" : "hdp-os06-01.home"
-          }
-        },
-        {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os06-01.home/host_components/HDFS_CLIENT",
-          "HostRoles" : {
-            "cluster_name" : "DK01",
-            "component_name" : "HDFS_CLIENT",
-            "host_name" : "hdp-os06-01.home"
-          }
-        },
-        {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os06-01.home/host_components/HIVE_CLIENT",
-          "HostRoles" : {
-            "cluster_name" : "DK01",
-            "component_name" : "HIVE_CLIENT",
-            "host_name" : "hdp-os06-01.home"
-          }
-        },
-        {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os06-01.home/host_components/HST_AGENT",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os06-01.home/host_components/HST_AGENT",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "HST_AGENT",
@@ -832,23 +1008,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os06-01.home/host_components/INFRA_SOLR_CLIENT",
-          "HostRoles" : {
-            "cluster_name" : "DK01",
-            "component_name" : "INFRA_SOLR_CLIENT",
-            "host_name" : "hdp-os06-01.home"
-          }
-        },
-        {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os06-01.home/host_components/MAPREDUCE2_CLIENT",
-          "HostRoles" : {
-            "cluster_name" : "DK01",
-            "component_name" : "MAPREDUCE2_CLIENT",
-            "host_name" : "hdp-os06-01.home"
-          }
-        },
-        {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os06-01.home/host_components/METRICS_MONITOR",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os06-01.home/host_components/METRICS_MONITOR",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "METRICS_MONITOR",
@@ -856,106 +1016,42 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os06-01.home/host_components/NODEMANAGER",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os06-01.home/host_components/NODEMANAGER",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "NODEMANAGER",
-            "host_name" : "hdp-os06-01.home"
-          }
-        },
-        {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os06-01.home/host_components/OOZIE_CLIENT",
-          "HostRoles" : {
-            "cluster_name" : "DK01",
-            "component_name" : "OOZIE_CLIENT",
-            "host_name" : "hdp-os06-01.home"
-          }
-        },
-        {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os06-01.home/host_components/PIG",
-          "HostRoles" : {
-            "cluster_name" : "DK01",
-            "component_name" : "PIG",
-            "host_name" : "hdp-os06-01.home"
-          }
-        },
-        {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os06-01.home/host_components/SLIDER",
-          "HostRoles" : {
-            "cluster_name" : "DK01",
-            "component_name" : "SLIDER",
-            "host_name" : "hdp-os06-01.home"
-          }
-        },
-        {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os06-01.home/host_components/SPARK2_CLIENT",
-          "HostRoles" : {
-            "cluster_name" : "DK01",
-            "component_name" : "SPARK2_CLIENT",
-            "host_name" : "hdp-os06-01.home"
-          }
-        },
-        {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os06-01.home/host_components/SQOOP",
-          "HostRoles" : {
-            "cluster_name" : "DK01",
-            "component_name" : "SQOOP",
-            "host_name" : "hdp-os06-01.home"
-          }
-        },
-        {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os06-01.home/host_components/TEZ_CLIENT",
-          "HostRoles" : {
-            "cluster_name" : "DK01",
-            "component_name" : "TEZ_CLIENT",
-            "host_name" : "hdp-os06-01.home"
-          }
-        },
-        {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os06-01.home/host_components/YARN_CLIENT",
-          "HostRoles" : {
-            "cluster_name" : "DK01",
-            "component_name" : "YARN_CLIENT",
-            "host_name" : "hdp-os06-01.home"
-          }
-        },
-        {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os06-01.home/host_components/ZOOKEEPER_CLIENT",
-          "HostRoles" : {
-            "cluster_name" : "DK01",
-            "component_name" : "ZOOKEEPER_CLIENT",
             "host_name" : "hdp-os06-01.home"
           }
         }
       ]
     },
     {
-      "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os07-01.home",
+      "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os07-01.home",
       "Hosts" : {
         "cluster_name" : "DK01",
         "cpu_count" : 4,
         "disk_info" : [
           {
-            "available" : "462861972",
+            "available" : "458961392",
             "device" : "overlay",
-            "used" : "27619700",
-            "percent" : "6%",
+            "used" : "31520280",
+            "percent" : "7%",
             "size" : "490481672",
             "type" : "overlay",
             "mountpoint" : "/"
           },
           {
-            "available" : "462861972",
+            "available" : "458961392",
             "device" : "/dev/mapper/cl_os7-root",
-            "used" : "27619700",
-            "percent" : "6%",
+            "used" : "31520280",
+            "percent" : "7%",
             "size" : "490481672",
             "type" : "xfs",
             "mountpoint" : "/data"
           }
         ],
         "host_name" : "hdp-os07-01.home",
-        "ip" : "192.168.44.38",
+        "ip" : "192.168.44.34",
         "os_arch" : "x86_64",
         "os_type" : "centos7",
         "ph_cpu_count" : 4,
@@ -964,19 +1060,27 @@
       },
       "metrics" : {
         "disk" : {
-          "disk_free" : 441.42,
+          "disk_free" : 437.7,
           "disk_total" : 467.76,
-          "read_bytes" : 1.755297792E9,
-          "read_count" : 68941.0,
-          "read_time" : 15659.0,
-          "write_bytes" : 2.9022748672E10,
-          "write_count" : 828995.0,
-          "write_time" : 5686208.0
+          "read_bytes" : 1.88524544E9,
+          "read_count" : 72853.0,
+          "read_time" : 16729.0,
+          "write_bytes" : 6.4401383424E10,
+          "write_count" : 1784406.0,
+          "write_time" : 1.5358948E7
         }
       },
       "host_components" : [
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os07-01.home/host_components/DATANODE",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os07-01.home/host_components/ATLAS_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "ATLAS_CLIENT",
+            "host_name" : "hdp-os07-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os07-01.home/host_components/DATANODE",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "DATANODE",
@@ -984,7 +1088,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os07-01.home/host_components/HBASE_REGIONSERVER",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os07-01.home/host_components/HBASE_REGIONSERVER",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "HBASE_REGIONSERVER",
@@ -992,7 +1096,15 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os07-01.home/host_components/HST_AGENT",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os07-01.home/host_components/HDFS_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "HDFS_CLIENT",
+            "host_name" : "hdp-os07-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os07-01.home/host_components/HST_AGENT",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "HST_AGENT",
@@ -1000,7 +1112,15 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os07-01.home/host_components/METRICS_MONITOR",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os07-01.home/host_components/MAPREDUCE2_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "MAPREDUCE2_CLIENT",
+            "host_name" : "hdp-os07-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os07-01.home/host_components/METRICS_MONITOR",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "METRICS_MONITOR",
@@ -1008,42 +1128,58 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os07-01.home/host_components/NODEMANAGER",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os07-01.home/host_components/NODEMANAGER",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "NODEMANAGER",
+            "host_name" : "hdp-os07-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os07-01.home/host_components/SPARK2_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "SPARK2_CLIENT",
+            "host_name" : "hdp-os07-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os07-01.home/host_components/YARN_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "YARN_CLIENT",
             "host_name" : "hdp-os07-01.home"
           }
         }
       ]
     },
     {
-      "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os10-01.home",
+      "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os10-01.home",
       "Hosts" : {
         "cluster_name" : "DK01",
         "cpu_count" : 8,
         "disk_info" : [
           {
-            "available" : "420021864",
+            "available" : "415989280",
             "device" : "overlay",
-            "used" : "50423772",
-            "percent" : "11%",
+            "used" : "54456356",
+            "percent" : "12%",
             "size" : "470445636",
             "type" : "overlay",
             "mountpoint" : "/"
           },
           {
-            "available" : "420021864",
+            "available" : "415989280",
             "device" : "/dev/mapper/cl_os10-root",
-            "used" : "50423772",
-            "percent" : "11%",
+            "used" : "54456356",
+            "percent" : "12%",
             "size" : "470445636",
             "type" : "xfs",
             "mountpoint" : "/data"
           }
         ],
         "host_name" : "hdp-os10-01.home",
-        "ip" : "192.168.44.37",
+        "ip" : "192.168.44.31",
         "os_arch" : "x86_64",
         "os_type" : "centos7",
         "ph_cpu_count" : 8,
@@ -1052,19 +1188,19 @@
       },
       "metrics" : {
         "disk" : {
-          "disk_free" : 400.56,
+          "disk_free" : 396.72,
           "disk_total" : 448.65,
-          "read_bytes" : 2.31259136E9,
-          "read_count" : 105460.0,
-          "read_time" : 22752.0,
-          "write_bytes" : 2.6831461376E10,
-          "write_count" : 816514.0,
-          "write_time" : 7691171.0
+          "read_bytes" : 2.348996608E9,
+          "read_count" : 109282.0,
+          "read_time" : 23409.0,
+          "write_bytes" : 6.14266112E10,
+          "write_count" : 1762289.0,
+          "write_time" : 2.1977128E7
         }
       },
       "host_components" : [
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os10-01.home/host_components/DATANODE",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os10-01.home/host_components/DATANODE",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "DATANODE",
@@ -1072,7 +1208,15 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os10-01.home/host_components/HBASE_REGIONSERVER",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os10-01.home/host_components/DRUID_ROUTER",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "DRUID_ROUTER",
+            "host_name" : "hdp-os10-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os10-01.home/host_components/HBASE_REGIONSERVER",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "HBASE_REGIONSERVER",
@@ -1080,7 +1224,15 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os10-01.home/host_components/HST_AGENT",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os10-01.home/host_components/HDFS_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "HDFS_CLIENT",
+            "host_name" : "hdp-os10-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os10-01.home/host_components/HST_AGENT",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "HST_AGENT",
@@ -1088,7 +1240,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os10-01.home/host_components/METRICS_MONITOR",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os10-01.home/host_components/METRICS_MONITOR",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "METRICS_MONITOR",
@@ -1096,34 +1248,42 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os10-01.home/host_components/NODEMANAGER",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os10-01.home/host_components/NODEMANAGER",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "NODEMANAGER",
+            "host_name" : "hdp-os10-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os10-01.home/host_components/SUPERSET",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "SUPERSET",
             "host_name" : "hdp-os10-01.home"
           }
         }
       ]
     },
     {
-      "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os11-01.home",
+      "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os11-01.home",
       "Hosts" : {
         "cluster_name" : "DK01",
         "cpu_count" : 8,
         "disk_info" : [
           {
-            "available" : "413651856",
+            "available" : "410330912",
             "device" : "overlay",
-            "used" : "56793780",
+            "used" : "60114724",
             "percent" : "13%",
             "size" : "470445636",
             "type" : "overlay",
             "mountpoint" : "/"
           },
           {
-            "available" : "413651856",
+            "available" : "410330912",
             "device" : "/dev/mapper/cl_os11-root",
-            "used" : "56793780",
+            "used" : "60114724",
             "percent" : "13%",
             "size" : "470445636",
             "type" : "xfs",
@@ -1131,7 +1291,7 @@
           }
         ],
         "host_name" : "hdp-os11-01.home",
-        "ip" : "192.168.44.40",
+        "ip" : "192.168.44.25",
         "os_arch" : "x86_64",
         "os_type" : "centos7",
         "ph_cpu_count" : 8,
@@ -1140,19 +1300,19 @@
       },
       "metrics" : {
         "disk" : {
-          "disk_free" : 394.49,
+          "disk_free" : 391.32,
           "disk_total" : 448.65,
-          "read_bytes" : 2.115584E9,
-          "read_count" : 89922.0,
-          "read_time" : 22173.0,
-          "write_bytes" : 3.16031744E10,
-          "write_count" : 1101680.0,
-          "write_time" : 1.1587865E7
+          "read_bytes" : 2.145156096E9,
+          "read_count" : 93555.0,
+          "read_time" : 22760.0,
+          "write_bytes" : 6.6770767872E10,
+          "write_count" : 2216551.0,
+          "write_time" : 2.684573E7
         }
       },
       "host_components" : [
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os11-01.home/host_components/DATANODE",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os11-01.home/host_components/DATANODE",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "DATANODE",
@@ -1160,7 +1320,15 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os11-01.home/host_components/HBASE_REGIONSERVER",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os11-01.home/host_components/DRUID_BROKER",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "DRUID_BROKER",
+            "host_name" : "hdp-os11-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os11-01.home/host_components/HBASE_REGIONSERVER",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "HBASE_REGIONSERVER",
@@ -1168,7 +1336,15 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os11-01.home/host_components/HST_AGENT",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os11-01.home/host_components/HDFS_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "HDFS_CLIENT",
+            "host_name" : "hdp-os11-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os11-01.home/host_components/HST_AGENT",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "HST_AGENT",
@@ -1176,7 +1352,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os11-01.home/host_components/METRICS_MONITOR",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os11-01.home/host_components/METRICS_MONITOR",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "METRICS_MONITOR",
@@ -1184,7 +1360,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os11-01.home/host_components/NODEMANAGER",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os11-01.home/host_components/NODEMANAGER",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "NODEMANAGER",
@@ -1194,32 +1370,32 @@
       ]
     },
     {
-      "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os12-01.home",
+      "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os12-01.home",
       "Hosts" : {
         "cluster_name" : "DK01",
         "cpu_count" : 8,
         "disk_info" : [
           {
-            "available" : "421440136",
+            "available" : "418250320",
             "device" : "overlay",
-            "used" : "49005500",
-            "percent" : "11%",
+            "used" : "52195316",
+            "percent" : "12%",
             "size" : "470445636",
             "type" : "overlay",
             "mountpoint" : "/"
           },
           {
-            "available" : "421440136",
+            "available" : "418250320",
             "device" : "/dev/mapper/cl_os12-root",
-            "used" : "49005500",
-            "percent" : "11%",
+            "used" : "52195316",
+            "percent" : "12%",
             "size" : "470445636",
             "type" : "xfs",
             "mountpoint" : "/data"
           }
         ],
         "host_name" : "hdp-os12-01.home",
-        "ip" : "192.168.44.39",
+        "ip" : "192.168.44.29",
         "os_arch" : "x86_64",
         "os_type" : "centos7",
         "ph_cpu_count" : 8,
@@ -1228,19 +1404,19 @@
       },
       "metrics" : {
         "disk" : {
-          "disk_free" : 401.92,
+          "disk_free" : 398.87,
           "disk_total" : 448.65,
-          "read_bytes" : 2.01502464E9,
-          "read_count" : 83011.0,
-          "read_time" : 21019.0,
-          "write_bytes" : 2.83335168E10,
-          "write_count" : 872098.0,
-          "write_time" : 1.0307679E7
+          "read_bytes" : 2.098319872E9,
+          "read_count" : 86679.0,
+          "read_time" : 22072.0,
+          "write_bytes" : 6.005597184E10,
+          "write_count" : 1822948.0,
+          "write_time" : 2.4322508E7
         }
       },
       "host_components" : [
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os12-01.home/host_components/DATANODE",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os12-01.home/host_components/DATANODE",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "DATANODE",
@@ -1248,7 +1424,15 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os12-01.home/host_components/HBASE_REGIONSERVER",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os12-01.home/host_components/DRUID_BROKER",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "DRUID_BROKER",
+            "host_name" : "hdp-os12-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os12-01.home/host_components/HBASE_REGIONSERVER",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "HBASE_REGIONSERVER",
@@ -1256,7 +1440,15 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os12-01.home/host_components/HST_AGENT",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os12-01.home/host_components/HDFS_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "HDFS_CLIENT",
+            "host_name" : "hdp-os12-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os12-01.home/host_components/HST_AGENT",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "HST_AGENT",
@@ -1264,7 +1456,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os12-01.home/host_components/METRICS_MONITOR",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os12-01.home/host_components/METRICS_MONITOR",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "METRICS_MONITOR",
@@ -1272,7 +1464,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os12-01.home/host_components/NODEMANAGER",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os12-01.home/host_components/NODEMANAGER",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "NODEMANAGER",
@@ -1282,32 +1474,32 @@
       ]
     },
     {
-      "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os13-01.home",
+      "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os13-01.home",
       "Hosts" : {
         "cluster_name" : "DK01",
         "cpu_count" : 8,
         "disk_info" : [
           {
-            "available" : "447524012",
+            "available" : "444075216",
             "device" : "overlay",
-            "used" : "23126324",
-            "percent" : "5%",
+            "used" : "26575120",
+            "percent" : "6%",
             "size" : "470650336",
             "type" : "overlay",
             "mountpoint" : "/"
           },
           {
-            "available" : "447524012",
+            "available" : "444075216",
             "device" : "/dev/mapper/cl-root",
-            "used" : "23126324",
-            "percent" : "5%",
+            "used" : "26575120",
+            "percent" : "6%",
             "size" : "470650336",
             "type" : "xfs",
             "mountpoint" : "/data"
           }
         ],
         "host_name" : "hdp-os13-01.home",
-        "ip" : "192.168.44.41",
+        "ip" : "192.168.44.37",
         "os_arch" : "x86_64",
         "os_type" : "centos7",
         "ph_cpu_count" : 8,
@@ -1316,19 +1508,19 @@
       },
       "metrics" : {
         "disk" : {
-          "disk_free" : 426.79,
+          "disk_free" : 423.5,
           "disk_total" : 448.85,
-          "read_bytes" : 1.599839744E9,
-          "read_count" : 58824.0,
-          "read_time" : 14479.0,
-          "write_bytes" : 2.8040155648E10,
-          "write_count" : 732494.0,
-          "write_time" : 8084539.0
+          "read_bytes" : 1.622024704E9,
+          "read_count" : 60882.0,
+          "read_time" : 14872.0,
+          "write_bytes" : 5.8499994112E10,
+          "write_count" : 1558837.0,
+          "write_time" : 1.9556299E7
         }
       },
       "host_components" : [
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os13-01.home/host_components/DATANODE",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os13-01.home/host_components/DATANODE",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "DATANODE",
@@ -1336,7 +1528,31 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os13-01.home/host_components/HBASE_REGIONSERVER",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os13-01.home/host_components/DRUID_HISTORICAL",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "DRUID_HISTORICAL",
+            "host_name" : "hdp-os13-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os13-01.home/host_components/DRUID_MIDDLEMANAGER",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "DRUID_MIDDLEMANAGER",
+            "host_name" : "hdp-os13-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os13-01.home/host_components/DRUID_OVERLORD",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "DRUID_OVERLORD",
+            "host_name" : "hdp-os13-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os13-01.home/host_components/HBASE_REGIONSERVER",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "HBASE_REGIONSERVER",
@@ -1344,7 +1560,15 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os13-01.home/host_components/HST_AGENT",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os13-01.home/host_components/HDFS_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "HDFS_CLIENT",
+            "host_name" : "hdp-os13-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os13-01.home/host_components/HST_AGENT",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "HST_AGENT",
@@ -1352,7 +1576,15 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os13-01.home/host_components/METRICS_MONITOR",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os13-01.home/host_components/KAFKA_BROKER",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "KAFKA_BROKER",
+            "host_name" : "hdp-os13-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os13-01.home/host_components/METRICS_MONITOR",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "METRICS_MONITOR",
@@ -1360,7 +1592,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os13-01.home/host_components/NODEMANAGER",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os13-01.home/host_components/NODEMANAGER",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "NODEMANAGER",
@@ -1370,32 +1602,32 @@
       ]
     },
     {
-      "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os14-01.home",
+      "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os14-01.home",
       "Hosts" : {
         "cluster_name" : "DK01",
         "cpu_count" : 8,
         "disk_info" : [
           {
-            "available" : "446117896",
+            "available" : "442218776",
             "device" : "overlay",
-            "used" : "24532440",
-            "percent" : "6%",
+            "used" : "28431560",
+            "percent" : "7%",
             "size" : "470650336",
             "type" : "overlay",
             "mountpoint" : "/"
           },
           {
-            "available" : "446117896",
+            "available" : "442218776",
             "device" : "/dev/mapper/cl-root",
-            "used" : "24532440",
-            "percent" : "6%",
+            "used" : "28431560",
+            "percent" : "7%",
             "size" : "470650336",
             "type" : "xfs",
             "mountpoint" : "/data"
           }
         ],
         "host_name" : "hdp-os14-01.home",
-        "ip" : "192.168.44.42",
+        "ip" : "192.168.44.39",
         "os_arch" : "x86_64",
         "os_type" : "centos7",
         "ph_cpu_count" : 8,
@@ -1404,19 +1636,27 @@
       },
       "metrics" : {
         "disk" : {
-          "disk_free" : 425.45,
+          "disk_free" : 421.73,
           "disk_total" : 448.85,
-          "read_bytes" : 1.588963328E9,
-          "read_count" : 57942.0,
-          "read_time" : 15311.0,
-          "write_bytes" : 2.7405236736E10,
-          "write_count" : 713862.0,
-          "write_time" : 8308909.0
+          "read_bytes" : 1.812795392E9,
+          "read_count" : 60306.0,
+          "read_time" : 16626.0,
+          "write_bytes" : 5.9292726784E10,
+          "write_count" : 1532787.0,
+          "write_time" : 1.9876229E7
         }
       },
       "host_components" : [
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os14-01.home/host_components/DATANODE",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os14-01.home/host_components/ATLAS_SERVER",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "ATLAS_SERVER",
+            "host_name" : "hdp-os14-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os14-01.home/host_components/DATANODE",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "DATANODE",
@@ -1424,7 +1664,31 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os14-01.home/host_components/HBASE_REGIONSERVER",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os14-01.home/host_components/DRUID_HISTORICAL",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "DRUID_HISTORICAL",
+            "host_name" : "hdp-os14-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os14-01.home/host_components/DRUID_MIDDLEMANAGER",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "DRUID_MIDDLEMANAGER",
+            "host_name" : "hdp-os14-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os14-01.home/host_components/HBASE_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "HBASE_CLIENT",
+            "host_name" : "hdp-os14-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os14-01.home/host_components/HBASE_REGIONSERVER",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "HBASE_REGIONSERVER",
@@ -1432,7 +1696,15 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os14-01.home/host_components/HST_AGENT",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os14-01.home/host_components/HDFS_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "HDFS_CLIENT",
+            "host_name" : "hdp-os14-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os14-01.home/host_components/HST_AGENT",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "HST_AGENT",
@@ -1440,7 +1712,23 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os14-01.home/host_components/METRICS_MONITOR",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os14-01.home/host_components/INFRA_SOLR_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "INFRA_SOLR_CLIENT",
+            "host_name" : "hdp-os14-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os14-01.home/host_components/KAFKA_BROKER",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "KAFKA_BROKER",
+            "host_name" : "hdp-os14-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os14-01.home/host_components/METRICS_MONITOR",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "METRICS_MONITOR",
@@ -1448,7 +1736,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os14-01.home/host_components/NODEMANAGER",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os14-01.home/host_components/NODEMANAGER",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "NODEMANAGER",
@@ -1458,32 +1746,32 @@
       ]
     },
     {
-      "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os15-01.home",
+      "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os15-01.home",
       "Hosts" : {
         "cluster_name" : "DK01",
         "cpu_count" : 8,
         "disk_info" : [
           {
-            "available" : "443850944",
+            "available" : "440077976",
             "device" : "overlay",
-            "used" : "26799392",
-            "percent" : "6%",
+            "used" : "30572360",
+            "percent" : "7%",
             "size" : "470650336",
             "type" : "overlay",
             "mountpoint" : "/"
           },
           {
-            "available" : "443850944",
+            "available" : "440077976",
             "device" : "/dev/mapper/cl-root",
-            "used" : "26799392",
-            "percent" : "6%",
+            "used" : "30572360",
+            "percent" : "7%",
             "size" : "470650336",
             "type" : "xfs",
             "mountpoint" : "/data"
           }
         ],
         "host_name" : "hdp-os15-01.home",
-        "ip" : "192.168.44.43",
+        "ip" : "192.168.44.87",
         "os_arch" : "x86_64",
         "os_type" : "centos7",
         "ph_cpu_count" : 8,
@@ -1492,19 +1780,27 @@
       },
       "metrics" : {
         "disk" : {
-          "disk_free" : 423.29,
+          "disk_free" : 419.69,
           "disk_total" : 448.85,
-          "read_bytes" : 1.605584384E9,
-          "read_count" : 58121.0,
-          "read_time" : 15396.0,
-          "write_bytes" : 5.3809929728E10,
-          "write_count" : 912553.0,
-          "write_time" : 1.7591272E7
+          "read_bytes" : 1.690323456E9,
+          "read_count" : 61250.0,
+          "read_time" : 16391.0,
+          "write_bytes" : 9.4204139008E10,
+          "write_count" : 1844037.0,
+          "write_time" : 3.3951253E7
         }
       },
       "host_components" : [
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os15-01.home/host_components/DATANODE",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os15-01.home/host_components/ATLAS_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "ATLAS_CLIENT",
+            "host_name" : "hdp-os15-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os15-01.home/host_components/DATANODE",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "DATANODE",
@@ -1512,7 +1808,23 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os15-01.home/host_components/HBASE_CLIENT",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os15-01.home/host_components/DRUID_HISTORICAL",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "DRUID_HISTORICAL",
+            "host_name" : "hdp-os15-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os15-01.home/host_components/DRUID_MIDDLEMANAGER",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "DRUID_MIDDLEMANAGER",
+            "host_name" : "hdp-os15-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os15-01.home/host_components/HBASE_CLIENT",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "HBASE_CLIENT",
@@ -1520,7 +1832,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os15-01.home/host_components/HBASE_REGIONSERVER",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os15-01.home/host_components/HBASE_REGIONSERVER",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "HBASE_REGIONSERVER",
@@ -1528,7 +1840,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os15-01.home/host_components/HCAT",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os15-01.home/host_components/HCAT",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "HCAT",
@@ -1536,7 +1848,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os15-01.home/host_components/HDFS_CLIENT",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os15-01.home/host_components/HDFS_CLIENT",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "HDFS_CLIENT",
@@ -1544,7 +1856,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os15-01.home/host_components/HIVE_CLIENT",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os15-01.home/host_components/HIVE_CLIENT",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "HIVE_CLIENT",
@@ -1552,7 +1864,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os15-01.home/host_components/HST_AGENT",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os15-01.home/host_components/HST_AGENT",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "HST_AGENT",
@@ -1560,7 +1872,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os15-01.home/host_components/INFRA_SOLR_CLIENT",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os15-01.home/host_components/INFRA_SOLR_CLIENT",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "INFRA_SOLR_CLIENT",
@@ -1568,7 +1880,15 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os15-01.home/host_components/MAPREDUCE2_CLIENT",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os15-01.home/host_components/KAFKA_BROKER",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "KAFKA_BROKER",
+            "host_name" : "hdp-os15-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os15-01.home/host_components/MAPREDUCE2_CLIENT",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "MAPREDUCE2_CLIENT",
@@ -1576,7 +1896,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os15-01.home/host_components/METRICS_MONITOR",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os15-01.home/host_components/METRICS_MONITOR",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "METRICS_MONITOR",
@@ -1584,7 +1904,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os15-01.home/host_components/NODEMANAGER",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os15-01.home/host_components/NODEMANAGER",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "NODEMANAGER",
@@ -1592,7 +1912,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os15-01.home/host_components/OOZIE_CLIENT",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os15-01.home/host_components/OOZIE_CLIENT",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "OOZIE_CLIENT",
@@ -1600,7 +1920,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os15-01.home/host_components/PIG",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os15-01.home/host_components/PIG",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "PIG",
@@ -1608,7 +1928,15 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os15-01.home/host_components/SLIDER",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os15-01.home/host_components/RANGER_TAGSYNC",
+          "HostRoles" : {
+            "cluster_name" : "DK01",
+            "component_name" : "RANGER_TAGSYNC",
+            "host_name" : "hdp-os15-01.home"
+          }
+        },
+        {
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os15-01.home/host_components/SLIDER",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "SLIDER",
@@ -1616,7 +1944,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os15-01.home/host_components/SPARK2_CLIENT",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os15-01.home/host_components/SPARK2_CLIENT",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "SPARK2_CLIENT",
@@ -1624,15 +1952,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os15-01.home/host_components/SQOOP",
-          "HostRoles" : {
-            "cluster_name" : "DK01",
-            "component_name" : "SQOOP",
-            "host_name" : "hdp-os15-01.home"
-          }
-        },
-        {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os15-01.home/host_components/TEZ_CLIENT",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os15-01.home/host_components/TEZ_CLIENT",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "TEZ_CLIENT",
@@ -1640,7 +1960,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os15-01.home/host_components/YARN_CLIENT",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os15-01.home/host_components/YARN_CLIENT",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "YARN_CLIENT",
@@ -1648,7 +1968,7 @@
           }
         },
         {
-          "href" : "http://localhost:8080/api/v1/clusters/DK01/hosts/hdp-os15-01.home/host_components/ZOOKEEPER_CLIENT",
+          "href" : "http://hdp-os02-01.home:8080/api/v1/clusters/DK01/hosts/hdp-os15-01.home/host_components/ZOOKEEPER_CLIENT",
           "HostRoles" : {
             "cluster_name" : "DK01",
             "component_name" : "ZOOKEEPER_CLIENT",

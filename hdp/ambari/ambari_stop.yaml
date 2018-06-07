@@ -2,13 +2,14 @@
   become: true
   tasks:
     - name: Start Ambari-Server
-      shell: ambari-server start
-  tags:
-    - server
+      shell: ambari-server stop
+      tags:
+        - server
+
 - hosts: hdp
   become: true
   tasks:
     - name: Start Ambari Agents
-      shell: ambari-agent start
-  tags:
-    - agent
+      shell: ambari-agent stop
+      tags:
+        - agent
