@@ -3,9 +3,24 @@ all:
   vars:
     env_instance:                               'ENV_INSTANCE'
     cluster_name:                               DKENV_INSTANCE
+    db_host:                                    db-ENV_INSTANCE.home
+    db_user:                                    root
+    db_password:                                hortonworks
+    db_ambari_name:                             ambari
+    db_hive_name:                               hive
+    db_oozie_name:                              oozie
+    db_ranger_name:                             ranger
+    db_ranger_kms_name:                         rangerkms
+    db_druid_name:                              druid
+    db_superset_name:                           superset
+    db_registry_name:                           registry
+
   children:
     db:
       hosts:
+        vars:
+          mysql_backup_dir:                     /data/mysql_backups
+
         os1.core:
           ansible_host:                         os01
           ansible_port:                         220ENV_INSTANCE
@@ -16,7 +31,6 @@ all:
         ambari_server:                          hdp-os02-ENV_INSTANCE.home
         zookeeper_server:                       hdp-os03-ENV_INSTANCE.home
         repo_server:                            repo-ENV_INSTANCE.home
-        db_host:                                db-ENV_INSTANCE.home
       hosts:
         os6.core:
           ansible_host:                         os06
@@ -75,14 +89,14 @@ all:
           children:
             sdlc:
               vars:
-                user: NEEDS_TO_BE_SET
-                smoke_tgs_size: 1Gb
-                smoke_tgs_mappers: 4
-                smoke_tgs_reducers: 4
-                tpcds_size: 50
-                ranger_url_base: NEEDS_TO_BE_SET
-                ranger_admin_user: admin
-                ranger_admin_password: admin
+                user:                           NEEDS_TO_BE_SET
+                smoke_tgs_size:                 1Gb
+                smoke_tgs_mappers:              4
+                smoke_tgs_reducers:             4
+                tpcds_size:                     50
+                ranger_url_base:                NEEDS_TO_BE_SET
+                ranger_admin_user:              admin
+                ranger_admin_password:          admin
               hosts:
                 os4.core:
                   ansible_host:                 os04
@@ -93,15 +107,6 @@ all:
         ambari:
           vars:
             db_type:                            mysql
-            db_user:                            root
-            db_password:                        hortonworks
-            db_ambari_name:                     ambari
-            db_hive_name:                       hive
-            db_oozie_name:                      oozie
-            db_ranger_name:                     ranger
-            db_ranger_kms_name:                 rangerkms
-            db_druid_name:                      druid
-            db_superset_name:                   superset
 
           hosts:
             os2.core:

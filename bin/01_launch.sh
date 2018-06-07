@@ -1,5 +1,7 @@
 # Start / Initialize Cluster
 
+cd `dirname$@`
+
 while [ $# -gt 0 ]; do
   case "$1" in
     --instance)
@@ -37,7 +39,7 @@ if [ "${HDP_VERSION}x" == "x" ]; then
   exit -1
 fi
 
-if [ ! -f vars/hdp_${HDP_VERSION}.json ]; then
+if [ ! -f ../environment/vars/hdp_${HDP_VERSION}.json ]; then
   echo "Could locate HDP Version Var File"
   exit -1
 fi
@@ -45,11 +47,11 @@ fi
 cd `dirname $0`
 
 ansible-playbook -e env_instance=${ENV_INSTANCE} -e env_state=started ../infrastructure/infra.yaml
-ansible-playbook -e env_instance=${ENV_INSTANCE} -e env_state=started hdp.yaml
+ansible-playbook -e env_instance=${ENV_INSTANCE} -e env_state=started ../environment/hdp.yaml
 
 ./build-host-yaml.sh -i ${ENV_INSTANCE}
 
-ansible-playbook -i `pwd`/hosts/${ENV_INSTANCE}.yaml --extra-vars "@vars/hdp_${HDP_VERSION}.json" -e env_state=started ../hdp/setup/hdp_os_prep.yaml
-ansible-playbook -i `pwd`/hosts/${ENV_INSTANCE}.yaml --extra-vars "@vars/hdp_${HDP_VERSION}.json" -e env_state=started ../hdp/setup/edge_node_config.yaml
+ansible-playbook -i `pwd`/hosts/${ENV_INSTANCE}.yaml --extra-vars "@../environment/vars/hdp_${HDP_VERSION}.json" -e env_state=started ../hdp/setup/hdp_os_prep.yaml
+ansible-playbook -i `pwd`/hosts/${ENV_INSTANCE}.yaml --extra-vars "@../environment/vars/hdp_${HDP_VERSION}.json" -e env_state=started ../hdp/setup/edge_node_config.yaml
 
-ansible-playbook -i `pwd`/hosts/${ENV_INSTANCE}.yaml --extra-vars "@vars/hdp_${HDP_VERSION}.json" -e env_state=started ../hdp/ambari/ambari_install.yaml
+ansible-playbook -i `pwd`/hosts/${ENV_INSTANCE}.yaml --extra-vars "@../environment/vars/hdp_${HDP_VERSION}.json" -e env_state=started ../hdp/ambari/ambari_install.yaml

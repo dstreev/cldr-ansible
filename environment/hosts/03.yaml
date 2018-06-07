@@ -3,8 +3,23 @@ all:
   vars:
     env_instance:                               '03'
     cluster_name:                               DK03
+    db_host:                                    db-03.home
+    db_user:                                    root
+    db_password:                                hortonworks
+    db_ambari_name:                             ambari
+    db_hive_name:                               hive
+    db_oozie_name:                              oozie
+    db_ranger_name:                             ranger
+    db_ranger_kms_name:                         rangerkms
+    db_druid_name:                              druid
+    db_superset_name:                           superset
+    db_registry_name:                           registry
+
   children:
     db:
+      vars:
+        mysql_backup_dir:                     /data/mysql_backups
+
       hosts:
         os1.core:
           ansible_host:                         os01

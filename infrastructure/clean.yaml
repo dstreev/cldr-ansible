@@ -3,4 +3,4 @@
   become: true
   tasks:
     - name: Clean Data Directories
-      shell: rm -rf /data/docker_{{ env_instance }}
+      shell: rm -rf /data/docker_{{ env_instance }} /data_1/docker_{{ env_instance }}

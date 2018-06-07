@@ -1,3 +1,8 @@
+# Environment
+
+This directory is used to manage a cluster environment.
+
+The environment is a set of bare metal hardware with Kubernetes and Docker installed and configured with a swarm network.
 
 
 [Kubernetes Installation Doc](https://kubernetes.io/docs/setup/independent/install-kubeadm/)

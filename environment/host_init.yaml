@@ -1,3 +1,7 @@
+####################
+# Used to install the basics on a new CentOS7 hosts
+####################
+
 - hosts: os
   tasks:
     - name: yum-utils install
@@ -29,14 +33,16 @@
       systemd:
         name: docker
         state: started
-    - name: Copy out Kubernetes Repo
-      copy:
-        src: /Users/dstreev/projects/david/ansible-playground/kubernetes/support/kubernetes.repo
-        dest: /etc/yum.repos.d/
-    - name: Copy out k8s.conf
-      copy:
-        src: /Users/dstreev/projects/david/ansible-playground/kubernetes/support/k8s.conf
-        dest: /etc/sysctl.d/
+
+    - name: Install Kubernetes Repo
+      yum_repository:
+        name:          Kubernetes
+        description:   Install the Kubernetes Repo
+        state:         present
+        baseurl:       https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+        repo_gpgcheck: yes
+        gpgcheck:      yes
+
     - name: Install Kubernetes GPG Keys
       rpm_key:
         state: present
@@ -45,6 +51,12 @@
       rpm_key:
         state: present
         key: https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+
+    - name: Copy out k8s.conf
+      copy:
+        src: /Users/dstreev/projects/david/hwx-ansible/environment/support/k8s.conf
+        dest: /etc/sysctl.d/
+        
     - name: Install kubernetes
       yum:
         name: kubelet

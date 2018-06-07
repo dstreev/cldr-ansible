@@ -1,4 +1,6 @@
-# Start / Initialize Cluster
+# Kill Cluster
+
+cd `dirname$@`
 
 while [ $# -gt 0 ]; do
   case "$1" in
@@ -25,4 +27,5 @@ fi
 
 cd `dirname $0`
 
-sed "s/ENV_INSTANCE/${ENV_INSTANCE}/g" hosts/host-template.yaml > hosts/${ENV_INSTANCE}.yaml
+ansible-playbook -e env_instance=${ENV_INSTANCE} -e env_state=absent ../infrastructure/infra.yaml
+ansible-playbook -e env_instance=${ENV_INSTANCE} -e env_state=absent ../environment/hdp.yaml
