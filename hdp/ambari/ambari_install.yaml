@@ -2,7 +2,7 @@
 # Repo dirs need to match hdp repo layout.
 
 # MOVED THE IMAGE
-#- import_playbook:     ../setup/openjdk_install.yaml
+#- import_playbook:    ../setup/openjdk_install.yaml
 
 - hosts:               hdp
   become:              true
@@ -12,7 +12,8 @@
         name:          ambari
         description:   Install the Ambari Repo from our Local Repo Server.
         state:         present
-        baseurl:       http://{{ repo_server }}/repo/ambari/{{ os_version }}/{{ ambari_major_version }}.x/updates/{{ ambari_version }}
+        baseurl:       '{{ ambari_repo }}'
+        #baseurl:      http://{{ repo_server }}/repo/ambari/{{ os_version }}/{{ ambari_major_version }}.x/updates/{{ ambari_version }}
         repo_gpgcheck: no
         gpgcheck:      no
       tags:

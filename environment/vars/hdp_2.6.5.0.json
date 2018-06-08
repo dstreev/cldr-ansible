@@ -1,13 +1,8 @@
-ambari_major_version: "2"
-ambari_version: "2.6.2.0"
+ambari_repo: "http://repo.home/repo/ambari/centos7/2.x/updates/2.6.2.0/"
+
 os_version: "centos7"
 hdp_major_version: "2"
 hdp_version: "2.6.5.0"
-
-db_type: "mysql"
-db_user: "root"
-db_password: "hortonworks"
-db_ambari_name: "ambari"
 
 hadoop_cli_bin_link: "https://github.com/dstreev/hadoop-cli/releases/download/1.0.7.2.7-bin/hadoop-cli-1.0.7-SNAPSHOT-2.7.tar.gz"
 hadoop_cli_version: "2.7"

@@ -13,6 +13,7 @@ all:
     db_ranger_kms_name:                         rangerkms
     db_druid_name:                              druid
     db_superset_name:                           superset
+    db_registry_name:                           registry
 
   children:
     db:

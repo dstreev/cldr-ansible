@@ -1,5 +1,7 @@
 # Kill Cluster
 
+cd `dirname $0`
+
 while [ $# -gt 0 ]; do
   case "$1" in
     --instance)

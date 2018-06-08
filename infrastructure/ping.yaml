@@ -1,11 +1,12 @@
-- hosts: all
+- hosts: hdp
 
   tasks:
     - name: ping {{ item }}
       shell: ping {{ item }} -c 2
       loop:
-        - db-{{ env_instance }}.home
-        - repo-{{ env_instance }}.home
+        - db.home
+        - repo.home
+        - hdp-os01-{{ env_instance }}.home
         - hdp-os02-{{ env_instance }}.home
         - hdp-os03-{{ env_instance }}.home
         - hdp-os04-{{ env_instance }}.home

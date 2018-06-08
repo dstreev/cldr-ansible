@@ -1,0 +1,12 @@
+- hosts: os
+  become: true
+  
+  tasks:
+    - name: Stop All Docker Services
+      systemd:
+        name: docker
+        state: stopped
+    - name: Start All Docker Services
+      systemd:
+        name: docker
+        state: started

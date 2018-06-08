@@ -7,47 +7,54 @@
 
   tasks:
     - name: Create Device directory
-      shell: mkdir -p /data/docker_{{ env_instance }}/mariadb
+      shell: mkdir -p /data/docker_shared/mariadb
     - name: Set State of Maria DB container to {{ env_state}}
       docker_container:
-        name: db-{{ env_instance }}
+        name: db
         pull: true
         image: mariadb:{{ mariadb_ver }}
         privileged: yes
-        hostname: db-{{ env_instance }}.{{ docker_network_name }}
+        hostname: db.{{ docker_network_name }}
         env:
           MYSQL_ROOT_PASSWORD: hortonworks
           MYSQL_USER: ambari
           MYSQL_PASSWORD: hortonworks
         volumes:
-          - "/data/docker_{{ env_instance }}/mariadb:/var/lib/mysql"
+          - "/data/docker_shared/mariadb:/var/lib/mysql"
         restart: yes
         restart_policy: unless-stopped
         ports :
-          - "306{{ env_instance }}:3306"
+          - "33060:3306"
         dns_search_domains:
           - '{{ docker_network_name }}'
         network_mode: '{{ docker_network_name }}'
         networks:
           - name : '{{ docker_network_name }}'
             aliases :
-              - db-{{ env_instance }}.{{ docker_network_name }}
+              - db.{{ docker_network_name }}
             # links:
             #   - hdp-{{ ansible_hostname }}-{{ env_instance }}.core
         purge_networks: yes
-        state : '{{ env_state }}'
+        state : started
 
+- hosts: repo
+  vars:
+    docker_network_name: home
+    mariadb_ver: 10.2
+    centos_ver: 7.4
+  become: true
+  tasks:
     - name: Set State of Repo container to {{ env_state}}
       docker_container:
-        name: repo-{{ env_instance }}
+        name: repo
         pull: true
         image: dstreev/hdp-repo:latest
         privileged: yes
-        hostname: repo-{{ env_instance }}.{{ docker_network_name }}
+        hostname: repo.{{ docker_network_name }}
         volumes:
           - "/var/www/html:/www"
         ports :
-          - "380{{ env_instance }}:80"
+          - "30080:80"
         restart: yes
         restart_policy: unless-stopped
         dns_search_domains:
@@ -56,8 +63,6 @@
         networks:
           - name : '{{ docker_network_name }}'
             aliases :
-              - repo-{{ env_instance }}.{{ docker_network_name }}
+              - repo.{{ docker_network_name }}
         purge_networks: yes
-        state : '{{ env_state }}'
-        ports :
-          - "380{{ env_instance }}:80"
+        state : started

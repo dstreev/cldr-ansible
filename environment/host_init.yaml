@@ -2,7 +2,7 @@
 # Used to install the basics on a new CentOS7 hosts
 ####################
 
-- hosts: os
+- hosts: hdp_base
   tasks:
     - name: yum-utils install
       yum:
@@ -56,7 +56,7 @@
       copy:
         src: /Users/dstreev/projects/david/hwx-ansible/environment/support/k8s.conf
         dest: /etc/sysctl.d/
-        
+
     - name: Install kubernetes
       yum:
         name: kubelet

@@ -1,6 +1,6 @@
 # Start / Initialize Cluster
 
-cd `dirname$@`
+cd `dirname $0`
 
 while [ $# -gt 0 ]; do
   case "$1" in
@@ -46,12 +46,13 @@ fi
 
 cd `dirname $0`
 
-ansible-playbook -e env_instance=${ENV_INSTANCE} -e env_state=started ../infrastructure/infra.yaml
+# Infra is setup separately now.  Using a single repo and db across all environments to conserve resources.
+#ansible-playbook -e env_instance=${ENV_INSTANCE} -e env_state=started ../infrastructure/infra.yaml
 ansible-playbook -e env_instance=${ENV_INSTANCE} -e env_state=started ../environment/hdp.yaml
 
 ./build-host-yaml.sh -i ${ENV_INSTANCE}
 
-ansible-playbook -i `pwd`/hosts/${ENV_INSTANCE}.yaml --extra-vars "@../environment/vars/hdp_${HDP_VERSION}.json" -e env_state=started ../hdp/setup/hdp_os_prep.yaml
-ansible-playbook -i `pwd`/hosts/${ENV_INSTANCE}.yaml --extra-vars "@../environment/vars/hdp_${HDP_VERSION}.json" -e env_state=started ../hdp/setup/edge_node_config.yaml
+ansible-playbook -i `pwd`/../environment/hosts/${ENV_INSTANCE}.yaml --extra-vars "@../environment/vars/hdp_${HDP_VERSION}.json" -e env_state=started ../hdp/setup/hdp_os_prep.yaml
+ansible-playbook -i `pwd`/../environment/hosts/${ENV_INSTANCE}.yaml --extra-vars "@../environment/vars/hdp_${HDP_VERSION}.json" -e env_state=started ../hdp/setup/edge_node_config.yaml
 
-ansible-playbook -i `pwd`/hosts/${ENV_INSTANCE}.yaml --extra-vars "@../environment/vars/hdp_${HDP_VERSION}.json" -e env_state=started ../hdp/ambari/ambari_install.yaml
+ansible-playbook -i `pwd`/../environment/hosts/${ENV_INSTANCE}.yaml --extra-vars "@../environment/vars/hdp_${HDP_VERSION}.json" -e env_state=started ../hdp/ambari/ambari_install.yaml

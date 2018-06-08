@@ -1,6 +1,6 @@
 # Start / Initialize Cluster
 
-cd `dirname$@`
+cd `dirname $0`
 
 while [ $# -gt 0 ]; do
   case "$1" in
@@ -48,7 +48,7 @@ cd `dirname $0`
 # ansible-playbook ../infrastructure/core-kill.yaml
 # ansible-playbook ../infrastructure/core-init.yaml
 
-ansible-playbook -e env_instance=${ENV_INSTANCE} -e env_state=started ../infrastructure/infra.yaml
+#ansible-playbook -e env_instance=${ENV_INSTANCE} -e env_state=started ../infrastructure/infra.yaml
 ansible-playbook -e env_instance=${ENV_INSTANCE} -e env_state=started ../environment/hdp.yaml
 
-ansible-playbook -i `pwd`/hosts/${ENV_INSTANCE}.yaml ../hdp/ambari/ambari_start.yaml
+ansible-playbook -i `pwd`/../environment/hosts/${ENV_INSTANCE}.yaml ../hdp/ambari/ambari_start.yaml

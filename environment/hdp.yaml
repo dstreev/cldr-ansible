@@ -1,7 +1,7 @@
 # Build and Start the Metastore and Repo
 # - import_playbook: ../infrastructure/infra.yaml
 
-- hosts: hdp_a
+- hosts: hdp_base
   vars:
     docker_network_name: home
 
@@ -26,7 +26,6 @@
         owner: root
         mode: 0755
 
-      shell: mkdir -p /data/docker_{{ env_instance }}/hdp/log /data/docker_{{ env_instance }}/hdp/data /data_1/docker_{{ env_instance }}/hdp/data
     - name: Set State of HDP Containers to {{ env_state}}
       docker_container:
         name: hdp-{{ ansible_hostname }}-{{ env_instance }}

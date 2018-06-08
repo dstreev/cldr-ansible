@@ -1,0 +1,21 @@
+#base_repo: private-repo-1
+base_repo: public-repo-1
+#base_repo: dev
+
+dest_dir: "/root/hwx"
+repo_base_dir: "/var/www/html/repo"
+
+os_version: "centos7"
+
+ambari_major_version: "2"
+ambari_version: "2.6.1.5"
+
+version_subdir: updates
+#version_subdir: BUILDS
+
+hdp_major_version: "2"
+hdp_version: "2.6.4.0"
+
+hdp_utils_version: "1.1.0.22"
+hdp_gpl_hdp_version: "2.6.4.0"
+hdp_gpl_version: "2.6.4.0"
