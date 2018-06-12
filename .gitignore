@@ -10,3 +10,4 @@ ipa-server-install-options
 
 # Host
 hosts
+etc_hosts

@@ -3,19 +3,6 @@
   become:               true
 
   tasks:
-    - name:
-      yum:
-        name: httpd
-        state: present
-    # - name:
-    #   service:
-    #     name: httpd
-    #     state: started
-    #     enabled: yes
-    # - name:
-    #   service:
-    #     name: httpd
-    #     enabled: yes
     - name:             Create base download directory
       file:
         path:           "{{ dest_dir }}"
@@ -23,7 +10,7 @@
         mode:           0700
     - name:             Create www repo dir
       file:
-        path:           "{{ repo_base_dir }}"
+        path:           "{{ local_repo_base_dir }}"
         state:          directory
         mode:           0755
     - name:             Get the HDP Binaries
@@ -49,18 +36,18 @@
       tags:
         - hdp
     - name:             Remove previous HDP version
-      shell:            rm -rf {{ repo_base_dir }}/HDP/{{ os_version }}/{{ hdp_major_version }}.x/updates/{{ hdp_version }}
+      shell:            rm -rf {{ local_repo_base_dir }}/HDP/{{ os_version }}/{{ hdp_major_version }}.x/updates/{{ hdp_version }}
       tags:
         - hdp
     - name:             Create Repo Directory for HDP
       file:
-        path:           "{{ repo_base_dir }}/HDP/{{ os_version }}/{{ hdp_major_version }}.x/updates/{{ hdp_version }}"
+        path:           "{{ local_repo_base_dir }}/HDP/{{ os_version }}/{{ hdp_major_version }}.x/updates/{{ hdp_version }}"
         state:          directory
         mode:           0755
       tags:
         - hdp
     - name:             Move HDP package to httpd www dir
-      shell:            mv -f {{ dest_dir }}/packages/HDP-{{ hdp_version }}/HDP/{{ os_version }}/{{ hdp_version }}*/* {{ repo_base_dir }}/HDP/{{ os_version }}/{{ hdp_major_version }}.x/updates/{{ hdp_version }}
+      shell:            mv -f {{ dest_dir }}/packages/HDP-{{ hdp_version }}/HDP/{{ os_version }}/{{ hdp_version }}*/* {{ local_repo_base_dir }}/HDP/{{ os_version }}/{{ hdp_major_version }}.x/updates/{{ hdp_version }}
       tags:
         - hdp
     - name:             Remove remnant package location
@@ -94,13 +81,13 @@
         - ambari
     - name:             Create Repo Directory for Ambari
       file:
-        path:           "{{ repo_base_dir }}/ambari/{{ os_version }}/{{ ambari_major_version }}.x/updates/{{ ambari_version }}"
+        path:           "{{ local_repo_base_dir }}/ambari/{{ os_version }}/{{ ambari_major_version }}.x/updates/{{ ambari_version }}"
         state:          directory
         mode:           0755
       tags:
         - ambari
     - name:             Move Ambari Package to httpd www dir
-      shell:            mv -f {{ dest_dir }}/packages/AMBARI-{{ ambari_version }}/ambari/{{ os_version }}/{{ ambari_version }}*/* {{ repo_base_dir }}/ambari/{{ os_version }}/{{ ambari_major_version }}.x/updates/{{ ambari_version }}
+      shell:            mv -f {{ dest_dir }}/packages/AMBARI-{{ ambari_version }}/ambari/{{ os_version }}/{{ ambari_version }}*/* {{ local_repo_base_dir }}/ambari/{{ os_version }}/{{ ambari_major_version }}.x/updates/{{ ambari_version }}
       tags:
         - ambari
 
@@ -134,18 +121,18 @@
       tags:
         - hdp-gpl-utils
     - name:             Remove previous HDP-GPL Utils version
-      shell:            rm -rf {{ repo_base_dir }}/HDP-GPL/{{ os_version }}/{{ hdp_major_version }}.x/updates/{{ hdp_gpl_version }}
+      shell:            rm -rf {{ local_repo_base_dir }}/HDP-GPL/{{ os_version }}/{{ hdp_major_version }}.x/updates/{{ hdp_gpl_version }}
       tags:
         - hdp-gpl-utils
     - name:             Create Repo Directory for HDP-GPL Utils
       file:
-        path:           "{{ repo_base_dir }}/HDP-GPL/{{ os_version }}/{{ hdp_major_version }}.x/updates/{{ hdp_gpl_version }}"
+        path:           "{{ local_repo_base_dir }}/HDP-GPL/{{ os_version }}/{{ hdp_major_version }}.x/updates/{{ hdp_gpl_version }}"
         state:          directory
         mode:           0755
       tags:
         - hdp-gpl-utils
     - name:             Move HDP-GPL Utils Package to httpd www dir
-      shell:            mv -f {{ dest_dir }}/packages/HDP-GPL-{{ hdp_gpl_version }}/HDP-GPL/{{ os_version }}/{{ hdp_gpl_hdp_version }}*/* {{ repo_base_dir }}/HDP-GPL/{{ os_version }}/{{ hdp_major_version }}.x/updates/{{ hdp_gpl_version }}/
+      shell:            mv -f {{ dest_dir }}/packages/HDP-GPL-{{ hdp_gpl_version }}/HDP-GPL/{{ os_version }}/{{ hdp_gpl_hdp_version }}*/* {{ local_repo_base_dir }}/HDP-GPL/{{ os_version }}/{{ hdp_major_version }}.x/updates/{{ hdp_gpl_version }}/
       tags:
         - hdp-gpl-utils
 
@@ -172,17 +159,17 @@
       tags:
         - hdp-utils
     - name:             Remove previous HDP-UTILS version
-      shell:            rm -rf {{ repo_base_dir }}/HDP-UTILS-{{ hdp_utils_version }}/repos/{{ os_version }}
+      shell:            rm -rf {{ local_repo_base_dir }}/HDP-UTILS-{{ hdp_utils_version }}/repos/{{ os_version }}
       tags:
         - hdp-utils
     - name:             Create Repo Directory for HDP-UTILS
       file:
-        path:           "{{ repo_base_dir }}/HDP-UTILS-{{ hdp_utils_version }}/repos/{{ os_version }}"
+        path:           "{{ local_repo_base_dir }}/HDP-UTILS-{{ hdp_utils_version }}/repos/{{ os_version }}"
         state:          directory
         mode:           0755
       tags:
         - hdp-utils
     - name:             Move HDP-UTILS Package to httpd www dir
-      shell:            mv -f {{ dest_dir }}/packages/HDP-UTILS-{{ hdp_utils_version }}/* {{ repo_base_dir }}/HDP-UTILS-{{ hdp_utils_version }}/repos/{{ os_version }}
+      shell:            mv -f {{ dest_dir }}/packages/HDP-UTILS-{{ hdp_utils_version }}/* {{ local_repo_base_dir }}/HDP-UTILS-{{ hdp_utils_version }}/repos/{{ os_version }}
       tags:
         - hdp-utils

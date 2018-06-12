@@ -28,4 +28,4 @@ fi
 cd `dirname $0`
 
 #ansible-playbook -e env_instance=${ENV_INSTANCE} -e env_state=stopped ../infrastructure/infra.yaml
-ansible-playbook -e env_instance=${ENV_INSTANCE} -e env_state=stopped ../environment/hdp.yaml
+ansible-playbook -e env_instance=${ENV_INSTANCE} -e image_version=latest -e env_state=stopped ../environment/hdp.yaml

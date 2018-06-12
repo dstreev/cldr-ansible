@@ -2,7 +2,7 @@
 ##  Build out and configure LDAP and an MIT KDC
 ####################################################
 
-- hosts: db
+- hosts: ipa-server
   vars:
     docker_network_name: home
   become: true
@@ -15,37 +15,63 @@
     #     src:
     - name: Create Target Directory on Host for IPA Data.
       file:
-        path: /data/ipa_{{ env_instance }}/ldap
+        path: /data/ipa/sys/fs/cgroup
+        owner: root
+        mode: 0744
+        state: present
+        state: directory
+    - name: Create Target Directory on Host for IPA Data.
+      file:
+        path: /data/ipa/base
         owner: root
         mode: 0744
         state: present
         state: directory
     - name: Copy Initialization file to host
       copy:
-        src: /Users/dstreev/projects/david/ansible-playground/infrastructure/init/ipa-server-install-options
-        dest: /data/ipa_{{ env_instance }}/ldap/ipa-server-install-options
-    - name: Set State of IDM container to {{ env_state}}
+        src: /Users/dstreev/projects/david/hwx-ansible/infrastructure/init/ipa-server-install-options
+        dest: /data/ipa/base/ipa-server-install-options
+    - name: Set State of IDM container to Started
       docker_container:
-        name: ldap-{{ env_instance }}
+        name: ipa
         pull: true
         image: freeipa/freeipa-server
         #privileged: yes
-        hostname: ipa-{{ env_instance }}.{{ docker_network_name }}
+        hostname: ipa.{{ docker_network_name }}
+        interactive: yes
+        tty: yes
         volumes:
-          - "/data/ipa_{{ env_instance }}/ldap:/data"
+          - "/data/ipa/base:/data:Z"
+          - "/sys/fs/cgroup:/sys/fs/cgroup"
+        tmpfs:
+          - "/tmp"
+          - "/run"
         restart: yes
         restart_policy: unless-stopped
         ports :
-          - "389{{ env_instance }}:389"
-          - "336{{ env_instance }}:636"
+          - "30389:389"
+          - "30636:636"
+          - "30443:443"
+          - "30080:80"
+          - "30123:123"
+          - "30123:123/udp"
+          - "30053:53/udp"
+          - "37389:7389"
+          - "30053:53"
+          - "30088:88"
+          - "30464:464/udp"
+          - "30464:464"
+          - "39443:9443"
+          - "39444:9444"
+          - "39445:9445"
         dns_search_domains:
           - '{{ docker_network_name }}'
         network_mode: '{{ docker_network_name }}'
         networks:
           - name : '{{ docker_network_name }}'
             aliases :
-              - db-{{ env_instance }}.{{ docker_network_name }}
+              - ipa.{{ docker_network_name }}
             # links:
             #   - hdp-{{ ansible_hostname }}-{{ env_instance }}.core
         purge_networks: yes
-        state : '{{ env_state }}'
+        state : started

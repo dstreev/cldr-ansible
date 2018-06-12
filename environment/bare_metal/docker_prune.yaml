@@ -1,0 +1,10 @@
+- hosts: os
+  become: true
+
+  tasks:
+    - name: Show Docker Disk Usage
+      shell: docker system df
+    - name: Prune all unused Docker Data from hosts
+      shell: docker system prune --all --force --volumes
+    - name: Show Docker Disk Usage
+      shell: docker system df

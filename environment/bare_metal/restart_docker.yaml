@@ -1,6 +1,6 @@
-- hosts: os
+- hosts: working
   become: true
-  
+
   tasks:
     - name: Stop All Docker Services
       systemd:

@@ -1,0 +1,50 @@
+# Build out the Repos
+- hosts:                repo
+  become:               true
+  tasks:
+    - name: Install yum utils
+      yum:
+        name: yum-utils
+        state: present
+    - name: Install createrepo utils
+      yum:
+        name: createrepo
+        state: present
+
+- hosts: repo
+  become: true
+  tags:
+    - hdp
+
+  tasks:
+    - name: Install the Repo for HDP Version {{ hdp_version }}
+      yum_repository:
+        name: hdp-{{ hdp_version }}
+        description: HDP Alpha Repo {{ hdp_version }}
+        baseurl: '{{ hdp_repo_base_url}}/{{ hdp_version }}'
+        gpgkey: '{{ hdp_repo_base_url}}/{{ hdp_version }}/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins'
+
+    - name: Sync HDP Repo {{ hdp_version }}
+      shell: reposync --repoid=hdp-{{ hdp_version }} --download_path={{ local_repo_base_dir }}/HDP/{{ os_version }}/{{ hdp_major_version }}.x/{{ version_subdir }}
+
+    - name: Create HDP Repo {{ hdp_version }}
+      shell: createrepo -v {{ local_repo_base_dir }}/HDP/{{ os_version }}/{{ hdp_major_version }}.x/{{ version_subdir }}/hdp-{{ hdp_version }}
+
+- hosts: repo
+  become: true
+  tags:
+    - ambari
+
+  tasks:
+    - name: Install the Repo for Ambari Version {{ ambari_version }}
+      yum_repository:
+        name: ambari-{{ ambari_version }}
+        description: Ambari Alpha Repo {{ ambari_version }}
+        baseurl: '{{ ambari_repo_base_url}}/{{ ambari_version }}'
+        gpgkey: '{{ ambari_repo_base_url}}/{{ ambari_version }}/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins'
+
+    - name: Sync Ambari Repo {{ ambari_version }}
+      shell: reposync --repoid=ambari-{{ ambari_version }} --download_path={{ local_repo_base_dir }}/ambari/{{ os_version }}/{{ ambari_major_version }}.x/{{ version_subdir }}
+
+    - name: Create Ambari Repo {{ ambari_version }}
+      shell: createrepo -v {{ local_repo_base_dir }}/ambari/{{ os_version }}/{{ ambari_major_version }}.x/{{ version_subdir }}/ambari-{{ ambari_version }}

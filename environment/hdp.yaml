@@ -1,7 +1,7 @@
 # Build and Start the Metastore and Repo
 # - import_playbook: ../infrastructure/infra.yaml
 
-- hosts: hdp_base
+- hosts: hdp
   vars:
     docker_network_name: home
 
@@ -30,7 +30,8 @@
       docker_container:
         name: hdp-{{ ansible_hostname }}-{{ env_instance }}
         pull: true
-        image: dstreev/centos7_sshd:latest
+        image: dstreev/centos7_sshd:{{ image_version }}
+        ignore_image: yes
         privileged: yes
         hostname: hdp-{{ ansible_hostname }}-{{ env_instance }}.{{ docker_network_name }}
         volumes:
@@ -44,6 +45,7 @@
           - "/data_1/docker_{{ env_instance }}/hdp/log/oozie:/var/log/oozie"
           - "/data_1/docker_{{ env_instance }}/hdp/log/atlas:/var/log/atlas"
           - "/data_1/docker_{{ env_instance }}/hdp/log/zookeeper:/var/log/zookeeper"
+          - "/data_1/docker_{{ env_instance }}/hdp/log/falcon:/var/log/falcon"
           - "/data_1/docker_{{ env_instance }}/hdp/log/ambari-infra-solr:/var/log/ambari-infra-solr"
           - "/data_1/docker_{{ env_instance }}/hdp/log/kafka:/var/log/kafka"
           - "/data_1/docker_{{ env_instance }}/hdp/log/ambari-metrics-collector:/var/log/ambari-metrics-collector"
@@ -53,6 +55,24 @@
           - '{{ docker_network_name }}'
         dns_servers:
         restart: yes
+        etc_hosts:
+          os01.streever.local: 10.0.1.11
+          os02.streever.local: 10.0.1.12
+          os03.streever.local: 10.0.1.13
+          os04.streever.local: 10.0.1.14
+          os05.streever.local: 10.0.1.15
+          os06.streever.local: 10.0.1.16
+          os07.streever.local: 10.0.1.17
+          os10.streever.local: 10.0.1.20
+          os11.streever.local: 10.0.1.21
+          os12.streever.local: 10.0.1.22
+          os13.streever.local: 10.0.1.23
+          os14.streever.local: 10.0.1.24
+          os15.streever.local: 10.0.1.25
+          os16.streever.local: 10.0.1.26
+          os17.streever.local: 10.0.1.27
+          os18.streever.local: 10.0.1.28
+          os19.streever.local: 10.0.1.29
         restart_policy: unless-stopped
         network_mode: '{{ docker_network_name }}'
         networks:

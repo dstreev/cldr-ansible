@@ -3,7 +3,7 @@ base_repo: public-repo-1
 #base_repo: dev
 
 dest_dir: "/root/hwx"
-repo_base_dir: "/var/www/html/repo"
+local_repo_base_dir: "/var/www/html/repo"
 
 os_version: "centos7"
 

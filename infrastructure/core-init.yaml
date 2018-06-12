@@ -1,5 +1,8 @@
 
-- hosts: os_reset
+- hosts: working
+  vars:
+    docker_network_name: home
+
   become: true
   tasks:
     - name:
@@ -8,4 +11,4 @@
         state : absent
 
     - name: Core Init
-      shell: docker run -it --privileged -P --name core-{{ ansible_hostname }} -d --network home --dns-search=core.local --restart=unless-stopped alpine:latest
+      shell: docker run -it -P --name core-{{ ansible_hostname }} -d --network {{ docker_network_name }} --restart=unless-stopped alpine:latest

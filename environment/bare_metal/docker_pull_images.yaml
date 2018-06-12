@@ -1,0 +1,6 @@
+- hosts: os
+  become: true
+
+  tasks:
+    - name: Pull Image
+      shell: docker pull dstreev/centos7_sshd:{{ image_version }}

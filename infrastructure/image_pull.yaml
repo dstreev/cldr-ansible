@@ -1,6 +1,0 @@
-- hosts: os
-  become: true
-
-  tasks:
-    - name: Pull Image
-      shell: docker pull {{ image }}

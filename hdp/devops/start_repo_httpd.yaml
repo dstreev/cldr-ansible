@@ -1,0 +1,17 @@
+# Build out the Repos
+- hosts: repo
+  become: true
+  tasks:
+    - name:
+      yum:
+        name: httpd
+        state: present
+    - name:
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+    - name:
+      service:
+        name: httpd
+        enabled: yes

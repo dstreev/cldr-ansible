@@ -1,6 +1,9 @@
 # HDP Environment 01 Servers
 all:
   vars:
+    ambari_version:                             AMBARI_VERSION
+    hdp_version:                                HDP_VERSION
+    image_version:                              IMAGE_VERSION
     env_instance:                               'ENV_INSTANCE'
     cluster_name:                               DKENV_INSTANCE
     db_type:                                    mysql
@@ -61,6 +64,26 @@ all:
           ansible_ssh_private_key_file:         /Users/dstreev/.ssh/id_rsa_docker
         os15.core:
           ansible_host:                         os15
+          ansible_port:                         220ENV_INSTANCE
+          ansible_user:                         root
+          ansible_ssh_private_key_file:         /Users/dstreev/.ssh/id_rsa_docker
+        os16.core:
+          ansible_host:                         os16
+          ansible_port:                         220ENV_INSTANCE
+          ansible_user:                         root
+          ansible_ssh_private_key_file:         /Users/dstreev/.ssh/id_rsa_docker
+        os17.core:
+          ansible_host:                         os17
+          ansible_port:                         220ENV_INSTANCE
+          ansible_user:                         root
+          ansible_ssh_private_key_file:         /Users/dstreev/.ssh/id_rsa_docker
+        os18.core:
+          ansible_host:                         os18
+          ansible_port:                         220ENV_INSTANCE
+          ansible_user:                         root
+          ansible_ssh_private_key_file:         /Users/dstreev/.ssh/id_rsa_docker
+        os19.core:
+          ansible_host:                         os19
           ansible_port:                         220ENV_INSTANCE
           ansible_user:                         root
           ansible_ssh_private_key_file:         /Users/dstreev/.ssh/id_rsa_docker

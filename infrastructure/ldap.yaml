@@ -1,0 +1,44 @@
+- hosts: ldap
+  vars:
+    docker_network_name: home
+  become: true
+
+  tasks:
+    - name: Create LDAP Server
+      docker_container:
+        name: ldap
+        image: osixia/openldap:1.2.1
+        env:
+          uid=admin,cn=users,cn=accounts,dc=streever,dc=local
+          SLAPD_PASSWORD: "hortonworks"
+          SLAPD_DOMAIN: "streever.com"
+          SLAPD_ORGANIZATION: "Streever.com"
+          SLAPD_CONFIG_PASSWORD: "hortonworks"
+
+
+          LDAP_ORGANISATION: "Streever.com"
+          LDAP_DOMAIN: "streever.com"
+          LDAP_ADMIN_PASSWORD: "hortonworks"
+          LDAP_CONFIG_PASSWORD: "hortonworks"
+        volumes:
+          - "/data/ldap/var/lib/ldap:/var/lib/ldap:rw"
+          - "/data/ldap/etc/ldap:/etc/ldap:rw"
+          - "/data/ldap/etc/ldap.dist/prepopulate:/etc/ldap.dist/prepopulate"
+        dns_search_domains:
+          - '{{ docker_network_name }}'
+        dns_servers:
+        restart: yes
+        restart_policy: unless-stopped
+        network_mode: '{{ docker_network_name }}'
+        networks:
+          - name : '{{ docker_network_name }}'
+            aliases :
+              - ldap.{{ docker_network_name }}
+            # links:
+            #   - hdp-{{ ansible_hostname }}-{{ env_instance }}.core
+        purge_networks: yes
+        state : started
+        ports :
+          - "30389:389"
+      tags:
+        - server
