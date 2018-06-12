@@ -1,4 +1,4 @@
-- hosts: working
+- hosts: os
   become: true
 
   tasks:

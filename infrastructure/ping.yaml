@@ -19,3 +19,7 @@
         - hdp-os13-{{ env_instance }}.home
         - hdp-os14-{{ env_instance }}.home
         - hdp-os15-{{ env_instance }}.home
+        - hdp-os16-{{ env_instance }}.home
+        - hdp-os17-{{ env_instance }}.home
+        - hdp-os18-{{ env_instance }}.home
+        - hdp-os19-{{ env_instance }}.home

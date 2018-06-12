@@ -109,7 +109,6 @@ all:
           children:
             sdlc:
               vars:
-                user:                           NEEDS_TO_BE_SET
                 smoke_tgs_size:                 1Gb
                 smoke_tgs_mappers:              4
                 smoke_tgs_reducers:             4

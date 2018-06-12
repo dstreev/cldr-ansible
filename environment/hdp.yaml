@@ -30,7 +30,7 @@
       docker_container:
         name: hdp-{{ ansible_hostname }}-{{ env_instance }}
         pull: true
-        image: dstreev/centos7_sshd:{{ image_version }}
+        image: dstreev/centos7_sshd:101
         ignore_image: yes
         privileged: yes
         hostname: hdp-{{ ansible_hostname }}-{{ env_instance }}.{{ docker_network_name }}

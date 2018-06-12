@@ -1,5 +1,5 @@
 
-- hosts: working
+- hosts: os
   vars:
     docker_network_name: home
 

@@ -13,6 +13,7 @@
         name: db
         pull: true
         image: mariadb:{{ mariadb_ver }}
+        ignore_image: yes
         privileged: yes
         hostname: db.{{ docker_network_name }}
         env:

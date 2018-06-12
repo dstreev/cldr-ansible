@@ -5,7 +5,7 @@
 # Disable THP
 # Set somaxconn
 # And other LLAP specifics
-- hosts:         working
+- hosts:         hdp
   become:        true
   tasks:
     - name: Install sudo
