@@ -1,0 +1,5 @@
+- hosts: hdp_{{ hdp_set }}
+  task:
+    - name: Get df
+      shell: df -h
+      
