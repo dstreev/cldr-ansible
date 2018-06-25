@@ -44,3 +44,4 @@ echo "     BLUEPRINT      : ${BLUUEPRINT}"
 sed "s/ENV_INSTANCE/${ENV_INSTANCE}/g" ../environment/hosts/host-template_${ENV_SET}.yaml > ../environment/hosts/${ENV_INSTANCE}.yaml
 sed -i.bak "s/AMBARI_VERSION/${AMBARI_VERSION}/g" ../environment/hosts/${ENV_INSTANCE}.yaml
 sed -i.bak "s/IMAGE_TAG/${IMAGE_TAG}/g" ../environment/hosts/${ENV_INSTANCE}.yaml
+sed -i.bak "s/HOME_DIR/${HOME}/g" ../environment/hosts/${ENV_INSTANCE}.yaml

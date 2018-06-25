@@ -32,62 +32,62 @@ all:
           ansible_host:                         os06
           ansible_port:                         220ENV_INSTANCE
           ansible_user:                         root
-          ansible_ssh_private_key_file:         /Users/dstreev/.ssh/id_rsa_docker
+          ansible_ssh_private_key_file:         HOME_DIR/.ssh/id_rsa_docker
         os7.core:
           ansible_host:                         os07
           ansible_port:                         220ENV_INSTANCE
           ansible_user:                         root
-          ansible_ssh_private_key_file:         /Users/dstreev/.ssh/id_rsa_docker
+          ansible_ssh_private_key_file:         HOME_DIR/.ssh/id_rsa_docker
         os10.core:
           ansible_host:                         os10
           ansible_port:                         220ENV_INSTANCE
           ansible_user:                         root
-          ansible_ssh_private_key_file:         /Users/dstreev/.ssh/id_rsa_docker
+          ansible_ssh_private_key_file:         HOME_DIR/.ssh/id_rsa_docker
         os11.core:
           ansible_host:                         os11
           ansible_port:                         220ENV_INSTANCE
           ansible_user:                         root
-          ansible_ssh_private_key_file:         /Users/dstreev/.ssh/id_rsa_docker
+          ansible_ssh_private_key_file:         HOME_DIR/.ssh/id_rsa_docker
         os12.core:
           ansible_host:                         os12
           ansible_port:                         220ENV_INSTANCE
           ansible_user:                         root
-          ansible_ssh_private_key_file:         /Users/dstreev/.ssh/id_rsa_docker
+          ansible_ssh_private_key_file:         HOME_DIR/.ssh/id_rsa_docker
         os13.core:
           ansible_host:                         os13
           ansible_port:                         220ENV_INSTANCE
           ansible_user:                         root
-          ansible_ssh_private_key_file:         /Users/dstreev/.ssh/id_rsa_docker
+          ansible_ssh_private_key_file:         HOME_DIR/.ssh/id_rsa_docker
         os14.core:
           ansible_host:                         os14
           ansible_port:                         220ENV_INSTANCE
           ansible_user:                         root
-          ansible_ssh_private_key_file:         /Users/dstreev/.ssh/id_rsa_docker
+          ansible_ssh_private_key_file:         HOME_DIR/.ssh/id_rsa_docker
         os15.core:
           ansible_host:                         os15
           ansible_port:                         220ENV_INSTANCE
           ansible_user:                         root
-          ansible_ssh_private_key_file:         /Users/dstreev/.ssh/id_rsa_docker
+          ansible_ssh_private_key_file:         HOME_DIR/.ssh/id_rsa_docker
         os16.core:
           ansible_host:                         os16
           ansible_port:                         220ENV_INSTANCE
           ansible_user:                         root
-          ansible_ssh_private_key_file:         /Users/dstreev/.ssh/id_rsa_docker
+          ansible_ssh_private_key_file:         HOME_DIRv/.ssh/id_rsa_docker
         os17.core:
           ansible_host:                         os17
           ansible_port:                         220ENV_INSTANCE
           ansible_user:                         root
-          ansible_ssh_private_key_file:         /Users/dstreev/.ssh/id_rsa_docker
+          ansible_ssh_private_key_file:         HOME_DIR/.ssh/id_rsa_docker
         os18.core:
           ansible_host:                         os18
           ansible_port:                         220ENV_INSTANCE
           ansible_user:                         root
-          ansible_ssh_private_key_file:         /Users/dstreev/.ssh/id_rsa_docker
+          ansible_ssh_private_key_file:         HOME_DIR/.ssh/id_rsa_docker
         os19.core:
           ansible_host:                         os19
           ansible_port:                         220ENV_INSTANCE
           ansible_user:                         root
-          ansible_ssh_private_key_file:         /Users/dstreev/.ssh/id_rsa_docker
+          ansible_ssh_private_key_file:         HOME_DIR/.ssh/id_rsa_docker
 
       children:
         edge:
@@ -96,17 +96,17 @@ all:
               ansible_host:                     os02
               ansible_port:                     220ENV_INSTANCE
               ansible_user:                     root
-              ansible_ssh_private_key_file:     /Users/dstreev/.ssh/id_rsa_docker
+              ansible_ssh_private_key_file:     HOME_DIR/.ssh/id_rsa_docker
             edge2.core:
               ansible_host:                     os03
               ansible_port:                     220ENV_INSTANCE
               ansible_user:                     root
-              ansible_ssh_private_key_file:     /Users/dstreev/.ssh/id_rsa_docker
+              ansible_ssh_private_key_file:     HOME_DIR/.ssh/id_rsa_docker
             edge4.core:
               ansible_host:                     os05
               ansible_port:                     220ENV_INSTANCE
               ansible_user:                     root
-              ansible_ssh_private_key_file:     /Users/dstreev/.ssh/id_rsa_docker
+              ansible_ssh_private_key_file:     HOME_DIR/.ssh/id_rsa_docker
           children:
             sdlc:
               vars:
@@ -122,7 +122,7 @@ all:
                   ansible_host:                 os04
                   ansible_port:                 220ENV_INSTANCE
                   ansible_user:                 root
-                  ansible_ssh_private_key_file: /Users/dstreev/.ssh/id_rsa_docker
+                  ansible_ssh_private_key_file: HOME_DIR/.ssh/id_rsa_docker
 
         ambari:
           hosts:
@@ -130,4 +130,4 @@ all:
               ansible_host:                     os01
               ansible_port:                     220ENV_INSTANCE
               ansible_user:                     root
-              ansible_ssh_private_key_file:     /Users/dstreev/.ssh/id_rsa_docker
+              ansible_ssh_private_key_file:     HOME_DIR/.ssh/id_rsa_docker
