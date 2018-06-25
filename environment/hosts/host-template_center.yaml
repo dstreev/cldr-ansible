@@ -28,29 +28,29 @@ all:
 
       hosts:
         os13.core:
-          ansible_host:                         os13
+          ansible_host:                         dos13
           ansible_port:                         220ENV_INSTANCE
           ansible_user:                         root
-          ansible_ssh_private_key_file:         /Users/dstreev/.ssh/id_rsa_docker
+          # ansible_ssh_private_key_file:         /Users/dstreev/.ssh/id_rsa_docker
         os14.core:
-          ansible_host:                         os14
+          ansible_host:                         dos14
           ansible_port:                         220ENV_INSTANCE
           ansible_user:                         root
-          ansible_ssh_private_key_file:         /Users/dstreev/.ssh/id_rsa_docker
+          # ansible_ssh_private_key_file:         /Users/dstreev/.ssh/id_rsa_docker
         os15.core:
-          ansible_host:                         os15
+          ansible_host:                         dos15
           ansible_port:                         220ENV_INSTANCE
           ansible_user:                         root
-          ansible_ssh_private_key_file:         /Users/dstreev/.ssh/id_rsa_docker
+          # ansible_ssh_private_key_file:         /Users/dstreev/.ssh/id_rsa_docker
 
       children:
         edge:
           hosts:
             edge1.core:
-              ansible_host:                     os04
+              ansible_host:                     dos04
               ansible_port:                     220ENV_INSTANCE
               ansible_user:                     root
-              ansible_ssh_private_key_file:     /Users/dstreev/.ssh/id_rsa_docker
+              # ansible_ssh_private_key_file:     /Users/dstreev/.ssh/id_rsa_docker
           children:
             sdlc:
               vars:
@@ -63,15 +63,15 @@ all:
                 ranger_admin_password:          admin
               hosts:
                 sdlc.core:
-                  ansible_host:                 os05
+                  ansible_host:                 dos05
                   ansible_port:                 220ENV_INSTANCE
                   ansible_user:                 root
-                  ansible_ssh_private_key_file: /Users/dstreev/.ssh/id_rsa_docker
+                  # ansible_ssh_private_key_file: /Users/dstreev/.ssh/id_rsa_docker
 
         ambari:
           hosts:
             ambari.core:
-              ansible_host:                     os01
+              ansible_host:                     dos01
               ansible_port:                     220ENV_INSTANCE
               ansible_user:                     root
-              ansible_ssh_private_key_file:     /Users/dstreev/.ssh/id_rsa_docker
+              # ansible_ssh_private_key_file:     /Users/dstreev/.ssh/id_rsa_docker
