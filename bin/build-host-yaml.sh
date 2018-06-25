@@ -14,26 +14,6 @@ while [ $# -gt 0 ]; do
       export ENV_INSTANCE=$1
       shift
       ;;
-    --ambari_version)
-      shift
-      export AMBARI_VERSION=$1
-      shift
-      ;;
-    -a)
-      shift
-      export AMBARI_VERSION=$1
-      shift
-      ;;
-    --image_version)
-      shift
-      export IMAGE_VERSION=$1
-      shift
-      ;;
-    -v)
-      shift
-      export IMAGE_VERSION=$1
-      shift
-      ;;
     *)
       break
       ;;
@@ -41,20 +21,26 @@ while [ $# -gt 0 ]; do
 done
 
 if [ "${ENV_INSTANCE}x" == "x" ]; then
-  echo "Missing Instance setting."
+  echo "Missing Instance setting (-i 01|02|..)."
   exit -1
 fi
-if [ "${AMBARI_VERSION}x" == "x" ]; then
-  echo "Missing AMBARI Version"
-  exit -1
-fi
-if [ "${IMAGE_VERSION}x" == "x" ]; then
-  echo "Missing AMBARI Version"
+
+if [ -f "../config/${ENV_INSTANCE}.cfg" ]; then
+  . ../config/${ENV_INSTANCE}.cfg
+else
+  echo "You need to create a config file for ${ENV_INSTANCE}"
   exit -1
 fi
 
 cd `dirname $0`
 
-sed "s/ENV_INSTANCE/${ENV_INSTANCE}/g" ../environment/hosts/host-template.yaml > ../environment/hosts/${ENV_INSTANCE}.yaml
+echo "Environment: "
+echo "     ENV_INSTANCE   : ${ENV_INSTANCE}"
+echo "     ENV_SET        : ${ENV_SET}"
+echo "     AMBARI_VERSION : ${AMBARI_VERSION}"
+echo "     IMAGE_TAG      : ${IMAGE_TAG}"
+echo "     BLUEPRINT      : ${BLUUEPRINT}"
+
+sed "s/ENV_INSTANCE/${ENV_INSTANCE}/g" ../environment/hosts/host-template_${ENV_SET}.yaml > ../environment/hosts/${ENV_INSTANCE}.yaml
 sed -i.bak "s/AMBARI_VERSION/${AMBARI_VERSION}/g" ../environment/hosts/${ENV_INSTANCE}.yaml
-sed -i.bak "s/IMAGE_VERSION/${IMAGE_VERSION}/g" ../environment/hosts/${ENV_INSTANCE}.yaml
+sed -i.bak "s/IMAGE_TAG/${IMAGE_TAG}/g" ../environment/hosts/${ENV_INSTANCE}.yaml

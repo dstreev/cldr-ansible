@@ -22,6 +22,8 @@ RUN yum -y install java-1.8.0-openjdk-devel
 RUN yum -y install git
 RUN yum -y install sssd sssd-client
 RUN yum -y install chrony
+# To support SSSD Bindings to underlying baremetal host.
+RUN yum install -y sssd-client sssd-krb5-common sudo libsss_idmap libsss_nss_idmap libsss_sudo sssd-common krb5-workstation krb5-lib
 
 # Generate Host Key for sshd
 RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key -N ''
@@ -55,6 +57,6 @@ COPY ./init/50_net.conf /etc/sysctl.d/50_net.conf
 
 EXPOSE 22
 
-VOLUME ["/data_0","/data_1","/var/log/hadoop","/var/log/hadoop-yarn","/var/log/hadoop-mapreduce","/var/log/hive","/var/log/hbase","/var/log/oozie","/var/log/falcon","/var/log/atlas","/var/log/zookeeper","/var/log/ambari-infra-solr","/var/log/kafka"]
+VOLUME ["/var/lib/sss/pipes","/var/lib/sss/mc","/hadoop","/hadoop_1","/hdf","/hdf_1","/var/log"]
 
 CMD ["/usr/bin/supervisord","-c","/etc/supervisord.d/hdp.ini"]

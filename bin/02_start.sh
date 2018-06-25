@@ -14,16 +14,6 @@ while [ $# -gt 0 ]; do
       export ENV_INSTANCE=$1
       shift
       ;;
-    # --hdp_version)
-    #   shift
-    #   export HDP_VERSION=$1
-    #   shift
-    #   ;;
-    # -h)
-    #   shift
-    #   export HDP_VERSION=$1
-    #   shift
-    #   ;;
     *)
       break
       ;;
@@ -31,24 +21,26 @@ while [ $# -gt 0 ]; do
 done
 
 if [ "${ENV_INSTANCE}x" == "x" ]; then
-  echo "Missing Instance setting."
+  echo "Missing Instance setting (-i 01|02|..)."
   exit -1
 fi
-# if [ "${HDP_VERSION}x" == "x" ]; then
-#   echo "Missing HDP Version"
-#   exit -1
-# fi
 
-# if [ ! -f vars/hdp_${HDP_VERSION}.json ]; then
-#   echo "Could locate HDP Version Var File"
-#   exit -1
-# fi
+if [ -f "../config/${ENV_INSTANCE}.cfg" ]; then
+  . ../config/${ENV_INSTANCE}.cfg
+else
+  echo "You need to create a config file for ${ENV_INSTANCE}"
+  exit -1
+fi
 
-cd `dirname $0`
-# ansible-playbook ../infrastructure/core-kill.yaml
-# ansible-playbook ../infrastructure/core-init.yaml
+echo "Environment: "
+echo "     ENV_INSTANCE   : ${ENV_INSTANCE}"
+echo "     ENV_SET        : ${ENV_SET}"
+echo "     AMBARI_VERSION : ${AMBARI_VERSION}"
+echo "     IMAGE_TAG      : ${IMAGE_TAG}"
+echo "     BLUEPRINT      : ${BLUUEPRINT}"
 
-#ansible-playbook -e env_instance=${ENV_INSTANCE} -e env_state=started ../infrastructure/infra.yaml
-ansible-playbook -e env_instance=${ENV_INSTANCE} -e env_state=started -e image_version=latest ../environment/hdp.yaml
+ansible-playbook -e env_instance=${ENV_INSTANCE} -e env_set=${ENV_SET} -e image_tag=${IMAGE_TAG} -e env_state=started ../environment/hdp.yaml
 
-ansible-playbook -i `pwd`/../environment/hosts/${ENV_INSTANCE}.yaml ../hdp/ambari/ambari_start.yaml
+ansible-playbook -i ../environment/hosts/${ENV_INSTANCE}.yaml ../hdp/ambari/ambari_start.yaml
+
+ansible-playbook -i ../environment/hosts/${ENV_INSTANCE}.yaml ../infrastructure/ping.yaml --tags "${ENV_SET}"

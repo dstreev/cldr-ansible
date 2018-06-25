@@ -1,7 +1,8 @@
 - hosts: hdp
+  vars:
 
   tasks:
-    - name: ping {{ item }}
+    - name: ping cluster peers (Full)
       shell: ping {{ item }} -c 2
       loop:
         - db.home
@@ -23,3 +24,19 @@
         - hdp-os17-{{ env_instance }}.home
         - hdp-os18-{{ env_instance }}.home
         - hdp-os19-{{ env_instance }}.home
+      tags:
+        - full
+    - name: ping cluster peers (Right)
+      shell: ping {{ item }} -c 2
+      loop:
+        - db.home
+        - repo.home
+        - hdp-os01-{{ env_instance }}.home
+        - hdp-os06-{{ env_instance }}.home
+        - hdp-os07-{{ env_instance }}.home
+        - hdp-os16-{{ env_instance }}.home
+        - hdp-os17-{{ env_instance }}.home
+        - hdp-os18-{{ env_instance }}.home
+        - hdp-os19-{{ env_instance }}.home
+      tags:
+        - right

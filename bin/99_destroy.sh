@@ -21,10 +21,22 @@ while [ $# -gt 0 ]; do
 done
 
 if [ "${ENV_INSTANCE}x" == "x" ]; then
-  echo "Missing Instance setting."
+  echo "Missing Instance setting (-i 01|02|..)."
   exit -1
 fi
 
-cd `dirname $0`
+if [ -f "../config/${ENV_INSTANCE}.cfg" ]; then
+  . ../config/${ENV_INSTANCE}.cfg
+else
+  echo "You need to create a config file for ${ENV_INSTANCE}"
+  exit -1
+fi
+
+echo "Environment: "
+echo "     ENV_INSTANCE   : ${ENV_INSTANCE}"
+echo "     ENV_SET        : ${ENV_SET}"
+echo "     AMBARI_VERSION : ${AMBARI_VERSION}"
+echo "     IMAGE_TAG      : ${IMAGE_TAG}"
+echo "     BLUEPRINT      : ${BLUUEPRINT}"
 
 ansible-playbook -e env_instance=${ENV_INSTANCE} ../infrastructure/clean.yaml

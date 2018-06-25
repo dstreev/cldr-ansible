@@ -8,12 +8,12 @@ os_version: "centos7"
 version_subdir: updates
 
 hdp_repo_base_url: "http://s3.amazonaws.com/dev.hortonworks.com/HDP/centos7/3.x/BUILDS"
-hdp_version: "3.0.0.0-1462"
+hdp_version: "3.0.0.0-1485"
 hdp_major_version: "3"
 
 ambari_repo_base_url: "http://s3.amazonaws.com/dev.hortonworks.com/ambari/centos7/2.x/BUILDS"
 ambari_major_version: "2"
-ambari_version: "2.7.0.0-696"
+ambari_version: "2.7.0.0-703"
 
 hdp_utils_version: "1.1.0.22"
 hdp_gpl_hdp_version: "3.0.0.0"

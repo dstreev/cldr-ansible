@@ -1,0 +1,15 @@
+- hosts: hdp
+  vars:
+
+  tasks:
+    - name: ping cluster peers
+      shell: ping {{ item }} -c 2
+      loop:
+        - db.home
+        - repo.home
+        - hdp-os01-{{ env_instance }}.home
+        - hdp-os02-{{ env_instance }}.home
+        - hdp-os03-{{ env_instance }}.home
+        - hdp-os10-{{ env_instance }}.home
+        - hdp-os11-{{ env_instance }}.home
+        - hdp-os12-{{ env_instance }}.home

@@ -1,0 +1,8 @@
+ambari_repo: "http://repo.home/repo/ambari/centos7/2.x/updates/ambari-2.7.0.0-766/"
+
+os_version: "centos7"
+hdp_major_version: "3"
+hdp_version: "3.0.0.0"
+
+hadoop_cli_bin_link: "https://github.com/dstreev/hadoop-cli/releases/download/untagged-9efb4983399ed222f2a8/hadoop-cli-2.0.0-SNAPSHOT-3.0.tar.gz"
+hadoop_cli_version: "3.0"

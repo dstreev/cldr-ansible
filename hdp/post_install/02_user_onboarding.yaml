@@ -41,8 +41,10 @@
       tags:
         - local
         - ldap
+        - hdp
     - name: Create Private User Database
       shell: /usr/hdp/current/hive-client/bin/beeline -u "{{ hs2_jdbc_url}}" -n {{ hive_superuser }} -p {{ hive_superpassword }} -e "create database if not exists priv_{{ user }} LOCATION '/user/{{ user }}/datasets/internal.db'"
       tags:
         - local
         - ldap
+        - hdp

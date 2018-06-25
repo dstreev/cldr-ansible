@@ -1,27 +1,45 @@
 # Build and Start the Metastore and Repo
 # - import_playbook: ../infrastructure/infra.yaml
 
-- hosts: hdp
+- hosts: hdp_{{ env_set }}
   vars:
     docker_network_name: home
 
   become: true
   tasks:
-    - name: Create Device directory
+    - name: Create Device HDP Log directory
       file:
         path: /data_1/docker_{{ env_instance }}/hdp/log
         state: directory
         owner: root
         mode: 0755
-    - name: Create Device directory /data
+    - name: Create Device HDF Log directory
+      file:
+        path: /data_1/docker_{{ env_instance }}/hdf/log
+        state: directory
+        owner: root
+        mode: 0755
+    - name: Create Device HDP directory /data
       file:
         path: /data/docker_{{ env_instance }}/hdp/data
         state: directory
         owner: root
         mode: 0755
-    - name: Create Device directory /data_1
+    - name: Create Device HDP directory /data_1
       file:
         path: /data_1/docker_{{ env_instance }}/hdp/data
+        state: directory
+        owner: root
+        mode: 0755
+    - name: Create Device HDF directory /data
+      file:
+        path: /data/docker_{{ env_instance }}/hdf/data
+        state: directory
+        owner: root
+        mode: 0755
+    - name: Create Device HDF directory /data_1
+      file:
+        path: /data_1/docker_{{ env_instance }}/hdf/data
         state: directory
         owner: root
         mode: 0755
@@ -30,27 +48,18 @@
       docker_container:
         name: hdp-{{ ansible_hostname }}-{{ env_instance }}
         pull: true
-        image: dstreev/centos7_sshd:101
+        image: dstreev/centos7_sshd:{{ image_tag }}
         ignore_image: yes
         privileged: yes
         hostname: hdp-{{ ansible_hostname }}-{{ env_instance }}.{{ docker_network_name }}
         volumes:
-          - "/data/docker_{{ env_instance }}/hdp/data:/data_0"
-          - "/data_1/docker_{{ env_instance }}/hdp/data:/data_1"
-          - "/data_1/docker_{{ env_instance }}/hdp/log/hadoop:/var/log/hadoop"
-          - "/data_1/docker_{{ env_instance }}/hdp/log/hadoop-yarn:/var/log/hadoop-yarn"
-          - "/data_1/docker_{{ env_instance }}/hdp/log/hadoop-mapreduce:/var/log/hadoop-mapreduce"
-          - "/data_1/docker_{{ env_instance }}/hdp/log/hive:/var/log/hive"
-          - "/data_1/docker_{{ env_instance }}/hdp/log/hbase:/var/log/hbase"
-          - "/data_1/docker_{{ env_instance }}/hdp/log/oozie:/var/log/oozie"
-          - "/data_1/docker_{{ env_instance }}/hdp/log/atlas:/var/log/atlas"
-          - "/data_1/docker_{{ env_instance }}/hdp/log/zookeeper:/var/log/zookeeper"
-          - "/data_1/docker_{{ env_instance }}/hdp/log/falcon:/var/log/falcon"
-          - "/data_1/docker_{{ env_instance }}/hdp/log/ambari-infra-solr:/var/log/ambari-infra-solr"
-          - "/data_1/docker_{{ env_instance }}/hdp/log/kafka:/var/log/kafka"
-          - "/data_1/docker_{{ env_instance }}/hdp/log/ambari-metrics-collector:/var/log/ambari-metrics-collector"
-          - "/data_1/docker_{{ env_instance }}/hdp/log/ambari-agent:/var/log/ambari-agent"
-          - "/data_1/docker_{{ env_instance }}/hdp/log/ambari-server:/var/log/ambari-server"
+          - "/var/lib/sss/pipes/:/var/lib/sss/pipes/:rw"
+          - "/var/lib/sss/mc/:/var/lib/sss/mc/:ro"
+          - "/data/docker_{{ env_instance }}/hdp/data:/hadoop"
+          - "/data/docker_{{ env_instance }}/hdf/data:/hdf"
+          - "/data_1/docker_{{ env_instance }}/hdp/data:/hadoop_1"
+          - "/data_1/docker_{{ env_instance }}/hdf/data:/hdf_1"
+          - "/data_1/docker_{{ env_instance }}/log:/var/log"
         dns_search_domains:
           - '{{ docker_network_name }}'
         dns_servers:

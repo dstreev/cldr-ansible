@@ -15,5 +15,9 @@
       shell: ambari-server setup --database={{ db_type }} --databasehost={{ db_host }} --databaseport=3306 --databaseusername={{ db_user }} --databasepassword={{ db_password }} --databasename={{ db_ambari_name }} --enable-lzo-under-gpl-license --java-home=/usr/lib/jvm/java-1.8.0-openjdk -s
       tags:
         - server
+    # - name: Configure Ambari Server LDAP Information
+    #   shell: ambari-server setup-ldap --jdbc-driver=/usr/share/java/mysql-connector-java.jar --jdbc-db={{ db_type }}
+    #   tags:
+    #     - server
 
 # TODO: setup ldap, security, ssl

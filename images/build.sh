@@ -2,14 +2,14 @@
 
 while [ $# -gt 0 ]; do
   case "$1" in
-    --version)
+    --tag)
       shift
-      export IMAGE_VERSION=$1
+      export IMAGE_TAG=$1
       shift
       ;;
-    -v)
+    -t)
       shift
-      export IMAGE_VERSION=$1
+      export IMAGE_TAG=$1
       shift
       ;;
     *)
@@ -18,10 +18,10 @@ while [ $# -gt 0 ]; do
   esac
 done
 
-if [ "${IMAGE_VERSION}x" == "x" ]; then
-  echo "Missing version setting."
+if [ "${IMAGE_TAG}x" == "x" ]; then
+  echo "Missing tag setting."
   exit -1
 fi
 
 echo "**** SSHD-BASE *****"
-docker build --tag dstreev/centos7_sshd:${IMAGE_VERSION} ./centos7/sshd
+docker build --tag dstreev/centos7_sshd:${IMAGE_TAG} ./centos7/sshd

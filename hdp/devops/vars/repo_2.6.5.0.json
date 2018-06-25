@@ -8,7 +8,7 @@ local_repo_base_dir: "/var/www/html/repo"
 os_version: "centos7"
 
 ambari_major_version: "2"
-ambari_version: "2.6.2.0"
+ambari_version: "2.6.2.2"
 
 version_subdir: updates
 #version_subdir: BUILDS
