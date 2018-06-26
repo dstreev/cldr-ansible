@@ -9,17 +9,17 @@
   tasks:
     - name: Create bin directory
       debug: home_dir=ansible_env.HOME
-      shell: mkdir -p {{ home_dir }}/datagen
+      shell: mkdir -p /home/{{ ansible_user }}/datagen
       become: true
 
     - name: Set home permissions
       debug: home_dir=ansible_env.HOME
-      shell: chown -R {{ user }}:{{ user }} {{ home_dir }}
+      shell: chown -R {{ ansible_user }}:{{ ansible_user }} /home/{{ ansible_user }}
 
     - name: Copy over the library for the data generator
       get_url:
         url: '{{ mr_data_util_bin }}'
-        dest: '{{ ansible_env.HOME }}/datagen/mr-data-utility.jar'
+        dest: '/home/{{ ansible_user }}/datagen/mr-data-utility.jar'
 
     # - name: Copy over the data generator control file
     #
