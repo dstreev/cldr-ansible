@@ -120,7 +120,7 @@ all:
                 smoke_tgs_mappers:              4
                 smoke_tgs_reducers:             4
                 tpcds_size:                     50
-                ranger_url_base:                NEEDS_TO_BE_SET
+                ranger_url_base:                http://hdp-os03-13.home:6080
                 ranger_admin_user:              admin
                 ranger_admin_password:          admin
               hosts:
