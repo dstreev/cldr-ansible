@@ -84,7 +84,7 @@ hdfs dfs -mkdir -p ${OUTPUT_DIR}/../archive
 /usr/bin/beeline -u "${HIVE_URL}" -n hive -p ${HIVE_USER_PW} -e 'CREATE DATABASE IF NOT EXISTS acid_${HIVE_USER}'
 
 # Run DDL to gen tables for effort.
-/usr/bin/beeline -u "${HIVE_URL}" -n ${HIVE_USER} -p ${HIVE_USER_PW} --hivevar HIVE_USER=${HIVE_USER} -f acid.ddl
+/usr/bin/beeline -u "${HIVE_URL}" -n ${HIVE_USER} -p ${HIVE_USER_PW} --hivevar HIVE_USER=${HIVE_USER} --hivevar OUTPUT_DIR=${OUTPUT_DIR} -f acid.ddl
 
 
 for i in $(seq 1 ${ITERATIONS}); do
