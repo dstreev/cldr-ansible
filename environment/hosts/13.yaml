@@ -1,0 +1,133 @@
+# HDP Environment 01 Servers
+all:
+  vars:
+    ambari_version:                             2.6.2.2
+    hdp_version:                                HDP_VERSION
+    env_set:                                    full
+    image_tag:                                  104
+    env_instance:                               '13'
+    cluster_name:                               DK13
+    db_type:                                    mysql
+    db_host:                                    db.home
+    db_user:                                    root
+    db_password:                                hortonworks
+    db_ambari_name:                             ambari_13
+    db_hive_name:                               hive_13
+    db_oozie_name:                              oozie_13
+    db_ranger_name:                             ranger_13
+    db_ranger_kms_name:                         rangerkms_13
+    db_druid_name:                              druid_13
+    db_superset_name:                           superset_13
+    db_registry_name:                           registry_13
+
+  children:
+    hdp:
+      vars:
+        ambari_server:                          hdp-os01-13.home
+        zookeeper_server:                       hdp-os03-13.home
+        repo_server:                            repo.home
+
+      hosts:
+        os6.docker:
+          ansible_host:                         dos06
+          ansible_port:                         22013
+          ansible_user:                         root
+          # ansible_ssh_private_key_file:         HOME_DIR/.ssh/id_rsa_docker
+        os7.core:
+          ansible_host:                         dos07
+          ansible_port:                         22013
+          ansible_user:                         root
+          # ansible_ssh_private_key_file:         HOME_DIR/.ssh/id_rsa_docker
+        os10.core:
+          ansible_host:                         dos10
+          ansible_port:                         22013
+          ansible_user:                         root
+          # ansible_ssh_private_key_file:         HOME_DIR/.ssh/id_rsa_docker
+        os11.core:
+          ansible_host:                         dos11
+          ansible_port:                         22013
+          ansible_user:                         root
+          # ansible_ssh_private_key_file:         HOME_DIR/.ssh/id_rsa_docker
+        os12.core:
+          ansible_host:                         dos12
+          ansible_port:                         22013
+          ansible_user:                         root
+          # ansible_ssh_private_key_file:         HOME_DIR/.ssh/id_rsa_docker
+        os13.core:
+          ansible_host:                         dos13
+          ansible_port:                         22013
+          ansible_user:                         root
+          # ansible_ssh_private_key_file:         HOME_DIR/.ssh/id_rsa_docker
+        os14.core:
+          ansible_host:                         dos14
+          ansible_port:                         22013
+          ansible_user:                         root
+          # ansible_ssh_private_key_file:         HOME_DIR/.ssh/id_rsa_docker
+        os15.core:
+          ansible_host:                         dos15
+          ansible_port:                         22013
+          ansible_user:                         root
+          # ansible_ssh_private_key_file:         HOME_DIR/.ssh/id_rsa_docker
+        os16.core:
+          ansible_host:                         dos16
+          ansible_port:                         22013
+          ansible_user:                         root
+          # ansible_ssh_private_key_file:         HOME_DIRv/.ssh/id_rsa_docker
+        os17.core:
+          ansible_host:                         dos17
+          ansible_port:                         22013
+          ansible_user:                         root
+          # ansible_ssh_private_key_file:         HOME_DIR/.ssh/id_rsa_docker
+        os18.core:
+          ansible_host:                         dos18
+          ansible_port:                         22013
+          ansible_user:                         root
+          # ansible_ssh_private_key_file:         HOME_DIR/.ssh/id_rsa_docker
+        os19.core:
+          ansible_host:                         dos19
+          ansible_port:                         22013
+          ansible_user:                         root
+          # ansible_ssh_private_key_file:         HOME_DIR/.ssh/id_rsa_docker
+
+      children:
+        edge:
+          hosts:
+            edge1.core:
+              ansible_host:                     dos02
+              ansible_port:                     22013
+              ansible_user:                     root
+              # ansible_ssh_private_key_file:     HOME_DIR/.ssh/id_rsa_docker
+            edge2.core:
+              ansible_host:                     dos03
+              ansible_port:                     22013
+              ansible_user:                     root
+              # ansible_ssh_private_key_file:     HOME_DIR/.ssh/id_rsa_docker
+            edge4.core:
+              ansible_host:                     dos05
+              ansible_port:                     22013
+              ansible_user:                     root
+              # ansible_ssh_private_key_file:     HOME_DIR/.ssh/id_rsa_docker
+          children:
+            sdlc:
+              vars:
+                smoke_tgs_size:                 1Gb
+                smoke_tgs_mappers:              4
+                smoke_tgs_reducers:             4
+                tpcds_size:                     50
+                ranger_url_base:                NEEDS_TO_BE_SET
+                ranger_admin_user:              admin
+                ranger_admin_password:          admin
+              hosts:
+                sdlc.core:
+                  ansible_host:                 dos04
+                  ansible_port:                 22013
+                  ansible_user:                 root
+                  # ansible_ssh_private_key_file: HOME_DIR/.ssh/id_rsa_docker
+
+        ambari:
+          hosts:
+            ambari.core:
+              ansible_host:                     dos01
+              ansible_port:                     22013
+              ansible_user:                     root
+              # ansible_ssh_private_key_file:     HOME_DIR/.ssh/id_rsa_docker
