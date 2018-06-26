@@ -74,6 +74,8 @@ while [ $# -gt 0 ]; do
       ;;
   esac
 done
+# Add pause to allow a chance for HS2 to register new hive permissions for user.
+sleep 15s
 
 # Delete Gen Output directory.
 hdfs dfs -rm -r -f -skipTrash ${OUTPUT_DIR}
