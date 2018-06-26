@@ -8,11 +8,13 @@
 
   tasks:
     - name: Create bin directory
-      shell: mkdir -p {{ ansible_env.HOME }}/datagen
+      debug: home_dir=ansible_env.HOME
+      shell: mkdir -p {{ home_dir }}/datagen
       become: true
 
     - name: Set home permissions
-      shell: chown -R {{ ansible_env.USER }}:{{ ansible_env.USER }} ansible_env.HOME
+      debug: home_dir=ansible_env.HOME
+      shell: chown -R {{ user }}:{{ user }} {{ home_dir }}
 
     - name: Copy over the library for the data generator
       get_url:
