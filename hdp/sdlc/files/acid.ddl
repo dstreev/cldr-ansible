@@ -10,7 +10,7 @@ create external table if not exists raw_dataset (
   source_ip STRING,
   direction STRING,
   target_ip STRING,
-  _offset STRING,
+  offset STRING,
   contract STRING,
   amount_due STRING,
   past_due STRING,
@@ -32,7 +32,7 @@ create table if not exists append_dataset (
   source_ip STRING,
   direction STRING,
   target_ip STRING,
-  _offset STRING,
+  offset STRING,
   contract STRING,
   amount_due DOUBLE,
   past_due STRING,
@@ -46,12 +46,12 @@ create table if not exists acid_dataset (
   source_ip STRING,
   direction STRING,
   target_ip STRING,
-  _offset STRING,
+  offset STRING,
   contract STRING,
   amount_due DOUBLE,
   past_due STRING,
   interest DOUBLE
 )
-STORED AS ORC
 CLUSTERED BY (source_ip) INTO 4 BUCKETS
+STORED AS ORC
 TBLPROPERTIES("transactional"="true");
