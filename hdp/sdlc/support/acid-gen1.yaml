@@ -1,0 +1,84 @@
+title: "CDC Records"
+description: "An incrementing time series dataset"
+output:
+  delimiter: "\t"
+  format: "CSV"
+order:
+  - event_time
+  - source_code
+  - source_ip
+  - direction
+  - target_ip
+  - offset
+  - contrast
+  - amount_due
+  - pass_due
+  - interest
+fields:
+  -
+    type: "date"
+    name: "event_time"
+    format: "yyyy-MM-dd HH:mm:ss"
+    increment: true
+    diff: 1000
+    range:
+      min: "2010-01-01T07:00:00"
+  -
+    type: "int"
+    name: "source_code"
+    range:
+      min: 100
+      max: 1000
+  -
+    type: "ipv4"
+    name: "source_ip"
+    range:
+      min: "10.0.14.0"
+      max: "10.121.32.254"
+  -
+    type: "string"
+    name: "direction"
+    pool:
+      items:
+        - ToMobile
+        - FromMobile
+  -
+    type: "ipv4"
+    name: "target_ip"
+    range:
+      min: "192.168.14.0"
+      max: "192.168.100.254"
+  -
+    type: "string"
+    name: "offset"
+    pool:
+      items:
+        - 0
+        - 1
+  -
+    type: "long"
+    name: "contrast"
+    range:
+      min: 4523100
+      max: 9921000
+  -
+    type: "float"
+    name: "amount_due"
+    format: "#.##"
+    range:
+      min: 10
+      max: 100
+  -
+    type: "string"
+    name: "pass_due"
+    pool:
+      items:
+        - true
+        - false
+  -
+    type: "double"
+    name: "interest"
+    format: "#.####"
+    range:
+      min: 10
+      max: 1000
