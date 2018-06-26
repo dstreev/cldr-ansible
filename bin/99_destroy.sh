@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Kill Cluster
 
 cd `dirname $0`

@@ -1,0 +1,10 @@
+# Setup Erasure Coding on a cluster.
+
+- hosts: sdlc
+  vars:
+
+  tasks:
+
+  # Test: Create Directory to support EC policy
+  # Supported EC Policies
+  # RS-3-2-1024k, RS-6-3-1024k, RS-10-4-1024k, RS-LEGACY-6-3-1024k, XOR-2-1-1024k and REPLICATION

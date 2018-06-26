@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Start / Initialize Cluster
 
 cd `dirname $0`
