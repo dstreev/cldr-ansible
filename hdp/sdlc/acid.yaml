@@ -6,7 +6,7 @@
   vars:
     mr_data_util_bin: https://github.com/dstreev/iot-data-utility/releases/download/untagged-f3cc6cbacd1ffdb48d29/mr-data-utility-3.0-SNAPSHOT-shaded.jar
   become: true
-  become: {{ user }}
+  become: '{{ user }}'
   tasks:
     - name: Create bin directory
       shell: mkdir -p /home/{{ ansible_user }}/datagen
