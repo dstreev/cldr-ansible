@@ -6,7 +6,7 @@
   vars:
     mr_data_util_bin: https://github.com/dstreev/iot-data-utility/releases/download/untagged-f3cc6cbacd1ffdb48d29/mr-data-utility-3.0-SNAPSHOT-shaded.jar
     gen_mappers: 4
-    gen_count: 100000
+    gen_count: 10000000
     acid_iterations: 10
     hive_connect_url: jdbc:hive2://{{ zk_host }}:{{ zk_port }}/;serviceDiscoveryMode=zooKeeper;zooKeeperNamespace={{ hs2_zk_path }}
 
