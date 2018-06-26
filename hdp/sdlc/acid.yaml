@@ -63,6 +63,87 @@
         mode: 0750
         owner: '{{ user }}'
 
+    - name:                    Hive Private User Databases
+      uri:
+        url:                   '{{ ranger_url_base }}/service/public/v2/api/policy'
+        body_format:           json
+        body:
+          '{
+            "isEnabled":       true,
+            "service":         "{{ cluster_name }}_hive",
+            "name":            "ACID Testing - ALL Users",
+            "description":     "Private User Database Access",
+            "isAuditEnabled":  true,
+            "resources":       {
+              "database":      {
+                "values":      ["acid_{USER}"],
+                "isExcludes":  false,
+                "isRecursive": false
+              },
+              "column":        {
+                "values":      ["*"],
+                "isExcludes":  false,
+                "isRecursive": false
+              },
+              "table":         {
+                "values":      ["*"],
+                "isExcludes":  false,
+                "isRecursive": false
+              }
+            },
+            "policyItems":     [{
+              "accesses":      [{
+                "type":        "select",
+                "isAllowed":   true
+              }, {
+                "type":        "update",
+                "isAllowed":   true
+              }, {
+                "type":        "create",
+                "isAllowed":   true
+              }, {
+                "type":        "drop",
+                "isAllowed":   true
+              }, {
+                "type":        "alter",
+                "isAllowed":   true
+              }, {
+                "type":        "index",
+                "isAllowed":   true
+              }, {
+                "type":        "lock",
+                "isAllowed":   true
+              }, {
+                "type":        "all",
+                "isAllowed":   true
+              }, {
+                "type":        "read",
+                "isAllowed":   true
+              }, {
+                "type":        "write",
+                "isAllowed":   true
+              }, {
+                "type":        "repladmin",
+                "isAllowed":   true
+              }, {
+                "type":        "serviceadmin",
+                "isAllowed":   true
+              }],
+              "users":         ["{USER}"],
+              "groups":        [],
+              "conditions":    [],
+              "delegateAdmin": false
+            }]
+          }'
+        method:                POST
+        user:                  '{{ ranger_admin_user }}'
+        password:              '{{ ranger_admin_password }}'
+        force_basic_auth:      yes
+        headers:
+          Content-Type:        "application/json; charset=utf8"
+          X-XSRF-HEADER:       "valid"
+          User-Agent:          "Ansible HDP Best Practices"
+
     - name: Run the Acid Run script
       shell: /home/{{ user }}/datagen/acid_run.sh -cfg acid_gen1.yaml -o /user/{{ user }}/datasets/external/acid_raw -m {{ gen_mappers }} -c {{ gen_count }} -i {{ acid_iterations }} --hive_user {{ hive_user }} --hive_user_pw {{ hive_user_pw }} --hive_connect_url "{{ hive_connect_url }}"
       become: true
