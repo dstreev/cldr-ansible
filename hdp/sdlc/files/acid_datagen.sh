@@ -58,4 +58,4 @@ hdfs dfs -mkdir /user/${USER}/datagen
 hdfs dfs -put -f ${CONFIG} /user/${USER}/datagen/${CONFIG}
 
 # Run the Data generator
-hadoop jar ${DATAGEN_JAR} com.streever.iot.mapreduce.data.utility.DataGenTool -cfg ${CONFIG} -c ${COUNT} -d ${OUTPUT_DIR} -m ${MAPPERS}
+hadoop jar ${DATAGEN_JAR} com.streever.iot.mapreduce.data.utility.DataGenTool -cfg /user/${USER}/datagen/${CONFIG} -c ${COUNT} -d ${OUTPUT_DIR} -m ${MAPPERS}
