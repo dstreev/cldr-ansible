@@ -76,7 +76,7 @@ while [ $# -gt 0 ]; do
 done
 
 # Delete Gen Output directory.
-hdfs dfs -rm -rf -skipTrash ${OUTPUT_DIR}
+hdfs dfs -rm -r -f -skipTrash ${OUTPUT_DIR}
 
 hdfs dfs -mkdir -p ${OUTPUT_DIR}/../archive
 # Create Database.
