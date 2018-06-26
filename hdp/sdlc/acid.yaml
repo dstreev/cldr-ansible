@@ -23,7 +23,7 @@
 
     - name: Copy over the data generator control file
       copy:
-        src: ../support/acid-gen1.yaml
+        src: files/acid-gen1.yaml
         dest: '/home/{{ user }}/datagen/support/acid-gen1.yaml'
 
     #
