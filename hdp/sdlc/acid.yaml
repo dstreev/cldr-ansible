@@ -4,7 +4,7 @@
 
 - hosts: sdlc
   vars:
-    mr-data-util-bin: https://github.com/dstreev/iot-data-utility/releases/download/untagged-f3cc6cbacd1ffdb48d29/mr-data-utility-3.0-SNAPSHOT-shaded.jar
+    mr_data_util_bin: https://github.com/dstreev/iot-data-utility/releases/download/untagged-f3cc6cbacd1ffdb48d29/mr-data-utility-3.0-SNAPSHOT-shaded.jar
 
   tasks:
     - name: Create bin directory
@@ -12,7 +12,7 @@
 
     - name: Copy over the library for the data generator
       get_url:
-        url: '{{ mr-data-util-bin }}'
+        url: '{{ mr_data_util_bin }}'
         dest: ansible_env.HOME/datagen/mr-data-utility.jar
 
     # - name: Copy over the data generator control file
