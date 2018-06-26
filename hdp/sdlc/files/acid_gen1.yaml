@@ -1,7 +1,7 @@
 title: "CDC Records"
 description: "An incrementing time series dataset"
 output:
-  delimiter: "\t"
+  delimiter: ","
   format: "CSV"
 order:
   - event_time
@@ -12,7 +12,7 @@ order:
   - offset
   - contrast
   - amount_due
-  - pass_due
+  - past_due
   - interest
 fields:
   -
@@ -70,7 +70,7 @@ fields:
       max: 100
   -
     type: "string"
-    name: "pass_due"
+    name: "past_due"
     pool:
       items:
         - true

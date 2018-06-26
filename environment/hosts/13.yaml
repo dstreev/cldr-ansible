@@ -7,6 +7,11 @@ all:
     image_tag:                                  104
     env_instance:                               '13'
     cluster_name:                               DK13
+    zk_host:                                    hdp-os03-13.home
+    zk_port:                                    2181
+    hs2_zk_path:                                hiveserver2
+    hive_user:                                  dstreev
+    hive_user_pw:                               hortonworks
     db_type:                                    mysql
     db_host:                                    db.home
     db_user:                                    root

@@ -50,10 +50,12 @@ while [ $# -gt 0 ]; do
   esac
 done
 
-DATAGEN_JAR=${HOME}/hdp_support/mr-data-utility.jar
+DATAGEN_JAR=${HOME}/datagen/mr-data-utility.jar
 
 # Clean up old dataset.
 hdfs dfs -rm -rf -skipTrash ${OUTPUT_DIR}
+hdfs dfs -mkdir /user/${USER}/datagen
+hdfs dfs -put -f ${CONFIG} /user/${USER}/datagen/${CONFIG}
 
 # Run the Data generator
 hadoop jar ${DATAGEN_JAR} com.streever.iot.mapreduce.data.utility.DataGenTool -cfg ${CONFIG} -c ${COUNT} -d ${OUTPUT_DIR} -m ${MAPPERS}

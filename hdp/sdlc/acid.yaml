@@ -5,6 +5,11 @@
 - hosts: sdlc
   vars:
     mr_data_util_bin: https://github.com/dstreev/iot-data-utility/releases/download/untagged-f3cc6cbacd1ffdb48d29/mr-data-utility-3.0-SNAPSHOT-shaded.jar
+    gen_mappers: 4
+    gen_count: 100000
+    acid_iterations: 6
+    hive_connect_url: jdbc:hive2://{{ zk_host }}:{{ zk_port }}/;serviceDiscoveryMode=zooKeeper;zooKeeperNamespace={{ hs2_zk_path }}
+
   become: true
   # become_user: '{{ user }}'
 
@@ -13,25 +18,50 @@
       shell: mkdir -p /home/{{ user }}/datagen/support
       become: true
 
-    - name: Set home permissions
+    - name: Set Local home permissions
       shell: chown -R {{ user }}:{{ user }} /home/{{ user }}
 
     - name: Copy over the library for the data generator
       get_url:
         url: '{{ mr_data_util_bin }}'
-        dest: '/home/{{ user }}/datagen/mr-data-utility.jar'
+        dest: /home/{{ user }}/datagen/mr-data-utility.jar
+        mode: 750
+        owner: '{{ user }}'
 
     - name: Copy over the data generator control file
       copy:
-        src: files/acid-gen1.yaml
-        dest: '/home/{{ user }}/datagen/support/acid-gen1.yaml'
+        src: files/acid_gen1.yaml
+        dest: /home/{{ user }}/datagen/acid_gen1.yaml
+        mode: 750
+        owner: '{{ user }}'
 
+    - name: Copy over the data generator script
+      copy:
+        src: files/acid_datagen.sh
+        dest: /home/{{ user }}/datagen/acid_datagen.sh
+        mode: 750
+        owner: '{{ user }}'
 
-    - name: Copy over the DDL scripts used to build the supporting tables for this exercise.
+    - name: Copy over the acid.ddl
       copy:
         src: files/acid.ddl
-        dest: '/home/{{ user }}/datagen/support/acid.ddl'
+        dest: /home/{{ user }}/datagen/acid.ddl
+        mode: 750
+        owner: '{{ user }}'
 
-    # - name: Run the data generator to create source files for this process.
-    #
-    # - name: Copy over the script used to move the generated files and build the process with the traditional append method.
+    - name: Copy over the acid_run
+      copy:
+        src: files/acid_run.sh
+        dest: /home/{{ user }}/datagen/acid_run.sh
+        mode: 750
+        owner: '{{ user }}'
+
+    - name: Copy over the acid_insert
+      copy:
+        src: files/acid_insert.sql
+        dest: /home/{{ user }}/datagen/acid_insert.sql
+        mode: 750
+        owner: '{{ user }}'
+
+    - name: Run the Acid Run script
+      shell: /home/{{ user }}/datagen/acid_run.sh -cfg acid_gen1.yaml -o /user/{{ user }}/datasets/external/acid_raw -m {{ gen_mappers }} -c {{ gen_count }} -i {{ acid_iterations }} --hive_user {{ hive_user }} --hive_user_pw {{ hive_user_pw }} --hive_connect_url {{ hive_connect_url }}
