@@ -65,3 +65,5 @@
 
     - name: Run the Acid Run script
       shell: /home/{{ user }}/datagen/acid_run.sh -cfg acid_gen1.yaml -o /user/{{ user }}/datasets/external/acid_raw -m {{ gen_mappers }} -c {{ gen_count }} -i {{ acid_iterations }} --hive_user {{ hive_user }} --hive_user_pw {{ hive_user_pw }} --hive_connect_url "{{ hive_connect_url }}"
+      become: true
+      become_user: '{{ user }}'
