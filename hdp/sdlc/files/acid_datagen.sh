@@ -53,7 +53,7 @@ done
 DATAGEN_JAR=${HOME}/datagen/mr-data-utility.jar
 
 # Clean up old dataset.
-hdfs dfs -rm -rf -skipTrash ${OUTPUT_DIR}
+hdfs dfs -rm -r -f -skipTrash ${OUTPUT_DIR}
 hdfs dfs -mkdir /user/${USER}/datagen
 hdfs dfs -put -f ${CONFIG} /user/${USER}/datagen/${CONFIG}
 
