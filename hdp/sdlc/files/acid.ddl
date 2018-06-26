@@ -4,19 +4,7 @@ drop table if exists raw_dataset;
 drop table if exists append_dataset;
 drop table if exists acid_dataset;
 
-/**
-- event_time
-- source_code
-- source_ip
-- direction
-- target_ip
-- offset
-- contrast
-- amount_due
-- past_due
-- interest
-**/
-create external table raw_dataset (
+create external table if not exists raw_dataset (
   event_time STRING,
   source_code STRING,
   source_ip STRING,
@@ -38,7 +26,7 @@ WITH SERDEPROPERTIES
 STORED AS TEXTFILE
 LOCATION "${OUTPUT_DIR}";
 
-create table raw_dataset (
+create table if not exists append_dataset (
   event_time TIMESTAMP,
   source_code BIGINT,
   source_ip STRING,
@@ -52,7 +40,7 @@ create table raw_dataset (
 )
 STORED AS ORC;
 
-create table acid_dataset (
+create table if not exists acid_dataset (
   event_time TIMESTAMP,
   source_code BIGINT,
   source_ip STRING,
