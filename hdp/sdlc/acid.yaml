@@ -25,42 +25,42 @@
       get_url:
         url: '{{ mr_data_util_bin }}'
         dest: /home/{{ user }}/datagen/mr-data-utility.jar
-        mode: 750
+        mode: 0750
         owner: '{{ user }}'
 
     - name: Copy over the data generator control file
       copy:
         src: files/acid_gen1.yaml
         dest: /home/{{ user }}/datagen/acid_gen1.yaml
-        mode: 750
+        mode: 0750
         owner: '{{ user }}'
 
     - name: Copy over the data generator script
       copy:
         src: files/acid_datagen.sh
         dest: /home/{{ user }}/datagen/acid_datagen.sh
-        mode: 750
+        mode: 0750
         owner: '{{ user }}'
 
     - name: Copy over the acid.ddl
       copy:
         src: files/acid.ddl
         dest: /home/{{ user }}/datagen/acid.ddl
-        mode: 750
+        mode: 0750
         owner: '{{ user }}'
 
     - name: Copy over the acid_run
       copy:
         src: files/acid_run.sh
         dest: /home/{{ user }}/datagen/acid_run.sh
-        mode: 750
+        mode: 0750
         owner: '{{ user }}'
 
     - name: Copy over the acid_insert
       copy:
         src: files/acid_insert.sql
         dest: /home/{{ user }}/datagen/acid_insert.sql
-        mode: 750
+        mode: 0750
         owner: '{{ user }}'
 
     - name: Run the Acid Run script
