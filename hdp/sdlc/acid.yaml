@@ -10,7 +10,7 @@
 
   tasks:
     - name: Create bin directory
-      shell: mkdir -p /home/{{ user }}/datagen
+      shell: mkdir -p /home/{{ user }}/datagen/support
       become: true
 
     - name: Set home permissions
@@ -26,9 +26,12 @@
         src: files/acid-gen1.yaml
         dest: '/home/{{ user }}/datagen/support/acid-gen1.yaml'
 
-    #
-    # - name: Copy over the DDL scripts used to build the supporting tables for this exercise.
-    #
+
+    - name: Copy over the DDL scripts used to build the supporting tables for this exercise.
+      copy:
+        src: files/acid.ddl
+        dest: '/home/{{ user }}/datagen/support/acid.ddl'
+
     # - name: Run the data generator to create source files for this process.
     #
     # - name: Copy over the script used to move the generated files and build the process with the traditional append method.
