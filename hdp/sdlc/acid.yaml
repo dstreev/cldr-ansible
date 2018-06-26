@@ -12,7 +12,7 @@
       become: true
 
     - name: Set home permissions
-      shell: chown -R {{ user }}:{{ user }} ansible_env.HOME
+      shell: chown -R ansible_env.USER:ansible_env.USER ansible_env.HOME
 
     - name: Copy over the library for the data generator
       get_url:
