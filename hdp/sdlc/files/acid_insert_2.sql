@@ -53,7 +53,7 @@ SELECT event_load_time,
 
 -- Build Merge Statement
 
-MERGE INTO merge_2_dataset PARTITION (part) AS T
+MERGE INTO merge_2_dataset AS T
 USING raw_2_dataset AS S ON
 T.event_load_time = S.event_load_time
 AND T.filename = S.filename
