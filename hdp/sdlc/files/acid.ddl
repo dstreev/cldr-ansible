@@ -54,4 +54,24 @@ create table if not exists acid_dataset (
 )
 CLUSTERED BY (source_ip) INTO 4 BUCKETS
 STORED AS ORC
-TBLPROPERTIES("transactional"="true");
+TBLPROPERTIES("transactional"="true",
+"compactorthreshold.hive.compactor.delta.num.threshold"="2",
+"compactorthreshold.hive.compactor.delta.pct.threshold"="0.2");
+
+create table if not exists merge_dataset (
+  event_time TIMESTAMP,
+  source_code BIGINT,
+  source_ip STRING,
+  direction STRING,
+  target_ip STRING,
+  offset STRING,
+  contract STRING,
+  amount_due DOUBLE,
+  past_due STRING,
+  interest DOUBLE
+)
+CLUSTERED BY (source_ip) INTO 4 BUCKETS
+STORED AS ORC
+TBLPROPERTIES("transactional"="true",
+"compactorthreshold.hive.compactor.delta.num.threshold"="2",
+"compactorthreshold.hive.compactor.delta.pct.threshold"="0.2");
