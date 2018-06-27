@@ -5,7 +5,7 @@ drop table if exists append_2_dataset;
 drop table if exists acid_2_dataset;
 drop table if exists merge_2_dataset;
 
-create external table if not exists raw_1_dataset (
+create external table if not exists raw_2_dataset (
   event_load_time STRING,
   filename STRING,
   id STRING,
@@ -40,7 +40,7 @@ WITH SERDEPROPERTIES
 STORED AS TEXTFILE
 LOCATION "${OUTPUT_DIR}";
 
-create table if not exists append_1_dataset (
+create table if not exists append_2_dataset (
   event_load_time TIMESTAMP,
   filename STRING,
   id BIGINT,
@@ -67,7 +67,7 @@ create table if not exists append_1_dataset (
 PARTITIONED BY (part STRING)
 STORED AS ORC;
 
-create table if not exists acid_1_dataset (
+create table if not exists acid_2_dataset (
   event_load_time TIMESTAMP,
   filename STRING,
   id BIGINT,
@@ -98,7 +98,7 @@ TBLPROPERTIES("transactional"="true",
 "compactorthreshold.hive.compactor.delta.num.threshold"="2",
 "compactorthreshold.hive.compactor.delta.pct.threshold"="0.2");
 
-create table if not exists merge_1_dataset (
+create table if not exists merge_2_dataset (
   event_load_time TIMESTAMP,
   filename STRING,
   id BIGINT,
