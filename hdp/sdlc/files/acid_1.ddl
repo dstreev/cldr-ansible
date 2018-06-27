@@ -1,10 +1,11 @@
 use acid_${HIVE_USER};
 
-drop table if exists raw_dataset;
-drop table if exists append_dataset;
-drop table if exists acid_dataset;
+drop table if exists raw_1_dataset;
+drop table if exists append_1_dataset;
+drop table if exists acid_1_dataset;
+drop table if exists merge_1_dataset;
 
-create external table if not exists raw_dataset (
+create external table if not exists raw_1_dataset (
   event_time STRING,
   source_code STRING,
   source_ip STRING,
@@ -26,7 +27,7 @@ WITH SERDEPROPERTIES
 STORED AS TEXTFILE
 LOCATION "${OUTPUT_DIR}";
 
-create table if not exists append_dataset (
+create table if not exists append_1_dataset (
   event_time TIMESTAMP,
   source_code BIGINT,
   source_ip STRING,
@@ -40,7 +41,7 @@ create table if not exists append_dataset (
 )
 STORED AS ORC;
 
-create table if not exists acid_dataset (
+create table if not exists acid_1_dataset (
   event_time TIMESTAMP,
   source_code BIGINT,
   source_ip STRING,
@@ -58,7 +59,7 @@ TBLPROPERTIES("transactional"="true",
 "compactorthreshold.hive.compactor.delta.num.threshold"="2",
 "compactorthreshold.hive.compactor.delta.pct.threshold"="0.2");
 
-create table if not exists merge_dataset (
+create table if not exists merge_1_dataset (
   event_time TIMESTAMP,
   source_code BIGINT,
   source_ip STRING,

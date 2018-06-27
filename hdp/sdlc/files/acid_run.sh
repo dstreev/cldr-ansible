@@ -69,6 +69,26 @@ while [ $# -gt 0 ]; do
       export HIVE_URL=$1
       shift
       ;;
+    --set)
+      shift
+      export SET=$1
+      shift
+      ;;
+    -s)
+      shift
+      export SET=$1
+      shift
+      ;;
+    --part)
+      shift
+      export PART=$1
+      shift
+      ;;
+    -p)
+      shift
+      export PART=$1
+      shift
+      ;;
     *)
       break
       ;;
@@ -80,13 +100,13 @@ sleep 15s
 # Delete Gen Output directory.
 hdfs dfs -rm -r -f -skipTrash ${OUTPUT_DIR}
 
-hdfs dfs -mkdir -p ${OUTPUT_DIR}/../archive
+hdfs dfs -mkdir -p ${OUTPUT_DIR}/../archive_${SET}
 # Create Database.
 # /usr/bin/beeline -u "${HIVE_URL}" -n ${HIVE_USER} -p ${HIVE_USER_PW} -e 'CREATE DATABASE IF NOT EXISTS acid_${HIVE_USER}'
 /usr/bin/beeline -u "${HIVE_URL}" -n hive -p ${HIVE_USER_PW} --hivevar HIVE_USER=${HIVE_USER} -e 'CREATE DATABASE IF NOT EXISTS acid_${HIVE_USER}'
 
 # Run DDL to gen tables for effort.
-/usr/bin/beeline -u "${HIVE_URL}" -n ${HIVE_USER} -p ${HIVE_USER_PW} --hivevar HIVE_USER=${HIVE_USER} --hivevar OUTPUT_DIR=${OUTPUT_DIR} -f acid.ddl
+/usr/bin/beeline -u "${HIVE_URL}" -n ${HIVE_USER} -p ${HIVE_USER_PW} --hivevar HIVE_USER=${HIVE_USER} --hivevar OUTPUT_DIR=${OUTPUT_DIR} -f acid_${SET}.ddl
 
 
 for i in $(seq 1 ${ITERATIONS}); do
@@ -94,9 +114,9 @@ for i in $(seq 1 ${ITERATIONS}); do
   ./acid_datagen.sh -cfg ${CONFIG} -m ${MAPPERS} -c ${COUNT} -o ${OUTPUT_DIR}
 
   # Run Append SQL
-  /usr/bin/beeline -u "${HIVE_URL}" -n ${HIVE_USER} -p ${HIVE_USER_PW} --hivevar HIVE_USER=${HIVE_USER} -f acid_insert.sql
+  /usr/bin/beeline -u "${HIVE_URL}" -n ${HIVE_USER} -p ${HIVE_USER_PW} --hivevar HIVE_USER=${HIVE_USER} --hivevar PART=${PART} -f acid_insert_${SET}.sql
 
   # Sweep Source to Archive directory
-  hdfs dfs -mv ${OUTPUT_DIR} ${OUTPUT_DIR}/../archive/`date +%Y%m%d_%H%M%S`
+  hdfs dfs -mv ${OUTPUT_DIR} ${OUTPUT_DIR}/../archive_${SET}/`date +%Y%m%d_%H%M%S`
 
 done

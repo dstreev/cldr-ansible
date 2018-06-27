@@ -1,16 +1,16 @@
 USE acid_${HIVE_USER};
 
 
-FROM raw_dataset
-INSERT INTO acid_dataset
+FROM raw_1_dataset
+INSERT INTO acid_1_dataset
 SELECT *
-INSERT INTO append_dataset
+INSERT INTO append_1_dataset
 SELECT *;
 
 -- Build Merge Statement
 
-MERGE INTO merge_dataset AS T
-USING raw_dataset AS S
+MERGE INTO merge_1_dataset AS T
+USING raw_1_dataset AS S
 ON T.event_time = S.event_time
 AND T.source_ip = S.source_ip
 WHEN NOT MATCHED THEN

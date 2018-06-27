@@ -4,10 +4,10 @@
 
 - hosts: sdlc
   vars:
-    mr_data_util_bin: https://github.com/dstreev/iot-data-utility/releases/download/untagged-f3cc6cbacd1ffdb48d29/mr-data-utility-3.0-SNAPSHOT-shaded.jar
+    mr_data_util_bin: https://github.com/dstreev/iot-data-utility/releases/download/untagged-247350a59195d447003c/mr-data-utility-3.0-SNAPSHOT-shaded.jar
     gen_mappers: 4
-    gen_count: 10000000
-    acid_iterations: 10
+    gen_count: 1000000
+    acid_iterations: 20
     hive_connect_url: jdbc:hive2://{{ zk_host }}:{{ zk_port }}/;serviceDiscoveryMode=zooKeeper;zooKeeperNamespace={{ hs2_zk_path }}
 
   become: true
@@ -30,8 +30,8 @@
 
     - name: Copy over the data generator control file
       copy:
-        src: files/acid_gen1.yaml
-        dest: /home/{{ user }}/datagen/acid_gen1.yaml
+        src: files/acid_gen_{{ set }}.yaml
+        dest: /home/{{ user }}/datagen/acid_gen_{{ set }}.yaml
         mode: 0750
         owner: '{{ user }}'
 
@@ -44,8 +44,8 @@
 
     - name: Copy over the acid.ddl
       copy:
-        src: files/acid.ddl
-        dest: /home/{{ user }}/datagen/acid.ddl
+        src: files/acid_{{ set }}.ddl
+        dest: /home/{{ user }}/datagen/acid_{{ set }}.ddl
         mode: 0750
         owner: '{{ user }}'
 
@@ -58,8 +58,8 @@
 
     - name: Copy over the acid_insert
       copy:
-        src: files/acid_insert.sql
-        dest: /home/{{ user }}/datagen/acid_insert.sql
+        src: files/acid_insert_{{ set }}.sql
+        dest: /home/{{ user }}/datagen/acid_insert_{{ set }}.sql
         mode: 0750
         owner: '{{ user }}'
 
@@ -139,12 +139,13 @@
         user:                  '{{ ranger_admin_user }}'
         password:              '{{ ranger_admin_password }}'
         force_basic_auth:      yes
+        status_code:           200
         headers:
           Content-Type:        "application/json; charset=utf8"
           X-XSRF-HEADER:       "valid"
           User-Agent:          "Ansible HDP Best Practices"
 
     - name: Run the Acid Run script
-      shell: /home/{{ user }}/datagen/acid_run.sh -cfg acid_gen1.yaml -o /user/{{ user }}/datasets/external/acid_raw -m {{ gen_mappers }} -c {{ gen_count }} -i {{ acid_iterations }} --hive_user {{ hive_user }} --hive_user_pw {{ hive_user_pw }} --hive_connect_url "{{ hive_connect_url }}"
+      shell: /home/{{ user }}/datagen/acid_run.sh -cfg acid_gen_{{ set }}.yaml -o /user/{{ user }}/datasets/external/acid_raw -m {{ gen_mappers }} -c {{ gen_count }} -i {{ acid_iterations }} -s {{ set }} --hive_user {{ hive_user }} --hive_user_pw {{ hive_user_pw }} --hive_connect_url "{{ hive_connect_url }}"
       become: true
       become_user: '{{ user }}'
