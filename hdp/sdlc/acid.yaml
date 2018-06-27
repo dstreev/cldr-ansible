@@ -8,6 +8,10 @@
     gen_mappers: 4
     gen_count: 1000000
     acid_iterations: 20
+    # Controls which scenario we're running
+    set: 1
+    # When a partition is a part of the scenario, this declares which one to process.
+    part: 10
     hive_connect_url: jdbc:hive2://{{ zk_host }}:{{ zk_port }}/;serviceDiscoveryMode=zooKeeper;zooKeeperNamespace={{ hs2_zk_path }}
 
   become: true
@@ -139,6 +143,8 @@
         user:                  '{{ ranger_admin_user }}'
         password:              '{{ ranger_admin_password }}'
         force_basic_auth:      yes
+        # Added 400 Status Code. If policy exists, this return code is given.
+        # Inclusion here makes it an acceptable return.
         status_code:           200,400
         headers:
           Content-Type:        "application/json; charset=utf8"
@@ -146,6 +152,6 @@
           User-Agent:          "Ansible HDP Best Practices"
 
     - name: Run the Acid Run script
-      shell: /home/{{ user }}/datagen/acid_run.sh -cfg acid_gen_{{ set }}.yaml -o /user/{{ user }}/datasets/external/acid_raw -m {{ gen_mappers }} -c {{ gen_count }} -i {{ acid_iterations }} -s {{ set }} --hive_user {{ hive_user }} --hive_user_pw {{ hive_user_pw }} --hive_connect_url "{{ hive_connect_url }}"
+      shell: /home/{{ user }}/datagen/acid_run.sh -cfg acid_gen_{{ set }}.yaml -o /user/{{ user }}/datasets/external/acid_raw -m {{ gen_mappers }} -c {{ gen_count }} -i {{ acid_iterations }} -s {{ set }} -p {{ part }} --hive_user {{ hive_user }} --hive_user_pw {{ hive_user_pw }} --hive_connect_url "{{ hive_connect_url }}"
       become: true
       become_user: '{{ user }}'
