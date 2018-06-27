@@ -29,7 +29,6 @@ create external table if not exists raw_2_dataset (
   i01 STRING,
   i02 STRING
 )
-PARTITIONED BY (part STRING)
 ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
 WITH SERDEPROPERTIES
 (
