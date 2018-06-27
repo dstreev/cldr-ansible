@@ -15,7 +15,7 @@ ON T.event_time = S.event_time
 AND T.source_ip = S.source_ip
 WHEN NOT MATCHED THEN
 INSERT VALUES
-  (S.event_date,
+  (S.event_time,
     S.source_code,
     S.source_ip,
     S.direction,
