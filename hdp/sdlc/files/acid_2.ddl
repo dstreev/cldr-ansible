@@ -15,7 +15,7 @@ create external table if not exists raw_2_dataset (
   event_real_stop STRING,
   event_planned_start STRING,
   event_planned_stop STRING,
-  total_event_duration STRING
+  total_event_duration STRING,
   event_comment STRING,
   cell_id STRING,
   cell_site STRING,
@@ -50,7 +50,7 @@ create table if not exists append_2_dataset (
   event_real_stop TIMESTAMP,
   event_planned_start TIMESTAMP,
   event_planned_stop TIMESTAMP,
-  total_event_duration BIGINT
+  total_event_duration BIGINT,
   event_comment STRING,
   cell_id BIGINT,
   cell_site STRING,
@@ -77,7 +77,7 @@ create table if not exists acid_2_dataset (
   event_real_stop TIMESTAMP,
   event_planned_start TIMESTAMP,
   event_planned_stop TIMESTAMP,
-  total_event_duration BIGINT
+  total_event_duration BIGINT,
   event_comment STRING,
   cell_id BIGINT,
   cell_site STRING,
@@ -108,7 +108,7 @@ create table if not exists merge_2_dataset (
   event_real_stop TIMESTAMP,
   event_planned_start TIMESTAMP,
   event_planned_stop TIMESTAMP,
-  total_event_duration BIGINT
+  total_event_duration BIGINT,
   event_comment STRING,
   cell_id BIGINT,
   cell_site STRING,
