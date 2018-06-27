@@ -92,7 +92,7 @@ fields:
     name: "event_comment"
     range:
       min: 10
-      max: 1000
+      max: 150
   -
     type: "int"
     name: "cell_id"
