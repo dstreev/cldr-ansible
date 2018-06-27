@@ -19,7 +19,7 @@
 
   tasks:
     - name: Create bin directory
-      shell: mkdir -p /home/{{ user }}/datagen/support
+      shell: mkdir -p /home/{{ user }}/datagen
       become: true
 
     - name: Set Local home permissions
