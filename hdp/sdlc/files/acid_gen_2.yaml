@@ -152,7 +152,7 @@ fields:
       max: 20
   -
     type: "string"
-    name: "i01"
+    name: "i02"
     range:
       min: 20
       max: 20
