@@ -151,7 +151,34 @@
           X-XSRF-HEADER:       "valid"
           User-Agent:          "Ansible HDP Best Practices"
 
-    - name: Run the Acid Run script
-      shell: /home/{{ user }}/datagen/acid_run.sh -cfg acid_gen_{{ set }}.yaml -o /user/{{ user }}/datasets/external/acid_raw -m {{ gen_mappers }} -c {{ gen_count }} -i {{ acid_iterations }} -s {{ set }} -p {{ part }} --hive_user {{ hive_user }} --hive_user_pw {{ hive_user_pw }} --hive_connect_url "{{ hive_connect_url }}"
+    - name: Run the Acid Init script
+      shell: /home/{{ user }}/datagen/acid_init.sh -cfg acid_gen_{{ set }}.yaml -o /user/{{ user }}/datasets/external/acid_raw -m {{ gen_mappers }} -c {{ gen_count }} -i {{ acid_iterations }} -s {{ set }} -p {{ part }} --hive_user {{ hive_user }} --hive_user_pw {{ hive_user_pw }} --hive_connect_url "{{ hive_connect_url }}"
       become: true
       become_user: '{{ user }}'
+
+    - name: Run the Acid Run script
+      shell: /home/{{ user }}/datagen/acid_run.sh -cfg acid_gen_{{ set }}.yaml -o /user/{{ user }}/datasets/external/acid_raw -m {{ gen_mappers }} -c {{ gen_count }} -i {{ acid_iterations }} -s {{ set }} -p {{ item }} --hive_user {{ hive_user }} --hive_user_pw {{ hive_user_pw }} --hive_connect_url "{{ hive_connect_url }}"
+      become: true
+      become_user: '{{ user }}'
+      loop:
+        - 10
+        - 11
+        - 12
+        - 13
+        - 14
+        - 15
+        - 16
+        - 17
+        - 18
+        - 19
+        - 20
+        - 21
+        - 22
+        - 23
+        - 24
+        - 25
+        - 26
+        - 27
+        - 28
+        - 29
+        - 30
