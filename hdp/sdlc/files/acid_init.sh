@@ -94,6 +94,7 @@ while [ $# -gt 0 ]; do
       ;;
   esac
 done
+
 # Add pause to allow a chance for HS2 to register new hive permissions for user.
 sleep 15s
 

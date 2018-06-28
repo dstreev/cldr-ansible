@@ -53,6 +53,13 @@
         mode: 0750
         owner: '{{ user }}'
 
+    - name: Copy over the acid_init
+      copy:
+        src: files/acid_init.sh
+        dest: /home/{{ user }}/datagen/acid_init.sh
+        mode: 0750
+        owner: '{{ user }}'
+
     - name: Copy over the acid_run
       copy:
         src: files/acid_run.sh
