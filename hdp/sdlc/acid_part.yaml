@@ -60,7 +60,7 @@
         mode: 0750
         owner: '{{ user }}'
 
-    - name: Copy over the acid_run
+    - name: Copy over the acid_part
       copy:
         src: files/acid_part.sh
         dest: /home/{{ user }}/datagen/acid_part.sh
