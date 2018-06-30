@@ -44,6 +44,16 @@ while [ $# -gt 0 ]; do
       export COUNT=$1
       shift
       ;;
+    --iterations)
+      shift
+      export ITERATIONS=$1
+      shift
+      ;;
+    -i)
+      shift
+      export ITERATIONS=$1
+      shift
+      ;;
     --hive_user)
       shift
       export HIVE_USER=$1
@@ -75,16 +85,11 @@ while [ $# -gt 0 ]; do
   esac
 done
 
-# Add pause to allow a chance for HS2 to register new hive permissions for user.
-sleep 15s
+  # Gen Output Data from Generator.
+  ./acid_datagen.sh -cfg ${CONFIG} -m ${MAPPERS} -c ${COUNT} -o ${OUTPUT_DIR}
 
-# Delete Gen Output directory.
-hdfs dfs -rm -r -f -skipTrash ${OUTPUT_DIR}
+  # Run Append SQL
+  /usr/bin/beeline -u "${HIVE_URL}" -n ${HIVE_USER} -p ${HIVE_USER_PW} --hivevar HIVE_USER=${HIVE_USER} --hivevar PART=${PART} -f acid_scenario_${SET}.sql
 
-hdfs dfs -mkdir -p ${OUTPUT_DIR}/../archive_${SET}
-# Create Database.
-# /usr/bin/beeline -u "${HIVE_URL}" -n ${HIVE_USER} -p ${HIVE_USER_PW} -e 'CREATE DATABASE IF NOT EXISTS acid_${HIVE_USER}'
-/usr/bin/beeline -u "${HIVE_URL}" -n hive -p ${HIVE_USER_PW} --hivevar HIVE_USER=${HIVE_USER} -e 'CREATE DATABASE IF NOT EXISTS acid_${HIVE_USER}'
-
-# Run DDL to gen tables for effort.
-/usr/bin/beeline -u "${HIVE_URL}" -n ${HIVE_USER} -p ${HIVE_USER_PW} --hivevar HIVE_USER=${HIVE_USER} --hivevar OUTPUT_DIR=${OUTPUT_DIR} -f acid_${SET}.ddl
+  # Sweep Source to Archive directory
+  hdfs dfs -mv ${OUTPUT_DIR} ${OUTPUT_DIR}/../archive_${SET}/`date +%Y%m%d_%H%M%S`

@@ -1,0 +1,160 @@
+title: "CDC Records"
+description: "An incrementing time series dataset"
+output:
+  delimiter: ","
+  format: "CSV"
+controlField: "event_load_time"
+order:
+  - event_load_time
+  - filename
+  - id
+  - status
+  - status_comment
+  - event_real.start
+  - event_real.stop
+  - event_planned.start
+  - event_planned.stop
+  - total_event_duration
+  - event_comment
+  - cell_id
+  - cell_site
+  - cell_node
+  - equipment_name
+  - cell_terminate
+  - terminate.start
+  - terminate.stop
+  - terminate_duration
+  - terminate_state
+  - i01
+  - i02
+
+fields:
+  -
+    type: "date"
+    name: "event_load_time"
+    format: "yyyy-MM-dd HH:mm:ss"
+    increment: true
+    diff: 1000
+    range:
+      min: "2018-05-01T00:00:00"
+      max: "2018-07-01T00:00:00"
+  -
+    type: "string"
+    name: "filename"
+    range:
+      min: 16
+      max: 25
+    pool:
+      size: 1000
+  -
+    type: "int"
+    name: "id"
+    range:
+      min: 100
+      max: 200
+  -
+    type: "string"
+    name: "status"
+    pool:
+      items:
+        - STARTED
+        - ENDED
+        - PLANNED
+        - STOPPED
+        - ABORTED
+        - CANCELED
+  -
+    type: "string"
+    name: "status_comment"
+    range:
+      min: 20
+      max: 50
+  -
+    type: "date"
+    name: "event_real"
+    format: "yyyy-MM-dd HH:mm:ss"
+    range:
+      min: "2018-05-02T00:00:00"
+      max: "2018-10-31T00:00:00"
+  -
+    type: "date"
+    name: "event_planned"
+    format: "yyyy-MM-dd HH:mm:ss"
+    range:
+      min: "2018-05-02T00:00:00"
+      max: "2018-10-31T00:00:00"
+  -
+    type: "long"
+    name: "total_event_duration"
+    range:
+      min: 1000000000
+      max: 9999999999
+  -
+    type: "string"
+    name: "event_comment"
+    range:
+      min: 10
+      max: 150
+  -
+    type: "int"
+    name: "cell_id"
+    range:
+      min: 200
+      max: 3000
+  -
+    type: "string"
+    name: "cell_site"
+    range:
+      min: 7
+      max: 25
+  -
+    type: "string"
+    name: "cell_node"
+    range:
+      min: 14
+      max: 14
+  -
+    type: "string"
+    name: "equipment_name"
+    range:
+      min: 20
+      max: 30
+  -
+    type: "int"
+    name: "cell_terminate"
+    range:
+      min: 10
+      max: 4000
+  -
+    type: "date"
+    name: "terminate"
+    format: "yyyy-MM-dd"
+    range:
+      min: "2018-05-01"
+      max: "2018-10-31"
+  -
+    type: "long"
+    name: "terminate_duration"
+    range:
+      min: 300000
+      max: 10000000
+  -
+    type: "string"
+    name: "terminate_state"
+    range:
+      min: 10
+      max: 10
+    pool:
+      size: 50
+  -
+    type: "string"
+    name: "i01"
+    range:
+      min: 20
+      max: 20
+  -
+    type: "string"
+    name: "i02"
+    range:
+      min: 20
+      max: 20

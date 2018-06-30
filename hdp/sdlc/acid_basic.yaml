@@ -4,14 +4,13 @@
 
 - hosts: sdlc
   vars:
-    mr_data_util_bin: https://github.com/dstreev/iot-data-utility/releases/download/untagged-247350a59195d447003c/mr-data-utility-3.0-SNAPSHOT-shaded.jar
-    gen_mappers: 4
-    gen_count: 1000000
-    acid_iterations: 20
+    mr_data_util_bin: https://github.com/dstreev/iot-data-utility/releases/download/R3.0_beta3/mr-data-utility-3.0-SNAPSHOT-shaded.jar
+    gen_mappers: 2
+    # This need to be 2x higher than the possible
+    # terminate control output for the range specified.
+    gen_count: 100000000
     # Controls which scenario we're running
-    set: 1
-    # When a partition is a part of the scenario, this declares which one to process.
-    part: 10
+    set: 3
     hive_connect_url: jdbc:hive2://{{ zk_host }}:{{ zk_port }}/;serviceDiscoveryMode=zooKeeper;zooKeeperNamespace={{ hs2_zk_path }}
 
   become: true
@@ -159,33 +158,11 @@
           User-Agent:          "Ansible HDP Best Practices"
 
     - name: Run the Acid Init script
-      shell: /home/{{ user }}/datagen/acid_init.sh -cfg acid_gen_{{ set }}.yaml -o /user/{{ user }}/datasets/external/acid_raw -m {{ gen_mappers }} -c {{ gen_count }} -i {{ acid_iterations }} -s {{ set }} -p {{ part }} --hive_user {{ hive_user }} --hive_user_pw {{ hive_user_pw }} --hive_connect_url "{{ hive_connect_url }}"
+      shell: /home/{{ user }}/datagen/acid_init.sh -cfg acid_gen_{{ set }}.yaml -o /user/{{ user }}/datasets/external/acid_raw -m {{ gen_mappers }} -c {{ gen_count }} -s {{ set }} --hive_user {{ hive_user }} --hive_user_pw {{ hive_user_pw }} --hive_connect_url "{{ hive_connect_url }}"
       become: true
       become_user: '{{ user }}'
 
-    - name: Run the Acid Run script
-      shell: /home/{{ user }}/datagen/acid_run.sh -cfg acid_gen_{{ set }}.yaml -o /user/{{ user }}/datasets/external/acid_raw -m {{ gen_mappers }} -c {{ gen_count }} -i {{ acid_iterations }} -s {{ set }} -p {{ item }} --hive_user {{ hive_user }} --hive_user_pw {{ hive_user_pw }} --hive_connect_url "{{ hive_connect_url }}"
+    - name: Run the Acid Run Basic script
+      shell: /home/{{ user }}/datagen/acid_basic.sh -cfg acid_gen_{{ set }}.yaml -o /user/{{ user }}/datasets/external/acid_raw -m {{ gen_mappers }} -c {{ gen_count }} -i {{ acid_iterations }} -s {{ set }} --hive_user {{ hive_user }} --hive_user_pw {{ hive_user_pw }} --hive_connect_url "{{ hive_connect_url }}"
       become: true
       become_user: '{{ user }}'
-      loop:
-        - 10
-        - 11
-        - 12
-        - 13
-        - 14
-        - 15
-        - 16
-        - 17
-        - 18
-        - 19
-        - 20
-        - 21
-        - 22
-        - 23
-        - 24
-        - 25
-        - 26
-        - 27
-        - 28
-        - 29
-        - 30
