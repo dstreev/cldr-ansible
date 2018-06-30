@@ -35,7 +35,8 @@ SELECT event_load_time,
 -- From Y-M-D to Y-M (30:1 reduction)
 
 FROM acid_3_ym_dataset
-INSERT INTO acid_3_ymd_dataset (YEAR,MONTH)
+INSERT INTO acid_3_ymd_dataset PARTITION (YEAR,
+                                          MONTH)
 SELECT event_load_time,
        filename,
        id,

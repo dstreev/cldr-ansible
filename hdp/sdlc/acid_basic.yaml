@@ -5,10 +5,10 @@
 - hosts: sdlc
   vars:
     mr_data_util_bin: https://github.com/dstreev/iot-data-utility/releases/download/R3.0_beta3/mr-data-utility-3.0-SNAPSHOT-shaded.jar
-    gen_mappers: 2
+    gen_mappers: 20
     # This need to be 2x higher than the possible
     # terminate control output for the range specified.
-    gen_count: 100000000
+    gen_count: 10000000
     # Controls which scenario we're running
     set: 3
     hive_connect_url: jdbc:hive2://{{ zk_host }}:{{ zk_port }}/;serviceDiscoveryMode=zooKeeper;zooKeeperNamespace={{ hs2_zk_path }}
