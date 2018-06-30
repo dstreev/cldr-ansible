@@ -60,5 +60,4 @@ SELECT event_load_time,
        i01,
        i02,
        `year`,
-       `month`,
-       `day`;
+       `month`;
