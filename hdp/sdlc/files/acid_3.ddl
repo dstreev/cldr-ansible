@@ -93,7 +93,7 @@ create table if not exists acid_3_ym_dataset (
   i01 STRING,
   i02 STRING
 )
-PARTITIONED BY (year int,month int)
+PARTITIONED BY (year int, month int)
 CLUSTERED BY (cell_id) INTO 2 BUCKETS
 STORED AS ORC
 TBLPROPERTIES("transactional"="true",

@@ -1,133 +1,150 @@
 # HDP Environment 01 Servers
 all:
   vars:
-    ambari_version:                             AMBARI_VERSION
-    hdp_version:                                HDP_VERSION
-    env_set:                                    full
-    image_tag:                                  IMAGE_TAG
-    env_instance:                               'ENV_INSTANCE'
-    cluster_name:                               DKENV_INSTANCE
-    db_type:                                    mysql
-    db_host:                                    db.home
-    db_user:                                    root
-    db_password:                                hortonworks
-    db_ambari_name:                             ambari_ENV_INSTANCE
-    db_hive_name:                               hive_ENV_INSTANCE
-    db_oozie_name:                              oozie_ENV_INSTANCE
-    db_ranger_name:                             ranger_ENV_INSTANCE
-    db_ranger_kms_name:                         rangerkms_ENV_INSTANCE
-    db_druid_name:                              druid_ENV_INSTANCE
-    db_superset_name:                           superset_ENV_INSTANCE
-    db_registry_name:                           registry_ENV_INSTANCE
+    ambari_version:                    AMBARI_VERSION
+    hdp_version:                       HDP_VERSION
+    env_set:                           full
+    image_tag:                         IMAGE_TAG
+    env_instance:                      'ENV_INSTANCE'
+    cluster_name:                      DKENV_INSTANCE
+    db_type:                           mysql
+    db_host:                           db.home
+    db_user:                           root
+    db_password:                       hortonworks
+    db_ambari_name:                    ambari_ENV_INSTANCE
+    db_hive_name:                      hive_ENV_INSTANCE
+    db_oozie_name:                     oozie_ENV_INSTANCE
+    db_ranger_name:                    ranger_ENV_INSTANCE
+    db_ranger_kms_name:                rangerkms_ENV_INSTANCE
+    db_druid_name:                     druid_ENV_INSTANCE
+    db_superset_name:                  superset_ENV_INSTANCE
+    db_registry_name:                  registry_ENV_INSTANCE
 
   children:
     hdp:
       vars:
-        ambari_server:                          hdp-os01-ENV_INSTANCE.home
-        zookeeper_server:                       hdp-os03-ENV_INSTANCE.home
-        repo_server:                            repo.home
+        ambari_server:                 hdp-os01-ENV_INSTANCE.home
+        zookeeper_server:              hdp-os03-ENV_INSTANCE.home
+        repo_server:                   repo.home
 
       hosts:
         os6.docker:
-          ansible_host:                         dos06
-          ansible_port:                         220ENV_INSTANCE
-          ansible_user:                         root
-          # ansible_ssh_private_key_file:         HOME_DIR/.ssh/id_rsa_docker
+          ansible_host:                dos06
+          ansible_port:                220ENV_INSTANCE
+          ansible_user:                root
+          # ansible_ssh_private_key_file: HOME_DIR/.ssh/id_rsa_docker
         os7.core:
-          ansible_host:                         dos07
-          ansible_port:                         220ENV_INSTANCE
-          ansible_user:                         root
-          # ansible_ssh_private_key_file:         HOME_DIR/.ssh/id_rsa_docker
+          ansible_host:                dos07
+          ansible_port:                220ENV_INSTANCE
+          ansible_user:                root
+          # ansible_ssh_private_key_file: HOME_DIR/.ssh/id_rsa_docker
         os10.core:
-          ansible_host:                         dos10
-          ansible_port:                         220ENV_INSTANCE
-          ansible_user:                         root
-          # ansible_ssh_private_key_file:         HOME_DIR/.ssh/id_rsa_docker
+          ansible_host:                dos10
+          ansible_port:                220ENV_INSTANCE
+          ansible_user:                root
+          # ansible_ssh_private_key_file: HOME_DIR/.ssh/id_rsa_docker
         os11.core:
-          ansible_host:                         dos11
-          ansible_port:                         220ENV_INSTANCE
-          ansible_user:                         root
-          # ansible_ssh_private_key_file:         HOME_DIR/.ssh/id_rsa_docker
+          ansible_host:                dos11
+          ansible_port:                220ENV_INSTANCE
+          ansible_user:                root
+          # ansible_ssh_private_key_file: HOME_DIR/.ssh/id_rsa_docker
         os12.core:
-          ansible_host:                         dos12
-          ansible_port:                         220ENV_INSTANCE
-          ansible_user:                         root
-          # ansible_ssh_private_key_file:         HOME_DIR/.ssh/id_rsa_docker
+          ansible_host:                dos12
+          ansible_port:                220ENV_INSTANCE
+          ansible_user:                root
+          # ansible_ssh_private_key_file: HOME_DIR/.ssh/id_rsa_docker
         os13.core:
-          ansible_host:                         dos13
-          ansible_port:                         220ENV_INSTANCE
-          ansible_user:                         root
-          # ansible_ssh_private_key_file:         HOME_DIR/.ssh/id_rsa_docker
+          ansible_host:                dos13
+          ansible_port:                220ENV_INSTANCE
+          ansible_user:                root
+          # ansible_ssh_private_key_file: HOME_DIR/.ssh/id_rsa_docker
         os14.core:
-          ansible_host:                         dos14
-          ansible_port:                         220ENV_INSTANCE
-          ansible_user:                         root
-          # ansible_ssh_private_key_file:         HOME_DIR/.ssh/id_rsa_docker
+          ansible_host:                dos14
+          ansible_port:                220ENV_INSTANCE
+          ansible_user:                root
+          # ansible_ssh_private_key_file: HOME_DIR/.ssh/id_rsa_docker
         os15.core:
-          ansible_host:                         dos15
-          ansible_port:                         220ENV_INSTANCE
-          ansible_user:                         root
-          # ansible_ssh_private_key_file:         HOME_DIR/.ssh/id_rsa_docker
+          ansible_host:                dos15
+          ansible_port:                220ENV_INSTANCE
+          ansible_user:                root
+          # ansible_ssh_private_key_file: HOME_DIR/.ssh/id_rsa_docker
         os16.core:
-          ansible_host:                         dos16
-          ansible_port:                         220ENV_INSTANCE
-          ansible_user:                         root
-          # ansible_ssh_private_key_file:         HOME_DIRv/.ssh/id_rsa_docker
+          ansible_host:                dos16
+          ansible_port:                220ENV_INSTANCE
+          ansible_user:                root
+          # ansible_ssh_private_key_file: HOME_DIRv/.ssh/id_rsa_docker
         os17.core:
-          ansible_host:                         dos17
-          ansible_port:                         220ENV_INSTANCE
-          ansible_user:                         root
-          # ansible_ssh_private_key_file:         HOME_DIR/.ssh/id_rsa_docker
+          ansible_host:                dos17
+          ansible_port:                220ENV_INSTANCE
+          ansible_user:                root
+          # ansible_ssh_private_key_file: HOME_DIR/.ssh/id_rsa_docker
         os18.core:
-          ansible_host:                         dos18
-          ansible_port:                         220ENV_INSTANCE
-          ansible_user:                         root
-          # ansible_ssh_private_key_file:         HOME_DIR/.ssh/id_rsa_docker
+          ansible_host:                dos18
+          ansible_port:                220ENV_INSTANCE
+          ansible_user:                root
+          # ansible_ssh_private_key_file: HOME_DIR/.ssh/id_rsa_docker
         os19.core:
-          ansible_host:                         dos19
-          ansible_port:                         220ENV_INSTANCE
-          ansible_user:                         root
-          # ansible_ssh_private_key_file:         HOME_DIR/.ssh/id_rsa_docker
+          ansible_host:                dos19
+          ansible_port:                220ENV_INSTANCE
+          ansible_user:                root
+          # ansible_ssh_private_key_file: HOME_DIR/.ssh/id_rsa_docker
 
       children:
         edge:
           hosts:
             edge1.core:
-              ansible_host:                     dos02
-              ansible_port:                     220ENV_INSTANCE
-              ansible_user:                     root
-              # ansible_ssh_private_key_file:     HOME_DIR/.ssh/id_rsa_docker
+              ansible_host:            dos02
+              ansible_port:            220ENV_INSTANCE
+              ansible_user:            root
+              # ansible_ssh_private_key_file: HOME_DIR/.ssh/id_rsa_docker
             edge2.core:
-              ansible_host:                     dos03
-              ansible_port:                     220ENV_INSTANCE
-              ansible_user:                     root
-              # ansible_ssh_private_key_file:     HOME_DIR/.ssh/id_rsa_docker
+              ansible_host:            dos03
+              ansible_port:            220ENV_INSTANCE
+              ansible_user:            root
+              # ansible_ssh_private_key_file: HOME_DIR/.ssh/id_rsa_docker
             edge4.core:
-              ansible_host:                     dos05
-              ansible_port:                     220ENV_INSTANCE
-              ansible_user:                     root
-              # ansible_ssh_private_key_file:     HOME_DIR/.ssh/id_rsa_docker
+              ansible_host:            dos05
+              ansible_port:            220ENV_INSTANCE
+              ansible_user:            root
+              # ansible_ssh_private_key_file: HOME_DIR/.ssh/id_rsa_docker
           children:
             sdlc:
               vars:
-                smoke_tgs_size:                 1Gb
-                smoke_tgs_mappers:              4
-                smoke_tgs_reducers:             4
-                tpcds_size:                     50
-                ranger_url_base:                NEEDS_TO_BE_SET
-                ranger_admin_user:              admin
-                ranger_admin_password:          admin
+                smoke_tgs_size:        1Gb
+                smoke_tgs_mappers:     4
+                smoke_tgs_reducers:    4
+                tpcds_size:            50
+                ranger_url_base:       NEEDS_TO_BE_SET
+                ranger_admin_user:     admin
+                ranger_admin_password: admin
               hosts:
                 sdlc.core:
-                  ansible_host:                 dos04
-                  ansible_port:                 220ENV_INSTANCE
-                  ansible_user:                 root
+                  ansible_host:        dos04
+                  ansible_port:        220ENV_INSTANCE
+                  ansible_user:        root
                   # ansible_ssh_private_key_file: HOME_DIR/.ssh/id_rsa_docker
 
         ambari:
+          vars:
+            ambari_url_base:           http://localhost:8080
+            ambari_admin_user :        AMBARI_ADMIN_USER
+            ambari_admin_password:     AMBARI_ADMIN_PASSWORD
+            hdp_stack:                 HDP_STACK
+            hdp_stack_version:         HDP_STACK_VERSION
+
+            hdp_repo_id:               HDP_REPO_ID
+            hdp_utils_repo_id:         HDP_UTILS_REPO_ID
+            hdp_gpl_repo_id:           HDP_GPL_REPO_ID
+            blueprint:                 BLUEPRINT
+            os_type:                   OS_TYPE
+
+            hdp_repo_url:              HDP_REPO_URL
+            hdp_util_repo_url:         HDP_UTIL_REPO_URL
+            hdp_gpl_repo_url:          HDP_GPL_REPO_URL
+
           hosts:
             ambari.core:
-              ansible_host:                     dos01
-              ansible_port:                     220ENV_INSTANCE
-              ansible_user:                     root
-              # ansible_ssh_private_key_file:     HOME_DIR/.ssh/id_rsa_docker
+              ansible_host:            dos01
+              ansible_port:            220ENV_INSTANCE
+              ansible_user:            root
+              # ansible_ssh_private_key_file: HOME_DIR/.ssh/id_rsa_docker

@@ -1,5 +1,9 @@
 ambari_repo: "http://repo.home/repo/ambari/centos7/2.x/updates/2.6.2.2/"
 
+hdp_repo: "http://repo.home/repo/HDP/centos7/2.x/updates/2.6.5.0/"
+hdp_gpl_repo: "http://repo.home/repo/HDP-GPL/centos7/2.x/updates/2.6.5.0/"
+hdp_utils_repo:"http://repo.home/repo/HDP-UTILS-1.1.0.22/repos/centos7/"
+
 os_version: "centos7"
 hdp_major_version: "2"
 hdp_version: "2.6.5.0"

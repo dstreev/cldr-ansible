@@ -61,3 +61,5 @@
 - import_playbook:     ambari_configure.yaml
 
 - import_playbook:     ambari_start.yaml
+
+- import_playbook:     ambari_blueprint_install.yaml

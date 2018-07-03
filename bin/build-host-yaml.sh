@@ -47,3 +47,17 @@ sed "s/ENV_INSTANCE/${ENV_INSTANCE}/g" ../environment/hosts/host-template_${ENV_
 sed -i.bak "s/AMBARI_VERSION/${AMBARI_VERSION}/g" ../environment/hosts/${ENV_INSTANCE}.yaml
 sed -i.bak "s/IMAGE_TAG/${IMAGE_TAG}/g" ../environment/hosts/${ENV_INSTANCE}.yaml
 sed -i.bak "s/HOME_DIR/${HOME}/g" ../environment/hosts/${ENV_INSTANCE}.yaml
+
+sed -i.bak "s/BLUEPRINT/${BLUEPRINT}/g" ../environment/hosts/${ENV_INSTANCE}.yaml
+sed -i.bak "s/AMBARI_ADMIN_USER/${AMBARI_ADMIN_USER}/g" ../environment/hosts/${ENV_INSTANCE}.yaml
+sed -i.bak "s/AMBARI_ADMIN_PASSWORD/${AMBARI_ADMIN_PASSWORD}/g" ../environment/hosts/${ENV_INSTANCE}.yaml
+sed -i.bak "s/HDP_STACK/${HDP_STACK}/g" ../environment/hosts/${ENV_INSTANCE}.yaml
+sed -i.bak "s/HDP_STACK_VERSION/${HDP_STACK_VERSION}/g" ../environment/hosts/${ENV_INSTANCE}.yaml
+sed -i.bak "s/HDP_REPO_ID/${HDP_REPO_ID}/g" ../environment/hosts/${ENV_INSTANCE}.yaml
+sed -i.bak "s/OS_TYPE/${OS_TYPE}/g" ../environment/hosts/${ENV_INSTANCE}.yaml
+sed -i.bak "s/HDP_REPO_URL/${HDP_REPO_URL}/g" ../environment/hosts/${ENV_INSTANCE}.yaml
+sed -i.bak "s/HDP_REPO_ID/${HDP_REPO_ID}/g" ../environment/hosts/${ENV_INSTANCE}.yaml
+sed -i.bak "s/HDP_UTIL_REPO_URL/${HDP_UTIL_REPO_URL}/g" ../environment/hosts/${ENV_INSTANCE}.yaml
+sed -i.bak "s/HDP_UTIL_REPO_ID/${HDP_UTIL_REPO_ID}/g" ../environment/hosts/${ENV_INSTANCE}.yaml
+sed -i.bak "s/HDP_GPL_REPO_URL/${HDP_GPL_REPO_URL}/g" ../environment/hosts/${ENV_INSTANCE}.yaml
+sed -i.bak "s/HDP_GPL_REPO_ID/${HDP_GPL_REPO_ID}/g" ../environment/hosts/${ENV_INSTANCE}.yaml
