@@ -66,21 +66,26 @@ echo "     HDP_GPL_REPO_URL   : ${HDP_GPL_REPO_URL}"
 # Infra is setup separately now.  Using a single repo and db across all environments to conserve resources.
 #ansible-playbook -e env_instance=${ENV_INSTANCE} -e env_state=started ../infrastructure/infra.yaml
 #ansible-playbook -e env_instance=${ENV_INSTANCE} -e env_set=${ENV_SET} -e image_tag=${IMAGE_TAG} -e env_state=started ../environment/hdp.yaml
-echo "Build Docker Stack ${DOCKER_STACK} with compose file (${ENV_SET})"
-docker -H os01:2375 stack deploy --compose-file ../hdp/setup/docker-compose_${ENV_SET}.yaml ${DOCKER_STACK}
+echo "Checking if Stack ${DOCKER_STACK} has already been deployed"
+STACK_CHECK=`docker -H os01:2375 stack ls | grep ^hdp12`
+if [ "${STACK_CHECK}x" == "x" ]; then
+  echo "Build Docker Stack ${DOCKER_STACK} with compose file (${ENV_SET})"
+  docker -H os01:2375 stack deploy --compose-file ../hdp/setup/docker-compose_${ENV_SET}.yaml ${DOCKER_STACK}
 
 
-echo "Build the Host File for instance: ${ENV_INSTANCE}"
-./build-host-yaml.sh -i ${ENV_INSTANCE} -a ${AMBARI_VERSION} -v ${IMAGE_TAG} -e ${ENV_SET}
+  echo "Build the Host File for instance: ${ENV_INSTANCE}"
+  ./build-host-yaml.sh -i ${ENV_INSTANCE} -a ${AMBARI_VERSION} -v ${IMAGE_TAG} -e ${ENV_SET}
 
-echo "Pause for 15 seconds while the docker services start"
-sleep 15
+  echo "Pause for 15 seconds while the docker services start"
+  sleep 15
 
-# echo "OS Prep"
-# ansible-playbook -i ../environment/hosts/${ENV_INSTANCE}.yaml --extra-vars "@../environment/vars/ambari_${AMBARI_VERSION}.json" -e env_state=started ../hdp/setup/hdp_os_prep.yaml
-echo "Edge Node Config"
-ansible-playbook -i ../environment/hosts/${ENV_INSTANCE}.yaml --extra-vars "@../environment/vars/ambari_${AMBARI_VERSION}.json" -e env_state=started ../hdp/setup/edge_node_config.yaml
-echo "Ambari Install Playbook"
-ansible-playbook -i ../environment/hosts/${ENV_INSTANCE}.yaml --extra-vars "@../environment/vars/ambari_${AMBARI_VERSION}.json" -e env_state=started ../hdp/ambari/ambari_install.yaml
-
+  # echo "OS Prep"
+  # ansible-playbook -i ../environment/hosts/${ENV_INSTANCE}.yaml --extra-vars "@../environment/vars/ambari_${AMBARI_VERSION}.json" -e env_state=started ../hdp/setup/hdp_os_prep.yaml
+  echo "Edge Node Config"
+  ansible-playbook -i ../environment/hosts/${ENV_INSTANCE}.yaml --extra-vars "@../environment/vars/ambari_${AMBARI_VERSION}.json" -e env_state=started ../hdp/setup/edge_node_config.yaml
+  echo "Ambari Install Playbook"
+  ansible-playbook -i ../environment/hosts/${ENV_INSTANCE}.yaml --extra-vars "@../environment/vars/ambari_${AMBARI_VERSION}.json" -e env_state=started ../hdp/ambari/ambari_install.yaml
+else
+  echo "Stack ${DOCKER_STACK} already exits."
+fi
 #ansible-playbook -i ../environment/hosts/${ENV_INSTANCE}.yaml ../infrastructure/ping.yaml --tags "${ENV_SET}"

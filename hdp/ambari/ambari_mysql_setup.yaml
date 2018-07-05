@@ -37,5 +37,7 @@
 
     - name:  Build Ambari Schema
       shell: mysql -h {{ db_host }} -u {{ db_user }} -p{{ db_password }} -D {{ db_ambari_name }} < /var/lib/ambari-server/resources/Ambari-DDL-MySQL-CREATE.sql
+      # When this file exists, the process will NOT run.
+      creates: /hadoop/AMBARI_SCHEMA_BUILT
       tags:
         - server
