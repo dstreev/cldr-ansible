@@ -74,7 +74,7 @@ fi
 # Check to see if the STACK has been deployed already.  If it has, don't deploy
 # it again.
 echo "Checking if Stack ${DOCKER_STACK} has already been deployed"
-STACK_CHECK=`docker -H os01:2375 stack ls | grep ^hdp12`
+STACK_CHECK=`docker -H os01:2375 stack ls | grep ^${DOCKER_STACK}`
 if [ "${STACK_CHECK}x" == "x" ]; then
   echo "Deploy Docker Stack ${DOCKER_STACK} with compose file (${ENV_SET})"
   docker -H os01:2375 stack deploy --compose-file ../hdp/setup/stack-compose/${ENV_SET}.yaml ${DOCKER_STACK}
