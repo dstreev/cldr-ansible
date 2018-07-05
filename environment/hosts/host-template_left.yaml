@@ -20,6 +20,7 @@ all:
     db_druid_name:                     druid_ENV_INSTANCE
     db_superset_name:                  superset_ENV_INSTANCE
     db_registry_name:                  registry_ENV_INSTANCE
+    db_streamline_name:                streamline_ENV_INSTANCE
 
   children:
     hdp:

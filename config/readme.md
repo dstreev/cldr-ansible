@@ -18,11 +18,12 @@ So, we need to establish a range of configs for each Ambari / HDFS version.  Thi
 **INFRA** | na | na | na | db.hwx (on os01) | repo.hwx (on os04)
 full  | ambari-${ENV_INSTANCE}.hwx (on os01)  | os[02-07].hwx | os[10-19]-${ENV_INSTANCE}.hwx  | db.hwx  | repo.hwx
 left  | ambari-${ENV_INSTANCE}.hwx (on os01)  | os[02-04].hwx | os[10-13]-${ENV_INSTANCE}.hwx  | db.hwx  | repo.hwx
+center  | ambari-${ENV_INSTANCE}.hwx (on os01)  | os[04-06].hwx | os[13-16]-${ENV_INSTANCE}.hwx  | db.hwx  | repo.hwx
 right  | ambari-${ENV_INSTANCE}.hwx (on os01)  | os[05-07].hwx | os[15-19]-${ENV_INSTANCE}.hwx  | db.hwx  | repo.hwx
 
 Environment  | Location  | Ambari Version  | HDP Version | Date Added | Notes
 --|---|---|---|---|--
-*10* | center | [2.6.2.2](http://ambari-10.hwx:8080) | 2.6.5.0 | 2018-07-05 | Kafka Cluster
-[Portainer](http://os01.streever.local:9000)  |   |   |   |   |
-*11* | right |  [2.6.2.2](http://ambari-11.hwx:8080) | 2.6.5.0 | 2018-07-04 | Basic HDP (HA, Ranger, Knox)
 *12* | left  | [2.6.2.2](http://ambari-12.hwx:8080) | 2.6.5.0 | 2018-07-04 | Basic HDP (HA, Ranger, Knox)
+*11* | right |  [2.6.2.2](http://ambari-11.hwx:8080) | 2.6.5.0 | 2018-07-04 | Basic HDP (HA, Ranger, Knox)
+*10* | center | [2.6.2.2](http://ambari-10.hwx:8080) | 3.1.2 | 2018-07-05 | HDF (Kafka too)
+[Portainer](http://os01.streever.local:9000)  |   |   |   |   |

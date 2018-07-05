@@ -63,7 +63,7 @@ echo "     HDP_GPL_REPO_URL   : ${HDP_GPL_REPO_URL}"
 
 cd `dirname $0`
 
-echo "Checking if Stack ${DOCKER_STACK} has already been deployed"
+echo "Checking if Stack ${DOCKER_STACK} has been deployed"
 STACK_CHECK=`docker -H os01:2375 stack ls | grep ^hdp12`
 if [ "${STACK_CHECK}x" != "x" ]; then
   echo "Remove Docker Stack ${DOCKER_STACK}"
@@ -71,7 +71,7 @@ if [ "${STACK_CHECK}x" != "x" ]; then
 
   # Remove from config list
   # Populate Deployment readme.md
-  ansible-playbook -e ENV_INSTANCE=${ENV_INSTANCE} -e ENV_SET=${ENV_SET} -e AMBARI_VERSION=${AMBARI_VERSION} -e HDP_STACK_VERSION=${HDP_STACK_VERSION} --tags "remove" config-dictionary.yaml
+  ansible-playbook -e ENV_INSTANCE=${ENV_INSTANCE} -e ENV_SET=${ENV_SET} -e AMBARI_VERSION=${AMBARI_VERSION} -e HDP_STACK_VERSION=${HDP_STACK_VERSION} --tags "remove" ../config/config-dictionary.yaml
 
   # Remove the host yaml for the docker stack.
   rm -r -f ../environment/hosts/${ENV_INSTANCE}.yam*

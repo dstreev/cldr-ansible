@@ -34,6 +34,10 @@
       shell: mysql -h {{ db_host }} -u {{ db_user }} -p{{ db_password }} -e "create database if not exists {{ db_registry_name }}"
       tags:
         - server
+    - name:  Create Streamline database
+      shell: mysql -h {{ db_host }} -u {{ db_user }} -p{{ db_password }} -e "create database if not exists {{ db_streamline_name }}"
+      tags:
+        - server
 
     - name:  Build Ambari Schema
       shell: mysql -h {{ db_host }} -u {{ db_user }} -p{{ db_password }} -D {{ db_ambari_name }} < /var/lib/ambari-server/resources/Ambari-DDL-MySQL-CREATE.sql
