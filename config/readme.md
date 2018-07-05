@@ -21,9 +21,9 @@ left  | ambari-${ENV_INSTANCE}.hwx (on os01)  | os[02-04].hwx | os[10-13]-${ENV_
 center  | ambari-${ENV_INSTANCE}.hwx (on os01)  | os[04-06].hwx | os[13-16]-${ENV_INSTANCE}.hwx  | db.hwx  | repo.hwx
 right  | ambari-${ENV_INSTANCE}.hwx (on os01)  | os[05-07].hwx | os[15-19]-${ENV_INSTANCE}.hwx  | db.hwx  | repo.hwx
 
-Environment  | Location  | Ambari Version  | HDP Version | Date Added | Notes
+Environment  | Location  | Ambari Version  | HDP/HDF Version | Date Added | Notes
 --|---|---|---|---|--
-*12* | left  | [2.6.2.2](http://ambari-12.hwx:8080) | 2.6.5.0 | 2018-07-04 | Basic HDP (HA, Ranger, Knox)
-*11* | right |  [2.6.2.2](http://ambari-11.hwx:8080) | 2.6.5.0 | 2018-07-04 | Basic HDP (HA, Ranger, Knox)
-*10* | center | [2.6.2.2](http://ambari-10.hwx:8080) | 3.1.2 | 2018-07-05 | HDF (Kafka too)
+*12* | left  | [2.6.2.2](http://ambari-12.hwx:8080) | HDP 2.6.5.0 | 2018-07-04 | Basic HDP (HA, Ranger, Knox)
+*11* | right |  [2.6.2.2](http://ambari-11.hwx:8080) | HDP 2.6.5.0 | 2018-07-04 | Basic HDP (HA, Ranger, Knox)
+*10* | center | [2.6.2.2](http://ambari-10.hwx:8080) | HDF 3.1.2 | 2018-07-05 | HDF (Kafka too)
 [Portainer](http://os01.streever.local:9000)  |   |   |   |   |
