@@ -1,4 +1,4 @@
-- hosts: edge
+- hosts: edge,sdlc
   become: true
 
   tasks:
