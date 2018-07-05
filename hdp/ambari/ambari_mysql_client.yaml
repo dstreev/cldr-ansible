@@ -1,6 +1,6 @@
 # Install this to support the construction of the DB and Schema,
 # after Ambari has been installed.
-- hosts:              ambari
+- hosts:              ambari,sdlc
   become:             true
   tasks:
     - name:           Add MariaDB repo

@@ -7,6 +7,7 @@ all:
     image_tag:                         IMAGE_TAG
     env_instance:                      'ENV_INSTANCE'
     cluster_name:                      DKENV_INSTANCE
+    mysql_backup_dir:                  /hadoop/mysql_backups
     db_type:                           mysql
     db_host:                           db.hwx
     db_user:                           root

@@ -34,10 +34,12 @@ else
   exit -1
 fi
 
-cd `dirname $0`
-
+export DOCKER_STACK=hdp${ENV_INSTANCE}
+export ENV_INSTANCE=${ENV_INSTANCE}
+export IMAGE_TAG=${IMAGE_TAG}
 echo "Environment: "
 echo "     ENV_INSTANCE   : ${ENV_INSTANCE}"
+echo "     DOCKER_STACK   : ${DOCKER_STACK}"
 echo "     ENV_SET        : ${ENV_SET}"
 echo "     AMBARI_VERSION : ${AMBARI_VERSION}"
 echo "     IMAGE_TAG      : ${IMAGE_TAG}"
@@ -59,15 +61,21 @@ echo "     HDP_UTILS_REPO_URL  : ${HDP_UTILS_REPO_URL}"
 echo "     HDP_GPL_REPO_ID    : ${HDP_GPL_REPO_ID}"
 echo "     HDP_GPL_REPO_URL   : ${HDP_GPL_REPO_URL}"
 
-# Infra is setup separately now.  Using a single repo and db across all environments to conserve resources.
-#ansible-playbook -e env_instance=${ENV_INSTANCE} -e env_state=started ../infrastructure/infra.yaml
-ansible-playbook -e env_instance=${ENV_INSTANCE} -e env_set=${ENV_SET} -e image_tag=${IMAGE_TAG} -e env_state=started ../environment/hdp_v2.yaml
+cd `dirname $0`
 
-./build-host-yaml.sh -i ${ENV_INSTANCE} -a ${AMBARI_VERSION} -v ${IMAGE_TAG} -e ${ENV_SET}
+echo "Checking if Stack ${DOCKER_STACK} has already been deployed"
+STACK_CHECK=`docker -H os01:2375 stack ls | grep ^hdp12`
+if [ "${STACK_CHECK}x" != "x" ]; then
+  echo "Remove Docker Stack ${DOCKER_STACK}"
+  docker -H os01:2375 stack rm ${DOCKER_STACK}
 
-ansible-playbook -i ../environment/hosts/${ENV_INSTANCE}.yaml --extra-vars "@../environment/vars/ambari_${AMBARI_VERSION}.json" -e env_state=started ../hdp/setup/hdp_os_prep.yaml
-ansible-playbook -i ../environment/hosts/${ENV_INSTANCE}.yaml --extra-vars "@../environment/vars/ambari_${AMBARI_VERSION}.json" -e env_state=started ../hdp/setup/edge_node_config.yaml
+  # Remove from config list
+  # Populate Deployment readme.md
+  ansible-playbook -e ENV_INSTANCE=${ENV_INSTANCE} -e ENV_SET=${ENV_SET} -e AMBARI_VERSION=${AMBARI_VERSION} -e HDP_STACK_VERSION=${HDP_STACK_VERSION} --tags "remove" config-dictionary.yaml
 
-ansible-playbook -i ../environment/hosts/${ENV_INSTANCE}.yaml --extra-vars "@../environment/vars/ambari_${AMBARI_VERSION}.json" -e env_state=started ../hdp/ambari/ambari_install.yaml
+  # Remove the host yaml for the docker stack.
+  rm -r -f ../environment/hosts/${ENV_INSTANCE}.yam*
 
-ansible-playbook -i ../environment/hosts/${ENV_INSTANCE}.yaml ../infrastructure/ping.yaml --tags "${ENV_SET}"
+else
+  echo "Stack ${DOCKER_STACK} doesn't exist."
+fi
