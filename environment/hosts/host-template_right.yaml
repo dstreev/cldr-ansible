@@ -2,52 +2,52 @@
 all:
   vars:
     ambari_version:                    AMBARI_VERSION
-    env_set:                           right
     hdp_version:                       HDP_VERSION
+    env_set:                           full
     image_tag:                         IMAGE_TAG
     env_instance:                      'ENV_INSTANCE'
     cluster_name:                      DKENV_INSTANCE
     db_type:                           mysql
-    db_host:                           db.home
+    db_host:                           db-ENV_INSTANCE.hwx
     db_user:                           root
     db_password:                       hortonworks
-    db_ambari_name:                    ambari_ENV_INSTANCE
-    db_hive_name:                      hive_ENV_INSTANCE
-    db_oozie_name:                     oozie_ENV_INSTANCE
-    db_ranger_name:                    ranger_ENV_INSTANCE
-    db_ranger_kms_name:                rangerkms_ENV_INSTANCE
-    db_druid_name:                     druid_ENV_INSTANCE
-    db_superset_name:                  superset_ENV_INSTANCE
-    db_registry_name:                  registry_ENV_INSTANCE
+    db_ambari_name:                    ambari
+    db_hive_name:                      hive
+    db_oozie_name:                     oozie
+    db_ranger_name:                    ranger
+    db_ranger_kms_name:                rangerkms
+    db_druid_name:                     druid
+    db_superset_name:                  superset
+    db_registry_name:                  registry
 
   children:
     hdp:
       vars:
-        ambari_server:                 hdp-os01-ENV_INSTANCE.home
-        zookeeper_server:              hdp-os06-ENV_INSTANCE.home
-        repo_server:                   repo.home
+        ambari_server:                 ambari-ENV_INSTANCE.hwx
+        zookeeper_server:              os3-ENV_INSTANCE.hwx
+        repo_server:                   repo-ENV_INSTANCE.hwx
 
       hosts:
+        os15.core:
+          ansible_host:                dos15
+          ansible_port:                220ENV_INSTANCE
+          ansible_user:                root
         os16.core:
           ansible_host:                dos16
           ansible_port:                220ENV_INSTANCE
           ansible_user:                root
-          # ansible_ssh_private_key_file: /Users/dstreev/.ssh/id_rsa_docker
         os17.core:
           ansible_host:                dos17
           ansible_port:                220ENV_INSTANCE
           ansible_user:                root
-          # ansible_ssh_private_key_file: /Users/dstreev/.ssh/id_rsa_docker
         os18.core:
           ansible_host:                dos18
           ansible_port:                220ENV_INSTANCE
           ansible_user:                root
-          # ansible_ssh_private_key_file: /Users/dstreev/.ssh/id_rsa_docker
         os19.core:
           ansible_host:                dos19
           ansible_port:                220ENV_INSTANCE
           ansible_user:                root
-          # ansible_ssh_private_key_file: /Users/dstreev/.ssh/id_rsa_docker
 
       children:
         edge:
@@ -56,7 +56,10 @@ all:
               ansible_host:            dos06
               ansible_port:            220ENV_INSTANCE
               ansible_user:            root
-              # ansible_ssh_private_key_file: /Users/dstreev/.ssh/id_rsa_docker
+            edge2.core:
+              ansible_host:            dos07
+              ansible_port:            220ENV_INSTANCE
+              ansible_user:            root
           children:
             sdlc:
               vars:
@@ -69,14 +72,13 @@ all:
                 ranger_admin_password: admin
               hosts:
                 sdlc.core:
-                  ansible_host:        dos07
+                  ansible_host:        dos05
                   ansible_port:        220ENV_INSTANCE
                   ansible_user:        root
-                  # ansible_ssh_private_key_file: /Users/dstreev/.ssh/id_rsa_docker
 
         ambari:
           vars:
-            ambari_url_base:           http://localhost:8080
+            ambari_url_base:           http://ambari-ENV_INSTANCE.hwx:8080
             ambari_admin_user :        AMBARI_ADMIN_USER
             ambari_admin_password:     AMBARI_ADMIN_PASSWORD
             hdp_stack:                 HDP_STACK
@@ -97,4 +99,3 @@ all:
               ansible_host:            dos01
               ansible_port:            220ENV_INSTANCE
               ansible_user:            root
-              # ansible_ssh_private_key_file: /Users/dstreev/.ssh/id_rsa_docker

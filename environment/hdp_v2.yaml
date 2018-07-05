@@ -1,0 +1,174 @@
+- hosts: db
+  vars:
+    docker_network_name: hdp
+    mariadb_ver: 10.2
+    centos_ver: 7.4
+  become: true
+
+  tasks:
+    - name: Create network
+      shell: 'docker network create --driver=overlay --attachable {{ docker_network_name }}_{{ env_instance }}'
+      # docker_network:
+      #   name: '{{ docker_network_name }}_{{env_instance}}'
+      #   driver: overlay
+      #   ipam_options:
+      #       subnet: '192.168.{{ env_}}.0/24'
+      #       gateway: 192.168.111.1
+      #       iprange: '192.168.111.0/24'
+
+    # - name: Create Device directory
+    #   shell: mkdir -p /data/docker_shared/mariadb
+    - name: Set State of Maria DB container to {{ env_state}}
+      docker_container:
+        name: db-{{ env_instance}}
+        pull: true
+        image: mariadb:{{ mariadb_ver }}
+        ignore_image: yes
+        privileged: yes
+        hostname: db-{{ env_instance }}
+        env:
+          MYSQL_ROOT_PASSWORD: hortonworks
+          MYSQL_USER: ambari
+          MYSQL_PASSWORD: hortonworks
+        volumes:
+          - "mariadb_{{ env_instance }}:/var/lib/mysql"
+        restart: yes
+        restart_policy: unless-stopped
+        ports :
+          - "330{{ env_instance }}:3306"
+        # dns_search_domains:
+        #   - '{{ docker_network_name }}_{{ env_instance}}'
+        # network_mode: '{{ docker_network_name }}_{{ env_instance}}'
+        networks:
+          - name : '{{ docker_network_name }}_{{ env_instance}}'
+            aliases :
+              - db.{{ docker_network_name }}_{{ env_instance }}
+            # links:
+            #   - hdp-{{ ansible_hostname }}-{{ env_instance }}.core
+        purge_networks: yes
+        state : started
+
+- hosts: repo
+  vars:
+    docker_network_name: hdp
+    mariadb_ver: 10.2
+    centos_ver: 7.4
+  become: true
+  tasks:
+    - name: Set State of Repo container to {{ env_state}}
+      docker_container:
+        name: repo-{{ env_instance }}
+        pull: true
+        image: dstreev/hdp-repo:latest
+        privileged: yes
+        hostname: repo-{{ env_instance }}.{{ docker_network_name }}_{{ env_instance }}
+        volumes:
+          - "/var/www/html:/www"
+        ports :
+          - "300{{ env_instance }}:80"
+        restart: yes
+        restart_policy: unless-stopped
+        dns_search_domains:
+          - '{{ docker_network_name }}_{{ env_instance }}'
+        network_mode: '{{ docker_network_name }}_{{ env_instance }}'
+        networks:
+          - name : '{{ docker_network_name }}_{{ env_instance }}'
+            aliases :
+              - repo.{{ docker_network_name }}_{{ env_instance }}
+        purge_networks: yes
+        state : started
+
+# Build and Start the Metastore and Repo
+# - import_playbook: ../infrastructure/infra.yaml
+
+- hosts: hdp_{{ env_set }}
+  vars:
+    docker_network_name: home
+
+  become: true
+  tasks:
+    # - name: Create Device HDP Log directory
+    #   file:
+    #     path: /data_1/docker_{{ env_instance }}/hdp/log
+    #     state: directory
+    #     owner: root
+    #     mode: 0755
+    # - name: Create Device HDF Log directory
+    #   file:
+    #     path: /data_1/docker_{{ env_instance }}/hdf/log
+    #     state: directory
+    #     owner: root
+    #     mode: 0755
+    # - name: Create Device HDP directory /data
+    #   file:
+    #     path: /data/docker_{{ env_instance }}/hdp/data
+    #     state: directory
+    #     owner: root
+    #     mode: 0755
+    # - name: Create Device HDP directory /data_1
+    #   file:
+    #     path: /data_1/docker_{{ env_instance }}/hdp/data
+    #     state: directory
+    #     owner: root
+    #     mode: 0755
+    # - name: Create Device HDF directory /data
+    #   file:
+    #     path: /data/docker_{{ env_instance }}/hdf/data
+    #     state: directory
+    #     owner: root
+    #     mode: 0755
+    # - name: Create Device HDF directory /data_1
+    #   file:
+    #     path: /data_1/docker_{{ env_instance }}/hdf/data
+    #     state: directory
+    #     owner: root
+    #     mode: 0755
+    #
+    - name: Set State of HDP Containers to {{ env_state}}
+      docker_container:
+        name: '{{ ansible_hostname }}-{{ env_instance }}'
+        pull: true
+        image: dstreev/centos7_sshd:{{ image_tag }}
+        ignore_image: yes
+        privileged: yes
+        hostname: '{{ ansible_hostname }}-{{ env_instance }}.{{ docker_network_name }}_{{ env_instance }}'
+        volumes:
+          - "/var/lib/sss/pipes/:/var/lib/sss/pipes/:rw"
+          - "/var/lib/sss/mc/:/var/lib/sss/mc/:ro"
+          - "hadoop_{{ env_instance }}/hdp/data:/hadoop"
+          - "hdf_{{ env_instance }}/hdf/data:/hdf"
+          - "log_{{ env_instance }}/log:/var/log"
+        dns_search_domains:
+          - '{{ docker_network_name }}_{{ env_instance }}'
+        dns_servers:
+        restart: yes
+        etc_hosts:
+          os01.streever.local: 10.0.1.11
+          os02.streever.local: 10.0.1.12
+          os03.streever.local: 10.0.1.13
+          os04.streever.local: 10.0.1.14
+          os05.streever.local: 10.0.1.15
+          os06.streever.local: 10.0.1.16
+          os07.streever.local: 10.0.1.17
+          os10.streever.local: 10.0.1.20
+          os11.streever.local: 10.0.1.21
+          os12.streever.local: 10.0.1.22
+          os13.streever.local: 10.0.1.23
+          os14.streever.local: 10.0.1.24
+          os15.streever.local: 10.0.1.25
+          os16.streever.local: 10.0.1.26
+          os17.streever.local: 10.0.1.27
+          os18.streever.local: 10.0.1.28
+          os19.streever.local: 10.0.1.29
+        restart_policy: unless-stopped
+        network_mode: '{{ docker_network_name }}_{{ env_instance }}'
+        networks:
+          - name : '{{ docker_network_name }}_{{ env_instance }}'
+            aliases :
+              - '{{ ansible_hostname }}-{{ env_instance }}.{{ docker_network_name }}_{{ env_instance }}'
+            # links:
+            #   - hdp-{{ ansible_hostname }}-{{ env_instance }}.core
+        purge_networks: yes
+        state : '{{ env_state }}'
+        ports :
+          - "220{{ env_instance }}:22"

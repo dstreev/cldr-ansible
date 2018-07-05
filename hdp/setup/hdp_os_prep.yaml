@@ -8,30 +8,31 @@
 - hosts:         hdp
   become:        true
   tasks:
-    - name: Install sudo
-      yum:
-        name: sudo
-        state: latest
+    # - name: Install sudo
+    #   yum:
+    #     name: sudo
+    #     state: latest
 
     # Needed to support hdfs dfs commands and HBase Region Server Startup.
-    - name: Install which
-      yum:
-        name: which
-        state: latest
+    # - name: Install which
+    #   yum:
+    #     name: which
+    #     state: latest
 
-    - name: Install nscd
-      yum:
-        name: nscd
-        state: latest
+    # - name: Install nscd
+    #   yum:
+    #     name: nscd
+    #     state: latest
+    #
+    # - name: Start nscd
+    #   shell: nscd
 
-    - name: Start nscd
-      shell: nscd
-
-    - name:      Set Swappiness
-      shell:     sysctl vm.swappiness=1
+    # - name:      Set Swappiness
+    #   shell:     sysctl vm.swappiness=1
 
     # - name:      Disable Firewalls
     #   systemd:
+
     #     name:    firewalld
     #     enabled: no
     # - name:      Stop Firewalls

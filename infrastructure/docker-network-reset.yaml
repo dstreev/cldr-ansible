@@ -1,0 +1,32 @@
+- hosts: os01
+
+  become: true
+  vars:
+    env_instance: 14
+
+  tasks:
+    - name: Set Containers on Home network
+      docker_network:
+        name: home
+        connected:
+          - proxy
+          - db
+          - repo
+          - hdp-os01-{{ env_instance }}
+          - hdp-os02-{{ env_instance }}
+          - hdp-os03-{{ env_instance }}
+          - hdp-os04-{{ env_instance }}
+          - hdp-os05-{{ env_instance }}
+          - hdp-os06-{{ env_instance }}
+          - hdp-os07-{{ env_instance }}
+          - hdp-os10-{{ env_instance }}
+          - hdp-os11-{{ env_instance }}
+          - hdp-os12-{{ env_instance }}
+          - hdp-os13-{{ env_instance }}
+          - hdp-os14-{{ env_instance }}
+          - hdp-os15-{{ env_instance }}
+          - hdp-os16-{{ env_instance }}
+          - hdp-os17-{{ env_instance }}
+          - hdp-os18-{{ env_instance }}
+          - hdp-os19-{{ env_instance }}
+        appends: yes

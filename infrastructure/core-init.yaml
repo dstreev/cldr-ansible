@@ -5,10 +5,22 @@
 
   become: true
   tasks:
-    - name:
+    - name: Remove Core Containers
       docker_container:
         name: core-{{ ansible_hostname }}
         state : absent
 
-    - name: Core Init
-      shell: docker run -it -P --name core-{{ ansible_hostname }} -d --network {{ docker_network_name }} --restart=unless-stopped alpine:latest
+    - name: Add Core Containers
+      docker_container:
+        name: core-{{ ansible_hostname }}
+        image: alpine:latest
+        interactive: yes
+        tty: yes
+        state: started
+        networks:
+          - name: home
+      tags:
+        - add
+
+    # - name: Core Init
+    #   shell: docker run -it -P --name core-{{ ansible_hostname }} -d --network {{ docker_network_name }} --restart=unless-stopped alpine:latest

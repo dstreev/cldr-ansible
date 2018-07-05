@@ -1,5 +1,5 @@
 
-- hosts: working
+- hosts: os
   become: true
   tasks:
     - name: Core Stop

@@ -1,12 +1,8 @@
-ambari_repo: "http://repo.home/repo/ambari/centos7/2.x/updates/2.6.2.2/"
+ambari_repo: "http://repo.hwx/repo/ambari/centos7/2.x/updates/2.6.2.2/"
 
-hdp_repo: "http://repo.home/repo/HDP/centos7/2.x/updates/2.6.5.0/"
-hdp_gpl_repo: "http://repo.home/repo/HDP-GPL/centos7/2.x/updates/2.6.5.0/"
-hdp_utils_repo:"http://repo.home/repo/HDP-UTILS-1.1.0.22/repos/centos7/"
-
-os_version: "centos7"
-hdp_major_version: "2"
-hdp_version: "2.6.5.0"
+hdp_repo: "http://repo.hwx/repo/HDP/centos7/2.x/updates/2.6.5.0/"
+hdp_gpl_repo: "http://repo.hwx/repo/HDP-GPL/centos7/2.x/updates/2.6.5.0/"
+hdp_utils_repo: "http://repo.hwx/repo/HDP-UTILS-1.1.0.22/repos/centos7/"
 
 hadoop_cli_bin_link: "https://github.com/dstreev/hadoop-cli/releases/download/1.0.7.2.7-bin/hadoop-cli-1.0.7-SNAPSHOT-2.7.tar.gz"
 hadoop_cli_version: "2.7"

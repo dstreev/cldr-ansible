@@ -1,0 +1,54 @@
+- hosts: docker_manager
+  become: true
+
+  tasks:
+    - name: Set Labels on the Docker Node
+      shell: docker node update --label-add hdp.ambari=true os01.streever.local
+
+    - name: Set Labels on the Docker Node
+      shell: docker node update --label-add hdp.db=true os01.streever.local
+
+    - name: Set Labels on the Docker Node
+      shell: docker node update --label-add hdp.repo=true os04.streever.local
+
+    # - name: Set Labels on the Docker Node
+    #   shell: docker node update --label-rm hdp.host {{ item }}.streever.local
+    #   loop:
+    #     - os01
+    #     - os02
+    #     - os03
+    #     - os04
+    #     - os05
+    #     - os06
+    #     - os07
+    #     - os10
+    #     - os11
+    #     - os12
+    #     - os13
+    #     - os14
+    #     - os15
+    #     - os16
+    #     - os17
+    #     - os18
+    #     - os19
+
+    - name: Set Labels on the Docker Node
+      shell: docker node update --label-add hdp.host={{ item }} {{ item }}.streever.local
+      loop:
+        - os01
+        - os02
+        - os03
+        - os04
+        - os05
+        - os06
+        - os07
+        - os10
+        - os11
+        - os12
+        - os13
+        - os14
+        - os15
+        - os16
+        - os17
+        - os18
+        - os19

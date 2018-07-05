@@ -1,0 +1,12 @@
+- hosts: os01
+  become: true
+
+  tasks:
+    - name: Create network
+      docker_network:
+        name: test_02
+        driver: overlay
+        ipam_options:
+              subnet: '192.168.111.0/24'
+              gateway: 192.168.111.1
+              iprange: '192.168.111.0/24'

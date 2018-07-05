@@ -1,0 +1,23 @@
+- hosts: os01
+  become: true
+
+  tasks:
+    - name: Create Env Instance network
+      docker_network:
+        name: home_{{ env_instance }}
+        driver: overlay
+      tags:
+        - net
+    # - name: Create swarm network for Environment
+    #   shell: docker network create --driver=overlay --gateway 192.168.{{ env_instance }}.1 --subnet 192.168.{{ env_instance }}.1/24 --attachable home_{{ env_instance }}
+
+- hosts: os01
+  become: true
+
+  tasks:
+    - name: attach core
+      docker_network:
+        name: home_{{ env_instance }}
+        connected:
+          - db
+        appends: yes

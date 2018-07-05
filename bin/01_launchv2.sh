@@ -36,12 +36,8 @@ fi
 
 cd `dirname $0`
 
-export DOCKER_STACK=hdp${ENV_INSTANCE}
-export ENV_INSTANCE=${ENV_INSTANCE}
-export IMAGE_TAG=${IMAGE_TAG}
 echo "Environment: "
 echo "     ENV_INSTANCE   : ${ENV_INSTANCE}"
-echo "     DOCKER_STACK   : ${DOCKER_STACK}"
 echo "     ENV_SET        : ${ENV_SET}"
 echo "     AMBARI_VERSION : ${AMBARI_VERSION}"
 echo "     IMAGE_TAG      : ${IMAGE_TAG}"
@@ -65,22 +61,13 @@ echo "     HDP_GPL_REPO_URL   : ${HDP_GPL_REPO_URL}"
 
 # Infra is setup separately now.  Using a single repo and db across all environments to conserve resources.
 #ansible-playbook -e env_instance=${ENV_INSTANCE} -e env_state=started ../infrastructure/infra.yaml
-#ansible-playbook -e env_instance=${ENV_INSTANCE} -e env_set=${ENV_SET} -e image_tag=${IMAGE_TAG} -e env_state=started ../environment/hdp.yaml
-echo "Build Docker Stack ${DOCKER_STACK} with compose file (${ENV_SET})"
-docker -H os01:2375 stack deploy --compose-file ../hdp/setup/docker-compose_${ENV_SET}.yaml ${DOCKER_STACK}
+ansible-playbook -e env_instance=${ENV_INSTANCE} -e env_set=${ENV_SET} -e image_tag=${IMAGE_TAG} -e env_state=started ../environment/hdp_v2.yaml
 
-
-echo "Build the Host File for instance: ${ENV_INSTANCE}"
 ./build-host-yaml.sh -i ${ENV_INSTANCE} -a ${AMBARI_VERSION} -v ${IMAGE_TAG} -e ${ENV_SET}
 
-echo "Pause for 15 seconds while the docker services start"
-sleep 15
-
-# echo "OS Prep"
-# ansible-playbook -i ../environment/hosts/${ENV_INSTANCE}.yaml --extra-vars "@../environment/vars/ambari_${AMBARI_VERSION}.json" -e env_state=started ../hdp/setup/hdp_os_prep.yaml
-echo "Edge Node Config"
+ansible-playbook -i ../environment/hosts/${ENV_INSTANCE}.yaml --extra-vars "@../environment/vars/ambari_${AMBARI_VERSION}.json" -e env_state=started ../hdp/setup/hdp_os_prep.yaml
 ansible-playbook -i ../environment/hosts/${ENV_INSTANCE}.yaml --extra-vars "@../environment/vars/ambari_${AMBARI_VERSION}.json" -e env_state=started ../hdp/setup/edge_node_config.yaml
-echo "Ambari Install Playbook"
+
 ansible-playbook -i ../environment/hosts/${ENV_INSTANCE}.yaml --extra-vars "@../environment/vars/ambari_${AMBARI_VERSION}.json" -e env_state=started ../hdp/ambari/ambari_install.yaml
 
-#ansible-playbook -i ../environment/hosts/${ENV_INSTANCE}.yaml ../infrastructure/ping.yaml --tags "${ENV_SET}"
+ansible-playbook -i ../environment/hosts/${ENV_INSTANCE}.yaml ../infrastructure/ping.yaml --tags "${ENV_SET}"
