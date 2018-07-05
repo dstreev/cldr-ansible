@@ -38,12 +38,45 @@ services:
       placement:
         constraints:
           - node.labels.hdp.repo == true
+  proxy:
+    hostname: proxy.hwx
+    image: dstreev/centos7_sshd:105
+    ports:
+      - target: 22
+        published: 22199
+        protocol: tcp
+        mode: host
+    volumes:
+      - type: volume
+        source: hdpdata
+        target: /hadoop
+      - type: volume
+        source: hdplog
+        target: /var/log
+      - type: bind
+        source: /var/lib/sss/pipes/
+        target: /var/lib/sss/pipes/
+      - type: bind
+        source: /var/lib/sss/mc/
+        target: /var/lib/sss/mc/
+    networks:
+      hdp_base:
+        aliases:
+          - proxy.hwx
+    deploy:
+      placement:
+        constraints:
+          - node.labels.hdp.host == os01
 
 networks:
   hdp_base:
     external: true
-    driver: overlay
-    attachable: true
 volumes:
   mariadb:
+    driver: local
+  hdpdata:
+    driver: local
+  hdpdata:
+    driver: local
+  hdplog:
     driver: local

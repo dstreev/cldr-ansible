@@ -1,43 +1,5 @@
 version: '3.6'
 services:
-  db:
-    hostname: db-${ENV_INSTANCE}.hwx
-    image: mariadb:10.2
-    ports:
-      - 336${ENV_INSTANCE}:3306
-    volumes:
-      - type: volume
-        source: mariadb
-        target: /var/lib/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: hortonworks
-      MYSQL_USER: ambari
-      MYSQL_PASSWORD: hortonworks
-    networks:
-      hdp_base:
-        aliases:
-          - db-${ENV_INSTANCE}.hwx
-    deploy:
-      placement:
-        constraints:
-          - node.labels.hdp.db == true
-  repo:
-    hostname: repo-${ENV_INSTANCE}.hwx
-    image: dstreev/hdp-repo:latest
-    ports:
-      - 380${ENV_INSTANCE}:80
-    volumes:
-      - type: bind
-        source: /var/www/html
-        target: /www
-    networks:
-      hdp_base:
-        aliases:
-          - repo-${ENV_INSTANCE}.hwx
-    deploy:
-      placement:
-        constraints:
-          - node.labels.hdp.repo == true
   ambari:
     hostname: ambari-${ENV_INSTANCE}.hwx
     image: dstreev/centos7_sshd:${IMAGE_TAG}
@@ -537,13 +499,8 @@ networks:
   hdp_base:
     external: true
     driver: overlay
-    ipam:
-      config:
-        - subnet: 192.168.${ENV_INSTANCE}.0/24
     attachable: true
 volumes:
-  mariadb:
-    driver: local
   hdpdata:
     driver: local
   hdpdata:
