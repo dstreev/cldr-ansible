@@ -24,7 +24,7 @@ all:
     hdp:
       vars:
         ambari_server:                 ambari-ENV_INSTANCE.hwx
-        zookeeper_server:              os3-ENV_INSTANCE.hwx
+        zookeeper_server:              os6-ENV_INSTANCE.hwx
         repo_server:                   repo.hwx
 
       hosts:

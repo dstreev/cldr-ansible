@@ -31,7 +31,7 @@ services:
           - node.labels.hdp.ambari == true
 
   os02:
-    hostname: os2-${ENV_INSTANCE}.hwx
+    hostname: os02-${ENV_INSTANCE}.hwx
     image: dstreev/centos7_sshd:${IMAGE_TAG}
     ports:
       - target: 22
@@ -60,7 +60,7 @@ services:
         constraints:
           - node.labels.hdp.host == os02
   os03:
-    hostname: os3-${ENV_INSTANCE}.hwx
+    hostname: os03-${ENV_INSTANCE}.hwx
     image: dstreev/centos7_sshd:${IMAGE_TAG}
     ports:
       - target: 22
