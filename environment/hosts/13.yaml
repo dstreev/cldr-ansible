@@ -26,7 +26,7 @@ all:
     hdp:
       vars:
         ambari_server:                 ambari-13.hwx
-        zookeeper_server:              os3-13.hwx
+        zookeeper_server:              os5-13.hwx
         repo_server:                   repo.hwx
 
       hosts:
