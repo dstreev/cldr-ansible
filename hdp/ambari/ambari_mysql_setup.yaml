@@ -22,8 +22,9 @@
       tags:
         - server
 
+    # Druid DB must be created with UTF-8!!    
     - name:  Create Druid
-      shell: mysql -h {{ db_host }} -u {{ db_user }} -p{{ db_password }} -e "create database if not exists {{ db_druid_name }}"
+      shell: mysql -h {{ db_host }} -u {{ db_user }} -p{{ db_password }} -e "create database if not exists {{ db_druid_name }} CHARACTER SET utf8 COLLATE utf8_general_ci"
       tags:
         - server
     - name:  Create Superset
