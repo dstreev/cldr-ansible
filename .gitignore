@@ -9,5 +9,5 @@
 ipa-server-install-options
 
 # Host
-hosts
+*.yaml.bak
 etc_hosts
