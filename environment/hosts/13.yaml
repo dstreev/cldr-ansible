@@ -101,7 +101,7 @@ all:
                 smoke_tgs_mappers:     4
                 smoke_tgs_reducers:    4
                 tpcds_size:            50
-                ranger_url_base:       NEEDS_TO_BE_SET
+                ranger_url_base:       http://os02-13.hwx:6080
                 ranger_admin_user:     admin
                 ranger_admin_password: admin
               hosts:
@@ -119,7 +119,7 @@ all:
             hdp_stack_version:         2.6
 
             hdp_repo_id:               HDP-2.6
-            hdp_utils_repo_id:         
+            hdp_utils_repo_id:
             hdp_gpl_repo_id:           HDP-2.6-GPL
             blueprint:                 ??
             os_type:                   redhat7
