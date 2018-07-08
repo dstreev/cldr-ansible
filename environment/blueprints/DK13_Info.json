@@ -1,0 +1,2677 @@
+{
+  "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts?fields=Hosts/host_name,host_components,Hosts/ip,Hosts/total_mem,Hosts/os_arch,Hosts/os_type,Hosts/rack_info,Hosts/cpu_count,Hosts/disk_info,metrics/disk,Hosts/ph_cpu_count",
+  "items" : [
+    {
+      "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os02-13.hwx",
+      "Hosts" : {
+        "cluster_name" : "DK13",
+        "cpu_count" : 4,
+        "disk_info" : [
+          {
+            "available" : "6306356",
+            "device" : "overlay",
+            "used" : "101472288",
+            "percent" : "95%",
+            "size" : "107778644",
+            "type" : "overlay",
+            "mountpoint" : "/"
+          },
+          {
+            "available" : "6306356",
+            "device" : "/dev/mapper/cl_os2-root",
+            "used" : "101472288",
+            "percent" : "95%",
+            "size" : "107778644",
+            "type" : "xfs",
+            "mountpoint" : "/hdf"
+          }
+        ],
+        "host_name" : "os02-13.hwx",
+        "ip" : "192.168.48.183",
+        "os_arch" : "x86_64",
+        "os_type" : "centos7",
+        "ph_cpu_count" : 4,
+        "rack_info" : "/default-rack",
+        "total_mem" : 16084576
+      },
+      "metrics" : {
+        "disk" : {
+          "disk_free" : 6.01,
+          "disk_total" : 102.79,
+          "read_bytes" : 3.542351872E9,
+          "read_count" : 99881.0,
+          "read_time" : 86226.0,
+          "write_bytes" : 1.09151756288E11,
+          "write_count" : 5976148.0,
+          "write_time" : 7.1797077E7
+        }
+      },
+      "host_components" : [
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os02-13.hwx/host_components/ACTIVITY_ANALYZER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "ACTIVITY_ANALYZER",
+            "host_name" : "os02-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os02-13.hwx/host_components/ATLAS_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "ATLAS_CLIENT",
+            "host_name" : "os02-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os02-13.hwx/host_components/HBASE_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HBASE_CLIENT",
+            "host_name" : "os02-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os02-13.hwx/host_components/HCAT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HCAT",
+            "host_name" : "os02-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os02-13.hwx/host_components/HDFS_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HDFS_CLIENT",
+            "host_name" : "os02-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os02-13.hwx/host_components/HIVE_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HIVE_CLIENT",
+            "host_name" : "os02-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os02-13.hwx/host_components/HST_AGENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HST_AGENT",
+            "host_name" : "os02-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os02-13.hwx/host_components/INFRA_SOLR_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "INFRA_SOLR_CLIENT",
+            "host_name" : "os02-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os02-13.hwx/host_components/JOURNALNODE",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "JOURNALNODE",
+            "host_name" : "os02-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os02-13.hwx/host_components/MAPREDUCE2_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "MAPREDUCE2_CLIENT",
+            "host_name" : "os02-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os02-13.hwx/host_components/METRICS_MONITOR",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "METRICS_MONITOR",
+            "host_name" : "os02-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os02-13.hwx/host_components/NAMENODE",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "NAMENODE",
+            "host_name" : "os02-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os02-13.hwx/host_components/OOZIE_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "OOZIE_CLIENT",
+            "host_name" : "os02-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os02-13.hwx/host_components/PIG",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "PIG",
+            "host_name" : "os02-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os02-13.hwx/host_components/RANGER_ADMIN",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "RANGER_ADMIN",
+            "host_name" : "os02-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os02-13.hwx/host_components/RANGER_KMS_SERVER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "RANGER_KMS_SERVER",
+            "host_name" : "os02-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os02-13.hwx/host_components/RANGER_USERSYNC",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "RANGER_USERSYNC",
+            "host_name" : "os02-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os02-13.hwx/host_components/SLIDER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "SLIDER",
+            "host_name" : "os02-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os02-13.hwx/host_components/SPARK2_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "SPARK2_CLIENT",
+            "host_name" : "os02-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os02-13.hwx/host_components/SPARK2_JOBHISTORYSERVER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "SPARK2_JOBHISTORYSERVER",
+            "host_name" : "os02-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os02-13.hwx/host_components/SPARK_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "SPARK_CLIENT",
+            "host_name" : "os02-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os02-13.hwx/host_components/SQOOP",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "SQOOP",
+            "host_name" : "os02-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os02-13.hwx/host_components/TEZ_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "TEZ_CLIENT",
+            "host_name" : "os02-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os02-13.hwx/host_components/YARN_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "YARN_CLIENT",
+            "host_name" : "os02-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os02-13.hwx/host_components/ZEPPELIN_MASTER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "ZEPPELIN_MASTER",
+            "host_name" : "os02-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os02-13.hwx/host_components/ZKFC",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "ZKFC",
+            "host_name" : "os02-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os02-13.hwx/host_components/ZOOKEEPER_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "ZOOKEEPER_CLIENT",
+            "host_name" : "os02-13.hwx"
+          }
+        }
+      ]
+    },
+    {
+      "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os03-13.hwx",
+      "Hosts" : {
+        "cluster_name" : "DK13",
+        "cpu_count" : 4,
+        "disk_info" : [
+          {
+            "available" : "137278972",
+            "device" : "overlay",
+            "used" : "353407400",
+            "percent" : "73%",
+            "size" : "490686372",
+            "type" : "overlay",
+            "mountpoint" : "/"
+          },
+          {
+            "available" : "137278972",
+            "device" : "/dev/mapper/cl_os3-root",
+            "used" : "353407400",
+            "percent" : "73%",
+            "size" : "490686372",
+            "type" : "xfs",
+            "mountpoint" : "/hdf"
+          }
+        ],
+        "host_name" : "os03-13.hwx",
+        "ip" : "192.168.48.181",
+        "os_arch" : "x86_64",
+        "os_type" : "centos7",
+        "ph_cpu_count" : 4,
+        "rack_info" : "/default-rack",
+        "total_mem" : 16084728
+      },
+      "metrics" : {
+        "disk" : {
+          "disk_free" : 130.92,
+          "disk_total" : 467.95,
+          "read_bytes" : 3.513738752E9,
+          "read_count" : 99335.0,
+          "read_time" : 37266.0,
+          "write_bytes" : 9.4821142528E10,
+          "write_count" : 3448747.0,
+          "write_time" : 1.9924631E7
+        }
+      },
+      "host_components" : [
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os03-13.hwx/host_components/ATLAS_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "ATLAS_CLIENT",
+            "host_name" : "os03-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os03-13.hwx/host_components/DRUID_COORDINATOR",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "DRUID_COORDINATOR",
+            "host_name" : "os03-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os03-13.hwx/host_components/DRUID_ROUTER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "DRUID_ROUTER",
+            "host_name" : "os03-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os03-13.hwx/host_components/HBASE_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HBASE_CLIENT",
+            "host_name" : "os03-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os03-13.hwx/host_components/HCAT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HCAT",
+            "host_name" : "os03-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os03-13.hwx/host_components/HDFS_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HDFS_CLIENT",
+            "host_name" : "os03-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os03-13.hwx/host_components/HIVE_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HIVE_CLIENT",
+            "host_name" : "os03-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os03-13.hwx/host_components/HIVE_SERVER_INTERACTIVE",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HIVE_SERVER_INTERACTIVE",
+            "host_name" : "os03-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os03-13.hwx/host_components/HST_AGENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HST_AGENT",
+            "host_name" : "os03-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os03-13.hwx/host_components/INFRA_SOLR_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "INFRA_SOLR_CLIENT",
+            "host_name" : "os03-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os03-13.hwx/host_components/JOURNALNODE",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "JOURNALNODE",
+            "host_name" : "os03-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os03-13.hwx/host_components/MAPREDUCE2_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "MAPREDUCE2_CLIENT",
+            "host_name" : "os03-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os03-13.hwx/host_components/METRICS_MONITOR",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "METRICS_MONITOR",
+            "host_name" : "os03-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os03-13.hwx/host_components/NAMENODE",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "NAMENODE",
+            "host_name" : "os03-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os03-13.hwx/host_components/OOZIE_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "OOZIE_CLIENT",
+            "host_name" : "os03-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os03-13.hwx/host_components/PIG",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "PIG",
+            "host_name" : "os03-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os03-13.hwx/host_components/RANGER_TAGSYNC",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "RANGER_TAGSYNC",
+            "host_name" : "os03-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os03-13.hwx/host_components/SLIDER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "SLIDER",
+            "host_name" : "os03-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os03-13.hwx/host_components/SPARK2_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "SPARK2_CLIENT",
+            "host_name" : "os03-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os03-13.hwx/host_components/SPARK_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "SPARK_CLIENT",
+            "host_name" : "os03-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os03-13.hwx/host_components/SQOOP",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "SQOOP",
+            "host_name" : "os03-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os03-13.hwx/host_components/SUPERSET",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "SUPERSET",
+            "host_name" : "os03-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os03-13.hwx/host_components/TEZ_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "TEZ_CLIENT",
+            "host_name" : "os03-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os03-13.hwx/host_components/YARN_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "YARN_CLIENT",
+            "host_name" : "os03-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os03-13.hwx/host_components/ZKFC",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "ZKFC",
+            "host_name" : "os03-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os03-13.hwx/host_components/ZOOKEEPER_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "ZOOKEEPER_CLIENT",
+            "host_name" : "os03-13.hwx"
+          }
+        }
+      ]
+    },
+    {
+      "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os04-13.hwx",
+      "Hosts" : {
+        "cluster_name" : "DK13",
+        "cpu_count" : 4,
+        "disk_info" : [
+          {
+            "available" : "315932528",
+            "device" : "overlay",
+            "used" : "174549144",
+            "percent" : "36%",
+            "size" : "490481672",
+            "type" : "overlay",
+            "mountpoint" : "/"
+          },
+          {
+            "available" : "315932528",
+            "device" : "/dev/mapper/cl_os4-root",
+            "used" : "174549144",
+            "percent" : "36%",
+            "size" : "490481672",
+            "type" : "xfs",
+            "mountpoint" : "/hdf"
+          }
+        ],
+        "host_name" : "os04-13.hwx",
+        "ip" : "192.168.48.187",
+        "os_arch" : "x86_64",
+        "os_type" : "centos7",
+        "ph_cpu_count" : 4,
+        "rack_info" : "/default-rack",
+        "total_mem" : 16084576
+      },
+      "metrics" : {
+        "disk" : {
+          "disk_free" : 301.3,
+          "disk_total" : 467.76,
+          "read_bytes" : 3.9688972288E10,
+          "read_count" : 469752.0,
+          "read_time" : 275318.0,
+          "write_bytes" : 1.12476430336E11,
+          "write_count" : 3548723.0,
+          "write_time" : 2.3255419E7
+        }
+      },
+      "host_components" : [
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os04-13.hwx/host_components/APP_TIMELINE_SERVER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "APP_TIMELINE_SERVER",
+            "host_name" : "os04-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os04-13.hwx/host_components/ATLAS_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "ATLAS_CLIENT",
+            "host_name" : "os04-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os04-13.hwx/host_components/DRUID_OVERLORD",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "DRUID_OVERLORD",
+            "host_name" : "os04-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os04-13.hwx/host_components/HBASE_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HBASE_CLIENT",
+            "host_name" : "os04-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os04-13.hwx/host_components/HCAT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HCAT",
+            "host_name" : "os04-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os04-13.hwx/host_components/HDFS_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HDFS_CLIENT",
+            "host_name" : "os04-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os04-13.hwx/host_components/HIVE_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HIVE_CLIENT",
+            "host_name" : "os04-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os04-13.hwx/host_components/HST_AGENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HST_AGENT",
+            "host_name" : "os04-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os04-13.hwx/host_components/INFRA_SOLR_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "INFRA_SOLR_CLIENT",
+            "host_name" : "os04-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os04-13.hwx/host_components/JOURNALNODE",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "JOURNALNODE",
+            "host_name" : "os04-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os04-13.hwx/host_components/MAPREDUCE2_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "MAPREDUCE2_CLIENT",
+            "host_name" : "os04-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os04-13.hwx/host_components/METRICS_MONITOR",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "METRICS_MONITOR",
+            "host_name" : "os04-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os04-13.hwx/host_components/OOZIE_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "OOZIE_CLIENT",
+            "host_name" : "os04-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os04-13.hwx/host_components/PIG",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "PIG",
+            "host_name" : "os04-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os04-13.hwx/host_components/RESOURCEMANAGER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "RESOURCEMANAGER",
+            "host_name" : "os04-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os04-13.hwx/host_components/SLIDER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "SLIDER",
+            "host_name" : "os04-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os04-13.hwx/host_components/SPARK2_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "SPARK2_CLIENT",
+            "host_name" : "os04-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os04-13.hwx/host_components/SPARK_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "SPARK_CLIENT",
+            "host_name" : "os04-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os04-13.hwx/host_components/SQOOP",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "SQOOP",
+            "host_name" : "os04-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os04-13.hwx/host_components/TEZ_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "TEZ_CLIENT",
+            "host_name" : "os04-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os04-13.hwx/host_components/YARN_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "YARN_CLIENT",
+            "host_name" : "os04-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os04-13.hwx/host_components/ZOOKEEPER_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "ZOOKEEPER_CLIENT",
+            "host_name" : "os04-13.hwx"
+          }
+        }
+      ]
+    },
+    {
+      "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os05-13.hwx",
+      "Hosts" : {
+        "cluster_name" : "DK13",
+        "cpu_count" : 4,
+        "disk_info" : [
+          {
+            "available" : "403913112",
+            "device" : "overlay",
+            "used" : "86568560",
+            "percent" : "18%",
+            "size" : "490481672",
+            "type" : "overlay",
+            "mountpoint" : "/"
+          },
+          {
+            "available" : "403913112",
+            "device" : "/dev/mapper/cl_os5-root",
+            "used" : "86568560",
+            "percent" : "18%",
+            "size" : "490481672",
+            "type" : "xfs",
+            "mountpoint" : "/hdf"
+          }
+        ],
+        "host_name" : "os05-13.hwx",
+        "ip" : "192.168.48.175",
+        "os_arch" : "x86_64",
+        "os_type" : "centos7",
+        "ph_cpu_count" : 4,
+        "rack_info" : "/default-rack",
+        "total_mem" : 16084576
+      },
+      "metrics" : {
+        "disk" : {
+          "disk_free" : 385.2,
+          "disk_total" : 467.76,
+          "read_bytes" : 2.419560448E9,
+          "read_count" : 72519.0,
+          "read_time" : 24160.0,
+          "write_bytes" : 1.00223172608E11,
+          "write_count" : 3108381.0,
+          "write_time" : 2.0796294E7
+        }
+      },
+      "host_components" : [
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os05-13.hwx/host_components/ATLAS_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "ATLAS_CLIENT",
+            "host_name" : "os05-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os05-13.hwx/host_components/ATLAS_SERVER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "ATLAS_SERVER",
+            "host_name" : "os05-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os05-13.hwx/host_components/HBASE_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HBASE_CLIENT",
+            "host_name" : "os05-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os05-13.hwx/host_components/HCAT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HCAT",
+            "host_name" : "os05-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os05-13.hwx/host_components/HDFS_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HDFS_CLIENT",
+            "host_name" : "os05-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os05-13.hwx/host_components/HIVE_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HIVE_CLIENT",
+            "host_name" : "os05-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os05-13.hwx/host_components/HST_AGENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HST_AGENT",
+            "host_name" : "os05-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os05-13.hwx/host_components/HST_SERVER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HST_SERVER",
+            "host_name" : "os05-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os05-13.hwx/host_components/INFRA_SOLR_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "INFRA_SOLR_CLIENT",
+            "host_name" : "os05-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os05-13.hwx/host_components/KAFKA_BROKER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "KAFKA_BROKER",
+            "host_name" : "os05-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os05-13.hwx/host_components/MAPREDUCE2_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "MAPREDUCE2_CLIENT",
+            "host_name" : "os05-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os05-13.hwx/host_components/METRICS_MONITOR",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "METRICS_MONITOR",
+            "host_name" : "os05-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os05-13.hwx/host_components/OOZIE_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "OOZIE_CLIENT",
+            "host_name" : "os05-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os05-13.hwx/host_components/PIG",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "PIG",
+            "host_name" : "os05-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os05-13.hwx/host_components/RESOURCEMANAGER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "RESOURCEMANAGER",
+            "host_name" : "os05-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os05-13.hwx/host_components/SLIDER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "SLIDER",
+            "host_name" : "os05-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os05-13.hwx/host_components/SPARK2_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "SPARK2_CLIENT",
+            "host_name" : "os05-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os05-13.hwx/host_components/SPARK_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "SPARK_CLIENT",
+            "host_name" : "os05-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os05-13.hwx/host_components/SPARK_JOBHISTORYSERVER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "SPARK_JOBHISTORYSERVER",
+            "host_name" : "os05-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os05-13.hwx/host_components/SQOOP",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "SQOOP",
+            "host_name" : "os05-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os05-13.hwx/host_components/TEZ_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "TEZ_CLIENT",
+            "host_name" : "os05-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os05-13.hwx/host_components/YARN_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "YARN_CLIENT",
+            "host_name" : "os05-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os05-13.hwx/host_components/ZOOKEEPER_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "ZOOKEEPER_CLIENT",
+            "host_name" : "os05-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os05-13.hwx/host_components/ZOOKEEPER_SERVER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "ZOOKEEPER_SERVER",
+            "host_name" : "os05-13.hwx"
+          }
+        }
+      ]
+    },
+    {
+      "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os06-13.hwx",
+      "Hosts" : {
+        "cluster_name" : "DK13",
+        "cpu_count" : 4,
+        "disk_info" : [
+          {
+            "available" : "397600512",
+            "device" : "overlay",
+            "used" : "92881160",
+            "percent" : "19%",
+            "size" : "490481672",
+            "type" : "overlay",
+            "mountpoint" : "/"
+          },
+          {
+            "available" : "397600512",
+            "device" : "/dev/mapper/cl_os6-root",
+            "used" : "92881160",
+            "percent" : "19%",
+            "size" : "490481672",
+            "type" : "xfs",
+            "mountpoint" : "/hdf"
+          }
+        ],
+        "host_name" : "os06-13.hwx",
+        "ip" : "192.168.48.165",
+        "os_arch" : "x86_64",
+        "os_type" : "centos7",
+        "ph_cpu_count" : 4,
+        "rack_info" : "/default-rack",
+        "total_mem" : 16084576
+      },
+      "metrics" : {
+        "disk" : {
+          "disk_free" : 379.18,
+          "disk_total" : 467.76,
+          "read_bytes" : 8.326848512E9,
+          "read_count" : 254480.0,
+          "read_time" : 82556.0,
+          "write_bytes" : 1.49932212224E11,
+          "write_count" : 5337238.0,
+          "write_time" : 2.828421E7
+        }
+      },
+      "host_components" : [
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os06-13.hwx/host_components/ACTIVITY_EXPLORER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "ACTIVITY_EXPLORER",
+            "host_name" : "os06-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os06-13.hwx/host_components/ATLAS_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "ATLAS_CLIENT",
+            "host_name" : "os06-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os06-13.hwx/host_components/HBASE_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HBASE_CLIENT",
+            "host_name" : "os06-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os06-13.hwx/host_components/HCAT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HCAT",
+            "host_name" : "os06-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os06-13.hwx/host_components/HDFS_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HDFS_CLIENT",
+            "host_name" : "os06-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os06-13.hwx/host_components/HISTORYSERVER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HISTORYSERVER",
+            "host_name" : "os06-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os06-13.hwx/host_components/HIVE_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HIVE_CLIENT",
+            "host_name" : "os06-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os06-13.hwx/host_components/HIVE_METASTORE",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HIVE_METASTORE",
+            "host_name" : "os06-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os06-13.hwx/host_components/HIVE_SERVER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HIVE_SERVER",
+            "host_name" : "os06-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os06-13.hwx/host_components/HST_AGENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HST_AGENT",
+            "host_name" : "os06-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os06-13.hwx/host_components/INFRA_SOLR",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "INFRA_SOLR",
+            "host_name" : "os06-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os06-13.hwx/host_components/INFRA_SOLR_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "INFRA_SOLR_CLIENT",
+            "host_name" : "os06-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os06-13.hwx/host_components/LIVY2_SERVER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "LIVY2_SERVER",
+            "host_name" : "os06-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os06-13.hwx/host_components/MAPREDUCE2_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "MAPREDUCE2_CLIENT",
+            "host_name" : "os06-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os06-13.hwx/host_components/METRICS_MONITOR",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "METRICS_MONITOR",
+            "host_name" : "os06-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os06-13.hwx/host_components/OOZIE_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "OOZIE_CLIENT",
+            "host_name" : "os06-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os06-13.hwx/host_components/PHOENIX_QUERY_SERVER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "PHOENIX_QUERY_SERVER",
+            "host_name" : "os06-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os06-13.hwx/host_components/PIG",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "PIG",
+            "host_name" : "os06-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os06-13.hwx/host_components/SLIDER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "SLIDER",
+            "host_name" : "os06-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os06-13.hwx/host_components/SPARK2_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "SPARK2_CLIENT",
+            "host_name" : "os06-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os06-13.hwx/host_components/SPARK2_THRIFTSERVER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "SPARK2_THRIFTSERVER",
+            "host_name" : "os06-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os06-13.hwx/host_components/SPARK_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "SPARK_CLIENT",
+            "host_name" : "os06-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os06-13.hwx/host_components/SQOOP",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "SQOOP",
+            "host_name" : "os06-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os06-13.hwx/host_components/TEZ_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "TEZ_CLIENT",
+            "host_name" : "os06-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os06-13.hwx/host_components/WEBHCAT_SERVER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "WEBHCAT_SERVER",
+            "host_name" : "os06-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os06-13.hwx/host_components/YARN_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "YARN_CLIENT",
+            "host_name" : "os06-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os06-13.hwx/host_components/ZOOKEEPER_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "ZOOKEEPER_CLIENT",
+            "host_name" : "os06-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os06-13.hwx/host_components/ZOOKEEPER_SERVER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "ZOOKEEPER_SERVER",
+            "host_name" : "os06-13.hwx"
+          }
+        }
+      ]
+    },
+    {
+      "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os07-13.hwx",
+      "Hosts" : {
+        "cluster_name" : "DK13",
+        "cpu_count" : 4,
+        "disk_info" : [
+          {
+            "available" : "396779000",
+            "device" : "overlay",
+            "used" : "93702672",
+            "percent" : "20%",
+            "size" : "490481672",
+            "type" : "overlay",
+            "mountpoint" : "/"
+          },
+          {
+            "available" : "396779000",
+            "device" : "/dev/mapper/cl_os7-root",
+            "used" : "93702672",
+            "percent" : "20%",
+            "size" : "490481672",
+            "type" : "xfs",
+            "mountpoint" : "/hdf"
+          }
+        ],
+        "host_name" : "os07-13.hwx",
+        "ip" : "192.168.48.191",
+        "os_arch" : "x86_64",
+        "os_type" : "centos7",
+        "ph_cpu_count" : 4,
+        "rack_info" : "/default-rack",
+        "total_mem" : 16084576
+      },
+      "metrics" : {
+        "disk" : {
+          "disk_free" : 378.4,
+          "disk_total" : 467.76,
+          "read_bytes" : 3.273695232E9,
+          "read_count" : 108519.0,
+          "read_time" : 36493.0,
+          "write_bytes" : 2.12088717312E11,
+          "write_count" : 2725750.0,
+          "write_time" : 1.9847099E7
+        }
+      },
+      "host_components" : [
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os07-13.hwx/host_components/ACTIVITY_ANALYZER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "ACTIVITY_ANALYZER",
+            "host_name" : "os07-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os07-13.hwx/host_components/ATLAS_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "ATLAS_CLIENT",
+            "host_name" : "os07-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os07-13.hwx/host_components/HBASE_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HBASE_CLIENT",
+            "host_name" : "os07-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os07-13.hwx/host_components/HBASE_MASTER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HBASE_MASTER",
+            "host_name" : "os07-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os07-13.hwx/host_components/HCAT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HCAT",
+            "host_name" : "os07-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os07-13.hwx/host_components/HDFS_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HDFS_CLIENT",
+            "host_name" : "os07-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os07-13.hwx/host_components/HIVE_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HIVE_CLIENT",
+            "host_name" : "os07-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os07-13.hwx/host_components/HST_AGENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HST_AGENT",
+            "host_name" : "os07-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os07-13.hwx/host_components/INFRA_SOLR_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "INFRA_SOLR_CLIENT",
+            "host_name" : "os07-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os07-13.hwx/host_components/KNOX_GATEWAY",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "KNOX_GATEWAY",
+            "host_name" : "os07-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os07-13.hwx/host_components/LIVY2_SERVER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "LIVY2_SERVER",
+            "host_name" : "os07-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os07-13.hwx/host_components/MAPREDUCE2_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "MAPREDUCE2_CLIENT",
+            "host_name" : "os07-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os07-13.hwx/host_components/METRICS_COLLECTOR",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "METRICS_COLLECTOR",
+            "host_name" : "os07-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os07-13.hwx/host_components/METRICS_GRAFANA",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "METRICS_GRAFANA",
+            "host_name" : "os07-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os07-13.hwx/host_components/METRICS_MONITOR",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "METRICS_MONITOR",
+            "host_name" : "os07-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os07-13.hwx/host_components/OOZIE_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "OOZIE_CLIENT",
+            "host_name" : "os07-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os07-13.hwx/host_components/OOZIE_SERVER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "OOZIE_SERVER",
+            "host_name" : "os07-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os07-13.hwx/host_components/PHOENIX_QUERY_SERVER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "PHOENIX_QUERY_SERVER",
+            "host_name" : "os07-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os07-13.hwx/host_components/PIG",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "PIG",
+            "host_name" : "os07-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os07-13.hwx/host_components/SLIDER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "SLIDER",
+            "host_name" : "os07-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os07-13.hwx/host_components/SPARK2_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "SPARK2_CLIENT",
+            "host_name" : "os07-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os07-13.hwx/host_components/SPARK2_THRIFTSERVER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "SPARK2_THRIFTSERVER",
+            "host_name" : "os07-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os07-13.hwx/host_components/SPARK_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "SPARK_CLIENT",
+            "host_name" : "os07-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os07-13.hwx/host_components/SQOOP",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "SQOOP",
+            "host_name" : "os07-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os07-13.hwx/host_components/TEZ_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "TEZ_CLIENT",
+            "host_name" : "os07-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os07-13.hwx/host_components/YARN_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "YARN_CLIENT",
+            "host_name" : "os07-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os07-13.hwx/host_components/ZOOKEEPER_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "ZOOKEEPER_CLIENT",
+            "host_name" : "os07-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os07-13.hwx/host_components/ZOOKEEPER_SERVER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "ZOOKEEPER_SERVER",
+            "host_name" : "os07-13.hwx"
+          }
+        }
+      ]
+    },
+    {
+      "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os10-13.hwx",
+      "Hosts" : {
+        "cluster_name" : "DK13",
+        "cpu_count" : 8,
+        "disk_info" : [
+          {
+            "available" : "332686036",
+            "device" : "overlay",
+            "used" : "137759600",
+            "percent" : "30%",
+            "size" : "470445636",
+            "type" : "overlay",
+            "mountpoint" : "/"
+          },
+          {
+            "available" : "332686036",
+            "device" : "/dev/mapper/cl_os10-root",
+            "used" : "137759600",
+            "percent" : "30%",
+            "size" : "470445636",
+            "type" : "xfs",
+            "mountpoint" : "/hdf"
+          }
+        ],
+        "host_name" : "os10-13.hwx",
+        "ip" : "192.168.48.171",
+        "os_arch" : "x86_64",
+        "os_type" : "centos7",
+        "ph_cpu_count" : 8,
+        "rack_info" : "/default-rack",
+        "total_mem" : 32667572
+      },
+      "metrics" : {
+        "disk" : {
+          "disk_free" : 317.27,
+          "disk_total" : 448.65,
+          "read_bytes" : 3.2838001152E10,
+          "read_count" : 569190.0,
+          "read_time" : 6574327.0,
+          "write_bytes" : 1.92864723968E11,
+          "write_count" : 2048561.0,
+          "write_time" : 1.48103197E8
+        }
+      },
+      "host_components" : [
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os10-13.hwx/host_components/ATLAS_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "ATLAS_CLIENT",
+            "host_name" : "os10-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os10-13.hwx/host_components/DATANODE",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "DATANODE",
+            "host_name" : "os10-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os10-13.hwx/host_components/DRUID_BROKER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "DRUID_BROKER",
+            "host_name" : "os10-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os10-13.hwx/host_components/HDFS_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HDFS_CLIENT",
+            "host_name" : "os10-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os10-13.hwx/host_components/HST_AGENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HST_AGENT",
+            "host_name" : "os10-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os10-13.hwx/host_components/METRICS_MONITOR",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "METRICS_MONITOR",
+            "host_name" : "os10-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os10-13.hwx/host_components/NODEMANAGER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "NODEMANAGER",
+            "host_name" : "os10-13.hwx"
+          }
+        }
+      ]
+    },
+    {
+      "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os11-13.hwx",
+      "Hosts" : {
+        "cluster_name" : "DK13",
+        "cpu_count" : 8,
+        "disk_info" : [
+          {
+            "available" : "336607204",
+            "device" : "overlay",
+            "used" : "133838432",
+            "percent" : "29%",
+            "size" : "470445636",
+            "type" : "overlay",
+            "mountpoint" : "/"
+          },
+          {
+            "available" : "336607204",
+            "device" : "/dev/mapper/cl_os11-root",
+            "used" : "133838432",
+            "percent" : "29%",
+            "size" : "470445636",
+            "type" : "xfs",
+            "mountpoint" : "/hdf"
+          }
+        ],
+        "host_name" : "os11-13.hwx",
+        "ip" : "192.168.48.197",
+        "os_arch" : "x86_64",
+        "os_type" : "centos7",
+        "ph_cpu_count" : 8,
+        "rack_info" : "/default-rack",
+        "total_mem" : 32667572
+      },
+      "metrics" : {
+        "disk" : {
+          "disk_free" : 321.01,
+          "disk_total" : 448.65,
+          "read_bytes" : 2.9277545984E10,
+          "read_count" : 512106.0,
+          "read_time" : 5812037.0,
+          "write_bytes" : 1.68027894784E11,
+          "write_count" : 2751675.0,
+          "write_time" : 1.49982673E8
+        }
+      },
+      "host_components" : [
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os11-13.hwx/host_components/ATLAS_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "ATLAS_CLIENT",
+            "host_name" : "os11-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os11-13.hwx/host_components/DATANODE",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "DATANODE",
+            "host_name" : "os11-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os11-13.hwx/host_components/DRUID_BROKER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "DRUID_BROKER",
+            "host_name" : "os11-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os11-13.hwx/host_components/HBASE_REGIONSERVER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HBASE_REGIONSERVER",
+            "host_name" : "os11-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os11-13.hwx/host_components/HDFS_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HDFS_CLIENT",
+            "host_name" : "os11-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os11-13.hwx/host_components/HST_AGENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HST_AGENT",
+            "host_name" : "os11-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os11-13.hwx/host_components/METRICS_MONITOR",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "METRICS_MONITOR",
+            "host_name" : "os11-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os11-13.hwx/host_components/NODEMANAGER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "NODEMANAGER",
+            "host_name" : "os11-13.hwx"
+          }
+        }
+      ]
+    },
+    {
+      "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os12-13.hwx",
+      "Hosts" : {
+        "cluster_name" : "DK13",
+        "cpu_count" : 8,
+        "disk_info" : [
+          {
+            "available" : "333898220",
+            "device" : "overlay",
+            "used" : "136547416",
+            "percent" : "30%",
+            "size" : "470445636",
+            "type" : "overlay",
+            "mountpoint" : "/"
+          },
+          {
+            "available" : "333898220",
+            "device" : "/dev/mapper/cl_os12-root",
+            "used" : "136547416",
+            "percent" : "30%",
+            "size" : "470445636",
+            "type" : "xfs",
+            "mountpoint" : "/hdf"
+          }
+        ],
+        "host_name" : "os12-13.hwx",
+        "ip" : "192.168.48.177",
+        "os_arch" : "x86_64",
+        "os_type" : "centos7",
+        "ph_cpu_count" : 8,
+        "rack_info" : "/default-rack",
+        "total_mem" : 32667572
+      },
+      "metrics" : {
+        "disk" : {
+          "disk_free" : 318.43,
+          "disk_total" : 448.65,
+          "read_bytes" : 1.4654838784E10,
+          "read_count" : 252454.0,
+          "read_time" : 7436895.0,
+          "write_bytes" : 1.79047102464E11,
+          "write_count" : 2116002.0,
+          "write_time" : 2.64194616E8
+        }
+      },
+      "host_components" : [
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os12-13.hwx/host_components/ATLAS_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "ATLAS_CLIENT",
+            "host_name" : "os12-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os12-13.hwx/host_components/DATANODE",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "DATANODE",
+            "host_name" : "os12-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os12-13.hwx/host_components/DRUID_HISTORICAL",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "DRUID_HISTORICAL",
+            "host_name" : "os12-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os12-13.hwx/host_components/DRUID_MIDDLEMANAGER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "DRUID_MIDDLEMANAGER",
+            "host_name" : "os12-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os12-13.hwx/host_components/HDFS_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HDFS_CLIENT",
+            "host_name" : "os12-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os12-13.hwx/host_components/HST_AGENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HST_AGENT",
+            "host_name" : "os12-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os12-13.hwx/host_components/METRICS_MONITOR",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "METRICS_MONITOR",
+            "host_name" : "os12-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os12-13.hwx/host_components/NODEMANAGER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "NODEMANAGER",
+            "host_name" : "os12-13.hwx"
+          }
+        }
+      ]
+    },
+    {
+      "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os13-13.hwx",
+      "Hosts" : {
+        "cluster_name" : "DK13",
+        "cpu_count" : 8,
+        "disk_info" : [
+          {
+            "available" : "376795536",
+            "device" : "overlay",
+            "used" : "93854800",
+            "percent" : "20%",
+            "size" : "470650336",
+            "type" : "overlay",
+            "mountpoint" : "/"
+          },
+          {
+            "available" : "376795536",
+            "device" : "/dev/mapper/cl-root",
+            "used" : "93854800",
+            "percent" : "20%",
+            "size" : "470650336",
+            "type" : "xfs",
+            "mountpoint" : "/hdf"
+          }
+        ],
+        "host_name" : "os13-13.hwx",
+        "ip" : "192.168.48.185",
+        "os_arch" : "x86_64",
+        "os_type" : "centos7",
+        "ph_cpu_count" : 8,
+        "rack_info" : "/default-rack",
+        "total_mem" : 32667696
+      },
+      "metrics" : {
+        "disk" : {
+          "disk_free" : 359.33,
+          "disk_total" : 448.85,
+          "read_bytes" : 2.2879999488E10,
+          "read_count" : 370319.0,
+          "read_time" : 751088.0,
+          "write_bytes" : 1.67004845056E11,
+          "write_count" : 1922227.0,
+          "write_time" : 5.0598681E7
+        }
+      },
+      "host_components" : [
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os13-13.hwx/host_components/ATLAS_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "ATLAS_CLIENT",
+            "host_name" : "os13-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os13-13.hwx/host_components/DATANODE",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "DATANODE",
+            "host_name" : "os13-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os13-13.hwx/host_components/DRUID_HISTORICAL",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "DRUID_HISTORICAL",
+            "host_name" : "os13-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os13-13.hwx/host_components/DRUID_MIDDLEMANAGER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "DRUID_MIDDLEMANAGER",
+            "host_name" : "os13-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os13-13.hwx/host_components/HBASE_REGIONSERVER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HBASE_REGIONSERVER",
+            "host_name" : "os13-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os13-13.hwx/host_components/HDFS_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HDFS_CLIENT",
+            "host_name" : "os13-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os13-13.hwx/host_components/HST_AGENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HST_AGENT",
+            "host_name" : "os13-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os13-13.hwx/host_components/METRICS_MONITOR",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "METRICS_MONITOR",
+            "host_name" : "os13-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os13-13.hwx/host_components/NODEMANAGER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "NODEMANAGER",
+            "host_name" : "os13-13.hwx"
+          }
+        }
+      ]
+    },
+    {
+      "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os14-13.hwx",
+      "Hosts" : {
+        "cluster_name" : "DK13",
+        "cpu_count" : 8,
+        "disk_info" : [
+          {
+            "available" : "381957012",
+            "device" : "overlay",
+            "used" : "88693324",
+            "percent" : "19%",
+            "size" : "470650336",
+            "type" : "overlay",
+            "mountpoint" : "/"
+          },
+          {
+            "available" : "381957012",
+            "device" : "/dev/mapper/cl-root",
+            "used" : "88693324",
+            "percent" : "19%",
+            "size" : "470650336",
+            "type" : "xfs",
+            "mountpoint" : "/hdf"
+          }
+        ],
+        "host_name" : "os14-13.hwx",
+        "ip" : "192.168.48.179",
+        "os_arch" : "x86_64",
+        "os_type" : "centos7",
+        "ph_cpu_count" : 8,
+        "rack_info" : "/default-rack",
+        "total_mem" : 32667696
+      },
+      "metrics" : {
+        "disk" : {
+          "disk_free" : 364.26,
+          "disk_total" : 448.85,
+          "read_bytes" : 1.4300461568E10,
+          "read_count" : 293073.0,
+          "read_time" : 271308.0,
+          "write_bytes" : 1.33998335488E11,
+          "write_count" : 1726218.0,
+          "write_time" : 3.8119142E7
+        }
+      },
+      "host_components" : [
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os14-13.hwx/host_components/ATLAS_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "ATLAS_CLIENT",
+            "host_name" : "os14-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os14-13.hwx/host_components/DATANODE",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "DATANODE",
+            "host_name" : "os14-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os14-13.hwx/host_components/DRUID_HISTORICAL",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "DRUID_HISTORICAL",
+            "host_name" : "os14-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os14-13.hwx/host_components/DRUID_MIDDLEMANAGER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "DRUID_MIDDLEMANAGER",
+            "host_name" : "os14-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os14-13.hwx/host_components/HDFS_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HDFS_CLIENT",
+            "host_name" : "os14-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os14-13.hwx/host_components/HST_AGENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HST_AGENT",
+            "host_name" : "os14-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os14-13.hwx/host_components/METRICS_MONITOR",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "METRICS_MONITOR",
+            "host_name" : "os14-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os14-13.hwx/host_components/NODEMANAGER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "NODEMANAGER",
+            "host_name" : "os14-13.hwx"
+          }
+        }
+      ]
+    },
+    {
+      "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os15-13.hwx",
+      "Hosts" : {
+        "cluster_name" : "DK13",
+        "cpu_count" : 8,
+        "disk_info" : [
+          {
+            "available" : "361109452",
+            "device" : "overlay",
+            "used" : "109540884",
+            "percent" : "24%",
+            "size" : "470650336",
+            "type" : "overlay",
+            "mountpoint" : "/"
+          },
+          {
+            "available" : "361109452",
+            "device" : "/dev/mapper/cl-root",
+            "used" : "109540884",
+            "percent" : "24%",
+            "size" : "470650336",
+            "type" : "xfs",
+            "mountpoint" : "/hdf"
+          }
+        ],
+        "host_name" : "os15-13.hwx",
+        "ip" : "192.168.48.195",
+        "os_arch" : "x86_64",
+        "os_type" : "centos7",
+        "ph_cpu_count" : 8,
+        "rack_info" : "/default-rack",
+        "total_mem" : 32667704
+      },
+      "metrics" : {
+        "disk" : {
+          "disk_free" : 344.38,
+          "disk_total" : 448.85,
+          "read_bytes" : 3.6449458176E10,
+          "read_count" : 468061.0,
+          "read_time" : 2787013.0,
+          "write_bytes" : 1.6976975616E11,
+          "write_count" : 1896100.0,
+          "write_time" : 7.1854485E7
+        }
+      },
+      "host_components" : [
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os15-13.hwx/host_components/ATLAS_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "ATLAS_CLIENT",
+            "host_name" : "os15-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os15-13.hwx/host_components/DATANODE",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "DATANODE",
+            "host_name" : "os15-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os15-13.hwx/host_components/DRUID_HISTORICAL",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "DRUID_HISTORICAL",
+            "host_name" : "os15-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os15-13.hwx/host_components/DRUID_MIDDLEMANAGER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "DRUID_MIDDLEMANAGER",
+            "host_name" : "os15-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os15-13.hwx/host_components/HBASE_REGIONSERVER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HBASE_REGIONSERVER",
+            "host_name" : "os15-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os15-13.hwx/host_components/HDFS_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HDFS_CLIENT",
+            "host_name" : "os15-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os15-13.hwx/host_components/HST_AGENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HST_AGENT",
+            "host_name" : "os15-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os15-13.hwx/host_components/METRICS_MONITOR",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "METRICS_MONITOR",
+            "host_name" : "os15-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os15-13.hwx/host_components/NODEMANAGER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "NODEMANAGER",
+            "host_name" : "os15-13.hwx"
+          }
+        }
+      ]
+    },
+    {
+      "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os16-13.hwx",
+      "Hosts" : {
+        "cluster_name" : "DK13",
+        "cpu_count" : 8,
+        "disk_info" : [
+          {
+            "available" : "885716124",
+            "device" : "overlay",
+            "used" : "73078208",
+            "percent" : "8%",
+            "size" : "958794332",
+            "type" : "overlay",
+            "mountpoint" : "/"
+          },
+          {
+            "available" : "885716124",
+            "device" : "/dev/mapper/cl-root",
+            "used" : "73078208",
+            "percent" : "8%",
+            "size" : "958794332",
+            "type" : "xfs",
+            "mountpoint" : "/hdf"
+          }
+        ],
+        "host_name" : "os16-13.hwx",
+        "ip" : "192.168.48.193",
+        "os_arch" : "x86_64",
+        "os_type" : "centos7",
+        "ph_cpu_count" : 8,
+        "rack_info" : "/default-rack",
+        "total_mem" : 16154676
+      },
+      "metrics" : {
+        "disk" : {
+          "disk_free" : 844.68,
+          "disk_total" : 914.38,
+          "read_bytes" : 1.06072795648E11,
+          "read_count" : 7141566.0,
+          "read_time" : 9417807.0,
+          "write_bytes" : 2.15495049216E11,
+          "write_count" : 9781265.0,
+          "write_time" : 1.231125575E9
+        }
+      },
+      "host_components" : [
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os16-13.hwx/host_components/ATLAS_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "ATLAS_CLIENT",
+            "host_name" : "os16-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os16-13.hwx/host_components/DATANODE",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "DATANODE",
+            "host_name" : "os16-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os16-13.hwx/host_components/DRUID_HISTORICAL",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "DRUID_HISTORICAL",
+            "host_name" : "os16-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os16-13.hwx/host_components/DRUID_MIDDLEMANAGER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "DRUID_MIDDLEMANAGER",
+            "host_name" : "os16-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os16-13.hwx/host_components/HDFS_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HDFS_CLIENT",
+            "host_name" : "os16-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os16-13.hwx/host_components/HST_AGENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HST_AGENT",
+            "host_name" : "os16-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os16-13.hwx/host_components/METRICS_MONITOR",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "METRICS_MONITOR",
+            "host_name" : "os16-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os16-13.hwx/host_components/NODEMANAGER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "NODEMANAGER",
+            "host_name" : "os16-13.hwx"
+          }
+        }
+      ]
+    },
+    {
+      "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os17-13.hwx",
+      "Hosts" : {
+        "cluster_name" : "DK13",
+        "cpu_count" : 8,
+        "disk_info" : [
+          {
+            "available" : "841128548",
+            "device" : "overlay",
+            "used" : "117665784",
+            "percent" : "13%",
+            "size" : "958794332",
+            "type" : "overlay",
+            "mountpoint" : "/"
+          },
+          {
+            "available" : "841128548",
+            "device" : "/dev/mapper/cl-root",
+            "used" : "117665784",
+            "percent" : "13%",
+            "size" : "958794332",
+            "type" : "xfs",
+            "mountpoint" : "/hdf"
+          }
+        ],
+        "host_name" : "os17-13.hwx",
+        "ip" : "192.168.48.173",
+        "os_arch" : "x86_64",
+        "os_type" : "centos7",
+        "ph_cpu_count" : 8,
+        "rack_info" : "/default-rack",
+        "total_mem" : 32668716
+      },
+      "metrics" : {
+        "disk" : {
+          "disk_free" : 802.16,
+          "disk_total" : 914.38,
+          "read_bytes" : 3.5962630144E10,
+          "read_count" : 552494.0,
+          "read_time" : 685900.0,
+          "write_bytes" : 2.03119529984E11,
+          "write_count" : 1498908.0,
+          "write_time" : 3.9536013E7
+        }
+      },
+      "host_components" : [
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os17-13.hwx/host_components/ATLAS_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "ATLAS_CLIENT",
+            "host_name" : "os17-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os17-13.hwx/host_components/DATANODE",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "DATANODE",
+            "host_name" : "os17-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os17-13.hwx/host_components/DRUID_HISTORICAL",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "DRUID_HISTORICAL",
+            "host_name" : "os17-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os17-13.hwx/host_components/DRUID_MIDDLEMANAGER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "DRUID_MIDDLEMANAGER",
+            "host_name" : "os17-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os17-13.hwx/host_components/HBASE_REGIONSERVER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HBASE_REGIONSERVER",
+            "host_name" : "os17-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os17-13.hwx/host_components/HDFS_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HDFS_CLIENT",
+            "host_name" : "os17-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os17-13.hwx/host_components/HST_AGENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HST_AGENT",
+            "host_name" : "os17-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os17-13.hwx/host_components/METRICS_MONITOR",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "METRICS_MONITOR",
+            "host_name" : "os17-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os17-13.hwx/host_components/NODEMANAGER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "NODEMANAGER",
+            "host_name" : "os17-13.hwx"
+          }
+        }
+      ]
+    },
+    {
+      "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os18-13.hwx",
+      "Hosts" : {
+        "cluster_name" : "DK13",
+        "cpu_count" : 8,
+        "disk_info" : [
+          {
+            "available" : "872399688",
+            "device" : "overlay",
+            "used" : "86394644",
+            "percent" : "10%",
+            "size" : "958794332",
+            "type" : "overlay",
+            "mountpoint" : "/"
+          },
+          {
+            "available" : "872399688",
+            "device" : "/dev/mapper/cl-root",
+            "used" : "86394644",
+            "percent" : "10%",
+            "size" : "958794332",
+            "type" : "xfs",
+            "mountpoint" : "/hdf"
+          }
+        ],
+        "host_name" : "os18-13.hwx",
+        "ip" : "192.168.48.167",
+        "os_arch" : "x86_64",
+        "os_type" : "centos7",
+        "ph_cpu_count" : 8,
+        "rack_info" : "/default-rack",
+        "total_mem" : 32668716
+      },
+      "metrics" : {
+        "disk" : {
+          "disk_free" : 831.99,
+          "disk_total" : 914.38,
+          "read_bytes" : 2.4481662464E10,
+          "read_count" : 438415.0,
+          "read_time" : 524504.0,
+          "write_bytes" : 1.9007489792E11,
+          "write_count" : 1343600.0,
+          "write_time" : 3.6234889E7
+        }
+      },
+      "host_components" : [
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os18-13.hwx/host_components/ATLAS_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "ATLAS_CLIENT",
+            "host_name" : "os18-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os18-13.hwx/host_components/DATANODE",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "DATANODE",
+            "host_name" : "os18-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os18-13.hwx/host_components/DRUID_HISTORICAL",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "DRUID_HISTORICAL",
+            "host_name" : "os18-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os18-13.hwx/host_components/DRUID_MIDDLEMANAGER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "DRUID_MIDDLEMANAGER",
+            "host_name" : "os18-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os18-13.hwx/host_components/HDFS_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HDFS_CLIENT",
+            "host_name" : "os18-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os18-13.hwx/host_components/HST_AGENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HST_AGENT",
+            "host_name" : "os18-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os18-13.hwx/host_components/METRICS_MONITOR",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "METRICS_MONITOR",
+            "host_name" : "os18-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os18-13.hwx/host_components/NODEMANAGER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "NODEMANAGER",
+            "host_name" : "os18-13.hwx"
+          }
+        }
+      ]
+    },
+    {
+      "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os19-13.hwx",
+      "Hosts" : {
+        "cluster_name" : "DK13",
+        "cpu_count" : 8,
+        "disk_info" : [
+          {
+            "available" : "858545472",
+            "device" : "overlay",
+            "used" : "100044160",
+            "percent" : "11%",
+            "size" : "958589632",
+            "type" : "overlay",
+            "mountpoint" : "/"
+          },
+          {
+            "available" : "858545472",
+            "device" : "/dev/mapper/cl-root",
+            "used" : "100044160",
+            "percent" : "11%",
+            "size" : "958589632",
+            "type" : "xfs",
+            "mountpoint" : "/hdf"
+          }
+        ],
+        "host_name" : "os19-13.hwx",
+        "ip" : "192.168.48.169",
+        "os_arch" : "x86_64",
+        "os_type" : "centos7",
+        "ph_cpu_count" : 8,
+        "rack_info" : "/default-rack",
+        "total_mem" : 32668568
+      },
+      "metrics" : {
+        "disk" : {
+          "disk_free" : 818.77,
+          "disk_total" : 914.18,
+          "read_bytes" : 4.4038511104E10,
+          "read_count" : 683020.0,
+          "read_time" : 839644.0,
+          "write_bytes" : 2.51583571456E11,
+          "write_count" : 1706211.0,
+          "write_time" : 5.071539E7
+        }
+      },
+      "host_components" : [
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os19-13.hwx/host_components/ATLAS_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "ATLAS_CLIENT",
+            "host_name" : "os19-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os19-13.hwx/host_components/DATANODE",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "DATANODE",
+            "host_name" : "os19-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os19-13.hwx/host_components/DRUID_HISTORICAL",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "DRUID_HISTORICAL",
+            "host_name" : "os19-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os19-13.hwx/host_components/DRUID_MIDDLEMANAGER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "DRUID_MIDDLEMANAGER",
+            "host_name" : "os19-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os19-13.hwx/host_components/HBASE_REGIONSERVER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HBASE_REGIONSERVER",
+            "host_name" : "os19-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os19-13.hwx/host_components/HDFS_CLIENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HDFS_CLIENT",
+            "host_name" : "os19-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os19-13.hwx/host_components/HST_AGENT",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "HST_AGENT",
+            "host_name" : "os19-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os19-13.hwx/host_components/METRICS_MONITOR",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "METRICS_MONITOR",
+            "host_name" : "os19-13.hwx"
+          }
+        },
+        {
+          "href" : "http://ambari-13.hwx:8080/api/v1/clusters/DK13/hosts/os19-13.hwx/host_components/NODEMANAGER",
+          "HostRoles" : {
+            "cluster_name" : "DK13",
+            "component_name" : "NODEMANAGER",
+            "host_name" : "os19-13.hwx"
+          }
+        }
+      ]
+    }
+  ]
+}

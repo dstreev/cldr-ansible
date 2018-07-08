@@ -1,0 +1,137 @@
+{
+    "blueprint": "DK013",
+    "default_password": "admin",
+    "configurations": [
+        
+    ],
+    "host_groups": [
+        {
+            "name": "host_group_1",
+            "configurations": [
+                
+            ],
+            "hosts": [
+                {
+                    "fqdn": "os02-13.hwx"
+                }
+            ]
+        },
+        {
+            "name": "host_group_2",
+            "configurations": [
+                
+            ],
+            "hosts": [
+                {
+                    "fqdn": "os03-13.hwx"
+                }
+            ]
+        },
+        {
+            "name": "host_group_3",
+            "configurations": [
+                
+            ],
+            "hosts": [
+                {
+                    "fqdn": "os04-13.hwx"
+                }
+            ]
+        },
+        {
+            "name": "host_group_4",
+            "configurations": [
+                
+            ],
+            "hosts": [
+                {
+                    "fqdn": "os05-13.hwx"
+                }
+            ]
+        },
+        {
+            "name": "host_group_5",
+            "configurations": [
+                
+            ],
+            "hosts": [
+                {
+                    "fqdn": "os06-13.hwx"
+                }
+            ]
+        },
+        {
+            "name": "host_group_6",
+            "configurations": [
+                
+            ],
+            "hosts": [
+                {
+                    "fqdn": "os07-13.hwx"
+                }
+            ]
+        },
+        {
+            "name": "host_group_7",
+            "configurations": [
+                
+            ],
+            "hosts": [
+                {
+                    "fqdn": "os10-13.hwx"
+                }
+            ]
+        },
+        {
+            "name": "host_group_8",
+            "configurations": [
+                
+            ],
+            "hosts": [
+                {
+                    "fqdn": "os11-13.hwx"
+                }
+            ]
+        },
+        {
+            "name": "host_group_9",
+            "configurations": [
+                
+            ],
+            "hosts": [
+                {
+                    "fqdn": "os12-13.hwx"
+                },
+                {
+                    "fqdn": "os14-13.hwx"
+                },
+                {
+                    "fqdn": "os16-13.hwx"
+                },
+                {
+                    "fqdn": "os18-13.hwx"
+                }
+            ]
+        },
+        {
+            "name": "host_group_10",
+            "configurations": [
+                
+            ],
+            "hosts": [
+                {
+                    "fqdn": "os13-13.hwx"
+                },
+                {
+                    "fqdn": "os15-13.hwx"
+                },
+                {
+                    "fqdn": "os17-13.hwx"
+                },
+                {
+                    "fqdn": "os19-13.hwx"
+                }
+            ]
+        }
+    ]
+}
