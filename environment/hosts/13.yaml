@@ -97,9 +97,9 @@ all:
           children:
             sdlc:
               vars:
-                smoke_tgs_size:        1Gb
-                smoke_tgs_mappers:     4
-                smoke_tgs_reducers:    4
+                smoke_tgs_size:        30Gb
+                smoke_tgs_mappers:     40
+                smoke_tgs_reducers:    40
                 tpcds_size:            50
                 ranger_url_base:       http://os02-13.hwx:6080
                 ranger_admin_user:     admin

@@ -8,10 +8,11 @@ This section contains scripts and support files to run various Big Data Scenario
 Pre-requisites:
 1. Create the user to run this as on the cluster.
   - Playbook: [Onboarding User](../post_install/02_onboard_user.yaml)
-2. Install and Configure Ranger
+2. Configure Hive Container Sizes for at least 4Gb.
+3. Install and Configure Ranger
   - Set Ranger parameters (url/user/password) in host.yaml for cluster.
-3. Run Playbook: [HDP Best Practice Ranger Rules](../post_install/01_bp_ranger_policies.yaml)
-4. Configure Hive for 'nonstrict' partition mode.
+4. Run Playbook: [HDP Best Practice Ranger Rules](../post_install/01_bp_ranger_policies.yaml)
+5. Configure Hive for 'nonstrict' partition mode.
   - `hive.exec.dynamic.partition.mode=nonstrict`
 
 ## ACID
