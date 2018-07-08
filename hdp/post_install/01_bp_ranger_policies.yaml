@@ -46,6 +46,7 @@
         user:                  '{{ ranger_admin_user }}'
         password:              '{{ ranger_admin_password }}'
         force_basic_auth:      yes
+        status_code:           200,400
         headers:
           Content-Type:        "application/json; charset=utf8"
           X-XSRF-HEADER:       "valid"
@@ -89,6 +90,7 @@
         user:                  '{{ ranger_admin_user }}'
         password:              '{{ ranger_admin_password }}'
         force_basic_auth:      yes
+        status_code:           200,400
         headers:
           Content-Type:        "application/json; charset=utf8"
           X-XSRF-HEADER:       "valid"
@@ -170,6 +172,7 @@
         user:                  '{{ ranger_admin_user }}'
         password:              '{{ ranger_admin_password }}'
         force_basic_auth:      yes
+        status_code:           200,400
         headers:
           Content-Type:        "application/json; charset=utf8"
           X-XSRF-HEADER:       "valid"
