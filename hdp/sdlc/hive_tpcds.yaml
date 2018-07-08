@@ -102,6 +102,8 @@
           Content-Type:        "application/json; charset=utf8"
           X-XSRF-HEADER:       "valid"
           User-Agent:          "Ansible HDP Best Practices"
+      tags:
+        - ranger
 
     - name: Build TPCDS
       shell: cd /home/{{ user }}/hive-testbench; ./tpcds-build.sh
