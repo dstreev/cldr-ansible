@@ -91,7 +91,7 @@ all:
               ansible_port:            22013
               ansible_user:            root
             edge4.core:
-              ansible_host:            dos05
+              ansible_host:            dos04
               ansible_port:            22013
               ansible_user:            root
           children:
@@ -106,7 +106,7 @@ all:
                 ranger_admin_password: admin
               hosts:
                 sdlc.core:
-                  ansible_host:        dos04
+                  ansible_host:        dos05
                   ansible_port:        22013
                   ansible_user:        root
 
@@ -114,7 +114,7 @@ all:
           vars:
             ambari_url_base:           http://ambari-13.hwx:8080
             ambari_admin_user :        admin
-            ambari_admin_password:     admin
+            ambari_admin_password:     hortonworks
             hdp_stack:                 HDP
             hdp_stack_version:         2.6
 

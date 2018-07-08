@@ -26,7 +26,7 @@ all:
     hdp:
       vars:
         ambari_server:                 ambari-ENV_INSTANCE.hwx
-        zookeeper_server:              os3-ENV_INSTANCE.hwx
+        zookeeper_server:              os5-ENV_INSTANCE.hwx
         repo_server:                   repo.hwx
 
       hosts:
@@ -91,7 +91,7 @@ all:
               ansible_port:            220ENV_INSTANCE
               ansible_user:            root
             edge4.core:
-              ansible_host:            dos05
+              ansible_host:            dos04
               ansible_port:            220ENV_INSTANCE
               ansible_user:            root
           children:
@@ -106,7 +106,7 @@ all:
                 ranger_admin_password: admin
               hosts:
                 sdlc.core:
-                  ansible_host:        dos04
+                  ansible_host:        dos05
                   ansible_port:        220ENV_INSTANCE
                   ansible_user:        root
 
