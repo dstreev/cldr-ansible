@@ -11,10 +11,10 @@
   tasks:
     - name: Create User Home Directories on local filesystem
       file:
-        path: /home/{{ user }}
+        path: /home/{{ item }}
         state: directory
         mode: 0750
-        owner: '{{ user }}'
+        owner: '{{ item }}'
       become: true
       loop:
         - bammbamm
