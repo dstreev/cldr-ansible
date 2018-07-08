@@ -1,6 +1,18 @@
 # SDLC
 
 This section contains scripts and support files to run various Big Data Scenarios.
+## Running TPCDS
+
+[hive-tpcds.yaml](hive-tpcds.yaml) is an Ansible playbook for running TPCDS.
+
+Pre-requisites:
+1. Create the user to run this as on the cluster.
+  - Playbook: [Onboarding User](../post_install/02_onboard_user.yaml)
+2. Install and Configure Ranger
+  - Set Ranger parameters (url/user/password) in host.yaml for cluster.
+3. Run Playbook: [HDP Best Practice Ranger Rules](../post_install/01_bp_ranger_policies.yaml)
+4. Configure Hive for 'nonstrict' partition mode.
+  - `hive.exec.dynamic.partition.mode=nonstrict`
 
 ## ACID
 

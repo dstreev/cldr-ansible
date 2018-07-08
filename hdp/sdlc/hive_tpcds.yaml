@@ -109,7 +109,7 @@
       shell: cd /home/{{ user }}/hive-testbench; ./tpcds-build.sh
       tags:
         - build
-    - name: Build TPCDS Dataset
+    - name: Create TPCDS Dataset and Build Hive Tables
       shell: cd /home/{{ user }}/hive-testbench; ./tpcds-setup.sh {{ tpcds_size }}
       tags:
         - build
