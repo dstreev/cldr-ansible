@@ -4,7 +4,7 @@
   tasks:
     - name: Copy Docker Daemon Config to Cluster Hosts
       copy:
-        src: /Users/dstreev/projects/david/ansible-playground/infrastructure/docker/daemon.json
+        src: /Users/dstreev/projects/david/hwx-ansible/infrastructure/docker/daemon.json
         dest: /etc/docker/daemon.json
         owner: root
         mode: 0644

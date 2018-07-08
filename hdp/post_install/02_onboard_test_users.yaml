@@ -1,74 +1,5 @@
-- hosts: hdp
-  become: true
-  tags:
-    - os
-  tasks:
-    - name: Add Groups
-      group:
-        name: '{{ item }}'
-        state: present
-      loop:
-        - flintstones
-        - gameofthrones
-        - starwars
-        - hadoop_admin
-        - service
-    - name: Add Flintstones Users
-      user:
-        name: '{{ item }}'
-        shell: /bin/bash
-        groups: hadoop, flintstones
-      loop:
-        - bammbamm
-        - fred
-        - wilma
-        - barney
-        - betty
-        - pebbles
-        - bedrock
-    - name: Add gameofthrones Users
-      user:
-        name: '{{ item }}'
-        shell: /bin/bash
-        groups: hadoop, gameofthrones
-      loop:
-        - arya
-        - jonsnow
-        - cersei
-        - daenerys
-        - sansa
-        - tyrion
-        - winterfell
-        - kingslanding
-    - name: Add Starwars Users
-      user:
-        name: '{{ item }}'
-        shell: /bin/bash
-        groups: hadoop, starwars
-      loop:
-        - anakin
-        - hansolo
-        - leia
-        - luke
-        - padme
-        - yoda
-        - coruscant
-        - tatooine
-    - name: Add Service Group Membership
-      user:
-        name: '{{ item }}'
-        shell: /bin/bash
-        groups: service
-        append: yes
-      loop:
-        - coruscant
-        - tatooine
-        - bedrock
-        - kingslanding
-        - winterfell
+
 - hosts: sdlc
-  become: true
-  become_user: hdfs
   tags:
     - hdfs
 
@@ -104,6 +35,8 @@
         - yoda
         - coruscant
         - tatooine
+      become: true
+      become_user: hdfs
       tags:
         - hdp
 
@@ -133,5 +66,7 @@
         - yoda
         - coruscant
         - tatooine
+      become: true
+      become_user: hive
       tags:
         - hdp

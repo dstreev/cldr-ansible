@@ -1,8 +1,0 @@
-
-- hosts: os
-  become: true
-  tasks:
-    - name: Core Stop
-      shell: docker stop core-{{ ansible_hostname }}
-    - name: Core Remove
-      shell: docker rm core-{{ ansible_hostname }}

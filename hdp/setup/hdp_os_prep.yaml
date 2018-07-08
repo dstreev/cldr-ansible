@@ -5,6 +5,7 @@
 # Disable THP
 # Set somaxconn
 # And other LLAP specifics
+# This has all been moved to the "image build out"
 - hosts:         hdp
   become:        true
   tasks:

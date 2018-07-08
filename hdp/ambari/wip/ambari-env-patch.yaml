@@ -1,0 +1,7 @@
+- hosts: ambari
+  become: true
+
+  tasks:
+
+    - name: Set the default hdfs nofile ulimits
+      

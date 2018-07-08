@@ -93,7 +93,7 @@
           Content-Type:        "application/json; charset=utf8"
           X-XSRF-HEADER:       "valid"
           User-Agent:          "Ansible HDP Best Practices"
-          
+
     - name:                    Hive Private User Databases
       uri:
         url:                   '{{ ranger_url_base }}/service/public/v2/api/policy'

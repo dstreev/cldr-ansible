@@ -6,7 +6,7 @@ The filename (minus extension) represents the Environment Instance that the conf
 
 Each container attaches to a few volumes.  These are persisted across restarts.  They contain data for the cluster.  So if you kill an instance, the volumes should persist (unless you purge them with `docker volume prune -f` on the docker host).
 
-Each cluster instance also uses a central db.  Each schema has an environment postfix too.
+Each cluster instance also uses a central db.  Each schema has an environment postfix tooÂ.
 
 So, we need to establish a range of configs for each Ambari / HDFS version.  This will help with rehydrating a cluster is we remove the stack.
 

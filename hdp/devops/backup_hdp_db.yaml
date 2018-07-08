@@ -5,7 +5,7 @@
       file:
         path: '{{ mysql_backup_dir }}'
         state: directory
-        
+
     - name: Backup Ambari Schema
       shell: mysqldump -h {{ db_host }} -u {{ db_user }} --password={{ db_password }} --databases {{ db_ambari_name }} > {{ mysql_backup_dir }}/{{ db_ambari_name }}.{{ ansible_date_time.iso8601 }}.sql
 

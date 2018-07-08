@@ -1,8 +1,0 @@
-
-- hosts: os
-  become: true
-  tasks:
-    - name: Core Stop
-      docker_container:
-        name: core-{{ ansible_hostname }}
-        state: stopped

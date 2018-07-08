@@ -3,7 +3,7 @@
   tasks:
     - name: Add deployment
       lineinfile:
-        path: /Users/dstreev/projects/david/hwx-ansible/config/readme.md
+        path: /Users/dstreev/projects/david/hwx-ansible/config/readme.markdown
         state: present
         insertafter: '--\|---\|---\|---\|--'
         line: '*{{ ENV_INSTANCE }}* | {{ ENV_SET }} | [{{ AMBARI_VERSION }}](http://ambari-{{ ENV_INSTANCE }}.hwx:8080) | {{ HDP_STACK_VERSION }} | {{ ansible_date_time.date }} | '
@@ -11,7 +11,7 @@
         - add
     - name: Remove deployment
       lineinfile:
-        path: /Users/dstreev/projects/david/hwx-ansible/config/readme.md
+        path: /Users/dstreev/projects/david/hwx-ansible/config/readme.markdown
         state: absent
         regexp: ^\*{{ ENV_INSTANCE }}\*.*
       tags:
