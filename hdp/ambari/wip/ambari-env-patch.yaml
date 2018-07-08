@@ -4,4 +4,23 @@
   tasks:
 
     - name: Set the default hdfs nofile ulimits
-      
+      uri:
+        url:              '{{ ambari_url_base }}/api/v1/stacks/{{ hdp_stack }}/versions/{{ hdp_stack_version }}/operating_systems/{{ os_type }}/repositories/{{ hdp_repo_id }}'
+        # body_format:    json
+        body:
+          '
+          { "Repositories" :
+            {
+              "base_url" : "{{ hdp_repo_url }}",
+              "repo_name": "HDP",
+              "verify_base_url" : false
+            }
+          }
+          '
+        method:           PUT
+        user:             '{{ ambari_admin_user }}'
+        password:         '{{ ambari_admin_password }}'
+        force_basic_auth: yes
+        headers:
+          X-Requested-By: "HDP Ansible BP"
+          User-Agent:     "Ansible HDP Best Practices"

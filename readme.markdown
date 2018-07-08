@@ -70,6 +70,8 @@ Then run the best practices scripts against the clusters
 ansible-playbook -i <environment_host.yaml> ./hdp/post_install/01_bp_ranger_policies.yaml
 ```
 
+
+
 This will setup basic user and cluster rules for HDFS and Hive.
 
 ### Special Considerations
