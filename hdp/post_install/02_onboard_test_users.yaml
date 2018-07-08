@@ -9,6 +9,38 @@
     hive_superpassword: hive
 
   tasks:
+    - name: Create User Home Directories on local filesystem
+      shell: mkdir -p /home/{{ item }};chown -R {{ item }} /home/{{ item }}
+      become: true
+      loop:
+        - bammbamm
+        - fred
+        - wilma
+        - barney
+        - betty
+        - pebbles
+        - bedrock
+        - arya
+        - jonsnow
+        - cersei
+        - daenerys
+        - sansa
+        - tyrion
+        - winterfell
+        - kingslanding
+        - anakin
+        - hansolo
+        - leia
+        - luke
+        - padme
+        - yoda
+        - coruscant
+        - tatooine
+      tags:
+        - local
+        - ldap
+        - hdp
+
     - name: Create User Home Directories in hdfs
       shell: hdfs dfs -mkdir -p /user/{{ item }}/datasets/external;hdfs dfs -chown -R {{ item }}:hadoop /user/{{ item }}
       loop:

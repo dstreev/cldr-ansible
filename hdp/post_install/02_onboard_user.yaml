@@ -6,6 +6,13 @@
     hive_superpassword: hive
 
   tasks:
+    - name: Create User Home Directories on local filesystem
+      shell: mkdir -p /home/{{ user }};chown -R {{ user }} /home/{{ user }}
+      become: true
+      tags:
+        - local
+        - ldap
+        - hdp
     - name: Create User Home Directories in hdfs
       shell: hdfs dfs -mkdir -p /user/{{ user }}/datasets/external;hdfs dfs -chown -R {{ user }}:hadoop /user/{{ user }}
       become: true
