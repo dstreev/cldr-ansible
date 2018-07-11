@@ -1,0 +1,135 @@
+# HDP Environment 01 Servers
+all:
+  vars:
+    ambari_version:                    2.6.2.2
+    hdp_version:                       2.6.5.0
+    env_set:                           full
+    image_tag:                         105
+    env_instance:                      '14'
+    cluster_name:                      DK14
+    mysql_backup_dir:                  /hadoop/mysql_backups
+    db_type:                           mysql
+    db_host:                           db.hwx
+    db_user:                           root
+    db_password:                       hortonworks
+    db_ambari_name:                    ambari_14
+    db_hive_name:                      hive_14
+    db_oozie_name:                     oozie_14
+    db_ranger_name:                    ranger_14
+    db_ranger_kms_name:                rangerkms_14
+    db_druid_name:                     druid_14
+    db_superset_name:                  superset_14
+    db_registry_name:                  registry_14
+    db_streamline_name:                streamline_14
+
+  children:
+    hdp:
+      vars:
+        ambari_server:                 ambari-14.hwx
+        zookeeper_server:              os5-14.hwx
+        repo_server:                   repo.hwx
+
+      hosts:
+        os6.docker:
+          ansible_host:                dos06
+          ansible_port:                22014
+          ansible_user:                root
+        os7.core:
+          ansible_host:                dos07
+          ansible_port:                22014
+          ansible_user:                root
+        os10.core:
+          ansible_host:                dos10
+          ansible_port:                22014
+          ansible_user:                root
+        os11.core:
+          ansible_host:                dos11
+          ansible_port:                22014
+          ansible_user:                root
+        os12.core:
+          ansible_host:                dos12
+          ansible_port:                22014
+          ansible_user:                root
+        os13.core:
+          ansible_host:                dos13
+          ansible_port:                22014
+          ansible_user:                root
+        os14.core:
+          ansible_host:                dos14
+          ansible_port:                22014
+          ansible_user:                root
+        os15.core:
+          ansible_host:                dos15
+          ansible_port:                22014
+          ansible_user:                root
+        os16.core:
+          ansible_host:                dos16
+          ansible_port:                22014
+          ansible_user:                root
+        os17.core:
+          ansible_host:                dos17
+          ansible_port:                22014
+          ansible_user:                root
+        os18.core:
+          ansible_host:                dos18
+          ansible_port:                22014
+          ansible_user:                root
+        os19.core:
+          ansible_host:                dos19
+          ansible_port:                22014
+          ansible_user:                root
+
+      children:
+        edge:
+          hosts:
+            edge1.core:
+              ansible_host:            dos02
+              ansible_port:            22014
+              ansible_user:            root
+            edge2.core:
+              ansible_host:            dos03
+              ansible_port:            22014
+              ansible_user:            root
+            edge4.core:
+              ansible_host:            dos04
+              ansible_port:            22014
+              ansible_user:            root
+          children:
+            sdlc:
+              vars:
+                smoke_tgs_size:        1Gb
+                smoke_tgs_mappers:     4
+                smoke_tgs_reducers:    4
+                tpcds_size:            50
+                ranger_url_base:       http://not_set-14.hwx:6080
+                ranger_admin_user:     admin
+                ranger_admin_password: admin
+              hosts:
+                sdlc.core:
+                  ansible_host:        dos05
+                  ansible_port:        22014
+                  ansible_user:        root
+
+        ambari:
+          vars:
+            ambari_url_base:           http://ambari-14.hwx:8080
+            ambari_admin_user :        admin
+            ambari_admin_password:     admin
+            hdp_stack:                 HDP
+            hdp_stack_version:         2.6
+
+            hdp_repo_id:               HDP-2.6
+            hdp_utils_repo_id:         HDP-UTILS-1.1.0.22
+            hdp_gpl_repo_id:           HDP-2.6-GPL
+            blueprint:                 NOT_SET
+            os_type:                   redhat7
+
+            hdp_repo_url:              http://repo.home/repo/HDP/centos7/2.x/updates/2.6.5.0
+            hdp_util_repo_url:         
+            hdp_gpl_repo_url:          http://repo.home/repo/HDP-GPL/centos7/2.x/updates/2.6.5.0
+
+          hosts:
+            ambari.core:
+              ansible_host:            dos01
+              ansible_port:            22014
+              ansible_user:            root

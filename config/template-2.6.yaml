@@ -1,0 +1,44 @@
+# One of full, left, center, right
+env_set: "full"
+
+# Number between 00-99
+env_instance: "??"
+
+# Docker Image Tag to use
+image_tag: "105"
+
+# Ambari Repo Version (used to pull the correct vars in ../environment/vars/ambari_?.json)
+ambari_version: "2.6.2.2"
+
+blueprint_name: "NOT_SET"
+
+ambari_admin: "admin"
+ambari_admin_password: "admin"
+
+hdp_stack: "HDP"
+hdp_stack_version: "2.6"
+
+hdp_repo_id: "HDP-2.6"
+hdp_repo_url: "http:\\/\\/repo.home\\/repo\\/HDP\\/centos7\\/2.x\\/updates\\/2.6.5.0"
+
+hdp_utils_repo_id: "HDP-UTILS-1.1.0.22"
+hdp_utils_repo_url: "http:\\/\\/repo.home\\/repo\\/HDP-UTILS-1.1.0.22\\/repos\\/centos7"
+
+hdp_gpl_repo_id: "HDP-2.6-GPL"
+hdp_gpl_repo_url: "http:\\/\\/repo.home\\/repo\\/HDP-GPL\\/centos7\\/2.x\\/updates\\/2.6.5.0"
+
+os_type: "redhat7"
+
+ldap-url: "10.0.1.11:389"
+ldap-ssl: "false"
+ldap-user-class: "posixaccount"
+ldap-user-attr: "uid"
+ldap-group-class: "posixgroup"
+ldap-group-attr: "cn"
+ldap-member-attr: "member"
+ldap-dn: "cn"
+ldap-base-dn: ""
+ldap-manager-dn: "uid=admin,cn=users,cn=accounts,dc=streever,dc=local"
+ldap-manager-password: "hortonworks"
+ldap-referral: "ignore"
+ldap-bind-anonym: "false"

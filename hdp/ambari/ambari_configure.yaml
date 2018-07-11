@@ -15,6 +15,45 @@
       shell: ambari-server setup --database={{ db_type }} --databasehost={{ db_host }} --databaseport=3306 --databaseusername={{ db_user }} --databasepassword={{ db_password }} --databasename={{ db_ambari_name }} --enable-lzo-under-gpl-license --java-home=/usr/lib/jvm/java-1.8.0-openjdk -s
       tags:
         - server
+    - name: Configure Ambari Server LDAP Integration
+      shell: ambari-server setup-ldap
+      --ldap-url={{ ldap-url }}
+      --ldap-ssl=false
+      --ldap-user-class={{ ldap-user-class }}
+      --ldap-user-attr={{ ldap-user-attr }}
+  --ldap-group-class={{ ldap-group-class }}
+  --ldap-group-attr={{ ldap-group-attr }}
+  --ldap-member-attr={{ ldap-member-attr }}
+  --ldap-dn={{ ldap-dn }}
+  --ldap-base-dn={{ ldap-base-dn }}
+  --ldap-manager-dn={{ ldap-manager-dn }}
+  --ldap-manager-password={{ ldap-manager-password }}
+  --ldap-referral=ignore
+  --ldap-bind-anonym=false
+  --ldap-save-settings  Save without review for LDAP
+
+  --ldap-sync-admin-name=LDAP_SYNC_ADMIN_NAME
+                        Username for LDAP sync
+  --ldap-sync-admin-password=LDAP_SYNC_ADMIN_PASSWORD
+                        Password for LDAP sync
+  --ldap-sync-username-collisions-behavior=LDAP_SYNC_USERNAME_COLLISIONS_BEHAVIOR
+                        Handling behavior for username collisions
+                        [convert/skip] for LDAP sync
+LDAP_PRMARY_URL=10.0.1.11:389
+LDAP_ADMIN=uid=admin,cn=users,cn=accounts,dc=streever,dc=local
+LDAP_ADMIN_PW=hortonworks
+LDAP_BASEDN=
+LDAP_DN_ATTR=cn
+LDAP_GRP_MBR_ATTR=member
+LDAP_GRP_NM_ATTR=cn
+LDAP_GRP_OBJ_CLASS=posixgroup
+LDAP_USER_NAME_ATTR=uid
+LDAP_USER_OBJ_CLASS=posixaccount
+
+      tags:
+        - server
+
+
     # - name: Configure Ambari Server LDAP Information
     #   shell: ambari-server setup-ldap --jdbc-driver=/usr/share/java/mysql-connector-java.jar --jdbc-db={{ db_type }}
     #   tags:
