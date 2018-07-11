@@ -19,7 +19,7 @@ instance = args.instance[0]
 os.chdir(os.path.dirname(os.path.abspath( __file__ )))
 
 # Set the config file
-cfgPath = '../config/' + str(instance) + '.cfg'
+cfgPath = '../config/' + str(instance) + '.yaml'
 
 # Function to run host ansible scripts
 # TODO:
