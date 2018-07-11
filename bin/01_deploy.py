@@ -33,7 +33,7 @@ if (os.path.isfile(cfgPath)):
     out = subprocess.check_output(['docker', '-H', 'os01:2375', 'stack', 'ls'])
     # out = proc.communicate()
     for line in out.splitlines():
-        if (re.search(docker_stack), str(line)):
+        if (re.search(docker_stack, str(line))):
             check_stack = True
 
     if ( not check_stack):
@@ -44,31 +44,31 @@ if (os.path.isfile(cfgPath)):
 
         # Now Deploy
         print('Deploy Docker Stack '+ docker_stack + 'with compose file (' + env_set + ')')
-        out = subprocess.Popen(['docker','-H','os01:2375','stack','deploy','--compose-file','../hdp/setup/stack-compose/'+env_set+'.yaml', docker_stack]).communicate()
+        out = subprocess.check_output(['docker','-H','os01:2375','stack','deploy','--compose-file','../hdp/setup/stack-compose/'+env_set+'.yaml', docker_stack]).communicate()
 
 
         print('Build the Host File for instance: '+ str(instance))
-        out = subprocess.Popen(['./build-host-yaml.py','-i',instance]).communicate()
+        out = subprocess.check_output(['./build-host-yaml.py','-i',instance]).communicate()
 
         print('Pause for 15 seconds while the docker services start')
         # time.sleep(15)
 
         # echo "OS Prep"
         print('OS Prep')
-        # out = subprocess.Popen(['ansible-playbook', '-i', '../environment/hosts/'+str(instance)+'.yaml','--extra-vars','@../config/'+str(instance)+'.yaml', '../hdp/setup/hdp_os_prep.yaml']).communicate()
+        # out = subprocess.check_output(['ansible-playbook', '-i', '../environment/hosts/'+str(instance)+'.yaml','--extra-vars','@../config/'+str(instance)+'.yaml', '../hdp/setup/hdp_os_prep.yaml']).communicate()
         # ansible-playbook -i ../environment/hosts/${ENV_INSTANCE}.yaml --extra-vars "@../environment/vars/ambari_${AMBARI_VERSION}.json" -e env_state=started ../hdp/setup/hdp_os_prep.yaml
 
         print('Edge Node Config')
-        # out = subprocess.Popen(['ansible-playbook', '-i', '../environment/hosts/'+str(instance)+'.yaml','--extra-vars','@../config/'+str(instance)+'.yaml', '../hdp/setup/edge_node_config.yaml']).communicate()
+        # out = subprocess.check_output(['ansible-playbook', '-i', '../environment/hosts/'+str(instance)+'.yaml','--extra-vars','@../config/'+str(instance)+'.yaml', '../hdp/setup/edge_node_config.yaml']).communicate()
         # ansible-playbook -i ../environment/hosts/${ENV_INSTANCE}.yaml --extra-vars "@../environment/vars/ambari_${AMBARI_VERSION}.json" -e env_state=started ../hdp/setup/edge_node_config.yaml
 
         print('Ambari Install Playbook')
-        # out = subprocess.Popen(['ansible-playbook', '-i', '../environment/hosts/'+str(instance)+'.yaml','--extra-vars','@../config/'+str(instance)+'.yaml', '../hdp/setup/ambari_install.yaml']).communicate()
+        # out = subprocess.check_output(['ansible-playbook', '-i', '../environment/hosts/'+str(instance)+'.yaml','--extra-vars','@../config/'+str(instance)+'.yaml', '../hdp/setup/ambari_install.yaml']).communicate()
         # ansible-playbook -i ../environment/hosts/${ENV_INSTANCE}.yaml --extra-vars "@../environment/vars/ambari_${AMBARI_VERSION}.json" -e env_state=started ../hdp/ambari/ambari_install.yaml
 
         # Populate Deployment readme.md
         print('Set Readme Docs.')
-        # out = subprocess.Popen(['ansible-playbook', '--extra-vars','@../config/'+str(instance)+'.yaml', '--tags', 'add', '../config/config-dictionary.yaml']).communicate()
+        # out = subprocess.check_output(['ansible-playbook', '--extra-vars','@../config/'+str(instance)+'.yaml', '--tags', 'add', '../config/config-dictionary.yaml']).communicate()
         # ansible-playbook -e ENV_INSTANCE=${ENV_INSTANCE} -e ENV_SET=${ENV_SET} -e AMBARI_VERSION=${AMBARI_VERSION} -e HDP_STACK_VERSION=${HDP_STACK_VERSION} --tags "add" ../config/config-dictionary.yaml
 
 
