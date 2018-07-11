@@ -30,7 +30,8 @@ if (os.path.isfile(cfgPath)):
     docker_stack = 'hdp'+str(instance)
     print ("Checking if Stack " + docker_stack + " has already been deployed")
     check_stack = False
-    out = subprocess.Popen(['docker', '-H', 'os01:2375', 'stack', 'ls']).stdout
+    proc = subprocess.Popen(['docker', '-H', 'os01:2375', 'stack', 'ls'])
+    out = proc.communicate()
     for line in out.splitlines():
         if (re.search(docker_stack), str(line)):
             check_stack = True
