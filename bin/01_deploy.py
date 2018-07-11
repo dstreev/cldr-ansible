@@ -29,8 +29,8 @@ if (os.path.isfile(cfgPath)):
     # Check to see if the INFRA stack has been deployed.
     docker_stack = 'hdp'+str(instance)
     print ("Checking if Stack " + docker_stack + " has already been deployed")
-    out, err = subprocess.Popen(['docker', '-H', 'os01:2375', 'stack', 'ls'])
     check_stack = False
+    out, err = subprocess.Popen(['docker', '-H', 'os01:2375', 'stack', 'ls'])
     for line in out.splitlines():
         if (re.search(docker_stack), str(line)):
             check_stack = True
@@ -39,7 +39,7 @@ if (os.path.isfile(cfgPath)):
         cfgYaml = yaml.load(open(cfgPath))
         # Environment Set which location
         env_set = cfgYaml["env_set"]
-        docker_set = 'hdp' + env_set
+        docker_set = 'hdp' + str(instance)
 
         # Now Deploy
         print('Deploy Docker Stack '+ docker_stack + 'with compose file (' + env_set + ')')
