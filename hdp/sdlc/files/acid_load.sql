@@ -1,1 +1,1 @@
-user acid_${HIVE{USER};
+user acid_${HIVE_USER};
