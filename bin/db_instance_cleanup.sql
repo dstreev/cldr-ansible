@@ -6,4 +6,3 @@ drop database ranger_${INSTANCE};
 drop database rangerkms_${INSTANCE};
 drop database registry_${INSTANCE};
 drop database superset_${INSTANCE};
-

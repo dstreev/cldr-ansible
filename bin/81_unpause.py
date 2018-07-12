@@ -46,8 +46,8 @@ for i in hosts:
       # Search for the Docker Stack
       if (re.search(docker_stack, str(line))):
           # When docker_stack, check if it's paused
-          if (not re.search('Paused',str(line))):
-              # When not paused
+          if (re.search('Paused',str(line))):
+              # When paused
               fields = str(line).strip().split()
-              # Pause the container
-              out = subprocess.Popen(['docker','-H','os'+host+':2375','pause', fields[1]])
+              # UnPause the container
+              out = subprocess.Popen(['docker','-H','os'+host+':2375','unpause', fields[1]])
