@@ -11,7 +11,8 @@
     gen_count: 1000000000
     # Controls which scenario we're running
     set: 3
-    hive_connect_url: jdbc:hive2://{{ zk_host }}:{{ zk_port }}/;serviceDiscoveryMode=zooKeeper;zooKeeperNamespace={{ hs2_zk_path }}
+    hive_connect_url: jdbc:hive2://{{ zookeeper_server }}:2181/;serviceDiscoveryMode=zooKeeper;zooKeeperNamespace=hiveserver2
+    # hive_connect_url: jdbc:hive2://{{ zookeeper_server }}:2181/;serviceDiscoveryMode=zooKeeper;zooKeeperNamespace={{ hs2_zk_path }}
 
   become: true
   # become_user: '{{ user }}'

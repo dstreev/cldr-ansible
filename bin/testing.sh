@@ -38,7 +38,8 @@ else
   exit -1
 fi
 
-cd `dirname $0`
+
+exit 0
 
 export DOCKER_STACK=hdp${ENV_INSTANCE}
 export ENV_INSTANCE=${ENV_INSTANCE}
