@@ -47,7 +47,7 @@ if (os.path.isfile(cfgPath)):
             loader = FileSystemLoader('../hdp/setup/stack-compose')
         )
         # loader = FileSystemLoader('../environment/hosts/host-template_" + env_set + ".yaml')
-        template = env.get_template('env_set + '.yaml')
+        template = env.get_template(env_set + '.yaml')
         # template = Template(open("../environment/hosts/host-template_" + env_set + ".yaml"))
         instance_cfg = template.render(cfgYaml)
 
