@@ -7,6 +7,7 @@ import sys
 import argparse
 import re
 import time
+from jinja2 import Environment, Template, FileSystemLoader
 
 # https://docs.python.org/2/library/argparse.html#
 parser = argparse.ArgumentParser(description='Deploy Cluster')
@@ -42,9 +43,24 @@ if (os.path.isfile(cfgPath)):
         env_set = cfgYaml["env_set"]
         docker_set = 'hdp' + str(instance)
 
+        env = Environment(
+            loader = FileSystemLoader('../hdp/setup/stack-compose')
+        )
+        # loader = FileSystemLoader('../environment/hosts/host-template_" + env_set + ".yaml')
+        template = env.get_template('env_set + '.yaml')
+        # template = Template(open("../environment/hosts/host-template_" + env_set + ".yaml"))
+        instance_cfg = template.render(cfgYaml)
+
+        text_file = open('/tmp/resolved_'+env_set + '.yaml', 'w')
+
+        text_file.write(instance_cfg)
+
+        text_file.close()
+
+
         # Now Deploy
-        print('Deploy Docker Stack '+ docker_stack + 'with compose file (' + env_set + ')')
-        out = subprocess.check_output(['docker','-H','os01:2375','stack','deploy','--compose-file','../hdp/setup/stack-compose/'+env_set+'.yaml', docker_stack]).communicate()
+        print('Deploy Docker Stack '+ docker_stack + ' with compose file (' + env_set + ')')
+        out = subprocess.check_output(['docker','-H','os01:2375','stack','deploy','--compose-file','/tmp/resolved_'+env_set + '.yaml', docker_stack]).communicate()
 
 
         print('Build the Host File for instance: '+ str(instance))
