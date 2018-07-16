@@ -30,7 +30,7 @@ HBase will initialize but will not pass a service check.  The error message will
 
 #### Fix
 
-Add the following configuration for HBase and restart:
+Add the following configuration for HBase to hbase-site.xml and restart:
 ```
 hbase.master.dns.interface=eth0
 hbase.regionserver.dns.interface=eth0

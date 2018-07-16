@@ -2,8 +2,10 @@
 all:
   vars:
     ambari_version:                    2.6.2.2
-    hdp_version:                       HDP_VERSION
-    env_set:                           center
+    ambari_major_version:              2.6
+    ambari_repo:                       http://repo.hwx/repo/ambari/centos7/2.x/updates/2.6.2.2
+    hdp_version:                       2.6.5.0
+    env_set:                           full
     image_tag:                         105
     env_instance:                      '10'
     cluster_name:                      DK10
@@ -20,6 +22,7 @@ all:
     db_druid_name:                     druid_10
     db_superset_name:                  superset_10
     db_registry_name:                  registry_10
+    db_streamline_name:                streamline_10
 
   children:
     hdp:
@@ -29,19 +32,19 @@ all:
         repo_server:                   repo.hwx
 
       hosts:
-        os13.core:
+        OS13-WORKER-04:
           ansible_host:                dos13
           ansible_port:                22010
           ansible_user:                root
-        os14.core:
+        OS14-WORKER-05:
           ansible_host:                dos14
           ansible_port:                22010
           ansible_user:                root
-        os15.core:
+        OS15-WORKER-06:
           ansible_host:                dos15
           ansible_port:                22010
           ansible_user:                root
-        os16.core:
+        OS16-WORKER-07:
           ansible_host:                dos16
           ansible_port:                22010
           ansible_user:                root
@@ -49,11 +52,11 @@ all:
       children:
         edge:
           hosts:
-            edge1.core:
+            OS04-MASTER-1:
               ansible_host:            dos04
               ansible_port:            22010
               ansible_user:            root
-            edge2.core:
+            OS06-MASTER-3:
               ansible_host:            dos06
               ansible_port:            22010
               ansible_user:            root
@@ -64,11 +67,13 @@ all:
                 smoke_tgs_mappers:     4
                 smoke_tgs_reducers:    4
                 tpcds_size:            50
-                ranger_url_base:       NEEDS_TO_BE_SET
+                ranger_url_base:       http://os05-10.hwx:6080
                 ranger_admin_user:     admin
                 ranger_admin_password: admin
+                hadoop_cli_bin_link:   https://github.com/dstreev/hadoop-cli/releases/download/1.0.7.2.7-bin/hadoop-cli-1.0.7-SNAPSHOT-2.7.tar.gz
+                hadoop_cli_version:    2.7
               hosts:
-                sdlc.core:
+                OS05-MASTER-2:
                   ansible_host:        dos05
                   ansible_port:        22010
                   ansible_user:        root
@@ -82,17 +87,34 @@ all:
             hdp_stack_version:         2.6
 
             hdp_repo_id:               HDP-2.6
-            hdp_utils_repo_id:         
+            hdp_utils_repo_id:         HDP-UTILS-1.1.0.22
             hdp_gpl_repo_id:           HDP-2.6-GPL
-            blueprint:                 ??
+            blueprint:                 NOT_SET
             os_type:                   redhat7
 
             hdp_repo_url:              http://repo.hwx/repo/HDP/centos7/2.x/updates/2.6.5.0
-            hdp_utils_repo_url:        
+            hdp_utils_repo_url:        http://repo.home/repo/HDP-UTILS-1.1.0.22/repos/centos7
             hdp_gpl_repo_url:          http://repo.hwx/repo/HDP-GPL/centos7/2.x/updates/2.6.5.0
 
+            ldap_primary_host:         10.0.1.11
+            ldap_primary_port:         389
+            ldap_secondary_host:       None
+            ldap_secondary_port:       389
+
+            ldap_ssl:                  false
+            ldap_user_class:           posixaccount
+            ldap_user_attr:            uid
+            ldap_group_class:          posixgroup
+            ldap_group_attr:           cn
+            ldap_member_attr:          member
+            ldap_dn:                   cn
+            ldap_base_dn:              cn=accounts,dc=streever,dc=local
+            ldap_manager_dn:           uid=admin,cn=users,cn=accounts,dc=streever,dc=local
+            ldap_manager_password:     hortonworks
+            ldap_referral:             ignore
+            ldap_bind_anonym:          false
           hosts:
-            ambari.core:
+            OS01-AMBARI:
               ansible_host:            dos01
               ansible_port:            22010
               ansible_user:            root

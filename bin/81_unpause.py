@@ -38,7 +38,7 @@ docker_stack = 'hdp' + str(instance)
 hosts = ['01','02','03','04','05','06','07','10','11','12','13','14','15','16','17','18','19']
 for host in hosts:
   # Loop through containers the are NOT Pause and are part of the Docker Stack
-  print('Checking Docker host os ' + host + 'for running containers the are part of Stack hdp' + str(instance))
+  print('Checking Docker host os' + host + ' for running containers the are part of Stack hdp' + str(instance))
 
   out = subprocess.check_output(['docker','-H','os'+host+':2375','ps'])
 
