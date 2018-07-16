@@ -5,7 +5,7 @@ env_set:               "full"
 env_instance:          NOT_SET
 
 # Docker Image Tag to use
-image_tag:             "105"
+image_tag:             "106"
 
 # Ambari Repo Version (used to pull the correct vars in ../environment/vars/ambari_?.json)
 ambari_major_version:  2.6
