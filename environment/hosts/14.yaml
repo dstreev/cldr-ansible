@@ -6,7 +6,7 @@ all:
     ambari_repo:                       http://repo.hwx/repo/ambari/centos7/2.x/updates/2.7.0.0/
     hdp_version:                       3.0.0.0
     env_set:                           full
-    image_tag:                         105
+    image_tag:                         106
     env_instance:                      '14'
     cluster_name:                      DK14
     mysql_backup_dir:                  /hadoop/mysql_backups

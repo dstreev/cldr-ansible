@@ -18,6 +18,20 @@ hdfs:
 kafka:
 `kafka_user_nofile_limit=65536`
 
+infra_solr:
+`infra_solr_user_nofile_limit=65536`
+
+## YARN
+
+Docker Issues with YARN DNS Registry.
+
+```
+hadoop.registry.dns.enabled=true
+# Increase port to non root port, to avoid needing host to be 'privileged'
+registry.dns.bind-port=5053
+
+```
+
 ## HBase
 
 ### Host Identification issues

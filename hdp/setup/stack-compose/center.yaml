@@ -10,10 +10,13 @@ services:
         mode: host
     volumes:
       - type: volume
-        source: hdpdata
-        target: /hadoop
+        source: hwxdata0
+        target: /hortonworks_0
       - type: volume
-        source: hdplog
+        source: hwxdata1
+        target: /hortonworks_1
+      - type: volume
+        source: hwxlog
         target: /var/log
       - type: bind
         source: /var/lib/sss/pipes/
@@ -40,10 +43,13 @@ services:
         mode: host
     volumes:
       - type: volume
-        source: hdpdata
-        target: /hadoop
+        source: hwxdata0
+        target: /hortonworks_0
       - type: volume
-        source: hdplog
+        source: hwxdata1
+        target: /hortonworks_1
+      - type: volume
+        source: hwxlog
         target: /var/log
       - type: bind
         source: /var/lib/sss/pipes/
@@ -69,10 +75,13 @@ services:
         mode: host
     volumes:
       - type: volume
-        source: hdpdata
-        target: /hadoop
+        source: hwxdata0
+        target: /hortonworks_0
       - type: volume
-        source: hdplog
+        source: hwxdata1
+        target: /hortonworks_1
+      - type: volume
+        source: hwxlog
         target: /var/log
       - type: bind
         source: /var/lib/sss/pipes/
@@ -98,10 +107,13 @@ services:
         mode: host
     volumes:
       - type: volume
-        source: hdpdata
-        target: /hadoop
+        source: hwxdata0
+        target: /hortonworks_0
       - type: volume
-        source: hdplog
+        source: hwxdata1
+        target: /hortonworks_1
+      - type: volume
+        source: hwxlog
         target: /var/log
       - type: bind
         source: /var/lib/sss/pipes/
@@ -127,10 +139,13 @@ services:
         mode: host
     volumes:
       - type: volume
-        source: hdpdata
-        target: /hadoop
+        source: hwxdata0
+        target: /hortonworks_0
       - type: volume
-        source: hdplog
+        source: hwxdata1
+        target: /hortonworks_1
+      - type: volume
+        source: hwxlog
         target: /var/log
       - type: bind
         source: /var/lib/sss/pipes/
@@ -156,10 +171,13 @@ services:
         mode: host
     volumes:
       - type: volume
-        source: hdpdata
-        target: /hadoop
+        source: hwxdata0
+        target: /hortonworks_0
       - type: volume
-        source: hdplog
+        source: hwxdata1
+        target: /hortonworks_1
+      - type: volume
+        source: hwxlog
         target: /var/log
       - type: bind
         source: /var/lib/sss/pipes/
@@ -185,10 +203,13 @@ services:
         mode: host
     volumes:
       - type: volume
-        source: hdpdata
-        target: /hadoop
+        source: hwxdata0
+        target: /hortonworks_0
       - type: volume
-        source: hdplog
+        source: hwxdata1
+        target: /hortonworks_1
+      - type: volume
+        source: hwxlog
         target: /var/log
       - type: bind
         source: /var/lib/sss/pipes/
@@ -214,10 +235,13 @@ services:
         mode: host
     volumes:
       - type: volume
-        source: hdpdata
-        target: /hadoop
+        source: hwxdata0
+        target: /hortonworks_0
       - type: volume
-        source: hdplog
+        source: hwxdata1
+        target: /hortonworks_1
+      - type: volume
+        source: hwxlog
         target: /var/log
       - type: bind
         source: /var/lib/sss/pipes/
@@ -240,9 +264,9 @@ networks:
     driver: overlay
     attachable: true
 volumes:
-  hdpdata:
+  hwxdata0:
     driver: local
-  hdpdata:
+  hwxdata1:
     driver: local
-  hdplog:
+  hwxlog:
     driver: local

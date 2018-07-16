@@ -60,6 +60,6 @@ COPY ./init/50_net.conf /etc/sysctl.d/50_net.conf
 
 EXPOSE 22
 
-VOLUME ["/var/lib/sss/pipes","/var/lib/sss/mc","/hadoop","/hdf","/var/log"]
+VOLUME ["/var/lib/sss/pipes","/var/lib/sss/mc","/hortonworks_0","/hortonworks_1","/var/log"]
 
 CMD ["/usr/bin/supervisord","-c","/etc/supervisord.d/hdp.ini"]
