@@ -65,6 +65,10 @@
 # Configuration and Start Agents for Manual Registration
 - hosts:               hdp
   tasks:
+    - name:            Stop Ambari Agents
+      shell:           ambari-agent stop
+      tags:
+        - agent
     - name:            Reset Ambari Agents
       shell:           ambari-agent reset {{ ambari_server }}
       tags:

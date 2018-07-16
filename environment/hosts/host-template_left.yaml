@@ -1,62 +1,64 @@
 # HDP Environment 01 Servers
 all:
   vars:
-    ambari_version:                    AMBARI_VERSION
-    hdp_version:                       HDP_VERSION
-    env_set:                           left
-    image_tag:                         IMAGE_TAG
-    env_instance:                      'ENV_INSTANCE'
-    cluster_name:                      DKENV_INSTANCE
+    ambari_version:                    {{ ambari_version }}
+    ambari_major_version:              {{ ambari_major_version }}
+    ambari_repo:                       {{ ambari_repo }}
+    hdp_version:                       {{ hdp_version }}
+    env_set:                           full
+    image_tag:                         {{ image_tag }}
+    env_instance:                      '{{ env_instance }}'
+    cluster_name:                      DK{{ env_instance }}
     mysql_backup_dir:                  /hadoop/mysql_backups
     db_type:                           mysql
     db_host:                           db.hwx
     db_user:                           root
     db_password:                       hortonworks
-    db_ambari_name:                    ambari_ENV_INSTANCE
-    db_hive_name:                      hive_ENV_INSTANCE
-    db_oozie_name:                     oozie_ENV_INSTANCE
-    db_ranger_name:                    ranger_ENV_INSTANCE
-    db_ranger_kms_name:                rangerkms_ENV_INSTANCE
-    db_druid_name:                     druid_ENV_INSTANCE
-    db_superset_name:                  superset_ENV_INSTANCE
-    db_registry_name:                  registry_ENV_INSTANCE
-    db_streamline_name:                streamline_ENV_INSTANCE
+    db_ambari_name:                    ambari_{{ env_instance }}
+    db_hive_name:                      hive_{{ env_instance }}
+    db_oozie_name:                     oozie_{{ env_instance }}
+    db_ranger_name:                    ranger_{{ env_instance }}
+    db_ranger_kms_name:                rangerkms_{{ env_instance }}
+    db_druid_name:                     druid_{{ env_instance }}
+    db_superset_name:                  superset_{{ env_instance }}
+    db_registry_name:                  registry_{{ env_instance }}
+    db_streamline_name:                streamline_{{ env_instance }}
 
   children:
     hdp:
       vars:
-        ambari_server:                 ambari-ENV_INSTANCE.hwx
-        zookeeper_server:              os03-ENV_INSTANCE.hwx
+        ambari_server:                 ambari-{{ env_instance }}.hwx
+        zookeeper_server:              os05-{{ env_instance }}.hwx
         repo_server:                   repo.hwx
 
       hosts:
-        os10.core:
+        OS10-WORKER-01:
           ansible_host:                dos10
-          ansible_port:                220ENV_INSTANCE
+          ansible_port:                220{{ env_instance }}
           ansible_user:                root
-        os11.core:
+        OS11-WORKER-02:
           ansible_host:                dos11
-          ansible_port:                220ENV_INSTANCE
+          ansible_port:                220{{ env_instance }}
           ansible_user:                root
-        os12.core:
+        OS12-WORKER-03:
           ansible_host:                dos12
-          ansible_port:                220ENV_INSTANCE
+          ansible_port:                220{{ env_instance }}
           ansible_user:                root
-        os13.core:
+        OS13-WORKER-04:
           ansible_host:                dos13
-          ansible_port:                220ENV_INSTANCE
+          ansible_port:                220{{ env_instance }}
           ansible_user:                root
 
       children:
         edge:
           hosts:
-            edge1.core:
+            OS02-MASTER-1:
               ansible_host:            dos02
-              ansible_port:            220ENV_INSTANCE
+              ansible_port:            220{{ env_instance }}
               ansible_user:            root
-            edge2.core:
+            OS03-MASTER-2:
               ansible_host:            dos03
-              ansible_port:            220ENV_INSTANCE
+              ansible_port:            220{{ env_instance }}
               ansible_user:            root
           children:
             sdlc:
@@ -65,35 +67,54 @@ all:
                 smoke_tgs_mappers:     4
                 smoke_tgs_reducers:    4
                 tpcds_size:            50
-                ranger_url_base:       NEEDS_TO_BE_SET
+                ranger_url_base:       http://{{ ranger_host_base }}-{{env_instance}}.hwx:6080
                 ranger_admin_user:     admin
                 ranger_admin_password: admin
+                hadoop_cli_bin_link:   {{ hadoop_cli_bin_link }}
+                hadoop_cli_version:    {{ hadoop_cli_version }}
               hosts:
-                sdlc.core:
+                OS04-MASTER-3:
                   ansible_host:        dos04
-                  ansible_port:        220ENV_INSTANCE
+                  ansible_port:        220{{env_instance}}
                   ansible_user:        root
 
         ambari:
           vars:
-            ambari_url_base:           http://ambari-ENV_INSTANCE.hwx:8080
-            ambari_admin_user :        AMBARI_ADMIN_USER
-            ambari_admin_password:     AMBARI_ADMIN_PASSWORD
-            hdp_stack:                 HDP_STACK
-            hdp_stack_version:         HDP_STACK_VERSION
+            ambari_url_base:           http://ambari-{{env_instance}}.hwx:8080
+            ambari_admin_user :        {{ ambari_admin_user }}
+            ambari_admin_password:     {{ ambari_admin_password }}
+            hdp_stack:                 {{ hdp_stack }}
+            hdp_stack_version:         {{ hdp_stack_version }}
 
-            hdp_repo_id:               HDP_REPO_ID
-            hdp_utils_repo_id:         HDP_UTILS_REPO_ID
-            hdp_gpl_repo_id:           HDP_GPL_REPO_ID
-            blueprint:                 BLUEPRINT
-            os_type:                   OS_TYPE
+            hdp_repo_id:               {{ hdp_repo_id }}
+            hdp_utils_repo_id:         {{ hdp_utils_repo_id }}
+            hdp_gpl_repo_id:           {{ hdp_gpl_repo_id }}
+            blueprint:                 {{ blueprint }}
+            os_type:                   {{ os_type }}
 
-            hdp_repo_url:              HDP_REPO_URL
-            hdp_utils_repo_url:        HDP_UTILS_REPO_URL
-            hdp_gpl_repo_url:          HDP_GPL_REPO_URL
+            hdp_repo_url:              {{ hdp_repo_url }}
+            hdp_utils_repo_url:        {{ hdp_utils_repo_url }}
+            hdp_gpl_repo_url:          {{ hdp_gpl_repo_url }}
 
+            ldap_primary_host:         {{ ldap_primary_host }}
+            ldap_primary_port:         {{ ldap_primary_port }}
+            ldap_secondary_host:       {{ ldap_secondary_host }}
+            ldap_secondary_port:       {{ ldap_secondary_port }}
+
+            ldap_ssl:                  {{ ldap_ssl }}
+            ldap_user_class:           {{ ldap_user_class }}
+            ldap_user_attr:            {{ ldap_user_attr }}
+            ldap_group_class:          {{ ldap_group_class }}
+            ldap_group_attr:           {{ ldap_group_attr }}
+            ldap_member_attr:          {{ ldap_member_attr }}
+            ldap_dn:                   {{ ldap_dn }}
+            ldap_base_dn:              {{ ldap_base_dn }}
+            ldap_manager_dn:           {{ ldap_manager_dn }}
+            ldap_manager_password:     {{ ldap_manager_password }}
+            ldap_referral:             {{ ldap_referral }}
+            ldap_bind_anonym:          {{ ldap_bind_anonym }}
           hosts:
-            ambari.core:
+            OS01-AMBARI:
               ansible_host:            dos01
-              ansible_port:            220ENV_INSTANCE
+              ansible_port:            220{{ env_instance }}
               ansible_user:            root

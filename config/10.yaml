@@ -1,8 +1,8 @@
 # One of full, left, center, right
-env_set:               "full"
+env_set:               "center"
 
 # Number between 00-99
-env_instance:          NOT_SET
+env_instance:          10
 
 # Docker Image Tag to use
 image_tag:             "105"

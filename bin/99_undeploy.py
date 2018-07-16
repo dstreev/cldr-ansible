@@ -31,19 +31,19 @@ if (os.path.isfile(cfgPath)):
     docker_stack = 'hdp'+str(instance)
     print ("Checking if Stack " + docker_stack + " has already been deployed")
     check_stack = False
-    out = subprocess.check_output(['docker', '-H', 'os01:2375', 'stack', 'ls'])
+    out = subprocess.check_output(['docker', '-H', 'os01:2375', 'stack', 'ls'],stderr=subprocess.STDOUT)
     # out = proc.communicate()
     for line in out.splitlines():
-        if (re.search(docker_stack, str(line))):
+        if (re.search(docker_stack, line.decode('utf-8'))):
             check_stack = True
 
     if ( check_stack):
         print('Removing Docker Stack: ' + docker_stack)
-        out = subprocess.check_output(['docker','-H','os01:2375','stack','rm',docker_stack])
+        subprocess.call(['docker','-H','os01:2375','stack','rm',docker_stack],stderr=subprocess.STDOUT)
 
         # Populate Deployment readme.md
         print('Set Readme Docs.')
-        out = subprocess.check_output(['ansible-playbook', '--extra-vars','@../config/'+str(instance)+'.yaml', '--tags', 'remove', '../config/config-dictionary.yaml']).communicate()
+        subprocess.call(['ansible-playbook', '--extra-vars','@../config/'+str(instance)+'.yaml', '--tags', 'remove', '../config/config-dictionary.yaml'],stderr=subprocess.STDOUT)
     else:
         print('Docker stack not found: ' + docker_stack)
 else:

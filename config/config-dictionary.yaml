@@ -6,13 +6,13 @@
         path: /Users/dstreev/projects/david/hwx-ansible/config/readme.md
         state: present
         insertafter: '--\|---\|---\|---\|--'
-        line: '*{{ ENV_INSTANCE }}* | {{ ENV_SET }} | [{{ AMBARI_VERSION }}](http://ambari-{{ ENV_INSTANCE }}.hwx:8080) | {{ HDP_STACK_VERSION }} | {{ ansible_date_time.date }} | '
+        line: '*{{ env_instance }}* | {{ env_set }} | [{{ ambari_version }}](http://ambari-{{ env_instance }}.hwx:8080) | {{ hdp_stack_version }} | {{ ansible_date_time.date }} | '
       tags:
         - add
     - name: Remove deployment
       lineinfile:
         path: /Users/dstreev/projects/david/hwx-ansible/config/readme.md
         state: absent
-        regexp: ^\*{{ ENV_INSTANCE }}\*.*
+        regexp: ^\*{{ env_instance }}\*.*
       tags:
         - remove

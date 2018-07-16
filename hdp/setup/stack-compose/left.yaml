@@ -1,11 +1,11 @@
 version: '3.6'
 services:
   ambari:
-    hostname: ambari-${ENV_INSTANCE}.hwx
-    image: dstreev/centos7_sshd:${IMAGE_TAG}
+    hostname: ambari-{{ env_instance }}.hwx
+    image: dstreev/centos7_sshd:{{ image_tag }}
     ports:
       - target: 22
-        published: 220${ENV_INSTANCE}
+        published: 220{{ env_instance }}
         protocol: tcp
         mode: host
     volumes:
@@ -24,18 +24,18 @@ services:
     networks:
       hdp_base:
         aliases:
-          - ambari-${ENV_INSTANCE}.hwx
+          - ambari-{{ env_instance }}.hwx
     deploy:
       placement:
         constraints:
           - node.labels.hdp.ambari == true
 
   os02:
-    hostname: os02-${ENV_INSTANCE}.hwx
-    image: dstreev/centos7_sshd:${IMAGE_TAG}
+    hostname: os02-{{ env_instance }}.hwx
+    image: dstreev/centos7_sshd:{{ image_tag }}
     ports:
       - target: 22
-        published: 220${ENV_INSTANCE}
+        published: 220{{ env_instance }}
         protocol: tcp
         mode: host
     volumes:
@@ -54,17 +54,17 @@ services:
     networks:
       hdp_base:
         aliases:
-          - os02-${ENV_INSTANCE}.hwx
+          - os02-{{ env_instance }}.hwx
     deploy:
       placement:
         constraints:
           - node.labels.hdp.host == os02
   os03:
-    hostname: os03-${ENV_INSTANCE}.hwx
-    image: dstreev/centos7_sshd:${IMAGE_TAG}
+    hostname: os03-{{ env_instance }}.hwx
+    image: dstreev/centos7_sshd:{{ image_tag }}
     ports:
       - target: 22
-        published: 220${ENV_INSTANCE}
+        published: 220{{ env_instance }}
         protocol: tcp
         mode: host
     volumes:
@@ -83,17 +83,17 @@ services:
     networks:
       hdp_base:
         aliases:
-          - os03-${ENV_INSTANCE}.hwx
+          - os03-{{ env_instance }}.hwx
     deploy:
       placement:
         constraints:
           - node.labels.hdp.host == os03
   os04:
-    hostname: os04-${ENV_INSTANCE}.hwx
-    image: dstreev/centos7_sshd:${IMAGE_TAG}
+    hostname: os04-{{ env_instance }}.hwx
+    image: dstreev/centos7_sshd:{{ image_tag }}
     ports:
       - target: 22
-        published: 220${ENV_INSTANCE}
+        published: 220{{ env_instance }}
         protocol: tcp
         mode: host
     volumes:
@@ -112,17 +112,17 @@ services:
     networks:
       hdp_base:
         aliases:
-          - os04-${ENV_INSTANCE}.hwx
+          - os04-{{ env_instance }}.hwx
     deploy:
       placement:
         constraints:
           - node.labels.hdp.host == os04
   os10:
-    hostname: os10-${ENV_INSTANCE}.hwx
-    image: dstreev/centos7_sshd:${IMAGE_TAG}
+    hostname: os10-{{ env_instance }}.hwx
+    image: dstreev/centos7_sshd:{{ image_tag }}
     ports:
       - target: 22
-        published: 220${ENV_INSTANCE}
+        published: 220{{ env_instance }}
         protocol: tcp
         mode: host
     volumes:
@@ -141,17 +141,17 @@ services:
     networks:
       hdp_base:
         aliases:
-          - os10-${ENV_INSTANCE}.hwx
+          - os10-{{ env_instance }}.hwx
     deploy:
       placement:
         constraints:
           - node.labels.hdp.host == os10
   os11:
-    hostname: os11-${ENV_INSTANCE}.hwx
-    image: dstreev/centos7_sshd:${IMAGE_TAG}
+    hostname: os11-{{ env_instance }}.hwx
+    image: dstreev/centos7_sshd:{{ image_tag }}
     ports:
       - target: 22
-        published: 220${ENV_INSTANCE}
+        published: 220{{ env_instance }}
         protocol: tcp
         mode: host
     volumes:
@@ -170,17 +170,17 @@ services:
     networks:
       hdp_base:
         aliases:
-          - os11-${ENV_INSTANCE}.hwx
+          - os11-{{ env_instance }}.hwx
     deploy:
       placement:
         constraints:
           - node.labels.hdp.host == os11
   os12:
-    hostname: os12-${ENV_INSTANCE}.hwx
-    image: dstreev/centos7_sshd:${IMAGE_TAG}
+    hostname: os12-{{ env_instance }}.hwx
+    image: dstreev/centos7_sshd:{{ image_tag }}
     ports:
       - target: 22
-        published: 220${ENV_INSTANCE}
+        published: 220{{ env_instance }}
         protocol: tcp
         mode: host
     volumes:
@@ -199,17 +199,17 @@ services:
     networks:
       hdp_base:
         aliases:
-          - os12-${ENV_INSTANCE}.hwx
+          - os12-{{ env_instance }}.hwx
     deploy:
       placement:
         constraints:
           - node.labels.hdp.host == os12
   os13:
-    hostname: os13-${ENV_INSTANCE}.hwx
-    image: dstreev/centos7_sshd:${IMAGE_TAG}
+    hostname: os13-{{ env_instance }}.hwx
+    image: dstreev/centos7_sshd:{{ image_tag }}
     ports:
       - target: 22
-        published: 220${ENV_INSTANCE}
+        published: 220{{ env_instance }}
         protocol: tcp
         mode: host
     volumes:
@@ -228,7 +228,7 @@ services:
     networks:
       hdp_base:
         aliases:
-          - os13-${ENV_INSTANCE}.hwx
+          - os13-{{ env_instance }}.hwx
     deploy:
       placement:
         constraints:

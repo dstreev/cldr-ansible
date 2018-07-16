@@ -100,8 +100,8 @@
 
     - name:             Get the HDP-GPL Utils Binaries
       get_url:
-        url:            https://{{ base_repo }}.hortonworks.com/HDP-GPL/{{ os_version }}/{{ hdp_major_version }}.x/{{ version_subdir }}/{{ hdp_gpl_version }}/HDP-GPL-{{ hdp_gpl_version }}-{{ os_version }}-rpm.tar.gz
-        dest:           "{{ dest_dir }}/HDP-GPL-{{ hdp_gpl_version }}-{{ os_version }}-rpm.tar.gz"
+        url:            https://{{ base_repo }}.hortonworks.com/HDP-GPL/{{ os_version }}/{{ hdp_major_version }}.x/{{ version_subdir }}/{{ hdp_gpl_version }}/HDP-GPL-{{ hdp_gpl_version }}-{{ os_version }}-gpl.tar.gz
+        dest:           "{{ dest_dir }}/HDP-GPL-{{ hdp_gpl_version }}-{{ os_version }}-gpl.tar.gz"
         force:          no
         validate_certs: false
       tags:
@@ -115,7 +115,7 @@
         - hdp-gpl-utils
     - name:             Unpack HDP-GPL Utils Repo Package
       unarchive:
-        src:            "{{ dest_dir }}/HDP-GPL-{{ hdp_gpl_version }}-{{ os_version }}-rpm.tar.gz"
+        src:            "{{ dest_dir }}/HDP-GPL-{{ hdp_gpl_version }}-{{ os_version }}-gpl.tar.gz"
         dest:           "{{ dest_dir }}/packages/HDP-GPL-{{ hdp_gpl_version }}"
         remote_src:     yes
       tags:

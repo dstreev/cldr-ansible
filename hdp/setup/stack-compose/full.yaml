@@ -141,7 +141,7 @@ services:
     networks:
       hdp_base:
         aliases:
-          - os05-{{ image_tag }}hwx
+          - os05-{{ env_instance }}hwx
     deploy:
       placement:
         constraints:

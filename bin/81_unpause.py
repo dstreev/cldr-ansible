@@ -35,19 +35,20 @@ docker_stack = 'hdp' + str(instance)
 # Paused
 # 30575e83d2fd        dstreev/centos7_sshd:105   "/usr/bin/supervisor…"   5 hours ago         Up 5 hours (Paused)   0.0.0.0:22011->22/tcp   hdp11_os15.1.pb2zpx5nl0erk86k176gw33d1
 # Loop through docker hosts
-hosts = [01 02 03 04 05 06 07 10 11 12 13 14 15 16 17 18 19]
-for i in hosts:
+hosts = ['01','02','03','04','05','06','07','10','11','12','13','14','15','16','17','18','19']
+for host in hosts:
   # Loop through containers the are NOT Pause and are part of the Docker Stack
-  print('Checking Docker host os' + host + 'for running containers the are part of Stack '+ hdp + str(instance))
-  out = subprocess.Popen(['docker','-H','os'+host+':2375','ps'])
+  print('Checking Docker host os ' + host + 'for running containers the are part of Stack hdp' + str(instance))
 
-  # For each line in the return
+  out = subprocess.check_output(['docker','-H','os'+host+':2375','ps'])
+
   for line in out.splitlines():
-      # Search for the Docker Stack
-      if (re.search(docker_stack, str(line))):
+      if (re.search(docker_stack, line.decode('utf-8'))):
           # When docker_stack, check if it's paused
-          if (re.search('Paused',str(line))):
-              # When paused
-              fields = str(line).strip().split()
-              # UnPause the container
-              out = subprocess.Popen(['docker','-H','os'+host+':2375','unpause', fields[1]])
+          if (re.search('Paused',line.decode('utf-8'))):
+              # When not paused
+              fields = line.decode('utf-8').strip().split()
+              container = fields[0]
+              print ('Paused container: ' + container + ' found.  Unpausing now.')
+              # Pause the container
+              out = subprocess.Popen(['docker','-H','os'+host+':2375','unpause', container])
