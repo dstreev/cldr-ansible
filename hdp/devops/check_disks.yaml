@@ -1,0 +1,6 @@
+- hosts: os
+  become: true
+
+  tasks:
+    - name: Check Disk Space
+      shell: df -h
