@@ -68,8 +68,8 @@ all:
                 smoke_tgs_reducers:    4
                 tpcds_size:            50
                 ranger_url_base:       http://{{ ranger_host_base }}-{{env_instance}}.hwx:6080
-                ranger_admin_user:     admin
-                ranger_admin_password: admin
+                ranger_admin_user:     {{ ranger_admin_user }}
+                ranger_admin_password: {{ ranger_admin_password }}
                 hadoop_cli_bin_link:   {{ hadoop_cli_bin_link }}
                 hadoop_cli_version:    {{ hadoop_cli_version }}
               hosts:

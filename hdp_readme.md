@@ -28,7 +28,7 @@ Docker Issues with YARN DNS Registry.
 ```
 hadoop.registry.dns.enabled=true
 # Increase port to non root port, to avoid needing host to be 'privileged'
-registry.dns.bind-port=5053
+registry.dns.bind-port=1053
 
 ```
 

@@ -31,7 +31,7 @@ The 'proxy' host, which is an 'sshd' server with an exposed port, is attached to
 
 In the [bin](bin) directory are helper scripts for creating hosts to deploy an HDP/HDF cluster on.  Each script requires a configuration parameter `-i <instance>`.  This reference a configuration file.  The 'instance' value is anything between 01 and 99.
 
-Before running the [initialization script](./bin/01_launch.sh), create the supporting config file from either the [2.6 template](./config/template-2.6.cfg) or the [3.0 template](./config/template-3.0.cfg).  The configuration file identifies details about how to setup / start the desired cluster, starting with the location.
+Before running the [initialization script](./bin/01_deploy.py), create the supporting config file from either the [2.6 template](./config/template-2.6.yaml) or the [2.7 template](./config/template-2.7.yaml).  The configuration file identifies details about how to setup / start the desired cluster, starting with the location.
 
 There are 4 location configurations (full, left, center, and right).  See [deployments](./config/readme.md) for details on these locations.
 
@@ -50,12 +50,13 @@ The docker images have been configured to build on the hosts 'pam/sssd' integrat
 ```
 
 #### Post Cluster Steps
-If you are deploying the cluster without a blueprint, the `01_launch.sh` script will create the hosts, install and configure each host with Ambari and manually register those Ambari Agent hosts with the Ambari Server.
+If you are deploying the cluster without a blueprint, the `01_deploy.py` script will create the hosts, install and configure each host with Ambari and manually register those Ambari Agent hosts with the Ambari Server.
 
 ##### Next Steps
 1. Create the Cluster via Ambari.
-2. Install the patches listed above.
-  1. WIP: Run the [Ambari Environment Patch Ansible Playbook](./hdp/ambari/ambari-env-patch.yaml) playbook on the cluster after it has been created to fix any 'known' configuration issues.
+2. See the notes on [cluster configuration adjustments](./hdp_readme.md) to work in a docker stack environment.
+3. Add support of ExtJs for Oozie Web UI.
+  1. Run the [oozie extjs playbook](./hdp/setup/oozie-extjs.yaml) to add the libraries needed for the Oozie Web UI.
 3. Restart the services.
 
 ##### Configure Best Practices
@@ -64,13 +65,11 @@ Depending on where you've install the Ranger Admin service, adjust your [docker 
 - zookeeper_server
 - ranger_url_base
 
-Then run the best practices scripts against the clusters
+Then run the best practices scripts against the clusters.  This playbook can be found in the [hwx-sdlc-apps](https://github.com/dstreev/hwx-sdlc-apps) along with a [user onboarding](https://github.com/dstreev/hwx-sdlc-apps/blob/master/standards/02_onboard_user.yaml) helper script.
 
 ```
-ansible-playbook -i <environment_host.yaml> ./hdp/post_install/01_bp_ranger_policies.yaml
+ansible-playbook -i <environment_host.yaml> standards/01_bp_ranger_policies.yaml
 ```
-
-
 
 This will setup basic user and cluster rules for HDFS and Hive.
 

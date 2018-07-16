@@ -105,7 +105,7 @@ all:
                 tpcds_size:            50
                 ranger_url_base:       http://os04-14.hwx:6080
                 ranger_admin_user:     admin
-                ranger_admin_password: admin
+                ranger_admin_password: hortonworks44
                 hadoop_cli_bin_link:   https://github.com/dstreev/hadoop-cli/releases/download/untagged-9efb4983399ed222f2a8/hadoop-cli-2.0.0-SNAPSHOT-3.0.tar.gz
                 hadoop_cli_version:    3.0
               hosts:
