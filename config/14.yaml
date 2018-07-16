@@ -17,9 +17,9 @@ ambari_repo:           "http://repo.hwx/repo/ambari/centos7/2.x/updates/2.7.0.0/
 
 ambari_admin_user:     "admin"
 ambari_admin_password: "admin"
-ranger_host_base:      "os05"
+ranger_host_base:      "os04"
 ranger_admin_user:     "admin"
-ranger_admin_password: "admin"
+ranger_admin_password: "hortonworks44"
 
 hdp_stack:             "HDP"
 hdp_stack_version:     "3.0"

@@ -1,0 +1,16 @@
+# Required to enable Oozie Web UI.
+# To be run AFTER cluster installation.
+# See article:
+# https://docs.hortonworks.com/HDPDocuments/Ambari-2.7.0.0/managing-and-monitoring-ambari/content/amb_enable_the_oozie_ui.html
+- hosts: '{{ oozie_host }}'
+  become: true
+
+  tasks:
+    - name: Install ExtJS RPM required for Oozie Web UI
+      yum:
+        name: '{{ extjs_url }}'
+        state: present
+    - name: Remove previous Oozie Build Command (allows Oozie restart the rebuild 'war' with extjs now.)
+      file:
+        path: /usr/hdp/current/oozie-server/.prepare_war_cmd
+        state: absent
