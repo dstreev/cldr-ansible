@@ -3,6 +3,7 @@ services:
   ambari:
     hostname: ambari-{{ env_instance }}.hwx
     image: dstreev/centos7_sshd:{{ image_tag }}
+    privileged: true
     ports:
       - target: 22
         published: 220{{ env_instance }}
@@ -33,6 +34,7 @@ services:
   os02:
     hostname: os02-{{ env_instance }}.hwx
     image: dstreev/centos7_sshd:{{ image_tag }}
+    privileged: true
     ports:
       - target: 22
         published: 220{{ env_instance }}
@@ -62,6 +64,7 @@ services:
   os03:
     hostname: os03-{{ env_instance }}.hwx
     image: dstreev/centos7_sshd:{{ image_tag }}
+    privileged: true
     ports:
       - target: 22
         published: 220{{ env_instance }}
@@ -91,6 +94,7 @@ services:
   os04:
     hostname: os04-{{ env_instance }}.hwx
     image: dstreev/centos7_sshd:{{ image_tag }}
+    privileged: true
     ports:
       - target: 22
         published: 220{{ env_instance }}
@@ -120,6 +124,7 @@ services:
   os05:
     hostname: os05-{{ env_instance }}.hwx
     image: dstreev/centos7_sshd:{{ image_tag }}
+    privileged: true
     ports:
       - target: 22
         published: 220{{ env_instance }}
@@ -149,6 +154,7 @@ services:
   os06:
     hostname: os06-{{ env_instance }}.hwx
     image: dstreev/centos7_sshd:{{ image_tag }}
+    privileged: true
     ports:
       - target: 22
         published: 220{{ env_instance }}
@@ -178,6 +184,7 @@ services:
   os07:
     hostname: os07-{{ env_instance }}.hwx
     image: dstreev/centos7_sshd:{{ image_tag }}
+    privileged: true
     ports:
       - target: 22
         published: 220{{ env_instance }}
@@ -207,6 +214,7 @@ services:
   os10:
     hostname: os10-{{ env_instance }}.hwx
     image: dstreev/centos7_sshd:{{ image_tag }}
+    privileged: true
     ports:
       - target: 22
         published: 220{{ env_instance }}
@@ -236,6 +244,7 @@ services:
   os11:
     hostname: os11-{{ env_instance }}.hwx
     image: dstreev/centos7_sshd:{{ image_tag }}
+    privileged: true
     ports:
       - target: 22
         published: 220{{ env_instance }}
@@ -265,6 +274,7 @@ services:
   os12:
     hostname: os12-{{ env_instance }}.hwx
     image: dstreev/centos7_sshd:{{ image_tag }}
+    privileged: true
     ports:
       - target: 22
         published: 220{{ env_instance }}
@@ -294,6 +304,7 @@ services:
   os13:
     hostname: os13-{{ env_instance }}.hwx
     image: dstreev/centos7_sshd:{{ image_tag }}
+    privileged: true
     ports:
       - target: 22
         published: 220{{ env_instance }}
@@ -323,6 +334,7 @@ services:
   os14:
     hostname: os14-{{ env_instance }}.hwx
     image: dstreev/centos7_sshd:{{ image_tag }}
+    privileged: true
     ports:
       - target: 22
         published: 220{{ env_instance }}
@@ -352,6 +364,7 @@ services:
   os15:
     hostname: os15-{{ env_instance }}.hwx
     image: dstreev/centos7_sshd:{{ image_tag }}
+    privileged: true
     ports:
       - target: 22
         published: 220{{ env_instance }}
@@ -381,6 +394,7 @@ services:
   os16:
     hostname: os16-{{ env_instance }}.hwx
     image: dstreev/centos7_sshd:{{ image_tag }}
+    privileged: true
     ports:
       - target: 22
         published: 220{{ env_instance }}
@@ -410,6 +424,7 @@ services:
   os17:
     hostname: os17-{{ env_instance }}.hwx
     image: dstreev/centos7_sshd:{{ image_tag }}
+    privileged: true
     ports:
       - target: 22
         published: 220{{ env_instance }}
@@ -439,6 +454,7 @@ services:
   os18:
     hostname: os18-{{ env_instance }}.hwx
     image: dstreev/centos7_sshd:{{ image_tag }}
+    privileged: true
     ports:
       - target: 22
         published: 220{{ env_instance }}
@@ -468,6 +484,7 @@ services:
   os19:
     hostname: os19-{{ env_instance }}.hwx
     image: dstreev/centos7_sshd:{{ image_tag }}
+    privileged: true
     ports:
       - target: 22
         published: 220{{ env_instance }}
