@@ -1,156 +1,158 @@
 # HDP Environment 01 Servers
 all:
   vars:
-    ambari_version:                    {{ ambari_version }}
-    ambari_major_version:              {{ ambari_major_version }}
-    ambari_repo:                       {{ ambari_repo }}
-    hdp_version:                       {{ hdp_version }}
-    env_set:                           full
-    image_tag:                         {{ image_tag }}
-    env_instance:                      '{{ env_instance }}'
-    cluster_name:                      DK{{ env_instance }}
-    mysql_backup_dir:                  /hadoop/mysql_backups
-    db_type:                           mysql
-    db_host:                           db.hwx
-    db_user:                           root
-    db_password:                       hortonworks
-    db_ambari_name:                    ambari_{{ env_instance }}
-    db_hive_name:                      hive_{{ env_instance }}
-    db_oozie_name:                     oozie_{{ env_instance }}
-    db_ranger_name:                    ranger_{{ env_instance }}
-    db_ranger_kms_name:                rangerkms_{{ env_instance }}
-    db_druid_name:                     druid_{{ env_instance }}
-    db_superset_name:                  superset_{{ env_instance }}
-    db_registry_name:                  registry_{{ env_instance }}
-    db_streamline_name:                streamline_{{ env_instance }}
+    ambari_version:                      {{ ambari_version }}
+    ambari_major_version:                {{ ambari_major_version }}
+    ambari_repo:                         {{ ambari_repo }}
+    hdp_version:                         {{ hdp_version }}
+    env_set:                             full
+    image_tag:                           {{ image_tag }}
+    env_instance:                        '{{ env_instance }}'
+    cluster_name:                        DK{{ env_instance }}
+    mysql_backup_dir:                    /hadoop/mysql_backups
+    db_type:                             mysql
+    db_host:                             db.hwx
+    db_user:                             root
+    db_password:                         hortonworks
+    db_ambari_name:                      ambari_{{ env_instance }}
+    db_hive_name:                        hive_{{ env_instance }}
+    db_oozie_name:                       oozie_{{ env_instance }}
+    db_ranger_name:                      ranger_{{ env_instance }}
+    db_ranger_kms_name:                  rangerkms_{{ env_instance }}
+    db_druid_name:                       druid_{{ env_instance }}
+    db_superset_name:                    superset_{{ env_instance }}
+    db_registry_name:                    registry_{{ env_instance }}
+    db_streamline_name:                  streamline_{{ env_instance }}
 
   children:
     hdp:
       vars:
-        ambari_server:                 ambari-{{ env_instance }}.hwx
-        zookeeper_server:              os05-{{ env_instance }}.hwx
-        repo_server:                   repo.hwx
+        ambari_server:                   ambari-{{ env_instance }}.hwx
+        zookeeper_server:                os05-{{ env_instance }}.hwx
+        repo_server:                     repo.hwx
 
       hosts:
         OS06-MASTER-5:
-          ansible_host:                dos06
-          ansible_port:                220{{ env_instance }}
-          ansible_user:                root
+          ansible_host:                  dos06
+          ansible_port:                  220{{ env_instance }}
+          ansible_user:                  root
         OS07-MASTER-6:
-          ansible_host:                dos07
-          ansible_port:                220{{ env_instance }}
-          ansible_user:                root
+          ansible_host:                  dos07
+          ansible_port:                  220{{ env_instance }}
+          ansible_user:                  root
         OS10-WORKER-01:
-          ansible_host:                dos10
-          ansible_port:                220{{ env_instance }}
-          ansible_user:                root
+          ansible_host:                  dos10
+          ansible_port:                  220{{ env_instance }}
+          ansible_user:                  root
         OS11-WORKER-02:
-          ansible_host:                dos11
-          ansible_port:                220{{ env_instance }}
-          ansible_user:                root
+          ansible_host:                  dos11
+          ansible_port:                  220{{ env_instance }}
+          ansible_user:                  root
         OS12-WORKER-03:
-          ansible_host:                dos12
-          ansible_port:                220{{ env_instance }}
-          ansible_user:                root
+          ansible_host:                  dos12
+          ansible_port:                  220{{ env_instance }}
+          ansible_user:                  root
         OS13-WORKER-04:
-          ansible_host:                dos13
-          ansible_port:                220{{ env_instance }}
-          ansible_user:                root
+          ansible_host:                  dos13
+          ansible_port:                  220{{ env_instance }}
+          ansible_user:                  root
         OS14-WORKER-05:
-          ansible_host:                dos14
-          ansible_port:                220{{ env_instance }}
-          ansible_user:                root
+          ansible_host:                  dos14
+          ansible_port:                  220{{ env_instance }}
+          ansible_user:                  root
         OS15-WORKER-06:
-          ansible_host:                dos15
-          ansible_port:                220{{ env_instance }}
-          ansible_user:                root
+          ansible_host:                  dos15
+          ansible_port:                  220{{ env_instance }}
+          ansible_user:                  root
         OS16-WORKER-07:
-          ansible_host:                dos16
-          ansible_port:                220{{ env_instance }}
-          ansible_user:                root
+          ansible_host:                  dos16
+          ansible_port:                  220{{ env_instance }}
+          ansible_user:                  root
         OS17-WORKER-08:
-          ansible_host:                dos17
-          ansible_port:                220{{ env_instance }}
-          ansible_user:                root
+          ansible_host:                  dos17
+          ansible_port:                  220{{ env_instance }}
+          ansible_user:                  root
         OS18-WORKER-09:
-          ansible_host:                dos18
-          ansible_port:                220{{ env_instance }}
-          ansible_user:                root
+          ansible_host:                  dos18
+          ansible_port:                  220{{ env_instance }}
+          ansible_user:                  root
         OS19-WORKER-10:
-          ansible_host:                dos19
-          ansible_port:                220{{ env_instance }}
-          ansible_user:                root
+          ansible_host:                  dos19
+          ansible_port:                  220{{ env_instance }}
+          ansible_user:                  root
 
       children:
         edge:
           hosts:
             OS02-MASTER-1:
-              ansible_host:            dos02
-              ansible_port:            220{{ env_instance }}
-              ansible_user:            root
+              ansible_host:              dos02
+              ansible_port:              220{{ env_instance }}
+              ansible_user:              root
             OS03-MASTER-2:
-              ansible_host:            dos03
-              ansible_port:            220{{ env_instance }}
-              ansible_user:            root
+              ansible_host:              dos03
+              ansible_port:              220{{ env_instance }}
+              ansible_user:              root
             OS04-MASTER-3:
-              ansible_host:            dos04
-              ansible_port:            220{{ env_instance }}
-              ansible_user:            root
+              ansible_host:              dos04
+              ansible_port:              220{{ env_instance }}
+              ansible_user:              root
           children:
             sdlc:
               vars:
-                smoke_tgs_size:        1Gb
-                smoke_tgs_mappers:     4
-                smoke_tgs_reducers:    4
-                tpcds_size:            50
-                ranger_url_base:       http://{{ ranger_host_base }}-{{env_instance}}.hwx:6080
-                ranger_admin_user:     {{ ranger_admin_user }}
-                ranger_admin_password: {{ ranger_admin_password }}
-                hadoop_cli_bin_link:   {{ hadoop_cli_bin_link }}
-                hadoop_cli_version:    {{ hadoop_cli_version }}
+                smoke_tgs_size:          1Gb
+                smoke_tgs_mappers:       4
+                smoke_tgs_reducers:      4
+                tpcds_size:              50
+                ranger_url_base:         http://{{ ranger_host_base }}-{{env_instance}}.hwx:6080
+                ranger_admin_user:       {{ ranger_admin_user }}
+                ranger_admin_password:   {{ ranger_admin_password }}
+                hive_superuser:          {{ hive_superuser }}
+                hive_superuser_password: {{ hive_superuser_password }}
+                hadoop_cli_bin_link:     {{ hadoop_cli_bin_link }}
+                hadoop_cli_version:      {{ hadoop_cli_version }}
               hosts:
                 OS05-MASTER-4:
-                  ansible_host:        dos05
-                  ansible_port:        220{{env_instance}}
-                  ansible_user:        root
+                  ansible_host:          dos05
+                  ansible_port:          220{{env_instance}}
+                  ansible_user:          root
 
         ambari:
           vars:
-            ambari_url_base:           http://ambari-{{env_instance}}.hwx:8080
-            ambari_admin_user :        {{ ambari_admin_user }}
-            ambari_admin_password:     {{ ambari_admin_password }}
-            hdp_stack:                 {{ hdp_stack }}
-            hdp_stack_version:         {{ hdp_stack_version }}
+            ambari_url_base:             http://ambari-{{env_instance}}.hwx:8080
+            ambari_admin_user :          {{ ambari_admin_user }}
+            ambari_admin_password:       {{ ambari_admin_password }}
+            hdp_stack:                   {{ hdp_stack }}
+            hdp_stack_version:           {{ hdp_stack_version }}
 
-            hdp_repo_id:               {{ hdp_repo_id }}
-            hdp_utils_repo_id:         {{ hdp_utils_repo_id }}
-            hdp_gpl_repo_id:           {{ hdp_gpl_repo_id }}
-            blueprint:                 {{ blueprint }}
-            os_type:                   {{ os_type }}
+            hdp_repo_id:                 {{ hdp_repo_id }}
+            hdp_utils_repo_id:           {{ hdp_utils_repo_id }}
+            hdp_gpl_repo_id:             {{ hdp_gpl_repo_id }}
+            blueprint:                   {{ blueprint }}
+            os_type:                     {{ os_type }}
 
-            hdp_repo_url:              {{ hdp_repo_url }}
-            hdp_utils_repo_url:        {{ hdp_utils_repo_url }}
-            hdp_gpl_repo_url:          {{ hdp_gpl_repo_url }}
+            hdp_repo_url:                {{ hdp_repo_url }}
+            hdp_utils_repo_url:          {{ hdp_utils_repo_url }}
+            hdp_gpl_repo_url:            {{ hdp_gpl_repo_url }}
 
-            ldap_primary_host:         {{ ldap_primary_host }}
-            ldap_primary_port:         {{ ldap_primary_port }}
-            ldap_secondary_host:       {{ ldap_secondary_host }}
-            ldap_secondary_port:       {{ ldap_secondary_port }}
+            ldap_primary_host:           {{ ldap_primary_host }}
+            ldap_primary_port:           {{ ldap_primary_port }}
+            ldap_secondary_host:         {{ ldap_secondary_host }}
+            ldap_secondary_port:         {{ ldap_secondary_port }}
 
-            ldap_ssl:                  {{ ldap_ssl }}
-            ldap_user_class:           {{ ldap_user_class }}
-            ldap_user_attr:            {{ ldap_user_attr }}
-            ldap_group_class:          {{ ldap_group_class }}
-            ldap_group_attr:           {{ ldap_group_attr }}
-            ldap_member_attr:          {{ ldap_member_attr }}
-            ldap_dn:                   {{ ldap_dn }}
-            ldap_base_dn:              {{ ldap_base_dn }}
-            ldap_manager_dn:           {{ ldap_manager_dn }}
-            ldap_manager_password:     {{ ldap_manager_password }}
-            ldap_referral:             {{ ldap_referral }}
-            ldap_bind_anonym:          {{ ldap_bind_anonym }}
+            ldap_ssl:                    {{ ldap_ssl }}
+            ldap_user_class:             {{ ldap_user_class }}
+            ldap_user_attr:              {{ ldap_user_attr }}
+            ldap_group_class:            {{ ldap_group_class }}
+            ldap_group_attr:             {{ ldap_group_attr }}
+            ldap_member_attr:            {{ ldap_member_attr }}
+            ldap_dn:                     {{ ldap_dn }}
+            ldap_base_dn:                {{ ldap_base_dn }}
+            ldap_manager_dn:             {{ ldap_manager_dn }}
+            ldap_manager_password:       {{ ldap_manager_password }}
+            ldap_referral:               {{ ldap_referral }}
+            ldap_bind_anonym:            {{ ldap_bind_anonym }}
           hosts:
             OS01-AMBARI:
-              ansible_host:            dos01
-              ansible_port:            220{{ env_instance }}
-              ansible_user:            root
+              ansible_host:              dos01
+              ansible_port:              220{{ env_instance }}
+              ansible_user:              root
