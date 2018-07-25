@@ -6,94 +6,62 @@
     # Vars:               Stack, StackVersion, OSType, RepoId HDP Repo Location,
     #       HDP GPL Repo Location, HDP Utils Repo LOCATION,
     #       Ambari Username and Password
-    - name:               Set Ambari HDP Repo
+    - name:               Register Blueprint
       uri:
-        url:              '{{ ambari_url_base }}/api/v1/stacks/{{ hdp_stack }}/versions/{{ hdp_stack_version }}/operating_systems/{{ os_type }}/repositories/{{ hdp_repo_id }}'
-        # body_format:    json
-        body:
-          '
-          { "Repositories" :
-            {
-              "base_url" : "{{ hdp_repo_url }}",
-              "repo_name": "HDP",
-              "verify_base_url" : false
-            }
-          }
-          '
-        method:           PUT
+        url:              '{{ ambari_url_base }}/api/v1/blueprints/DK_FULL?validate_topology=false'
+        body_format:      json
+        body:             "{{ lookup('file','../../environment/blueprints/DK_full_bp.json') }}"
+        method:           POST
         user:             '{{ ambari_admin_user }}'
         password:         '{{ ambari_admin_password }}'
         force_basic_auth: yes
+        status_code:      200,201
         headers:
-          # Content-Type:   "application/json; charset=utf8"
-          # X-XSRF-HEADER:  "valid"
+          Content-Type:   "text/plain"
+          # X-XSRF-HEADER: "valid"
           X-Requested-By: "HDP Ansible BP"
           User-Agent:     "Ansible HDP Best Practices"
-    # - name:               Set Ambari HDP Utils Repo
-    #   uri:
-    #     url:              '{{ ambari_url_base }}/api/v1/stacks/{{ hdp_stack }}/versions/{{ hdp_stack_version }}/operating_systems/{{ os_type }}/repositories/{{ hdp_utils_repo_id }}'
-    #     # body_format:      json
-    #     body:
-    #       '
-    #       { "Repositories" :
-    #         {
-    #           "repo_name": "HDP-UTILS",
-    #           "base_url" : "{{ hdp_utils_repo_url }}",
-    #           "verify_base_url" : true
-    #         }
-    #       }
-    #       '
-    #     method:           PUT
-    #     user:             '{{ ambari_admin_user }}'
-    #     password:         '{{ ambari_admin_password }}'
-    #     force_basic_auth: yes
-    #     headers:
-    #       # Content-Type:   "application/json; charset=utf8"
-    #       # X-XSRF-HEADER:  "valid"
-    #       X-Requested-By: "HDP Ansible BP"
-    #       User-Agent:     "Ansible HDP Best Practices"
-    # - name:             Set Ambari HDP GPL Repo
-    #   uri:
-    #     url:            '{{ ambari_url_base }}/api/v1/stacks/{{ hdp_stack }}/versions/{{ hdp_stack_version }}/operating_systems/{{ os_type }}/repositories/{{ hdp_gpl_repo_id }}'
-    #     # body_format:    json
-    #     body:
-    #       '
-    #       { "Repositories" :
-    #         {
-    #           "repo_name": "HDP-GPL",
-    #           "base_url" : "{{ hdp_gpl_repo_url }}",
-    #           "verify_base_url" : true
-    #         }
-    #       }
-    #       '
-    #     method:         PUT
-    #     user:           '{{ ambari_admin_user }}'
-    #     password:       '{{ ambari_admin_password }}'
-    #     force_basic_auth: yes
-    #     headers:
-    #       # Content-Type: "application/json; charset=utf8"
-    #       # X-XSRF-HEADER: "valid"
-    #       X-Requested-By: "HDP Ansible BP"
-    #       User-Agent:   "Ansible HDP Best Practices"
-
-
-    # Install the Blueprint
-    # Vars:               Blueprint File
-    # - name:               Register Blueprint for the Cluster
-    #   uri:
-    #     url:              '{{ ambari_url_base }}/api/v1/blueprints/{{ blueprint }}'
-    #     body_format:      json
-    #     body:
-    #       "{{ lookup('file','blueprints/{{ blueprint }}.json') }}"
-    #     method:           POST
-    #     user:             '{{ ambari_admin_user }}'
-    #     password:         '{{ ambari_admin_password }}'
-    #     force_basic_auth: yes
-    #     headers:
-    #       Content-Type:   "application/json; charset=utf8"
-    #       X-XSRF-HEADER:  "valid"
-    #       X-Requested-By: "HDP Ansible BP"
-    #       User-Agent:     "Ansible HDP Best Practices"
-
-    # Register Environment File
-    # Vars:               Environment File
+      tags:
+        - blueprint
+    # - name: Copy Version Definition File to Ambari
+    #   copy:
+    #     src:           {{ vdf_file }}
+    #     dest:          /tmp/ambari_vdf.json
+    #     owner:         root
+    #     group:         root
+    #     mode:          0644
+    #     backup:        yes
+    - name: Register Version Definition File
+      uri:
+        url:              '{{ ambari_url_base }}/api/v1/version_definitions'
+        body_format:    json
+        body:             "{{ lookup('file','{{ vdf_file }}') }}"
+        method:           POST
+        user:             '{{ ambari_admin_user }}'
+        password:         '{{ ambari_admin_password }}'
+        force_basic_auth: yes
+        status_code:      200,201,202
+        headers:
+          Content-Type:   "text/xml"
+          # X-XSRF-HEADER: "valid"
+          X-Requested-By: "HDP Ansible BP"
+          User-Agent:     "Ansible HDP Best Practices"
+      tags:
+        - vdf
+    - name:               Create Cluster
+      uri:
+        url:              '{{ ambari_url_base }}/api/v1/clusters/{{ cluster_name }}'
+        body_format:    json
+        body:             "{{ lookup('file','../../environment/blueprints/DK_14_template.json') }}"
+        method:           POST
+        user:             '{{ ambari_admin_user }}'
+        password:         '{{ ambari_admin_password }}'
+        force_basic_auth: yes
+        status_code:      200,201,202
+        headers:
+          Content-Type:   "text/plain"
+          # X-XSRF-HEADER: "valid"
+          X-Requested-By: "HDP Ansible BP"
+          User-Agent:     "Ansible HDP Best Practices"
+      tags:
+        - create

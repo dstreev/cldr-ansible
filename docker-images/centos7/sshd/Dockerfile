@@ -28,6 +28,12 @@ RUN yum -y install sudo
 # To support SSSD Bindings to underlying baremetal host.
 RUN yum install -y sssd-client sssd-krb5-common sudo libsss_idmap libsss_nss_idmap libsss_sudo sssd-common krb5-workstation krb5-lib
 
+RUN groupadd hadoop
+
+RUN useradd ams;useradd atlas;useradd ambari-qa; useradd druid; useradd hdfs; useradd hbase; useradd hive; useradd infra-solr; useradd kafka; useradd kms; useradd knox; useradd livy; useradd logsearch; useradd mapred; useradd oozie; useradd ranger; useradd spark; useradd sqoop; useradd superset; useradd tez; useradd yarn-ats; useradd yarn; useradd zeppelin; useradd zookeeper
+
+RUN usermod -a -G hadoop ams; usermod -a -G hadoop atlas; usermod -a -G hadoop ambari-qa; usermod -a -G hadoop druid; usermod -a -G hadoop hdfs; usermod -a -G hadoop hbase; usermod -a -G hadoop hive; usermod -a -G hadoop infra-solr; usermod -a -G hadoop kafka; usermod -a -G hadoop kms; usermod -a -G hadoop knox; usermod -a -G hadoop livy; usermod -a -G hadoop logsearch; usermod -a -G hadoop mapred; usermod -a -G hadoop oozie; usermod -a -G hadoop ranger; usermod -a -G hadoop spark; usermod -a -G hadoop sqoop; usermod -a -G hadoop superset; usermod -a -G hadoop tez; usermod -a -G hadoop yarn-ats; usermod -a -G hadoop yarn; usermod -a -G hadoop zeppelin; usermod -a -G hadoop zookeeper
+
 # Generate Host Key for sshd
 RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key -N ''
 
@@ -60,6 +66,6 @@ COPY ./init/50_net.conf /etc/sysctl.d/50_net.conf
 
 EXPOSE 22
 
-VOLUME ["/var/lib/sss/pipes","/var/lib/sss/mc","/hortonworks_0","/hortonworks_1","/var/log"]
+VOLUME ["/var/lib/sss/pipes","/var/lib/sss/mc","/hadoop","/var/log"]
 
 CMD ["/usr/bin/supervisord","-c","/etc/supervisord.d/hdp.ini"]

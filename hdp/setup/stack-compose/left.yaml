@@ -10,11 +10,8 @@ services:
         mode: host
     volumes:
       - type: volume
-        source: hwxdata0
-        target: /hortonworks_0
-      - type: volume
-        source: hwxdata1
-        target: /hortonworks_1
+        source: hadoop
+        target: /hadoop
       - type: volume
         source: hwxlog
         target: /var/log
@@ -43,11 +40,8 @@ services:
         mode: host
     volumes:
       - type: volume
-        source: hwxdata0
-        target: /hortonworks_0
-      - type: volume
-        source: hwxdata1
-        target: /hortonworks_1
+        source: hadoop
+        target: /hadoop
       - type: volume
         source: hwxlog
         target: /var/log
@@ -75,11 +69,8 @@ services:
         mode: host
     volumes:
       - type: volume
-        source: hwxdata0
-        target: /hortonworks_0
-      - type: volume
-        source: hwxdata1
-        target: /hortonworks_1
+        source: hadoop
+        target: /hadoop
       - type: volume
         source: hwxlog
         target: /var/log
@@ -107,11 +98,8 @@ services:
         mode: host
     volumes:
       - type: volume
-        source: hwxdata0
-        target: /hortonworks_0
-      - type: volume
-        source: hwxdata1
-        target: /hortonworks_1
+        source: hadoop
+        target: /hadoop
       - type: volume
         source: hwxlog
         target: /var/log
@@ -139,11 +127,8 @@ services:
         mode: host
     volumes:
       - type: volume
-        source: hwxdata0
-        target: /hortonworks_0
-      - type: volume
-        source: hwxdata1
-        target: /hortonworks_1
+        source: hadoop
+        target: /hadoop
       - type: volume
         source: hwxlog
         target: /var/log
@@ -171,11 +156,8 @@ services:
         mode: host
     volumes:
       - type: volume
-        source: hwxdata0
-        target: /hortonworks_0
-      - type: volume
-        source: hwxdata1
-        target: /hortonworks_1
+        source: hadoop
+        target: /hadoop
       - type: volume
         source: hwxlog
         target: /var/log
@@ -203,11 +185,8 @@ services:
         mode: host
     volumes:
       - type: volume
-        source: hwxdata0
-        target: /hortonworks_0
-      - type: volume
-        source: hwxdata1
-        target: /hortonworks_1
+        source: hadoop
+        target: /hadoop
       - type: volume
         source: hwxlog
         target: /var/log
@@ -235,11 +214,8 @@ services:
         mode: host
     volumes:
       - type: volume
-        source: hwxdata0
-        target: /hortonworks_0
-      - type: volume
-        source: hwxdata1
-        target: /hortonworks_1
+        source: hadoop
+        target: /hadoop
       - type: volume
         source: hwxlog
         target: /var/log
@@ -264,9 +240,7 @@ networks:
     driver: overlay
     attachable: true
 volumes:
-  hwxdata0:
-    driver: local
-  hwxdata1:
+  hadoop:
     driver: local
   hwxlog:
     driver: local

@@ -1,69 +1,71 @@
 {
   "blueprint": "DK_FULL",
+  "repository_version_id": 1,
+  "default_password": "hortonworks44",
   "config_recommendation_strategy": "NEVER_APPLY",
   "provision_action": "INSTALL_AND_START",
   "configurations": [],
   "host_groups": [{
     "name": "host_group_0",
     "hosts": [{
-      "fqdn": "os02-{{ env_instance }}.hwx"
+      "fqdn": "os02-14.hwx"
     }]
   }, {
     "name": "host_group_1",
     "hosts": [{
-      "fqdn": "os03-{{ env_instance }}.hwx"
+      "fqdn": "os03-14.hwx"
     }]
   }, {
     "name": "host_group_2",
     "hosts": [{
-      "fqdn": "os04-{{ env_instance }}.hwx"
+      "fqdn": "os04-14.hwx"
     }]
   }, {
     "name": "host_group_3",
     "hosts": [{
-      "fqdn": "os05-{{ env_instance }}.hwx"
+      "fqdn": "os05-14.hwx"
     }]
   }, {
     "name": "host_group_4",
     "hosts": [{
-      "fqdn": "os06-{{ env_instance }}.hwx"
+      "fqdn": "os06-14.hwx"
     }]
   }, {
     "name": "host_group_5",
     "hosts": [{
-      "fqdn": "os07-{{ env_instance }}.hwx"
+      "fqdn": "os07-14.hwx"
     }]
   }, {
     "name": "host_group_6",
     "hosts": [{
-      "fqdn": "os10-{{ env_instance }}.hwx"
+      "fqdn": "os10-14.hwx"
     }, {
-      "fqdn": "os19-{{ env_instance }}.hwx"
+      "fqdn": "os19-14.hwx"
     }]
   }, {
     "name": "host_group_7",
     "hosts": [{
-      "fqdn": "os11-{{ env_instance }}.hwx"
+      "fqdn": "os11-14.hwx"
     }, {
-      "fqdn": "os13-{{ env_instance }}.hwx"
+      "fqdn": "os13-14.hwx"
     }, {
-      "fqdn": "os15-{{ env_instance }}.hwx"
+      "fqdn": "os15-14.hwx"
     }, {
-      "fqdn": "os17-{{ env_instance }}.hwx"
+      "fqdn": "os17-14.hwx"
     }]
   }, {
     "name": "host_group_8",
     "hosts": [{
-      "fqdn": "os12-{{ env_instance }}.hwx"
+      "fqdn": "os12-14.hwx"
     }, {
-      "fqdn": "os14-{{ env_instance }}.hwx"
+      "fqdn": "os14-14.hwx"
     }, {
-      "fqdn": "os16-{{ env_instance }}.hwx"
+      "fqdn": "os16-14.hwx"
     }, {
-      "fqdn": "os18-{{ env_instance }}.hwx"
+      "fqdn": "os18-14.hwx"
     }]
   }],
   "Clusters": {
-    "cluster_name": "DK{{ env_instance }}"
+    "cluster_name": "DK14"
   }
 }

@@ -7,78 +7,46 @@ all:
     hdp_version:                         3.0.0.0
     env_set:                             full
     image_tag:                           107
-    env_instance:                        '14'
-    cluster_name:                        DK14
+    env_instance:                        '15'
+    cluster_name:                        DK15
     mysql_backup_dir:                    /hadoop/mysql_backups
     db_type:                             mysql
     db_host:                             db.hwx
     db_user:                             root
     db_password:                         hortonworks
-    db_ambari_name:                      ambari_14
-    db_hive_name:                        hive_14
-    db_oozie_name:                       oozie_14
-    db_ranger_name:                      ranger_14
-    db_ranger_kms_name:                  rangerkms_14
-    db_druid_name:                       druid_14
-    db_superset_name:                    superset_14
-    db_registry_name:                    registry_14
-    db_streamline_name:                  streamline_14
+    db_ambari_name:                      ambari_15
+    db_hive_name:                        hive_15
+    db_oozie_name:                       oozie_15
+    db_ranger_name:                      ranger_15
+    db_ranger_kms_name:                  rangerkms_15
+    db_druid_name:                       druid_15
+    db_superset_name:                    superset_15
+    db_registry_name:                    registry_15
+    db_streamline_name:                  streamline_15
 
   children:
     hdp:
       vars:
-        ambari_server:                   ambari-14.hwx
-        zookeeper_server:                os05-14.hwx
+        ambari_server:                   ambari-15.hwx
+        zookeeper_server:                os05-15.hwx
         repo_server:                     repo.hwx
 
       hosts:
-        OS06-MASTER-5:
-          ansible_host:                  dos06
-          ansible_port:                  22014
-          ansible_user:                  root
-        OS07-MASTER-6:
-          ansible_host:                  dos07
-          ansible_port:                  22014
-          ansible_user:                  root
         OS10-WORKER-01:
           ansible_host:                  dos10
-          ansible_port:                  22014
+          ansible_port:                  22015
           ansible_user:                  root
         OS11-WORKER-02:
           ansible_host:                  dos11
-          ansible_port:                  22014
+          ansible_port:                  22015
           ansible_user:                  root
         OS12-WORKER-03:
           ansible_host:                  dos12
-          ansible_port:                  22014
+          ansible_port:                  22015
           ansible_user:                  root
         OS13-WORKER-04:
           ansible_host:                  dos13
-          ansible_port:                  22014
-          ansible_user:                  root
-        OS14-WORKER-05:
-          ansible_host:                  dos14
-          ansible_port:                  22014
-          ansible_user:                  root
-        OS15-WORKER-06:
-          ansible_host:                  dos15
-          ansible_port:                  22014
-          ansible_user:                  root
-        OS16-WORKER-07:
-          ansible_host:                  dos16
-          ansible_port:                  22014
-          ansible_user:                  root
-        OS17-WORKER-08:
-          ansible_host:                  dos17
-          ansible_port:                  22014
-          ansible_user:                  root
-        OS18-WORKER-09:
-          ansible_host:                  dos18
-          ansible_port:                  22014
-          ansible_user:                  root
-        OS19-WORKER-10:
-          ansible_host:                  dos19
-          ansible_port:                  22014
+          ansible_port:                  22015
           ansible_user:                  root
 
       children:
@@ -86,15 +54,11 @@ all:
           hosts:
             OS02-MASTER-1:
               ansible_host:              dos02
-              ansible_port:              22014
+              ansible_port:              22015
               ansible_user:              root
             OS03-MASTER-2:
               ansible_host:              dos03
-              ansible_port:              22014
-              ansible_user:              root
-            OS04-MASTER-3:
-              ansible_host:              dos04
-              ansible_port:              22014
+              ansible_port:              22015
               ansible_user:              root
           children:
             sdlc:
@@ -103,7 +67,7 @@ all:
                 smoke_tgs_mappers:       4
                 smoke_tgs_reducers:      4
                 tpcds_size:              50
-                ranger_url_base:         http://os04-14.hwx:6080
+                ranger_url_base:         http://os04-15.hwx:6080
                 ranger_admin_user:       admin
                 ranger_admin_password:   hortonworks44
                 hive_superuser:          hive
@@ -111,19 +75,19 @@ all:
                 hadoop_cli_bin_link:     https://github.com/dstreev/hadoop-cli/releases/download/untagged-9efb4983399ed222f2a8/hadoop-cli-2.0.0-SNAPSHOT-3.0.tar.gz
                 hadoop_cli_version:      3.0
               hosts:
-                OS05-MASTER-4:
-                  ansible_host:          dos05
-                  ansible_port:          22014
+                OS04-MASTER-3:
+                  ansible_host:          dos04
+                  ansible_port:          22015
                   ansible_user:          root
 
         ambari:
           vars:
-            ambari_url_base:             http://ambari-14.hwx:8080
+            ambari_url_base:             http://ambari-15.hwx:8080
             ambari_admin_user :          admin
             ambari_admin_password:       admin
             hdp_stack:                   HDP
             hdp_stack_version:           3.0
-            vdf_file:                    ../../environment/blueprints/vdf/HDP-3.0.0.0-1634.xml 
+
             hdp_repo_id:                 HDP-3.0
             hdp_utils_repo_id:           HDP-UTILS-1.1.0.22
             hdp_gpl_repo_id:             HDP-3.0-GPL
@@ -154,5 +118,5 @@ all:
           hosts:
             OS01-AMBARI:
               ansible_host:              dos01
-              ansible_port:              22014
+              ansible_port:              22015
               ansible_user:              root

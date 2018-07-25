@@ -1,8 +1,8 @@
 # One of full, left, center, right
-env_set:                 "full"
+env_set:                 "left"
 
 # Number between 00-99
-env_instance:            14
+env_instance:            15
 
 # Docker Image Tag to use
 image_tag:               "107"
@@ -12,9 +12,6 @@ ambari_major_version:    2.7
 ambari_version:          "2.7.0.0"
 
 blueprint:               "NOT_SET"
-
-# Relative to Ambari playbook.
-vdf_file:                "../../environment/blueprints/vdf/HDP-3.0.0.0-1634.xml"
 
 ambari_repo:             "http://repo.hwx/repo/ambari/centos7/2.x/updates/2.7.0.0/"
 

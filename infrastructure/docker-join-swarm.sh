@@ -15,7 +15,7 @@ ansible working -b -a "${NEW_JOIN}"
 ansible os01 -b -a 'docker node ls'
 
 # Create the base directories to devices to be used in cluster.
-ansible working -b -a 'mkdir -p /data /data_1'
+#ansible working -b -a 'mkdir -p /data /data_1'
 
 # Cycle docker
 ansible-playbook ../environment/bare_metal/restart_docker.yaml

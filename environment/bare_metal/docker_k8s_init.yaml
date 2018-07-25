@@ -2,7 +2,7 @@
 # Used to install the basics on a new CentOS7 hosts
 ####################
 
-- hosts:               working
+- hosts:               os
   become:              true
 
   tasks:

@@ -23,9 +23,5 @@ right  | ambari-${ENV_INSTANCE}.hwx (on os01)  | os[05-07].hwx | os[15-19]-${ENV
 
 Environment  | Location  | Ambari Version  | HDP/HDF Version | Date Added | Notes
 --|---|---|---|---|--
-*14* | full | [2.7.0.0](http://ambari-14.hwx:8080) | 3.0 | 2018-07-16 | 
-*13* | full | [2.6.2.2](http://ambari-13.hwx:8080) | HDP 2.6 | 2018-07-05 | Full HDP (HA) with Druid and LLAP
-*12* | left  | [2.6.2.2](http://ambari-12.hwx:8080) | HDP 2.6.5.0 | 2018-07-04 | Basic HDP (HA, Ranger, Knox)
-*11* | right |  [2.6.2.2](http://ambari-11.hwx:8080) | HDP 2.6.5.0 | 2018-07-04 | Basic HDP (HA, Ranger, Knox)
-*10* | center | [2.6.2.2](http://ambari-10.hwx:8080) | HDF 3.1.2 | 2018-07-05 | HDF (Kafka too)
+*14* | full | [2.7.0.0](http://ambari-14.hwx:8080) | 3.0 | 2018-07-25 | 
 [Portainer](http://os01.streever.local:9000)  |   |   |   |   |
