@@ -12,6 +12,7 @@ from jinja2 import Environment, Template, FileSystemLoader
 # https://docs.python.org/2/library/argparse.html#
 parser = argparse.ArgumentParser(description='Deploy Cluster')
 parser.add_argument('-i', type=int, dest="instance", nargs=1, required=True, help='the cluster instance')
+parser.add_argument('-bp', dest="bp", required=False, help='Install from Blueprint')
 
 args = parser.parse_args()
 instance = args.instance[0]
@@ -37,7 +38,7 @@ if (os.path.isfile(cfgPath)):
         if (re.search(docker_stack, str(line))):
             check_stack = True
 
-    if ( not check_stack):
+    if ( not check_stack ):
         cfgYaml = yaml.load(open(cfgPath))
         # Environment Set which location
         env_set = cfgYaml["env_set"]
@@ -59,8 +60,8 @@ if (os.path.isfile(cfgPath)):
         print('Deploy Docker Stack '+ docker_stack + ' with compose file (' + env_set + ')')
         subprocess.call(['docker','-H','os01:2375','stack','deploy','--compose-file','/tmp/resolved_'+env_set + '.yaml', docker_stack], stderr=subprocess.STDOUT)
 
-        print('Pause for 15 seconds while the docker services start')
-        time.sleep(15)
+        print('Pause for 25 seconds while the docker services start')
+        time.sleep(25)
 
         # Populate Deployment readme.md
         print('Set Readme Docs.')
@@ -82,6 +83,10 @@ if (os.path.isfile(cfgPath)):
 
     print('Ambari Install Playbook')
     subprocess.call(['ansible-playbook', '-i', '../environment/hosts/'+str(instance)+'.yaml','--extra-vars','@../config/'+str(instance)+'.yaml', '../hdp/ambari/ambari_install.yaml'], stderr=subprocess.STDOUT)
+
+    if (args.bp):
+        print('Ambari Blueprint Install Playbook')
+        subprocess.call(['ansible-playbook', '-i', '../environment/hosts/'+str(instance)+'.yaml','--extra-vars','@../config/'+str(instance)+'.yaml', '../hdp/ambari/ambari_blueprint_install.yaml'], stderr=subprocess.STDOUT)
 
 else:
     print('Could not find config file: ' + cfgPath)

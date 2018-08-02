@@ -36,10 +36,6 @@ all:
           ansible_host:                  dos15
           ansible_port:                  220{{ env_instance }}
           ansible_user:                  root
-        OS16-WORKER-07:
-          ansible_host:                  dos16
-          ansible_port:                  220{{ env_instance }}
-          ansible_user:                  root
         OS17-WORKER-08:
           ansible_host:                  dos17
           ansible_port:                  220{{ env_instance }}
@@ -50,6 +46,14 @@ all:
           ansible_user:                  root
         OS19-WORKER-10:
           ansible_host:                  dos19
+          ansible_port:                  220{{ env_instance }}
+          ansible_user:                  root
+        OS20-WORKER-11:
+          ansible_host:                  dos20
+          ansible_port:                  220{{ env_instance }}
+          ansible_user:                  root
+        OS21-WORKER-12:
+          ansible_host:                  dos21
           ansible_port:                  220{{ env_instance }}
           ansible_user:                  root
 

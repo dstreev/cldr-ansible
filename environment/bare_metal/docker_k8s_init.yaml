@@ -2,7 +2,7 @@
 # Used to install the basics on a new CentOS7 hosts
 ####################
 
-- hosts:               os
+- hosts:               working
   become:              true
 
   tasks:
@@ -83,7 +83,7 @@
 
     - name:            Copy out k8s.conf
       copy:
-        src:           /Users/dstreev/projects/david/hwx-ansible/environment/support/k8s.conf
+        src:           ../support/k8s.conf
         dest:          /etc/sysctl.d/
 
     - name:            Install kubernetes 'kubelet'
@@ -101,7 +101,7 @@
     - name:            Enable Kubernetes 'kubelet'
       systemd:
         name:          kubelet
-        enabled:       yes
+        enabled:       no
     - name:            Set Kubernetes cgroup to match docker
       replace:
         path:          /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
@@ -111,6 +111,6 @@
     - name:            Start Kubernetes 'kubelet'
       systemd:
         name:          kubelet
-        state:         restarted
+        state:         stopped
 
 - import_playbook: init.yaml

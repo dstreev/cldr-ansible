@@ -25,7 +25,7 @@ if (os.path.isfile(cfgPath)):
     # print(cfgYaml)
     # Environment Set which location
     env_set = cfgYaml["env_set"]
-    # print ("Env_Set: " + env_set)
+    print ("Env_Set: " + env_set)
     env = Environment(
         loader = FileSystemLoader('../environment/hosts')
     )

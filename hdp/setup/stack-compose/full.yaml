@@ -27,6 +27,9 @@ services:
         aliases:
           - ambari-{{ env_instance }}.hwx
     deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
       placement:
         constraints:
           - node.labels.hdp.ambari == true
@@ -58,6 +61,9 @@ services:
         aliases:
           - os02-{{ env_instance }}.hwx
     deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
       placement:
         constraints:
           - node.labels.hdp.host == os02
@@ -88,6 +94,9 @@ services:
         aliases:
           - os03-{{ env_instance }}.hwx
     deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
       placement:
         constraints:
           - node.labels.hdp.host == os03
@@ -118,6 +127,9 @@ services:
         aliases:
           - os04-{{ env_instance }}.hwx
     deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
       placement:
         constraints:
           - node.labels.hdp.host == os04
@@ -148,6 +160,9 @@ services:
         aliases:
           - os05-{{ env_instance }}.hwx
     deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
       placement:
         constraints:
           - node.labels.hdp.host == os05
@@ -178,6 +193,9 @@ services:
         aliases:
           - os06-{{ env_instance }}.hwx
     deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
       placement:
         constraints:
           - node.labels.hdp.host == os06
@@ -208,6 +226,9 @@ services:
         aliases:
           - os07-{{ env_instance }}.hwx
     deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
       placement:
         constraints:
           - node.labels.hdp.host == os07
@@ -238,6 +259,9 @@ services:
         aliases:
           - os10-{{ env_instance }}.hwx
     deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
       placement:
         constraints:
           - node.labels.hdp.host == os10
@@ -268,6 +292,9 @@ services:
         aliases:
           - os11-{{ env_instance }}.hwx
     deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
       placement:
         constraints:
           - node.labels.hdp.host == os11
@@ -298,6 +325,9 @@ services:
         aliases:
           - os12-{{ env_instance }}.hwx
     deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
       placement:
         constraints:
           - node.labels.hdp.host == os12
@@ -328,6 +358,9 @@ services:
         aliases:
           - os13-{{ env_instance }}.hwx
     deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
       placement:
         constraints:
           - node.labels.hdp.host == os13
@@ -358,6 +391,9 @@ services:
         aliases:
           - os14-{{ env_instance }}.hwx
     deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
       placement:
         constraints:
           - node.labels.hdp.host == os14
@@ -388,6 +424,9 @@ services:
         aliases:
           - os15-{{ env_instance }}.hwx
     deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
       placement:
         constraints:
           - node.labels.hdp.host == os15
@@ -418,9 +457,13 @@ services:
         aliases:
           - os16-{{ env_instance }}.hwx
     deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
       placement:
         constraints:
           - node.labels.hdp.host == os16
+
   os17:
     hostname: os17-{{ env_instance }}.hwx
     image: dstreev/centos7_sshd:{{ image_tag }}
@@ -448,6 +491,9 @@ services:
         aliases:
           - os17-{{ env_instance }}.hwx
     deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
       placement:
         constraints:
           - node.labels.hdp.host == os17
@@ -478,6 +524,9 @@ services:
         aliases:
           - os18-{{ env_instance }}.hwx
     deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
       placement:
         constraints:
           - node.labels.hdp.host == os18
@@ -508,9 +557,45 @@ services:
         aliases:
           - os19-{{ env_instance }}.hwx
     deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
       placement:
         constraints:
           - node.labels.hdp.host == os19
+  # os20:
+  #   hostname: os20-{{ env_instance }}.hwx
+  #   image: dstreev/centos7_sshd:{{ image_tag }}
+  #   privileged: true
+  #   ports:
+  #     - target: 22
+  #       published: 220{{ env_instance }}
+  #       protocol: tcp
+  #       mode: host
+  #   volumes:
+  #     - type: volume
+  #       source: hadoop
+  #       target: /hadoop
+  #     - type: volume
+  #       source: hwxlog
+  #       target: /var/log
+  #     - type: bind
+  #       source: /var/lib/sss/pipes/
+  #       target: /var/lib/sss/pipes/
+  #     - type: bind
+  #       source: /var/lib/sss/mc/
+  #       target: /var/lib/sss/mc/
+  #   networks:
+  #     hdp_base:
+  #       aliases:
+  #         - os20-{{ env_instance }}.hwx
+  #   deploy:
+      # mode: replicated
+      # replicas: 1
+      # endpoint_mode: dnsrr
+  #     placement:
+  #       constraints:
+  #         - node.labels.hdp.host == os20
 
 networks:
   hdp_base:

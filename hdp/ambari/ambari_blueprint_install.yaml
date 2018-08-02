@@ -6,6 +6,21 @@
     # Vars:               Stack, StackVersion, OSType, RepoId HDP Repo Location,
     #       HDP GPL Repo Location, HDP Utils Repo LOCATION,
     #       Ambari Username and Password
+    - name:               Delete Blueprint
+      uri:
+        url:              '{{ ambari_url_base }}/api/v1/blueprints/DK_FULL'
+        method:           DELETE
+        user:             '{{ ambari_admin_user }}'
+        password:         '{{ ambari_admin_password }}'
+        force_basic_auth: yes
+        status_code:      200,201
+        headers:
+          Content-Type:   "text/plain"
+          # X-XSRF-HEADER: "valid"
+          X-Requested-By: "HDP Ansible BP"
+          User-Agent:     "Ansible HDP Best Practices"
+      tags:
+        - blueprint
     - name:               Register Blueprint
       uri:
         url:              '{{ ambari_url_base }}/api/v1/blueprints/DK_FULL?validate_topology=false'
