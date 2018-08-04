@@ -21,6 +21,9 @@ kafka:
 infra_solr:
 `infra_solr_user_nofile_limit=65536`
 
+storm:
+`storm_user_nofile_limit=65536`
+
 ## YARN
 
 Docker Issues with YARN DNS Registry.

@@ -5,7 +5,7 @@ all:
     ambari_major_version:                {{ ambari_major_version }}
     ambari_repo:                         {{ ambari_repo }}
     hdp_version:                         {{ hdp_version }}
-    env_set:                             full
+    env_set:                             left
     image_tag:                           {{ image_tag }}
     env_instance:                        '{{ env_instance }}'
     cluster_name:                        DK{{ env_instance }}
@@ -28,7 +28,7 @@ all:
     hdp:
       vars:
         ambari_server:                   ambari-{{ env_instance }}.hwx
-        zookeeper_server:                os05-{{ env_instance }}.hwx
+        zookeeper_server:                os04-{{ env_instance }}.hwx
         repo_server:                     repo.hwx
 
       hosts:
@@ -66,7 +66,8 @@ all:
                 smoke_tgs_size:          1Gb
                 smoke_tgs_mappers:       4
                 smoke_tgs_reducers:      4
-                tpcds_size:              50
+                tpcds_user:              {{ tpcds_user }}
+                tpcds_size:              {{ tpcds_size_gb }}
                 ranger_url_base:         http://{{ ranger_host_base }}-{{env_instance}}.hwx:6080
                 ranger_admin_user:       {{ ranger_admin_user }}
                 ranger_admin_password:   {{ ranger_admin_password }}
@@ -87,7 +88,7 @@ all:
             ambari_admin_password:       {{ ambari_admin_password }}
             hdp_stack:                   {{ hdp_stack }}
             hdp_stack_version:           {{ hdp_stack_version }}
-
+            vdf_file:                    {{ vdf_file }}
             hdp_repo_id:                 {{ hdp_repo_id }}
             hdp_utils_repo_id:           {{ hdp_utils_repo_id }}
             hdp_gpl_repo_id:             {{ hdp_gpl_repo_id }}

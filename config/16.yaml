@@ -1,11 +1,11 @@
 # One of full, left, center, right
-env_set:                 "left"
+env_set:                 "full"
 
 # Number between 00-99
-env_instance:            15
+env_instance:            16
 
 # Docker Image Tag to use
-image_tag:               "107"
+image_tag:               "108"
 
 # Ambari Repo Version (used to pull the correct vars in ../environment/vars/ambari_?.json)
 ambari_major_version:    2.7
@@ -14,17 +14,23 @@ ambari_version:          "2.7.0.0"
 blueprint:               "NOT_SET"
 
 ambari_repo:             "http://repo.hwx/repo/ambari/centos7/2.x/updates/2.7.0.0/"
-
 ambari_admin_user:       "admin"
 ambari_admin_password:   "admin"
-ranger_host_base:        "os04"
+ranger_host_base:        "os07"
 ranger_admin_user:       "admin"
-ranger_admin_password:   "hortonworks44"
+ranger_admin_password:   "admin"
 hive_superuser:          "hive"
-hive_superuser_password: "hortonworks"
+hive_superuser_password: "hive"
 hdp_stack:               "HDP"
 hdp_stack_version:       "3.0"
 hdp_version:             "3.0.0.0"
+
+sdlc_user:               dstreev
+tpcds_user:              dstreev
+tpcds_size_gb:           250
+
+hadoop_cli_bin_link:     "https://github.com/dstreev/hadoop-cli/releases/download/untagged-9efb4983399ed222f2a8/hadoop-cli-2.0.0-SNAPSHOT-3.0.tar.gz"
+hadoop_cli_version:      "3.0"
 
 hdp_repo_id:             "HDP-3.0"
 hdp_repo_url:            "http://repo.home/repo/HDP/centos7/3.x/updates/3.0.0.0"
@@ -34,9 +40,6 @@ hdp_utils_repo_url:      "http://repo.home/repo/HDP-UTILS-1.1.0.22/repos/centos7
 
 hdp_gpl_repo_id:         "HDP-3.0-GPL"
 hdp_gpl_repo_url:        "http://repo.home/repo/HDP-GPL/centos7/3.x/updates/3.0.0.0"
-
-hadoop_cli_bin_link:     "https://github.com/dstreev/hadoop-cli/releases/download/untagged-9efb4983399ed222f2a8/hadoop-cli-2.0.0-SNAPSHOT-3.0.tar.gz"
-hadoop_cli_version:      "3.0"
 
 os_type:                 "redhat7"
 

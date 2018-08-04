@@ -81,9 +81,9 @@ all:
           ansible_port:                  220{{ env_instance }}
           ansible_user:                  root
         # OS20-WORKER-11:
-        #   ansible_host:                  dos20
-        #   ansible_port:                  220{{ env_instance }}
-        #   ansible_user:                  root
+        #   ansible_host:                dos20
+        #   ansible_port:                220{{ env_instance }}
+        #   ansible_user:                root
 
       children:
         edge:
@@ -111,10 +111,11 @@ all:
                 ranger_url_base:         http://{{ ranger_host_base }}-{{env_instance}}.hwx:6080
                 ranger_admin_user:       {{ ranger_admin_user }}
                 ranger_admin_password:   {{ ranger_admin_password }}
+                user:                    {{ sdlc_user }}
                 hive_superuser:          {{ hive_superuser }}
                 hive_superuser_password: {{ hive_superuser_password }}
-                hadoop_cli_bin_link:     {{ hadoop_cli_bin_link }}
-                hadoop_cli_version:      {{ hadoop_cli_version }}
+                # hadoop_cli_bin_link:     {{ hadoop_cli_bin_link }}
+                # hadoop_cli_version:      {{ hadoop_cli_version }}
               hosts:
                 OS05-MASTER-4:
                   ansible_host:          dos05
