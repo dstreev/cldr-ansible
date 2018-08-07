@@ -23,6 +23,6 @@ right  | ambari-${ENV_INSTANCE}.hwx (on os01)  | os[05-07].hwx | os[15-19]-${ENV
 
 Environment  | Location  | Ambari Version  | HDP/HDF Version | Date Added | Notes
 --|---|---|---|---|--
-*16* | full | [2.7.0.0](http://ambari-16.hwx:8080) | 3.0 | 2018-08-04 | 
-*21* | full | [2.6.2.2](http://ambari-21.hwx:8080) | 2.6 | 2018-07-30 | 
+*15* | left | [2.7.0.0](http://ambari-15.hwx:8080) | 3.0 | 2018-08-07 | 
+*16* | left | [2.7.0.0](http://ambari-16.hwx:8080) | 3.0 | 2018-08-07 | 
 [Portainer](http://os01.streever.local:9000)  |   |   |   |   |

@@ -7,46 +7,46 @@ all:
     hdp_version:                         3.0.0.0
     env_set:                             left
     image_tag:                           108
-    env_instance:                        '16'
-    cluster_name:                        DK16
+    env_instance:                        '15'
+    cluster_name:                        DK15
     mysql_backup_dir:                    /hadoop/mysql_backups
     db_type:                             mysql
     db_host:                             db.hwx
     db_user:                             root
     db_password:                         hortonworks
-    db_ambari_name:                      ambari_16
-    db_hive_name:                        hive_16
-    db_oozie_name:                       oozie_16
-    db_ranger_name:                      ranger_16
-    db_ranger_kms_name:                  rangerkms_16
-    db_druid_name:                       druid_16
-    db_superset_name:                    superset_16
-    db_registry_name:                    registry_16
-    db_streamline_name:                  streamline_16
+    db_ambari_name:                      ambari_15
+    db_hive_name:                        hive_15
+    db_oozie_name:                       oozie_15
+    db_ranger_name:                      ranger_15
+    db_ranger_kms_name:                  rangerkms_15
+    db_druid_name:                       druid_15
+    db_superset_name:                    superset_15
+    db_registry_name:                    registry_15
+    db_streamline_name:                  streamline_15
 
   children:
     hdp:
       vars:
-        ambari_server:                   ambari-16.hwx
-        zookeeper_server:                os04-16.hwx
+        ambari_server:                   ambari-15.hwx
+        zookeeper_server:                os04-15.hwx
         repo_server:                     repo.hwx
 
       hosts:
         OS10-WORKER-01:
           ansible_host:                  dos10
-          ansible_port:                  22016
+          ansible_port:                  22015
           ansible_user:                  root
         OS11-WORKER-02:
           ansible_host:                  dos11
-          ansible_port:                  22016
+          ansible_port:                  22015
           ansible_user:                  root
         OS12-WORKER-03:
           ansible_host:                  dos12
-          ansible_port:                  22016
+          ansible_port:                  22015
           ansible_user:                  root
         OS13-WORKER-04:
           ansible_host:                  dos13
-          ansible_port:                  22016
+          ansible_port:                  22015
           ansible_user:                  root
 
       children:
@@ -54,11 +54,11 @@ all:
           hosts:
             OS02-MASTER-1:
               ansible_host:              dos02
-              ansible_port:              22016
+              ansible_port:              22015
               ansible_user:              root
             OS03-MASTER-2:
               ansible_host:              dos03
-              ansible_port:              22016
+              ansible_port:              22015
               ansible_user:              root
           children:
             sdlc:
@@ -68,7 +68,7 @@ all:
                 smoke_tgs_reducers:      4
                 tpcds_user:              dstreev
                 tpcds_size:              250
-                ranger_url_base:         http://os04-16.hwx:6080
+                ranger_url_base:         http://os04-15.hwx:6080
                 ranger_admin_user:       admin
                 ranger_admin_password:   hortonworks44
                 hive_superuser:          hive
@@ -78,12 +78,12 @@ all:
               hosts:
                 OS04-MASTER-3:
                   ansible_host:          dos04
-                  ansible_port:          22016
+                  ansible_port:          22015
                   ansible_user:          root
 
         ambari:
           vars:
-            ambari_url_base:             http://ambari-16.hwx:8080
+            ambari_url_base:             http://ambari-15.hwx:8080
             ambari_admin_user :          admin
             ambari_admin_password:       admin
             hdp_stack:                   HDP
@@ -119,5 +119,5 @@ all:
           hosts:
             OS01-AMBARI:
               ansible_host:              dos01
-              ansible_port:              22016
+              ansible_port:              22015
               ansible_user:              root

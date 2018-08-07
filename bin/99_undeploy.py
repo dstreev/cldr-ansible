@@ -38,12 +38,19 @@ if (os.path.isfile(cfgPath)):
             check_stack = True
 
     if ( check_stack):
+        print('Docker Stack Found.  Removing Cluster DBs')
+        subprocess.call(['ansible-playbook', '-i','../environment/hosts/'+str(instance)+'.yaml', '../hdp/ambari/mysql_drop_dbs.yaml'],stderr=subprocess.STDOUT)
+
         print('Removing Docker Stack: ' + docker_stack)
         subprocess.call(['docker','-H','os01:2375','stack','rm',docker_stack],stderr=subprocess.STDOUT)
 
         # Populate Deployment readme.md
-        print('Set Readme Docs.')
+        print('Adjusting Deployment Readme Docs.')
         subprocess.call(['ansible-playbook', '--extra-vars','@../config/'+str(instance)+'.yaml', '--tags', 'remove', '../config/config-dictionary.yaml'],stderr=subprocess.STDOUT)
+
+        print('Pruning Docker Hosts')
+        subprocess.call(['ansible-playbook', '../environment/baremetal/docker_prune.yaml'],stderr=subprocess.STDOUT)
+
     else:
         print('Docker stack not found: ' + docker_stack)
 else:

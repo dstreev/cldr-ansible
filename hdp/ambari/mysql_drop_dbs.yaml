@@ -1,0 +1,47 @@
+- hosts:     ambari
+  become:    true
+  tasks:
+    - name:  Drop ambari database
+      shell: mysql -h {{ db_host }} -u {{ db_user }} -p{{ db_password }} -e "drop database if exists {{ db_ambari_name }}"
+      tags:
+        - server
+    - name:  Drop Hive database
+      shell: mysql -h {{ db_host }} -u {{ db_user }} -p{{ db_password }} -e "drop database if exists {{ db_hive_name }}"
+      tags:
+        - server
+    - name:  Drop Oozie database
+      shell: mysql -h {{ db_host }} -u {{ db_user }} -p{{ db_password }} -e "drop database if exists {{ db_oozie_name }}"
+      tags:
+        - server
+    - name:  Drop Ranger database
+      shell: mysql -h {{ db_host }} -u {{ db_user }} -p{{ db_password }} -e "drop database if exists {{ db_ranger_name }}"
+      tags:
+        - server
+    - name:  Drop Ranger KMS database
+      shell: mysql -h {{ db_host }} -u {{ db_user }} -p{{ db_password }} -e "drop database if exists {{ db_ranger_kms_name }}"
+      tags:
+        - server
+
+    # Druid DB must be created with UTF-8!!
+    - name:  Drop Druid
+      shell: mysql -h {{ db_host }} -u {{ db_user }} -p{{ db_password }} -e "drop database if exists {{ db_druid_name }}"
+      tags:
+        - server
+    - name:  Drop Superset
+      shell: mysql -h {{ db_host }} -u {{ db_user }} -p{{ db_password }} -e "drop database if exists {{ db_superset_name }}"
+      tags:
+        - server
+    - name:  Drop Registry
+      shell: mysql -h {{ db_host }} -u {{ db_user }} -p{{ db_password }} -e "drop database if exists {{ db_registry_name }}"
+      tags:
+        - server
+    - name:  Create Streamline database
+      shell: mysql -h {{ db_host }} -u {{ db_user }} -p{{ db_password }} -e "drop database if exists {{ db_streamline_name }}"
+      tags:
+        - server
+    - name: Drop Schema Created Marker File
+      file:
+        path: /hadoop/AMBARI_SCHEMA_BUILT
+        owner: root
+        mode: 0644
+        state: absent

@@ -4,7 +4,10 @@ services:
     hostname: db.hwx
     image: mariadb:10.2
     ports:
-      - 33060:3306
+      - target: 3306
+        published: 33060
+        protocol: tcp
+        mode: host
     volumes:
       - type: volume
         source: mariadb
@@ -14,10 +17,12 @@ services:
       MYSQL_USER: ambari
       MYSQL_PASSWORD: hortonworks
     networks:
-      hdp_base:
+      hwx:
         aliases:
           - db.hwx
     deploy:
+      mode: global
+      endpoint_mode: dnsrr
       placement:
         constraints:
           - node.labels.hdp.db == true
@@ -25,22 +30,27 @@ services:
     hostname: repo.hwx
     image: dstreev/hdp-repo:latest
     ports:
-      - 38000:80
+      - target: 80
+        published: 38000
+        protocol: tcp
+        mode: host
     volumes:
       - type: bind
         source: /var/www/html
         target: /www
     networks:
-      hdp_base:
+      hwx:
         aliases:
           - repo.hwx
     deploy:
+      mode: global
+      endpoint_mode: dnsrr
       placement:
         constraints:
           - node.labels.hdp.repo == true
   proxy:
     hostname: proxy.hwx
-    image: dstreev/centos7_sshd:105
+    image: dstreev/centos7_sshd:108
     ports:
       - target: 22
         published: 22199
@@ -48,10 +58,10 @@ services:
         mode: host
     volumes:
       - type: volume
-        source: hdpdata
+        source: hadoop
         target: /hadoop
       - type: volume
-        source: hdplog
+        source: hwxlog
         target: /var/log
       - type: bind
         source: /var/lib/sss/pipes/
@@ -60,23 +70,26 @@ services:
         source: /var/lib/sss/mc/
         target: /var/lib/sss/mc/
     networks:
-      hdp_base:
+      hwx:
         aliases:
           - proxy.hwx
     deploy:
+      mode: global
+      endpoint_mode: dnsrr
       placement:
         constraints:
           - node.labels.hdp.host == os01
 
 networks:
-  hdp_base:
+  hwx:
     external: true
+    driver: overlay
+    attachable: true
+    name: hwx
 volumes:
   mariadb:
     driver: local
-  hdpdata:
+  hadoop:
     driver: local
-  hdpdata:
-    driver: local
-  hdplog:
+  hwxlog:
     driver: local

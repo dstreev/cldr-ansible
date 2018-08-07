@@ -1,8 +1,8 @@
 # One of full, left, center, right
-env_set:                 "left"
+env_set:                 "full"
 
 # Number between 00-99
-env_instance:            16
+env_instance:            17
 
 # Docker Image Tag to use
 image_tag:               "108"
@@ -16,7 +16,7 @@ blueprint:               "NOT_SET"
 ambari_repo:             "http://repo.hwx/repo/ambari/centos7/2.x/updates/2.7.0.0/"
 ambari_admin_user:       "admin"
 ambari_admin_password:   "admin"
-ranger_host_base:        "os04"
+ranger_host_base:        "os07"
 ranger_admin_user:       "admin"
 ranger_admin_password:   "hortonworks44"
 hive_superuser:          "hive"
