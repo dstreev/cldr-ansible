@@ -3,6 +3,7 @@ services:
   ambari:
     hostname: ambari-{{ env_instance }}.hwx
     image: dstreev/centos7_sshd:{{ image_tag }}
+    privileged: true
     ports:
       - target: 22
         published: 220{{ env_instance }}
@@ -26,6 +27,9 @@ services:
         aliases:
           - ambari-{{ env_instance }}.hwx
     deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
       placement:
         constraints:
           - node.labels.hdp.ambari == true
@@ -33,6 +37,7 @@ services:
   os02:
     hostname: os02-{{ env_instance }}.hwx
     image: dstreev/centos7_sshd:{{ image_tag }}
+    privileged: true
     ports:
       - target: 22
         published: 220{{ env_instance }}
@@ -56,12 +61,16 @@ services:
         aliases:
           - os02-{{ env_instance }}.hwx
     deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
       placement:
         constraints:
           - node.labels.hdp.host == os02
   os03:
     hostname: os03-{{ env_instance }}.hwx
     image: dstreev/centos7_sshd:{{ image_tag }}
+    privileged: true
     ports:
       - target: 22
         published: 220{{ env_instance }}
@@ -85,12 +94,16 @@ services:
         aliases:
           - os03-{{ env_instance }}.hwx
     deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
       placement:
         constraints:
           - node.labels.hdp.host == os03
   os04:
     hostname: os04-{{ env_instance }}.hwx
     image: dstreev/centos7_sshd:{{ image_tag }}
+    privileged: true
     ports:
       - target: 22
         published: 220{{ env_instance }}
@@ -114,12 +127,16 @@ services:
         aliases:
           - os04-{{ env_instance }}.hwx
     deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
       placement:
         constraints:
           - node.labels.hdp.host == os04
   os10:
     hostname: os10-{{ env_instance }}.hwx
     image: dstreev/centos7_sshd:{{ image_tag }}
+    privileged: true
     ports:
       - target: 22
         published: 220{{ env_instance }}
@@ -143,12 +160,16 @@ services:
         aliases:
           - os10-{{ env_instance }}.hwx
     deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
       placement:
         constraints:
           - node.labels.hdp.host == os10
   os11:
     hostname: os11-{{ env_instance }}.hwx
     image: dstreev/centos7_sshd:{{ image_tag }}
+    privileged: true
     ports:
       - target: 22
         published: 220{{ env_instance }}
@@ -172,12 +193,16 @@ services:
         aliases:
           - os11-{{ env_instance }}.hwx
     deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
       placement:
         constraints:
           - node.labels.hdp.host == os11
   os12:
     hostname: os12-{{ env_instance }}.hwx
     image: dstreev/centos7_sshd:{{ image_tag }}
+    privileged: true
     ports:
       - target: 22
         published: 220{{ env_instance }}
@@ -201,12 +226,16 @@ services:
         aliases:
           - os12-{{ env_instance }}.hwx
     deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
       placement:
         constraints:
           - node.labels.hdp.host == os12
   os13:
     hostname: os13-{{ env_instance }}.hwx
     image: dstreev/centos7_sshd:{{ image_tag }}
+    privileged: true
     ports:
       - target: 22
         published: 220{{ env_instance }}
@@ -230,6 +259,9 @@ services:
         aliases:
           - os13-{{ env_instance }}.hwx
     deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
       placement:
         constraints:
           - node.labels.hdp.host == os13

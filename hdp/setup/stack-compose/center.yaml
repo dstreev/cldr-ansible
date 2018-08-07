@@ -3,6 +3,7 @@ services:
   ambari:
     hostname: ambari-{{ env_instance }}.hwx
     image: dstreev/centos7_sshd:{{ image_tag }}
+    privileged: true
     ports:
       - target: 22
         published: 220{{ env_instance }}
@@ -10,11 +11,8 @@ services:
         mode: host
     volumes:
       - type: volume
-        source: hwxdata0
-        target: /hortonworks_0
-      - type: volume
-        source: hwxdata1
-        target: /hortonworks_1
+        source: hadoop
+        target: /hadoop
       - type: volume
         source: hwxlog
         target: /var/log
@@ -29,6 +27,9 @@ services:
         aliases:
           - ambari-{{ env_instance }}.hwx
     deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
       placement:
         constraints:
           - node.labels.hdp.ambari == true
@@ -36,6 +37,7 @@ services:
   os04:
     hostname: os04-{{ env_instance }}.hwx
     image: dstreev/centos7_sshd:{{ image_tag }}
+    privileged: true
     ports:
       - target: 22
         published: 220{{ env_instance }}
@@ -43,11 +45,8 @@ services:
         mode: host
     volumes:
       - type: volume
-        source: hwxdata0
-        target: /hortonworks_0
-      - type: volume
-        source: hwxdata1
-        target: /hortonworks_1
+        source: hadoop
+        target: /hadoop
       - type: volume
         source: hwxlog
         target: /var/log
@@ -62,12 +61,16 @@ services:
         aliases:
           - os04-{{ env_instance }}.hwx
     deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
       placement:
         constraints:
           - node.labels.hdp.host == os04
   os05:
     hostname: os05-{{ env_instance }}.hwx
     image: dstreev/centos7_sshd:{{ image_tag }}
+    privileged: true
     ports:
       - target: 22
         published: 220{{ env_instance }}
@@ -75,11 +78,8 @@ services:
         mode: host
     volumes:
       - type: volume
-        source: hwxdata0
-        target: /hortonworks_0
-      - type: volume
-        source: hwxdata1
-        target: /hortonworks_1
+        source: hadoop
+        target: /hadoop
       - type: volume
         source: hwxlog
         target: /var/log
@@ -92,14 +92,18 @@ services:
     networks:
       hdp_base:
         aliases:
-          - os05-{{ env_instance }}hwx
+          - os05-{{ env_instance }}.hwx
     deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
       placement:
         constraints:
           - node.labels.hdp.host == os05
   os06:
     hostname: os06-{{ env_instance }}.hwx
     image: dstreev/centos7_sshd:{{ image_tag }}
+    privileged: true
     ports:
       - target: 22
         published: 220{{ env_instance }}
@@ -107,11 +111,8 @@ services:
         mode: host
     volumes:
       - type: volume
-        source: hwxdata0
-        target: /hortonworks_0
-      - type: volume
-        source: hwxdata1
-        target: /hortonworks_1
+        source: hadoop
+        target: /hadoop
       - type: volume
         source: hwxlog
         target: /var/log
@@ -126,12 +127,16 @@ services:
         aliases:
           - os06-{{ env_instance }}.hwx
     deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
       placement:
         constraints:
           - node.labels.hdp.host == os06
   os13:
     hostname: os13-{{ env_instance }}.hwx
     image: dstreev/centos7_sshd:{{ image_tag }}
+    privileged: true
     ports:
       - target: 22
         published: 220{{ env_instance }}
@@ -139,11 +144,8 @@ services:
         mode: host
     volumes:
       - type: volume
-        source: hwxdata0
-        target: /hortonworks_0
-      - type: volume
-        source: hwxdata1
-        target: /hortonworks_1
+        source: hadoop
+        target: /hadoop
       - type: volume
         source: hwxlog
         target: /var/log
@@ -158,12 +160,16 @@ services:
         aliases:
           - os13-{{ env_instance }}.hwx
     deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
       placement:
         constraints:
           - node.labels.hdp.host == os13
   os14:
     hostname: os14-{{ env_instance }}.hwx
     image: dstreev/centos7_sshd:{{ image_tag }}
+    privileged: true
     ports:
       - target: 22
         published: 220{{ env_instance }}
@@ -171,11 +177,8 @@ services:
         mode: host
     volumes:
       - type: volume
-        source: hwxdata0
-        target: /hortonworks_0
-      - type: volume
-        source: hwxdata1
-        target: /hortonworks_1
+        source: hadoop
+        target: /hadoop
       - type: volume
         source: hwxlog
         target: /var/log
@@ -190,12 +193,16 @@ services:
         aliases:
           - os14-{{ env_instance }}.hwx
     deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
       placement:
         constraints:
           - node.labels.hdp.host == os14
   os15:
     hostname: os15-{{ env_instance }}.hwx
     image: dstreev/centos7_sshd:{{ image_tag }}
+    privileged: true
     ports:
       - target: 22
         published: 220{{ env_instance }}
@@ -203,11 +210,8 @@ services:
         mode: host
     volumes:
       - type: volume
-        source: hwxdata0
-        target: /hortonworks_0
-      - type: volume
-        source: hwxdata1
-        target: /hortonworks_1
+        source: hadoop
+        target: /hadoop
       - type: volume
         source: hwxlog
         target: /var/log
@@ -222,12 +226,16 @@ services:
         aliases:
           - os15-{{ env_instance }}.hwx
     deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
       placement:
         constraints:
           - node.labels.hdp.host == os15
   os16:
     hostname: os16-{{ env_instance }}.hwx
     image: dstreev/centos7_sshd:{{ image_tag }}
+    privileged: true
     ports:
       - target: 22
         published: 220{{ env_instance }}
@@ -235,11 +243,8 @@ services:
         mode: host
     volumes:
       - type: volume
-        source: hwxdata0
-        target: /hortonworks_0
-      - type: volume
-        source: hwxdata1
-        target: /hortonworks_1
+        source: hadoop
+        target: /hadoop
       - type: volume
         source: hwxlog
         target: /var/log
@@ -254,6 +259,9 @@ services:
         aliases:
           - os16-{{ env_instance }}.hwx
     deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
       placement:
         constraints:
           - node.labels.hdp.host == os16
@@ -264,9 +272,7 @@ networks:
     driver: overlay
     attachable: true
 volumes:
-  hwxdata0:
-    driver: local
-  hwxdata1:
+  hadoop:
     driver: local
   hwxlog:
     driver: local
