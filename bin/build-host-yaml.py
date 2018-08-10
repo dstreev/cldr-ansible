@@ -18,23 +18,30 @@ parser.add_argument('-i', type=int, dest="instance", nargs=1, required=True, hel
 
 args = parser.parse_args()
 instance = args.instance[0]
+
+#print(os.environ["HWX_CFG_DIR"])
+
+host_yaml_file_ref = os.environ['HWX_CFG_DIR']+'/hosts/'+str(instance)+'.yaml'
+cfg_yaml_file_ref = os.environ['HWX_CFG_DIR']+'/config/'+str(instance)+'.yaml'
+
 print (instance)
-cfgPath = '../config/' + str(instance) + '.yaml'
-if (os.path.isfile(cfgPath)):
-    cfgYaml = yaml.load(open(cfgPath))
+# cfgPath = '../config/' + str(instance) + '.yaml'
+if (os.path.isfile(cfg_yaml_file_ref)):
+    cfgYaml = yaml.load(open(cfg_yaml_file_ref))
     # print(cfgYaml)
     # Environment Set which location
+    deploy_type = cfgYaml["deploy_type"]
     env_set = cfgYaml["env_set"]
     print ("Env_Set: " + env_set)
     env = Environment(
-        loader = FileSystemLoader('../environment/hosts')
+        loader = FileSystemLoader('../environment/templates/'+deploy_type)
     )
     # loader = FileSystemLoader('../environment/hosts/host-template_" + env_set + ".yaml')
-    template = env.get_template('host-template_' + env_set + '.yaml')
+    template = env.get_template('ansible-template_' + env_set + '.yaml')
     # template = Template(open("../environment/hosts/host-template_" + env_set + ".yaml"))
     instance_cfg = template.render(cfgYaml)
 
-    text_file = open("../environment/hosts/" + str(instance) + ".yaml", "w")
+    text_file = open(host_yaml_file_ref, "w")
 
     text_file.write(instance_cfg)
 

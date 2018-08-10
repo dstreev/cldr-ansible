@@ -1,0 +1,49 @@
+- hosts: os
+  become: true
+
+  tasks:
+    - name: Create HWX User Accounts (Local)
+      user:
+        name: '{{ item }}'
+        shell: /bin/bash
+        generate_ssh_key: yes
+        ssh_key_bits: 2048
+        ssh_key_file: .ssh/id_rsa
+        groups: hadoop
+      loop:
+        - accumulo
+        - hive
+        - hdfs
+        - storm
+        - zookeeper
+        - infra-solr
+        - oozie
+        - atlas
+        - ams
+        - tez
+        - zeppelin
+        - mahout
+        - livy
+        - spark
+        - ambari-qa
+        - kafka
+        - sqoop
+        - yarn
+        - mapred
+        - hbase
+        - knox
+        - hcat
+        - falcon
+        - slider
+        - logsearch
+        - druid
+        - activity_analyzer
+        - ranger
+        - nifi
+        - kms
+        - streamline
+        - registry
+        - superset
+        - nifiregistry
+      tags:
+        - local

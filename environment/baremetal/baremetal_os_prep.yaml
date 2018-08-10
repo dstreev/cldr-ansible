@@ -1,0 +1,8 @@
+# Setup a new Bare Metal Host
+- import_playbook: docker_k8s_init.yaml
+
+- import_playbook: docker_dependencies.yaml
+
+- import_playbook: os_pre_reqs.yaml
+
+- import_playbook: local_hwx_users.yam

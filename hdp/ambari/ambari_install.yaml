@@ -52,6 +52,7 @@
 - import_playbook:     jdbc_setup.yaml
 
 - hosts:               hdp
+  become:              true
   tasks:
     - name:            Install Ambari Agents
       yum:
@@ -64,6 +65,7 @@
 
 # Configuration and Start Agents for Manual Registration
 - hosts:               hdp
+  become:              true
   tasks:
     - name:            Stop Ambari Agents
       shell:           ambari-agent stop
@@ -78,4 +80,4 @@
 
 - import_playbook:     ambari_start.yaml
 
-# - import_playbook:     ambari_blueprint_install.yaml
+# - import_playbook:   ambari_blueprint_install.yaml

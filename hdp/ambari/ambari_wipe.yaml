@@ -1,0 +1,51 @@
+# Requires a Local Repo for HDP, Ambari and HDP-UTILS
+# Repo dirs need to match hdp repo layout.
+
+# MOVED THE IMAGE
+#- import_playbook:  ../setup/openjdk_install.yaml
+
+- hosts:             os
+  become:            true
+  tasks:
+    - name:          Stop Ambari Agents
+      shell:         ambari-agent stop
+      tags:
+        - stop
+    - name:          Stop Ambari Server
+      shell:         ambari-server stop
+      tags:
+        - stop
+    - name:          Remove Ambari
+      yum:
+        name:        '{{ item }}'
+        state:       removed
+        skip_broken: yes
+      loop:
+        - ambari-server
+        - ambari-metrics-common
+        - ambari-logsearch-portal
+        - ambari-logsearch-logfeeder
+        - ambari-infra-manager
+        - ambari-metrics-monitor
+        - ambari-metrics-hadoop-sink
+        - ambari-metrics-grafana
+        - ambari-metrics-collector
+        - ambari-infra-solr-client
+        - ambari-infra-solr
+        - ambari-agent
+        - smartsense-hst
+
+    - name:          List Ambari Repos
+      find:
+        paths:       /etc/yum.repos.d
+        patterns:    "ambari*.repo"
+      register:      find_repos
+      tags:
+        - repo
+    - name:          Remove Ambari Repos
+      file:
+        path:        "{{ item['path'] }}"
+        state:       absent
+      with_items:    "{{ find_repos['files'] }}"
+      tags:
+        - repo

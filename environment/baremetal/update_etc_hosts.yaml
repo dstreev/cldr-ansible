@@ -4,9 +4,8 @@
   tasks:
     - name: Copy out new etc_hosts file
       copy:
-        src: /Users/dstreev/projects/david/hwx-ansible/environment/support/etc_hosts
+        src: ../support/etc_hosts
         dest: /etc/hosts
         owner: root
         group: root
         mode: 0644
-        

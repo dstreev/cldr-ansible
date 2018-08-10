@@ -5,24 +5,35 @@
 # Disable THP
 # Set somaxconn
 # And other LLAP specifics
-- hosts:         working
+- hosts:         os
   become:        true
   tasks:
-    - name: Install sudo
+    - name: Yum Installs
       yum:
-        name: sudo
+        name: '{{ item }}'
         state: latest
-
-    # Needed to support hdfs dfs commands and HBase Region Server Startup.
-    - name: Install which
-      yum:
-        name: which
-        state: latest
-
-    - name: Install nscd
-      yum:
-        name: nscd
-        state: latest
+      loop:
+        - yum-utils
+        - unzip
+        - wget
+        - gettext
+        - less
+        - net-tools
+        - iproute
+        - openssl
+        - openssh-server
+        - openssh-clients
+        - passwd
+        - ntp
+        - ansible
+        - nscd
+        - bind-utils
+        - java-1.8.0-openjdk
+        - java-1.8.0-openjdk-devel
+        - git
+        - chrony
+        - which
+        - sudo
 
     - name: Start nscd
       shell: nscd
@@ -34,16 +45,15 @@
       systemd:
         name:    firewalld
         enabled: no
+
     - name:      Stop Firewalls
       systemd:
         name:    firewalld
         state:   stopped
 
-    # - name:    Install NTP
-
-    # - name:      Disable SELINUX
-    #   selinux:
-    #     state:   disabled
+    - name:      Disable SELINUX
+      selinux:
+        state:   disabled
 
     # - name:    Disable THP
 

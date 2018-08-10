@@ -1,58 +1,85 @@
+# Environment
+deploy_type:                     swarm|baremetal|k8s
+
 # One of full, left, center, right
-env_set:               "full"
+env_set:                 "?"
 
 # Number between 00-99
-env_instance:          NOT_SET
+env_instance:            ?
 
 # Docker Image Tag to use
-image_tag:             "106"
+image_tag:               "108"
 
 # Ambari Repo Version (used to pull the correct vars in ../environment/vars/ambari_?.json)
-ambari_major_version:  2.7
-ambari_version:        "2.7.0.0"
+ambari_major_version:    2.7
+ambari_version:          "2.7.0.0"
 
-blueprint:             "NOT_SET"
+blueprint:               "NOT_SET"
 
-hadoop_cli_bin_link:   "https://github.com/dstreev/hadoop-cli/releases/download/untagged-9efb4983399ed222f2a8/hadoop-cli-2.0.0-SNAPSHOT-3.0.tar.gz"
-hadoop_cli_version:    "3.0"
-ambari_repo:           "http://repo.hwx/repo/ambari/centos7/2.x/updates/2.7.0.0/"
-ambari_admin_user:     "admin"
-ambari_admin_password: "admin"
-ranger_host_base:      "os05"
-ranger_admin_user:     "admin"
-ranger_admin_password: "admin"
+ambari_repo:             "http://repo.hwx/repo/ambari/centos7/2.x/updates/2.7.0.0/"
+ambari_admin_user:       "admin"
+ambari_admin_password:   ""
+
+ambari_server:           ""
+zookeeper_server:        ""
+
+db_host:                 ""
+db_user:                 ""
+db_password:             ""
+ranger_host_url:         ""
+ranger_admin_user:       "admin"
+ranger_admin_password:   ""
 hive_superuser:          "hive"
-hive_superuser_password: "hortonworks"
+hive_superuser_password: ""
 
-hdp_stack:             "HDP"
-hdp_stack_version:     "3.0"
-hdp_version:           "3.0.0.0"
+# Local Service Accounts used to run HWX Services
+hdfs_user:               hdfs
+yarn_user:               yarn
+hive_user:               hive
+sqoop_user:              sqoop
+druid_user:              druid
+spark_user:              spark
+livy_user:               livy
+hbase_user:              hbase
+mapred_user:             mapred
+ambari_qa_user:          ambari_qa
 
-hdp_repo_id:           "HDP-3.0"
-hdp_repo_url:          "http://repo.home/repo/HDP/centos7/3.x/updates/3.0.0.0"
+hdp_stack:               "HDP"
+hdp_stack_version:       "3.0"
+hdp_version:             "3.0.0.0"
 
-hdp_utils_repo_id:     "HDP-UTILS-1.1.0.22"
-hdp_utils_repo_url:    "http://repo.home/repo/HDP-UTILS-1.1.0.22/repos/centos7"
+sdlc_user:               dstreev
+tpcds_user:              dstreev
+tpcds_size_gb:           250
 
-hdp_gpl_repo_id:       "HDP-3.0-GPL"
-hdp_gpl_repo_url:      "http://repo.home/repo/HDP-GPL/centos7/3.x/updates/3.0.0.0"
+hadoop_cli_bin_link:     "https://github.com/dstreev/hadoop-cli/releases/download/untagged-9efb4983399ed222f2a8/hadoop-cli-2.0.0-SNAPSHOT-3.0.tar.gz"
+hadoop_cli_version:      "3.0"
 
-os_type:               "redhat7"
+hdp_repo_id:             "HDP-3.0"
+hdp_repo_url:            "http://repo.home/repo/HDP/centos7/3.x/updates/3.0.0.0"
 
-ldap_primary_host:     "10.0.1.11"
-ldap_primary_port:     389
+hdp_utils_repo_id:       "HDP-UTILS-1.1.0.22"
+hdp_utils_repo_url:      "http://repo.home/repo/HDP-UTILS-1.1.0.22/repos/centos7"
+
+hdp_gpl_repo_id:         "HDP-3.0-GPL"
+hdp_gpl_repo_url:        "http://repo.home/repo/HDP-GPL/centos7/3.x/updates/3.0.0.0"
+
+os_type:                 "redhat7"
+
+ldap_primary_host:       ""
+ldap_primary_port:       389
 ldap_secondary_host:
-ldap_secondary_port:   389
+ldap_secondary_port:     389
 
-ldap_ssl:              "false"
-ldap_user_class:       "posixaccount"
-ldap_user_attr:        "uid"
-ldap_group_class:      "posixgroup"
-ldap_group_attr:       "cn"
-ldap_member_attr:      "member"
-ldap_dn:               "cn"
-ldap_base_dn:          "cn=accounts,dc=streever,dc=local"
-ldap_manager_dn:       "uid=admin,cn=users,cn=accounts,dc=streever,dc=local"
-ldap_manager_password: "hortonworks"
-ldap_referral:         "ignore"
-ldap_bind_anonym:      "false"
+ldap_ssl:                "false"
+ldap_user_class:         "posixaccount"
+ldap_user_attr:          "uid"
+ldap_group_class:        "posixgroup"
+ldap_group_attr:         "cn"
+ldap_member_attr:        "member"
+ldap_dn:                 "cn"
+ldap_base_dn:            ""
+ldap_manager_dn:         ""
+ldap_manager_password:   ""
+ldap_referral:           "ignore"
+ldap_bind_anonym:        "false"

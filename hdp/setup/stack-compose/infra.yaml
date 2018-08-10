@@ -5,7 +5,7 @@ services:
     image: mariadb:10.2
     ports:
       - target: 3306
-        published: 33060
+        published: 33306
         protocol: tcp
         mode: host
     volumes:
