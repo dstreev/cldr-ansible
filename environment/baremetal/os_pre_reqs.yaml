@@ -8,10 +8,10 @@
 - hosts:         os
   become:        true
   tasks:
-    - name: Yum Installs
+    - name:      Yum Installs
       yum:
-        name: '{{ item }}'
-        state: latest
+        name:    '{{ item }}'
+        state:   latest
       loop:
         - yum-utils
         - unzip
@@ -35,12 +35,15 @@
         - which
         - sudo
 
-    - name: Start nscd
-      shell: nscd
+    - name:      Start nscd
+      shell:     nscd
 
     - name:      Set Swappiness
       shell:     sysctl vm.swappiness=1
 
+    - name:      Set somaxconn
+      shell:     sysctl -w net.core.somaxconn=16384
+      
     - name:      Disable Firewalls
       systemd:
         name:    firewalld

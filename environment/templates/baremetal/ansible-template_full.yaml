@@ -33,8 +33,13 @@ all:
     spark_user:                          {{ spark_user }}
     livy_user:                           {{ livy_user }}
     hbase_user:                          {{ hbase_user }}
+    storm_user:                          {{ storm_user }}
+    atlas_user:                          {{ atlas_user }}
+    knox_user:                           {{ knox_user }}
+    kafka_user:                          {{ kafka_user }}
     mapred_user:                         {{ mapred_user }}
     ambari_qa_user:                      {{ ambari_qa_user }}
+    hadoop_group:                        {{ hadoop_group }}
 
   children:
     hdp:

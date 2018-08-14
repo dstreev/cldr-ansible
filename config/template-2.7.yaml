@@ -41,8 +41,13 @@ druid_user:              druid
 spark_user:              spark
 livy_user:               livy
 hbase_user:              hbase
+storm_user:              storm
+atlas_user:              atlas
+knox_user:               knox
+kafka_user:              kafka
 mapred_user:             mapred
-ambari_qa_user:          ambari_qa
+ambari_qa_user:          ambari-qa
+hadoop_group:            hadoop
 
 hdp_stack:               "HDP"
 hdp_stack_version:       "3.0"

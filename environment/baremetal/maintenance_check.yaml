@@ -1,5 +1,4 @@
-- hosts: hdp_{{ hdp_set }}
+- hosts: all
   task:
-    - name: Get df
+    - name: Check Disk space
       shell: df -h
-      
