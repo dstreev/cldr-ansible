@@ -92,6 +92,7 @@ all:
                 ranger_url_base:         {{ ranger_host_url }}
                 ranger_admin_user:       {{ ranger_admin_user }}
                 ranger_admin_password:   {{ ranger_admin_password }}
+                knox_url_base:           {{ knox_host_url }}
                 user:                    {{ sdlc_user }}
                 hive_superuser:          {{ hive_superuser }}
                 hive_superuser_password: {{ hive_superuser_password }}

@@ -112,5 +112,3 @@
       systemd:
         name:          kubelet
         state:         stopped
-
-- import_playbook: init.yaml

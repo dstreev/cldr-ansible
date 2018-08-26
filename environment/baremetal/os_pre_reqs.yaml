@@ -5,7 +5,7 @@
 # Disable THP
 # Set somaxconn
 # And other LLAP specifics
-- hosts:         os
+- hosts:         working
   become:        true
   tasks:
     - name:      Yum Installs
@@ -43,7 +43,7 @@
 
     - name:      Set somaxconn
       shell:     sysctl -w net.core.somaxconn=16384
-      
+
     - name:      Disable Firewalls
       systemd:
         name:    firewalld

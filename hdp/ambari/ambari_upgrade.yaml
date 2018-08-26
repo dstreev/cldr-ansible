@@ -32,14 +32,15 @@
         state:   latest
     - name:      Upgrade Ambari Server
       shell:     ambari-server upgrade -s
-    - name:      Start Ambari Server
-      shell:     ambari-server start
 
 # Post Upgrade Steps
 - import_playbook: ambari_post_upgrade.yaml
 
 # Fix SSL Agents issues
 - import_playbook: fix_agent_ssl.yaml
+
+# Rerun Ambari Configurations
+- import_playbook: ambari_configure.yaml
 
 # Configuration and Start Agents for Manual Registration
 - hosts:         hdp
@@ -48,3 +49,8 @@
       shell:     ambari-agent reset {{ ambari_server_host }}
     - name:      Start Ambari Agents
       shell:     ambari-agent start
+
+- hosts: ambari
+  tasks:
+    - name:      Start Ambari Server
+      shell:     ambari-server start

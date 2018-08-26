@@ -5,4 +5,4 @@
 
 - import_playbook: os_pre_reqs.yaml
 
-- import_playbook: local_hwx_users.yam
+- import_playbook: local_hwx_users.yaml

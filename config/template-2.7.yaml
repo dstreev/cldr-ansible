@@ -29,6 +29,7 @@ db_password:             ""
 ranger_host_url:         ""
 ranger_admin_user:       "admin"
 ranger_admin_password:   ""
+knox_host_url:           ""
 hive_superuser:          "hive"
 hive_superuser_password: ""
 

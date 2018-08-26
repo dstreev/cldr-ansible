@@ -1,0 +1,34 @@
+- hosts: sdlc
+
+  tasks:
+    - name:                    Check KNOX WebHDFS Setup
+      uri:
+        url:                   '{{ knox_url_base }}/default/webhdfs/v1?op=GETHOMEDIRECTORY'
+        method:                GET
+        user:                  '{{ user }}'
+        password:              '{{ password }}'
+        force_basic_auth:      yes
+        status_code:           200,400
+        validate_certs:        no
+        headers:
+          Content-Type:        "application/json; charset=utf8"
+          X-XSRF-HEADER:       "valid"
+          User-Agent:          "Ansible HDP Best Practices"
+      tags:
+        - webhdfs
+
+    - name:                    Check KNOX Namenode Setup
+      uri:
+        url:                   '{{ knox_url_base }}/default/namenode/dfshealth.html#tab-overview'
+        method:                GET
+        user:                  '{{ user }}'
+        password:              '{{ password }}'
+        force_basic_auth:      yes
+        status_code:           200,400
+        validate_certs:        no
+        headers:
+          Content-Type:        "application/json; charset=utf8"
+          X-XSRF-HEADER:       "valid"
+          User-Agent:          "Ansible HDP Best Practices"
+      tags:
+        - webhdfs
