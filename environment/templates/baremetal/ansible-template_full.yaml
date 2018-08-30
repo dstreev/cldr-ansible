@@ -102,7 +102,9 @@ all:
 
         ambari:
           vars:
-            ambari_url_base:             http://os02.streever.local:8080
+            ambari_url_base:             http://{{ ambari_server }}:{{ ambari_port }}
+            ambari_server:               {{ ambari_server }}
+            ambari_port:                 {{ ambari_port }}
             ambari_admin_user :          {{ ambari_admin_user }}
             ambari_admin_password:       {{ ambari_admin_password }}
             hdp_stack:                   {{ hdp_stack }}
@@ -137,4 +139,4 @@ all:
             ldap_bind_anonym:            {{ ldap_bind_anonym }}
           hosts:
             OS02-MASTER-1:
-              ansible_host:              os02.streever.local
+              ansible_host:              {{ ambari_server }}

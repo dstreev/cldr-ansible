@@ -17,6 +17,7 @@ ambari_version:          "2.6.2.2"
 blueprint:               "NOT_SET"
 
 ambari_server:           ""
+ambari_port:             "8080"
 zookeeper_server:        ""
 
 db_host:                 ""

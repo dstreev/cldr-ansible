@@ -21,6 +21,7 @@ ambari_admin_user:       "admin"
 ambari_admin_password:   ""
 
 ambari_server:           ""
+ambari_port:             "8080"
 zookeeper_server:        ""
 
 db_host:                 ""

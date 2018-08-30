@@ -49,4 +49,4 @@
 - hosts:             ambari
   tasks:
     - name:          Upgrade the Ambari SmartSense Views
-      shell:         hst upgrade-ambari-service -u {{ ambari_admin_user }} -p {{ ambari_server_port }} -H {{ ambari_server_host }} -P {{ ambari_admin_password }}
+      shell:         hst upgrade-ambari-service -u {{ ambari_admin_user }} -p {{ ambari_port }} -H {{ ambari_server }} -P {{ ambari_admin_password }}

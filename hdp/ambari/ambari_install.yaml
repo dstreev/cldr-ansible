@@ -7,7 +7,7 @@
 - hosts:               hdp
   become:              true
   tasks:
-    - name:            Install the Ambari Repo
+    - name:            Uninstall the Ambari Repo
       yum_repository:
         name:          ambari
         description:   Install the Ambari Repo from our Local Repo Server.
