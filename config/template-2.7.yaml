@@ -64,13 +64,13 @@ hadoop_cli_bin_link:     "https://github.com/dstreev/hadoop-cli/releases/downloa
 hadoop_cli_version:      "3.0"
 
 hdp_repo_id:             "HDP-3.0"
-hdp_repo_url:            "http://repo.home/repo/HDP/centos7/3.x/updates/3.0.0.0"
+hdp_repo_url:            "http://repo.hdp.local/repo/HDP/centos7/3.x/updates/3.0.0.0"
 
 hdp_utils_repo_id:       "HDP-UTILS-1.1.0.22"
-hdp_utils_repo_url:      "http://repo.home/repo/HDP-UTILS-1.1.0.22/repos/centos7"
+hdp_utils_repo_url:      "http://repo.hdp.local/repo/HDP-UTILS-1.1.0.22/repos/centos7"
 
 hdp_gpl_repo_id:         "HDP-3.0-GPL"
-hdp_gpl_repo_url:        "http://repo.home/repo/HDP-GPL/centos7/3.x/updates/3.0.0.0"
+hdp_gpl_repo_url:        "http://repo.hdp.local/repo/HDP-GPL/centos7/3.x/updates/3.0.0.0"
 
 os_type:                 "redhat7"
 
