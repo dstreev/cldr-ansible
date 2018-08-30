@@ -1,4 +1,5 @@
-- hosts:         hdp
+- hosts:               hdp
+  become:              true
   tasks:
 
     - name:            Uninstall the Ambari Repo
@@ -26,46 +27,49 @@
         - agent
         - server
 
-    - name:      Stop Ambari Agents
-      shell:     ambari-agent stop
+    - name:            Stop Ambari Agents
+      shell:           ambari-agent stop
 
-    - name:      Upgrade Ambari Agents
+    - name:            Upgrade Ambari Agents
       yum:
-        name:    ambari-agent
-        state:   latest
+        name:          ambari-agent
+        state:         latest
 
 # Install/Update JDBC Drivers
-- import_playbook: jdbc_setup.yaml
+- import_playbook:     jdbc_setup.yaml
 
-- hosts:         ambari
+- hosts:               ambari
+  become:              true
   tasks:
-    - name:      Stop Ambari Server
-      shell:     ambari-server stop
-    - name:      Upgrade Ambari
+    - name:            Stop Ambari Server
+      shell:           ambari-server stop
+    - name:            Upgrade Ambari
       yum:
-        name:    ambari-server
-        state:   latest
-    - name:      Upgrade Ambari Server
-      shell:     ambari-server upgrade -s
+        name:          ambari-server
+        state:         latest
+    - name:            Upgrade Ambari Server
+      shell:           ambari-server upgrade -s
 
 # Rerun Ambari Configurations
-- import_playbook: ambari_configure.yaml
+- import_playbook:     ambari_configure.yaml
 
 # Post Upgrade Steps
-- import_playbook: ambari_post_upgrade.yaml
+- import_playbook:     ambari_post_upgrade.yaml
 
 # Fix SSL Agents issues
-#- import_playbook: fix_agent_ssl.yaml
+#- import_playbook:    fix_agent_ssl.yaml
 
 # Configuration and Start Agents for Manual Registration
-- hosts:         hdp
+- hosts:               hdp
+  become:              true
   tasks:
-    - name:      Reset Ambari Agents
-      shell:     ambari-agent reset {{ ambari_server_host }}
-    - name:      Start Ambari Agents
-      shell:     ambari-agent start
+    - name:            Reset Ambari Agents
+      shell:           ambari-agent reset {{ ambari_server_host }}
+    - name:            Start Ambari Agents
+      shell:           ambari-agent start
 
-- hosts: ambari
+- hosts:               ambari
+  become:              true
   tasks:
-    - name:      Start Ambari Server
-      shell:     ambari-server start
+    - name:            Start Ambari Server
+      shell:           ambari-server start
