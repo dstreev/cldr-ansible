@@ -1,19 +1,34 @@
 - hosts:         hdp
   tasks:
-    - name:      Download the latest Ambari repo
-      get_url:
-        url:     "{{ hortonworks_repo_base_url }}{{ ambari_path }}{{ ambari_version }}/ambari.repo"
-        dest:    /etc/yum.repos.d/
-        backup:  yes
-        force:   yes
-    - name:      Fix URL Paths in repo.
-      replace:
-        path:    /etc/yum.repos.d/ambari.repo
-        regexp:  '(baseurl=){{ hortonworks_repo_base_url }}(.*)?$'
-        replace: '\1{{ local_repo_base_url }}\2'
-        backup:  yes
+
+    - name:            Uninstall the Ambari Repo
+      yum_repository:
+        name:          ambari
+        description:   Install the Ambari Repo from our Local Repo Server.
+        state:         absent
+        baseurl:       '{{ ambari_repo }}'
+        #baseurl:      http://{{ repo_server }}/repo/ambari/{{ os_version }}/{{ ambari_major_version }}.x/updates/{{ ambari_version }}
+        repo_gpgcheck: no
+        gpgcheck:      no
+      tags:
+        - agent
+        - server
+    - name:            Install the Ambari Repo
+      yum_repository:
+        name:          ambari
+        description:   Install the Ambari Repo from our Local Repo Server.
+        state:         present
+        baseurl:       '{{ ambari_repo }}'
+        #baseurl:      http://{{ repo_server }}/repo/ambari/{{ os_version }}/{{ ambari_major_version }}.x/updates/{{ ambari_version }}
+        repo_gpgcheck: no
+        gpgcheck:      no
+      tags:
+        - agent
+        - server
+
     - name:      Stop Ambari Agents
       shell:     ambari-agent stop
+
     - name:      Upgrade Ambari Agents
       yum:
         name:    ambari-agent
@@ -33,14 +48,14 @@
     - name:      Upgrade Ambari Server
       shell:     ambari-server upgrade -s
 
+# Rerun Ambari Configurations
+- import_playbook: ambari_configure.yaml
+
 # Post Upgrade Steps
 - import_playbook: ambari_post_upgrade.yaml
 
 # Fix SSL Agents issues
-- import_playbook: fix_agent_ssl.yaml
-
-# Rerun Ambari Configurations
-- import_playbook: ambari_configure.yaml
+#- import_playbook: fix_agent_ssl.yaml
 
 # Configuration and Start Agents for Manual Registration
 - hosts:         hdp
