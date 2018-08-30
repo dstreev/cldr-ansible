@@ -1,9 +1,10 @@
 # Install JDBC Drivers for MySQL and MariaDB to a default locate and provide
 # common symlinks
 - hosts:                  ambari
+  become:                 true
   vars:
     # Druid has issues with new driver.
-    # mysql_jdbc_version:   8.0.11
+    # mysql_jdbc_version: 8.0.11
     mysql_jdbc_version:   5.1.46
     mariadb_jdbc_version: 2.2.4
 
