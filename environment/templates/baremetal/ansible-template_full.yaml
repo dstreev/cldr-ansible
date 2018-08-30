@@ -107,6 +107,7 @@ all:
             ambari_port:                 {{ ambari_port }}
             ambari_admin_user :          {{ ambari_admin_user }}
             ambari_admin_password:       {{ ambari_admin_password }}
+            ambari_admin_ldap_password:  {{ ambari_admin_ldap_password }}
             hdp_stack:                   {{ hdp_stack }}
             hdp_stack_version:           {{ hdp_stack_version }}
             vdf_file:                    {{ vdf_file }}
