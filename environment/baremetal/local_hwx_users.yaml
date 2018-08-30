@@ -30,6 +30,7 @@
         - kafka
         - sqoop
         - yarn
+        - yarn-ats
         - mapred
         - hbase
         - knox
