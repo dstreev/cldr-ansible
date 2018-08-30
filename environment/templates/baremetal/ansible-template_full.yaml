@@ -76,6 +76,10 @@ all:
 
       children:
         edge:
+          vars:
+            hadoop_cli_bin_link:        {{ hadoop_cli_bin_link }}
+            hadoop_cli_version:         {{ hadoop_cli_version }}
+
           hosts:
             OS03-MASTER-2:
               ansible_host:              os03.streever.local
