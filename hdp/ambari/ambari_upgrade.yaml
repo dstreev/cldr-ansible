@@ -64,7 +64,7 @@
   become:              true
   tasks:
     - name:            Reset Ambari Agents
-      shell:           ambari-agent reset {{ ambari_server_host }}
+      shell:           ambari-agent reset {{ ambari_server }}
     - name:            Start Ambari Agents
       shell:           ambari-agent start
 

@@ -103,7 +103,6 @@ all:
         ambari:
           vars:
             ambari_url_base:             http://{{ ambari_server }}:{{ ambari_port }}
-            ambari_server:               {{ ambari_server }}
             ambari_port:                 {{ ambari_port }}
             ambari_admin_user :          {{ ambari_admin_user }}
             ambari_admin_password:       {{ ambari_admin_password }}
