@@ -39,6 +39,7 @@ all:
     kafka_user:                          {{ kafka_user }}
     mapred_user:                         {{ mapred_user }}
     ambari_qa_user:                      {{ ambari_qa_user }}
+    yarn_ats_user:                       {{ yarn_ats_user }}
     hadoop_group:                        {{ hadoop_group }}
 
   children:

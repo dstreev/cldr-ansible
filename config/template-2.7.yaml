@@ -50,6 +50,7 @@ knox_user:               knox
 kafka_user:              kafka
 mapred_user:             mapred
 ambari_qa_user:          ambari-qa
+yarn_ats_user:           yarn-ats
 hadoop_group:            hadoop
 
 hdp_stack:               "HDP"
