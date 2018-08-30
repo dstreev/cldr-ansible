@@ -19,6 +19,7 @@ blueprint:               "NOT_SET"
 ambari_repo:             "http://repo.hwx/repo/ambari/centos7/2.x/updates/2.7.0.0/"
 ambari_admin_user:       "admin"
 ambari_admin_password:   ""
+ambari_admin_ldap_password: ""
 
 ambari_server:           ""
 ambari_port:             "8080"
