@@ -23,11 +23,13 @@
       fetch:
         src: '{{ yarn_base_log_dir }}/hadoop-yarn-nodemanager-{{ ansible_host }}.log.gz'
         dest: /tmp/YARN
+        fail_on_missing: no
 
     - name: Fetch Zipped RM logs
       fetch:
         src: '{{ yarn_base_log_dir }}/hadoop-yarn-resourcemanager-{{ ansible_host }}.log.gz'
         dest: /tmp/YARN
+        fail_on_missing: no
 
     - name: Clean up files
       file:
