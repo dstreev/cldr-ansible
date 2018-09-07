@@ -9,4 +9,8 @@
       archive:
         path: '{{ yarn_base_log_dir }}/hadoop-yarn-nodemanager-{{ ansible_host }}.log'
         dest: '{{ yarn_base_log_dir }}/hadoop-yarn-nodemanager-{{ ansible_host }}.log.gz'
-        
+      tags:
+        - zip
+    - name: Fetch Zipped logs
+      fetch: '{{ yarn_base_log_dir }}/hadoop-yarn-nodemanager-{{ ansible_host }}.log.gz'
+        src: /tmp
