@@ -12,5 +12,6 @@
       tags:
         - zip
     - name: Fetch Zipped logs
-      fetch: '{{ yarn_base_log_dir }}/hadoop-yarn-nodemanager-{{ ansible_host }}.log.gz'
-        src: /tmp
+      fetch:
+        src: '{{ yarn_base_log_dir }}/hadoop-yarn-nodemanager-{{ ansible_host }}.log.gz'
+        dest: /tmp
