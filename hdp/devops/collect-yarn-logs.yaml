@@ -1,0 +1,12 @@
+- hosts: hdp
+  become: true
+  vars:
+    yarn_base_log_dir: /var/log/hadoop-yarn/yarn
+
+  tasks:
+
+    - name: Zip logs
+      archive:
+        path: '{{ yarn_base_log_dir }}/hadoop-yarn-nodemanager-{{ ansible_host }}.log'
+        dest: '{{ yarn_base_log_dir }}/hadoop-yarn-nodemanager-{{ ansible_host }}.log.gz'
+        

@@ -25,6 +25,7 @@
         - openssh-clients
         - passwd
         - ntp
+        - lsof
         - ansible
         - nscd
         - bind-utils
