@@ -5,42 +5,42 @@
 
   tasks:
 
-    - name: Zip Node Manager logs
+    - name: Zip Yarn logs
       archive:
-        path: '{{ yarn_base_log_dir }}/hadoop-yarn-nodemanager-{{ ansible_host }}.log'
-        dest: '{{ yarn_base_log_dir }}/hadoop-yarn-nodemanager-{{ ansible_host }}.log.gz'
+        path: '{{ yarn_base_log_dir }}/hadoop-yarn-*-{{ ansible_host }}.log'
+        dest: '{{ yarn_base_log_dir }}/hadoop-yarn-{{ ansible_host }}.log.gz'
       tags:
         - zip
 
-    - name: Zip Resource Manager logs
-      archive:
-        path: '{{ yarn_base_log_dir }}/hadoop-yarn-resourcemanager-{{ ansible_host }}.log'
-        dest: '{{ yarn_base_log_dir }}/hadoop-yarn-resourcemanager-{{ ansible_host }}.log.gz'
-      tags:
-        - zip
+    # - name: Zip Resource Manager logs
+    #   archive:
+    #     path: '{{ yarn_base_log_dir }}/hadoop-yarn-resourcemanager-{{ ansible_host }}.log'
+    #     dest: '{{ yarn_base_log_dir }}/hadoop-yarn-resourcemanager-{{ ansible_host }}.log.gz'
+    #   tags:
+    #     - zip
 
-    - name: Fetch Zipped NM logs
+    - name: Fetch Zipped YARN logs
       fetch:
-        src: '{{ yarn_base_log_dir }}/hadoop-yarn-nodemanager-{{ ansible_host }}.log.gz'
+        src: '{{ yarn_base_log_dir }}/hadoop-yarn-{{ ansible_host }}.log.gz'
         dest: /tmp/YARN
         fail_on_missing: no
 
-    - name: Fetch Zipped RM logs
-      fetch:
-        src: '{{ yarn_base_log_dir }}/hadoop-yarn-resourcemanager-{{ ansible_host }}.log.gz'
-        dest: /tmp/YARN
-        fail_on_missing: no
+    # - name: Fetch Zipped RM logs
+    #   fetch:
+    #     src: '{{ yarn_base_log_dir }}/hadoop-yarn-resourcemanager-{{ ansible_host }}.log.gz'
+    #     dest: /tmp/YARN
+    #     fail_on_missing: no
 
     - name: Clean up files
       file:
-        path: '{{ yarn_base_log_dir }}/hadoop-yarn-nodemanager-{{ ansible_host }}.log.gz'
+        path: '{{ yarn_base_log_dir }}/hadoop-yarn-{{ ansible_host }}.log.gz'
         state: absent
       tags:
         - clean
 
-    - name: Clean up files
-      file:
-        path: '{{ yarn_base_log_dir }}/hadoop-yarn-resourcemanager-{{ ansible_host }}.log.gz'
-        state: absent
-      tags:
-        - clean
+    # - name: Clean up files
+    #   file:
+    #     path: '{{ yarn_base_log_dir }}/hadoop-yarn-resourcemanager-{{ ansible_host }}.log.gz'
+    #     state: absent
+    #   tags:
+    #     - clean
