@@ -1,0 +1,11 @@
+- hosts: os
+  become: true
+
+  tasks:
+    - name: Copy out new etc_hosts file
+      copy:
+        src: ../support/bashrc
+        dest: /home/{{ user }}/.bashrc
+        owner: '{{ user }}'
+        group: '{{ user }}'
+        mode: 0600
