@@ -116,8 +116,11 @@ class Deployment(object):
         subprocess.call(['ansible-playbook', '-i', host_file,'--extra-vars','@'+cfg_file, '../environment/baremetal/set_hwx_dirs.yaml'], stderr=subprocess.STDOUT)
 
         # echo "OS Prep"
-        print('OS Prep')
-        subprocess.call(['ansible-playbook', '-i', host_file,'--extra-vars','@'+cfg_file, '../hdp/setup/hdp_os_prep.yaml'], stderr=subprocess.STDOUT)
+        # print('OS Prep')
+        # subprocess.call(['ansible-playbook', '-i', host_file,'--extra-vars','@'+cfg_file, '../environment/baremetal/os_pre_reqs.yaml'], stderr=subprocess.STDOUT)
+        #
+        # print('Setup Local Accounts')
+        # subprocess.call(['ansible-playbook', '-i', host_file,'--extra-vars','@'+cfg_file, '../environment/baremetal/local_hwx_users.yaml'], stderr=subprocess.STDOUT)
 
         print('Edge Node Config')
         subprocess.call(['ansible-playbook', '-i', host_file,'--extra-vars','@'+cfg_file, '../hdp/setup/edge_node_config.yaml'], stderr=subprocess.STDOUT)

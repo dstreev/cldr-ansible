@@ -1,0 +1,52 @@
+# Requires a Local Repo for HDP, Ambari and HDP-UTILS
+# Repo dirs need to match hdp repo layout.
+
+# MOVED THE IMAGE
+#- import_playbook:  ../setup/openjdk_install.yaml
+
+- hosts:             '{{ hosts }}'
+  become:            true
+  vars:
+    # Use '_''s as delimiter to match the 'yum' version details
+    hdf_version: '3_2_0_0_520'
+    # This is the /usr/hdp/<directory>
+    hdf_version_dir: '3.2.0.0-520'
+
+  tasks:
+    - name: Remove HDF Packages
+      yum:
+        name: '{{ item }}'
+        state: removed
+      loop:
+        - zookeeper_{{ hdf_version }}
+        - zookeeper_{{ hdf_version }}-server
+        - registry_{{ hdf_version }}
+        - nifi_{{ hdf_version }}
+        - nifi-registry_{{ hdf_version }}
+        - hdf-select
+      tags:
+        - yum
+
+    # After the packages have been removed, drop the hdp directory to prevent hdp-select from picking up bad versions.
+    - name: Remove HDF Directories
+      file:
+        path: '{{ item }}'
+        state: absent
+      loop:
+        - /usr/hdp/{{ hdf_version_dir }}
+        - /etc/nifi
+        - /etc/nifi-registry
+        - /etc/zookeeper
+        - /etc/registry
+        - /var/lib/nifi
+        - /var/lib/nifi-registry
+      tags:
+        - dir
+
+    # If you don't reset the current dir (delete it), the installs will create hardlinks to conf directories
+    - name: Reset HDF Current
+      file:
+        path: /usr/hdf/current
+        state: absent
+      tags:
+        - current

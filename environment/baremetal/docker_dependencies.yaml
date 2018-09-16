@@ -1,7 +1,7 @@
 # Build and Start the Metastore and Repo
 # - import_playbook: ../infrastructure/infra.yaml
 
-- hosts: working
+- hosts: k8s
 
   become: true
   tasks:

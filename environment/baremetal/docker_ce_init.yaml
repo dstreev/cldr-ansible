@@ -1,0 +1,114 @@
+####################
+# Used to install the basics on a new CentOS7 hosts
+####################
+
+- hosts:               k8s
+  become:              true
+
+  tasks:
+    - name:            Install Kubernetes Repo
+      yum_repository:
+        name:          Kubernetes
+        description:   Install the Kubernetes Repo
+        state:         present
+        baseurl:       https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+        gpgkey:        https://packages.cloud.google.com/yum/doc/yum-key.gpg
+        repo_gpgcheck: no
+        gpgcheck:      no
+
+    - name:            yum-utils install
+      yum:
+        name:          yum-utils
+        state:         latest
+    - name:            Yum DeltaRPM Handler
+      yum:
+        name:          deltarpm
+        state:         latest
+    - name:            device-mapper install
+      yum:
+        name:          device-mapper-persistent-data
+        state:         latest
+    - name:            lvm2 install
+      yum:
+        name:          lvm2
+        state:         latest
+    - name:            Docker Repo Install
+      yum_repository:
+        name:          docker-ce-stable
+        description:   Docker CE Repo
+        baseurl:       https://download.docker.com/linux/centos/7/$basearch/stable
+        sslverify:     false
+        gpgcheck:      no
+    - name:            Docker CE Installation
+      yum:
+        name:          docker-ce
+        state:         latest
+    - name:            Docker enable
+      systemd:
+        name:          docker
+        enabled:       yes
+    - name:            Create Docker Service Init Directory
+      file:
+        path:          /etc/systemd/system/docker.service.d
+        state:         directory
+        owner:         root
+        group:         root
+        mode:          0744
+    - name:            Copy Docker Configuration File
+      copy:
+        src:           /Users/dstreev/projects/david/hwx-ansible/environment/support/docker.conf
+        dest:          /etc/systemd/system/docker.service.d/docker.conf
+        owner:         root
+        group:         root
+        mode:          0644
+        backup:        yes
+    - name:            Restart Systemd daemon
+      systemd:
+        daemon_reload: yes
+
+    - name:            Start docker
+      systemd:
+        name:          docker
+        state:         started
+
+
+    - name:            Install Kubernetes GPG Keys
+      rpm_key:
+        state:         present
+        key:           https://packages.cloud.google.com/yum/doc/yum-key.gpg
+    - name:            Install Kubernetes GPG Keys
+      rpm_key:
+        state:         present
+        key:           https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+
+    - name:            Copy out k8s.conf
+      copy:
+        src:           ../support/k8s.conf
+        dest:          /etc/sysctl.d/
+
+    - name:            Install kubernetes 'kubelet'
+      yum:
+        name:          kubelet
+        state:         present
+    - name:            Install Kubernetes 'kubeadm'
+      yum:
+        name:          kubeadm
+        state:         present
+    - name:            Install kubernetes 'kubectl'
+      yum:
+        name:          kubectl
+        state:         present
+    - name:            Enable Kubernetes 'kubelet'
+      systemd:
+        name:          kubelet
+        enabled:       yes
+    # - name:            Set Kubernetes cgroup to match docker
+    #   replace:
+    #     path:          /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
+    #     regexp:        '^(Environment="KUBELET_CGROUP_ARGS=--)cgroup-driver=systemd(")?$'
+    #     replace:       '\1cgroup-driver=cgroupfs\2'
+    #     backup:        yes
+    - name:            Start Kubernetes 'kubelet'
+      systemd:
+        name:          kubelet
+        state:         started

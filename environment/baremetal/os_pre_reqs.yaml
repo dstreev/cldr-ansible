@@ -5,7 +5,7 @@
 # Disable THP
 # Set somaxconn
 # And other LLAP specifics
-- hosts:         working
+- hosts:         k8s
   become:        true
   tasks:
     - name:      Yum Installs
@@ -35,9 +35,10 @@
         - chrony
         - which
         - sudo
+        - bash-completion
 
-    - name:      Start nscd
-      shell:     nscd
+    # - name:      Start nscd
+    #   shell:     nscd
 
     - name:      Set Swappiness
       shell:     sysctl vm.swappiness=1

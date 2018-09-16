@@ -23,7 +23,7 @@ zookeeper_server:        ""
 db_host:                 ""
 db_user:                 ""
 db_password:             ""
-ambari_repo:             "http://repo.hwx/repo/ambari/centos7/2.x/updates/2.6.2.2"
+ambari_repo:             "http://repo.hdp.local/repo/ambari/centos7/2.x/updates/2.6.2.2"
 ambari_admin_user:       "admin"
 ambari_admin_password:   ""
 ambari_admin_ldap_password: ""
@@ -63,13 +63,13 @@ hadoop_cli_bin_link:     "https://github.com/dstreev/hadoop-cli/releases/downloa
 hadoop_cli_version:      "2.7"
 
 hdp_repo_id:             "HDP-2.6"
-hdp_repo_url:            "http://repo.hwx/repo/HDP/centos7/2.x/updates/2.6.5.0"
+hdp_repo_url:            "http://repo.hdp.local/repo/HDP/centos7/2.x/updates/2.6.5.0"
 
 hdp_utils_repo_id:       "HDP-UTILS-1.1.0.22"
-hdp_utils_repo_url:      "http://repo.home/repo/HDP-UTILS-1.1.0.22/repos/centos7"
+hdp_utils_repo_url:      "http://repo.hdp.loca/repo/HDP-UTILS-1.1.0.22/repos/centos7"
 
 hdp_gpl_repo_id:         "HDP-2.6-GPL"
-hdp_gpl_repo_url:        "http://repo.hwx/repo/HDP-GPL/centos7/2.x/updates/2.6.5.0"
+hdp_gpl_repo_url:        "http://repo.hdp.local/repo/HDP-GPL/centos7/2.x/updates/2.6.5.0"
 
 os_type:                 "redhat7"
 

@@ -2,10 +2,22 @@
   become: true
 
   tasks:
-    - name: Copy out new etc_hosts file
+    - name: Copy out new bashrc file
       copy:
         src: ../support/bashrc
         dest: /home/{{ user }}/.bashrc
         owner: '{{ user }}'
         group: '{{ user }}'
         mode: 0600
+      tags:
+        - user
+
+    - name: Copy out new bashrc file (root)
+      copy:
+        src: ../support/bashrc
+        dest: /root/.bashrc
+        owner: root
+        group: root
+        mode: 0600
+      tags:
+        - root

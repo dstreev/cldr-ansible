@@ -4,7 +4,7 @@
 # MOVED THE IMAGE
 #- import_playbook:  ../setup/openjdk_install.yaml
 
-- hosts:             os
+- hosts:             '{{ hosts }}'
   become:            true
   tasks:
     - name:          Stop Ambari Agents
@@ -49,3 +49,12 @@
       with_items:    "{{ find_repos['files'] }}"
       tags:
         - repo
+    - name:  Remove residual Ambari directories
+      file:
+        path: "{{ item }}"
+        state: absent
+      loop:
+        - /etc/ambari-server
+        - /etc/ambari-agent
+        - /var/lib/ambari-server
+        - /var/lib/ambari-agent

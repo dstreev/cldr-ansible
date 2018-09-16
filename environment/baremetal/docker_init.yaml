@@ -1,0 +1,48 @@
+####################
+# Used to install the basics on a new CentOS7 hosts
+####################
+
+- hosts:               k8s
+  become:              true
+
+  tasks:
+    - name:            yum-utils install
+      yum:
+        name:          yum-utils
+        state:         latest
+    - name:            Yum DeltaRPM Handler
+      yum:
+        name:          deltarpm
+        state:         latest
+    - name:            device-mapper install
+      yum:
+        name:          device-mapper-persistent-data
+        state:         latest
+    - name:            lvm2 install
+      yum:
+        name:          lvm2
+        state:         latest
+    - name: Install Docker
+      yum:
+        name: docker
+        state: latest
+    - name:            Docker enable
+      systemd:
+        name:          docker
+        enabled:       yes
+    - name:            Copy Docker Daemon Configuration File
+      copy:
+        src:           ../support/docker-daemon.json
+        dest:          /etc/docker/daemon.json
+        owner:         root
+        group:         root
+        mode:          0644
+        backup:        yes
+      tags:
+        - conf
+        - daemon
+
+    - name:            Start docker
+      systemd:
+        name:          docker
+        state:         started

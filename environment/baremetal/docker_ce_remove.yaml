@@ -1,0 +1,27 @@
+- hosts:         k8s
+  become:        true
+
+  tasks:
+    - name:      Disable Docker
+      systemd:
+        name:    docker
+        enabled: no
+    - name:      Stop docker
+      systemd:
+        name:    docker
+        state:   stopped
+    - name:      Remove Docker Service Init Directory
+      file:
+        path:    /etc/systemd/system/docker.service.d
+        state:   directory
+        owner:   root
+        group:   root
+        mode:    0744
+    - name:      Docker CE Installation Remove
+      yum:
+        name:    docker-ce
+        state:   absent
+    - name:      Docker Repo Remove
+      file:
+        path:    /etc/yum.repos.d/docker-ce-stable.repo
+        state:   absent

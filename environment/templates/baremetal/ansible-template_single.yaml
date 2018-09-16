@@ -1,0 +1,120 @@
+# HDP Environment 01 Servers
+all:
+  vars:
+    ambari_version:                         {{ ambari_version }}
+    ambari_major_version:                   {{ ambari_major_version }}
+    ambari_repo:                            {{ ambari_repo }}
+    hdp_version:                            {{ hdp_version }}
+    env_set:                                full
+    image_tag:                              {{ image_tag }}
+    env_instance:                           '{{ env_instance }}'
+    cluster_name:                           BM{{ env_instance }}
+    mysql_backup_dir:                       /hadoop/mysql_backups
+    db_type:                                mysql
+    db_host:                                {{ db_host }}
+    db_user:                                {{ db_user }}
+    db_password:                            {{ db_password }}
+    db_ambari_name:                         ambari_{{ env_instance }}
+    db_hive_name:                           hive_{{ env_instance }}
+    db_oozie_name:                          oozie_{{ env_instance }}
+    db_ranger_name:                         ranger_{{ env_instance }}
+    db_ranger_kms_name:                     rangerkms_{{ env_instance }}
+    db_druid_name:                          druid_{{ env_instance }}
+    db_superset_name:                       superset_{{ env_instance }}
+    db_registry_name:                       registry_{{ env_instance }}
+    db_streamline_name:                     streamline_{{ env_instance }}
+
+    # HDP Service users
+    hdfs_user:                              {{ hdfs_user }}
+    yarn_user:                              {{ yarn_user }}
+    hive_user:                              {{ hive_user }}
+    sqoop_user:                             {{ sqoop_user }}
+    druid_user:                             {{ druid_user }}
+    spark_user:                             {{ spark_user }}
+    livy_user:                              {{ livy_user }}
+    hbase_user:                             {{ hbase_user }}
+    storm_user:                             {{ storm_user }}
+    atlas_user:                             {{ atlas_user }}
+    knox_user:                              {{ knox_user }}
+    kafka_user:                             {{ kafka_user }}
+    mapred_user:                            {{ mapred_user }}
+    ambari_qa_user:                         {{ ambari_qa_user }}
+    yarn_ats_user:                          {{ yarn_ats_user }}
+    hadoop_group:                           {{ hadoop_group }}
+
+  children:
+    hdp:
+      vars:
+        ambari_server:                      {{ ambari_server }}
+        zookeeper_server:                   {{ zookeeper_server }}
+        repo_server:                        repo.hdp.local
+
+      children:
+        edge:
+          vars:
+            hadoop_cli_bin_link:            {{ hadoop_cli_bin_link }}
+            hadoop_cli_version:             {{ hadoop_cli_version }}
+
+          hosts:
+            OS{{ single_host }}-MASTER-1:
+              ansible_host:                 os{{ single_host }}.streever.local
+          children:
+            sdlc:
+              vars:
+                smoke_tgs_size:             1Gb
+                smoke_tgs_mappers:          4
+                smoke_tgs_reducers:         4
+                tpcds_user:                 {{ tpcds_user }}
+                tpcds_size:                 {{ tpcds_size_gb }}
+                ranger_url_base:            {{ ranger_host_url }}
+                ranger_admin_user:          {{ ranger_admin_user }}
+                ranger_admin_password:      {{ ranger_admin_password }}
+                ranger_admin_ldap_password: {{ ranger_admin_ldap_password }}
+                knox_url_base:              {{ knox_host_url }}
+                user:                       {{ sdlc_user }}
+                hive_superuser:             {{ hive_superuser }}
+                hive_superuser_password:    {{ hive_superuser_password }}
+              hosts:
+                OS{{ single_host }}-MASTER-1:
+                  ansible_host:             os{{ single_host }}.streever.local
+
+        ambari:
+          vars:
+            ambari_url_base:                http://{{ ambari_server }}:{{ ambari_port }}
+            ambari_port:                    {{ ambari_port }}
+            ambari_admin_user :             {{ ambari_admin_user }}
+            ambari_admin_password:          {{ ambari_admin_password }}
+            ambari_admin_ldap_password:     {{ ambari_admin_ldap_password }}
+            hdp_stack:                      {{ hdp_stack }}
+            hdp_stack_version:              {{ hdp_stack_version }}
+            vdf_file:                       {{ vdf_file }}
+            hdp_repo_id:                    {{ hdp_repo_id }}
+            hdp_utils_repo_id:              {{ hdp_utils_repo_id }}
+            hdp_gpl_repo_id:                {{ hdp_gpl_repo_id }}
+            blueprint:                      {{ blueprint }}
+            os_type:                        {{ os_type }}
+
+            hdp_repo_url:                   {{ hdp_repo_url }}
+            hdp_utils_repo_url:             {{ hdp_utils_repo_url }}
+            hdp_gpl_repo_url:               {{ hdp_gpl_repo_url }}
+
+            ldap_primary_host:              {{ ldap_primary_host }}
+            ldap_primary_port:              {{ ldap_primary_port }}
+            ldap_secondary_host:            {{ ldap_secondary_host }}
+            ldap_secondary_port:            {{ ldap_secondary_port }}
+
+            ldap_ssl:                       {{ ldap_ssl }}
+            ldap_user_class:                {{ ldap_user_class }}
+            ldap_user_attr:                 {{ ldap_user_attr }}
+            ldap_group_class:               {{ ldap_group_class }}
+            ldap_group_attr:                {{ ldap_group_attr }}
+            ldap_member_attr:               {{ ldap_member_attr }}
+            ldap_dn:                        {{ ldap_dn }}
+            ldap_base_dn:                   {{ ldap_base_dn }}
+            ldap_manager_dn:                {{ ldap_manager_dn }}
+            ldap_manager_password:          {{ ldap_manager_password }}
+            ldap_referral:                  {{ ldap_referral }}
+            ldap_bind_anonym:               {{ ldap_bind_anonym }}
+          hosts:
+            OS{{ single_host }}-MASTER-1:
+              ansible_host:                 {{ ambari_server }}

@@ -1,0 +1,143 @@
+# Requires a Local Repo for HDP, Ambari and HDP-UTILS
+# Repo dirs need to match hdp repo layout.
+
+# MOVED THE IMAGE
+#- import_playbook:  ../setup/openjdk_install.yaml
+
+- hosts:             '{{ hosts }}'
+  become:            true
+  vars:
+    # Use '_''s as delimiter to match the 'yum' version details
+    hdp_version: '2_6_5_0_292'
+    # This is the /usr/hdp/<directory>
+    hdp_version_dir: '2.6.5.0-292'
+
+  tasks:
+    - name: Remove HDP Packages
+      yum:
+        name: '{{ item }}'
+        state: removed
+      loop:
+        - accumulo_{{ hdp_version }}
+        - atlas-metadata_{{ hdp_version }}
+        - atlas-metadata_{{ hdp_version }}-falcon-plugin
+        - atlas-metadata_{{ hdp_version }}-hive-plugin
+        - atlas-metadata_{{ hdp_version }}-sqoop-plugin
+        - atlas-metadata_{{ hdp_version }}-storm-plugin
+        - datafu_{{ hdp_version }}
+        - druid_{{ hdp_version }}
+        - falcon_{{ hdp_version }}
+        - flume_{{ hdp_version }}
+        - hadoop_{{ hdp_version }}
+        - hadoop_{{ hdp_version }}-client
+        - hadoop_{{ hdp_version }}-hdfs
+        - hadoop_{{ hdp_version }}-libhdfs
+        - hadoop_{{ hdp_version }}-mapreduce
+        - hadoop_{{ hdp_version }}-yarn
+        - hbase_{{ hdp_version }}
+        - hive2_{{ hdp_version }}
+        - hive2_{{ hdp_version }}-jdbc
+        - hive_{{ hdp_version }}
+        - hive_{{ hdp_version }}-hcatalog
+        - hive_{{ hdp_version }}-jdbc
+        - hive_{{ hdp_version }}-webhcat
+        - kafka_{{ hdp_version }}
+        - knox_{{ hdp_version }}
+        - livy2_{{ hdp_version }}
+        - livy_{{ hdp_version }}
+        - mahout_{{ hdp_version }}
+        - oozie_{{ hdp_version }}
+        - oozie_{{ hdp_version }}-common
+        - oozie_{{ hdp_version }}-sharelib
+        - oozie_{{ hdp_version }}-sharelib-distcp
+        - oozie_{{ hdp_version }}-sharelib-hcatalog
+        - oozie_{{ hdp_version }}-sharelib-hive
+        - oozie_{{ hdp_version }}-sharelib-hive2
+        - oozie_{{ hdp_version }}-sharelib-mapreduce-streaming
+        - oozie_{{ hdp_version }}-sharelib-pig
+        - oozie_{{ hdp_version }}-sharelib-spark
+        - oozie_{{ hdp_version }}-sharelib-sqoop
+        - oozie_{{ hdp_version }}-webapp
+        - phoenix_{{ hdp_version }}
+        - pig_{{ hdp_version }}
+        - ranger_{{ hdp_version }}-atlas-plugin
+        - ranger_{{ hdp_version }}-hbase-plugin
+        - ranger_{{ hdp_version }}-hdfs-plugin
+        - ranger_{{ hdp_version }}-hive-plugin
+        - ranger_{{ hdp_version }}-kafka-plugin
+        - ranger_{{ hdp_version }}-knox-plugin
+        - ranger_{{ hdp_version }}-storm-plugin
+        - ranger_{{ hdp_version }}-yarn-plugin
+        - shc_{{ hdp_version }}
+        - slider_{{ hdp_version }}
+        - spark2_{{ hdp_version }}
+        - spark2_{{ hdp_version }}-python
+        - spark2_{{ hdp_version }}-yarn-shuffle
+        - spark_{{ hdp_version }}
+        - spark_{{ hdp_version }}-python
+        - spark_{{ hdp_version }}-yarn-shuffle
+        - spark_llap_{{ hdp_version }}
+        - sqoop_{{ hdp_version }}
+        - storm_{{ hdp_version }}
+        - storm_{{ hdp_version }}-slider-client
+        - superset_{{ hdp_version }}
+        - tez_{{ hdp_version }}
+        - tez_hive2_{{ hdp_version }}
+        - zeppelin_{{ hdp_version }}
+        - zookeeper_{{ hdp_version }}
+        - zookeeper_{{ hdp_version }}-server
+        - hdp-select
+      tags:
+        - yum
+
+    # The Oozie Client has issues being removed without first deleting the /etc/oozie directory
+    - name: Remove Oozie Conf Dir
+      file:
+        path: /etc/oozie
+        state: absent
+      tags:
+        - oozie
+    - name: Remove Oozie Client Package
+      yum:
+        name: oozie_{{ hdp_version }}-client
+        state: absent
+      tags:
+        - oozie
+
+    # After the packages have been removed, drop the hdp directory to prevent hdp-select from picking up bad versions.
+    - name: Remove HDP Directories
+      file:
+        path: '{{ item }}'
+        state: absent
+      loop:
+        - /usr/hdp/{{ hdp_version_dir }}
+        - /usr/hdp/current
+        - /etc/hive2
+        - /etc/hive-webhcat
+        - /etc/pig
+        - /etc/hive-hcatalog
+        - /etc/tez
+        - /etc/spark
+        - /etc/mahout
+        - /etc/livy
+        - /etc/storm
+        - /etc/flume
+        - /etc/atlas
+        - /etc/sqoop
+        - /etc/livy2
+        - /etc/accumulo
+        - /etc/storm-slider-client
+        - /etc/slider
+        - /etc/oozie
+        - /etc/kafka
+        - /etc/falcon
+        - /etc/spark2
+        - /etc/hive
+        - /etc/ambari-logsearch-logfeeder
+        - /etc/hst
+        - /etc/hbase
+        - /etc/hadoop
+        - /etc/druid
+        - /etc/zookeeper
+      tags:
+        - dir

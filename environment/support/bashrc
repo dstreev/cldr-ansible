@@ -23,3 +23,5 @@ function color_my_prompt {
 color_my_prompt
 
 export HWX_CFG_DIR=$HOME/hwx-configs
+
+source <(kubectl completion bash)
