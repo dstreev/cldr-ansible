@@ -56,8 +56,8 @@ all:
             hadoop_cli_version:             {{ hadoop_cli_version }}
 
           hosts:
-            OS{{ single_host }}-MASTER-1:
-              ansible_host:                 os{{ single_host }}.streever.local
+            OS-MASTER-1:
+              ansible_host:                 {{ single_host }}
           children:
             sdlc:
               vars:
@@ -75,8 +75,8 @@ all:
                 hive_superuser:             {{ hive_superuser }}
                 hive_superuser_password:    {{ hive_superuser_password }}
               hosts:
-                OS{{ single_host }}-MASTER-1:
-                  ansible_host:             os{{ single_host }}.streever.local
+                OS-MASTER-1:
+                  ansible_host:             {{ single_host }}
 
         ambari:
           vars:
@@ -116,5 +116,5 @@ all:
             ldap_referral:                  {{ ldap_referral }}
             ldap_bind_anonym:               {{ ldap_bind_anonym }}
           hosts:
-            OS{{ single_host }}-MASTER-1:
+            OS-MASTER-1:
               ansible_host:                 {{ ambari_server }}

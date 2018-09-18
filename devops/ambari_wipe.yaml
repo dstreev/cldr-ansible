@@ -58,3 +58,6 @@
         - /etc/ambari-agent
         - /var/lib/ambari-server
         - /var/lib/ambari-agent
+        - /var/lib/ambari-metrics-collector
+        - /var/lib/ambari-metrics-grafana
+        - /var/lib/ambari-metrics-monitor

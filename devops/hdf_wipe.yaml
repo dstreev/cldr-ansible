@@ -22,7 +22,8 @@
         - zookeeper_{{ hdf_version }}-server
         - registry_{{ hdf_version }}
         - nifi_{{ hdf_version }}
-        - nifi-registry_{{ hdf_version }}
+        - nifi_registry_{{ hdf_version }}
+        - ranger_{{ hdf_version }}-kafka-plugin
         - hdf-select
       tags:
         - yum
@@ -33,7 +34,7 @@
         path: '{{ item }}'
         state: absent
       loop:
-        - /usr/hdp/{{ hdf_version_dir }}
+        - /usr/hdf/{{ hdf_version_dir }}
         - /etc/nifi
         - /etc/nifi-registry
         - /etc/zookeeper
