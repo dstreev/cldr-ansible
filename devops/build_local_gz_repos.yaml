@@ -173,3 +173,47 @@
       shell:            mv -f {{ dest_dir }}/packages/HDP-UTILS-{{ hdp_utils_version }}/* {{ local_repo_base_dir }}/HDP-UTILS-{{ hdp_utils_version }}/repos/{{ os_version }}
       tags:
         - hdp-utils
+
+    - name:             Get the HDF Binaries
+      get_url:
+        url:            https://{{ base_repo }}.hortonworks.com/HDF/{{ os_version }}/{{ hdf_major_version }}.x/{{ version_subdir }}/{{ hdf_version }}/HDF-{{ hdf_version }}-{{ os_version }}-rpm.tar.gz
+        dest:           "{{ dest_dir }}/HDF-{{ hdf_version }}-{{ os_version }}-rpm.tar.gz"
+        force:          no
+        validate_certs: false
+      tags:
+        - hdf
+    - name:             Create target HDF Output directory
+      file:
+        path:           "{{ dest_dir }}/packages/HDF-{{ hdf_version }}"
+        state:          directory
+        mode:           0755
+      tags:
+        - hdf
+    - name:             Unpack HDF Repo Package
+      unarchive:
+        src:            "{{ dest_dir }}/HDF-{{ hdf_version }}-{{ os_version }}-rpm.tar.gz"
+        dest:           "{{ dest_dir }}/packages/HDF-{{ hdf_version }}"
+        remote_src:     yes
+      tags:
+        - hdf
+    - name:             Remove previous HDF version
+      shell:            rm -rf {{ local_repo_base_dir }}/HDF/{{ os_version }}/{{ hdf_major_version }}.x/updates/{{ hdf_version }}
+      tags:
+        - hdf
+    - name:             Create Repo Directory for HDF
+      file:
+        path:           "{{ local_repo_base_dir }}/HDF/{{ os_version }}/{{ hdf_major_version }}.x/updates/{{ hdf_version }}"
+        state:          directory
+        mode:           0755
+      tags:
+        - hdf
+    - name:             Move HDF package to httpd www dir
+      shell:            mv -f {{ dest_dir }}/packages/HDF-{{ hdf_version }}/HDF/{{ os_version }}/{{ hdf_version }}*/* {{ local_repo_base_dir }}/HDF/{{ os_version }}/{{ hdf_major_version }}.x/updates/{{ hdf_version }}
+      tags:
+        - hdf
+    - name:             Remove remnant package location
+      file:
+        path:           "{{ dest_dir }}/packages/HDF-{{ hdf_version }}"
+        state:          absent
+      tags:
+        - hdf
