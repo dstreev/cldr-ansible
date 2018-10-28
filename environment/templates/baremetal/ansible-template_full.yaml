@@ -52,8 +52,8 @@ all:
       hosts:
         OS06-MASTER-5:
           ansible_host:                     os06.streever.local
-        OS07-MASTER-6:
-          ansible_host:                     os07.streever.local
+        # OS07-MASTER-6:
+        #   ansible_host:                     os07.streever.local
         OS10-WORKER-01:
           ansible_host:                     os10.streever.local
         OS11-WORKER-02:

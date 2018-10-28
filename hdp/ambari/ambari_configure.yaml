@@ -24,16 +24,19 @@
       when: ambari_major_version >= 2.7
       tags:
         - server
+        - ldap
     - name: Configure Ambari 2.6 and below Server LDAP Integration
       shell: ambari-server setup-ldap --ldap-url={{ ldap_primary_host }}:{{ ldap_primary_port }} --ldap-secondary-url={{ ldap_secondary_host }}:{{ ldap_secondary_port }}  --ldap-ssl=false --ldap-user-class={{ ldap_user_class }} --ldap-user-attr={{ ldap_user_attr }} --ldap-group-class={{ ldap_group_class }} --ldap-group-attr={{ ldap_group_attr }} --ldap-member-attr={{ ldap_member_attr }} --ldap-dn={{ ldap_dn }} --ldap-base-dn={{ ldap_base_dn }} --ldap-manager-dn={{ ldap_manager_dn }} --ldap-manager-password={{ ldap_manager_password }} --ldap-referral=ignore --ldap-bind-anonym=false --ldap-save-settings --ldap-sync-admin-name={{ ambari_admin_user }} --ldap-manager-password={{ ambari_admin_password }} --ldap-sync-username-collisions-behavior=skip --verbose
       when: ambari_major_version <= 2.6
       tags:
         - server
+        - ldap
     - name: Sync LDAP users in Ambari Server (2.7+)
       shell: ambari-server sync-ldap --all --ldap-sync-admin-name={{ ambari_admin_user }} --ldap-sync-admin-password={{ ambari_admin_password }} --verbose
       when: ambari_major_version >= 2.7
       tags:
         - server
+        - ldap
     - name: Stop (if running) Ambari Server
       shell: ambari-server stop
       tags:

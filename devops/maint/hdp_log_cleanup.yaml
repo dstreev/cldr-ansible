@@ -1,0 +1,41 @@
+# Goal here is to remove logs older than 'x' days.
+
+- hosts: hdp
+  become: true
+  vars:
+    days_old: 5
+    log_dir_base: /var/log
+
+  tasks:
+    - name: Clean up old logs
+      shell: find {{ log_dir_base }}/{{ item }}* -mtime +{{ days_old }} -exec rm {} \;
+      loop:
+        - accumulo
+        - ambari-agent
+        - ambari-server
+        - ambari-infra-solr-client
+        - ambari-logsearch-logfeeder
+        - ambari-metrics-monitor
+        - druid
+        - falcon
+        - flume
+        - hadoop
+        - hadoop-hdfs
+        - hadoop-mapreduce
+        - hadoop-yarn
+        - hbase
+        - hive
+        - hive2
+        - hive-hcatalog
+        - hst
+        - kafka
+        - knox
+        - oozie
+        - ranger
+        - smartsense-activity
+        - spark
+        - spark2
+        - sqoop
+        - storm
+        - zeppelin
+        - zookeeper
