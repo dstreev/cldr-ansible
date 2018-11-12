@@ -1,7 +1,7 @@
 - hosts: ambari
   become: true
   tasks:
-    - name: Start Ambari-Server
+    - name: Stop Ambari-Server
       shell: ambari-server stop
       tags:
         - server
@@ -9,7 +9,7 @@
 - hosts: hdp
   become: true
   tasks:
-    - name: Start Ambari Agents
+    - name: Stop Ambari Agents
       shell: ambari-agent stop
       tags:
         - agent

@@ -1,14 +1,7 @@
-# This will WIPE and HDP version AND
-# REMOVE ALL HDP CONFIGURATIONS.
-
-# THIS WILL KILL A WORKING HDP INSTALLATION.
-# See: hdp_bin_version_cleanup.yaml to remove a specific OLDER HDP binary distro.
+# This will cleanup (remove) HDP packages for a particular version
 
 # Requires a Local Repo for HDP, Ambari and HDP-UTILS
 # Repo dirs need to match hdp repo layout.
-
-# MOVED THE IMAGE
-#- import_playbook:  ../setup/openjdk_install.yaml
 
 - hosts:             '{{ hosts }}'
   become:            true
@@ -92,23 +85,15 @@
         - zeppelin_{{ hdp_version }}
         - zookeeper_{{ hdp_version }}
         - zookeeper_{{ hdp_version }}-server
-        - hdp-select
       tags:
         - yum
 
-    # The Oozie Client has issues being removed without first deleting the /etc/oozie directory
-    - name: Remove Oozie Conf Dir
-      file:
-        path: /etc/oozie
-        state: absent
-      tags:
-        - oozie
-    - name: Remove Oozie Client Package
-      yum:
-        name: oozie_{{ hdp_version }}-client
-        state: absent
-      tags:
-        - oozie
+#    - name: Remove Oozie Client Package
+#      yum:
+#        name: oozie_{{ hdp_version }}-client
+#        state: absent
+#      tags:
+#        - oozie
 
     # After the packages have been removed, drop the hdp directory to prevent hdp-select from picking up bad versions.
     - name: Remove HDP Directories
@@ -117,33 +102,5 @@
         state: absent
       loop:
         - /usr/hdp/{{ hdp_version_dir }}
-        - /usr/hdp/current
-        - /etc/hive2
-        - /etc/hive-webhcat
-        - /etc/pig
-        - /etc/hive-hcatalog
-        - /etc/tez
-        - /etc/spark
-        - /etc/mahout
-        - /etc/livy
-        - /etc/storm
-        - /etc/flume
-        - /etc/atlas
-        - /etc/sqoop
-        - /etc/livy2
-        - /etc/accumulo
-        - /etc/storm-slider-client
-        - /etc/slider
-        - /etc/oozie
-        - /etc/kafka
-        - /etc/falcon
-        - /etc/spark2
-        - /etc/hive
-        - /etc/ambari-logsearch-logfeeder
-        - /etc/hst
-        - /etc/hbase
-        - /etc/hadoop
-        - /etc/druid
-        - /etc/zookeeper
       tags:
         - dir

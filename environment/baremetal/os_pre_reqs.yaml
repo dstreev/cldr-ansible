@@ -5,7 +5,7 @@
 # Disable THP
 # Set somaxconn
 # And other LLAP specifics
-- hosts:         k8s
+- hosts:         os
   become:        true
   tasks:
     - name:      Yum Installs
