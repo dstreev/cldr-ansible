@@ -8,7 +8,7 @@
 
   tasks:
     - name: Clean up old logs
-      shell: find {{ log_dir_base }}/{{ item }}* -mtime +{{ days_old }} -exec rm {} \;
+      shell: find {{ log_dir_base }}/{{ item }}* -mtime +{{ days_old }} -exec rm -f {} \;
       loop:
         - accumulo
         - ambari-agent

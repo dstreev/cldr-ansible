@@ -1,0 +1,21 @@
+# Goal here is to validate that every host can resolve other hosts in the network.
+
+- hosts: hdp
+  become: true
+  vars:
+    days_old: 5
+    log_dir_base: /var/log
+
+  tasks:
+#    - name: Debug
+#      debug:
+#        msg: "{{ item }}"
+#      loop: "{{ query('inventory_hostnames', 'hdp') }}"
+    - name: Ping Host
+      net_ping:
+        dest: "{{ item }}"
+        source: localhost
+      loop:
+        - os10.streever.local
+#      loop: "{{ query('inventory_hostnames', 'hdp') }}"
+#      loop: "{{ groups['hdp'] }}"
