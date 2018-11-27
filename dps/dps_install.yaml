@@ -1,0 +1,88 @@
+- hosts: dps
+  become: true
+
+  tasks:
+    - name: Install DP Repo
+      yum_repository:
+        name: dp
+        description: DP Repo
+        baseurl: '{{ dp_repo_base_url }}'
+        gpgcheck: no
+
+    - name: Install DP-Core
+      yum:
+        name: dp-core
+        state: latest
+
+    - name: Install DAS Repo
+      yum_repository:
+        name: das
+        description: DAS Repo
+#        baseurl: http://s3.amazonaws.com/dev.hortonworks.com/DAS/centos7/1.x/updates/1.2.0.0
+        baseurl: '{{ das_repo_base_url }}'
+        gpgcheck: no
+
+    - name: Install DAS-App
+      yum:
+        name: data_analytics_studio
+        state: latest
+
+#  tasks:
+#    - name: Get Repo for DPS
+#      get_url:
+#        url: '{{ dps_repo_url }}'
+#        dest: /etc/yum.repos.d/dpbn.repo
+#        mode: 0644
+#
+#    - name: Get Repo for DLM App
+#      get_url:
+#        url: '{{ dlmapp_repo_url }}'
+#        dest: /etc/yum.repos.d/dlm-appbn.repo
+#        mode: 0644
+#
+#    - name: Get Repo for DLM Engine
+#      get_url:
+#        url: '{{ dlmeng_repo_url }}'
+#        dest: /etc/yum.repos.d/dlmbn.repo
+#        mode: 0644
+#
+#    - name: Get Repo for DAS
+#      get_url:
+#        url: '{{ das_repo_url }}'
+#        dest: /etc/yum.repos.d/das.repo
+#        mode: 0644
+#
+#    - name: Get Repo for DAS Beacon
+#      get_url:
+#        url: '{{ dasbn_repo_url }}'
+#        dest: /etc/yum.repos.d/dasbn.repo
+#        mode: 0644
+#
+#    - name: Get Repo for DSS App
+#      get_url:
+#        url: '{{ dssapp_repo_url }}'
+#        dest: /etc/yum.repos.d/dss-app.repo
+#        mode: 0644
+#
+#    - name: Get Repo for DSS Profiler Service
+#      get_url:
+#        url: '{{ dssprofiler_repo_url }}'
+#        dest: /etc/yum.repos.d/dss.repo
+#        mode: 0644
+#
+#    - name: Get Repo for SMM App
+#      get_url:
+#        url: '{{ smmapp_repo_url }}'
+#        dest: /etc/yum.repos.d/smm-appbn.repo
+#        mode: 0644
+#
+#    - name: Get Repo for SMM REST Server
+#      get_url:
+#        url: '{{ smmrest_repo_url }}'
+#        dest: /etc/yum.repos.d/smm.repo
+#        mode: 0644
+#
+#    - name: Install DPS Core
+#      yum:
+#        name: dp-core
+#        state: latest

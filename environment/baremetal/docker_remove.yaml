@@ -1,0 +1,19 @@
+- hosts:               k8s
+  become:              true
+
+  tasks:
+    - name: Remove OS Docker
+      yum:
+        name: '{{ item }}'
+        state: absent
+      loop:
+        - docker
+        - docker-client
+        - docker-client-latest
+        - docker-common
+        - docker-latest
+        - docker-latest-logrotate
+        - docker-logrotate
+        - docker-selinux
+        - docker-engine-selinux
+        - docker-engine

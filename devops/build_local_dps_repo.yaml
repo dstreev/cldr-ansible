@@ -1,0 +1,123 @@
+# Build out the Repos
+- hosts:                repo
+  become:               true
+  tasks:
+    - name: Install yum utils
+      yum:
+        name: yum-utils
+        state: present
+    - name: Install createrepo utils
+      yum:
+        name: createrepo
+        state: present
+
+- hosts: repo
+  become: true
+  tags:
+    - dp
+
+  tasks:
+    - name: Install the Repo for DP Version {{ dp_version }}
+      yum_repository:
+        name: DP-{{ dp_version }}
+        description: DP Repo {{ dp_version }}
+        baseurl: '{{ dp_repo_base_url}}/{{ dp_version }}'
+        gpgkey: '{{ dp_repo_base_url}}/{{ dp_version }}/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins'
+
+    - name: Sync DP Repo {{ dp_version }}
+      shell: reposync --repoid=DP-{{ dp_version }} --download_path={{ local_repo_base_dir }}/DP/{{ os_version }}/{{ dp_major_version }}.x/BUILDS
+
+    - name: Create DP Repo {{ dp_version }}
+      shell: createrepo -v {{ local_repo_base_dir }}/DP/{{ os_version }}/{{ dp_major_version }}.x/BUILDS/DP-{{ dp_version }}
+        
+- hosts: repo
+  become: true
+  tags:
+    - smm
+    - app
+
+  tasks:
+    - name: Install the Repo for SMM APP Version {{ smm_app_version }}
+      yum_repository:
+        name: SMM-APP-{{ smm_app_version }}
+        description: SMM APP Repo {{ smm_app_version }}
+        baseurl: '{{ smm_app_repo_base_url}}/{{ smm_app_version }}'
+        gpgkey: '{{ smm_app_repo_base_url}}/{{ smm_app_version }}/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins'
+
+    - name: Sync SMM APP Repo {{ smm_app_version }}
+      shell: reposync --repoid=SMM-APP-{{ smm_app_version }} --download_path={{ local_repo_base_dir }}/SMM-APP/{{ os_version }}/{{ smm_app_major_version }}.x/BUILDS
+
+    - name: Create SMM APP Repo {{ smm_app_version }}
+      shell: createrepo -v {{ local_repo_base_dir }}/SMM-APP/{{ os_version }}/{{ smm_app_major_version }}.x/BUILDS/SMM-APP-{{ smm_app_version }}
+
+- hosts: repo
+  become: true
+  tags:
+    - smm
+    - rest
+
+  tasks:
+    - name: Install the Repo for SMM REST Version {{ smm_rest_version }}
+      yum_repository:
+        name: SMM-{{ smm_rest_version }}
+        description: SMM Repo {{ smm_rest_version }}
+        baseurl: '{{ smm_rest_repo_base_url}}/{{ smm_rest_version }}'
+        gpgkey: '{{ smm_rest_repo_base_url}}/{{ smm_rest_version }}/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins'
+
+    - name: Sync SMM Repo {{ smm_rest_version }}
+      shell: reposync --repoid=SMM-{{ smm_rest_version }} --download_path={{ local_repo_base_dir }}/SMM/{{ os_version }}/{{ smm_rest_major_version }}.x/BUILDS
+
+    - name: Create SMM REST Repo {{ smm_rest_version }}
+      shell: createrepo -v {{ local_repo_base_dir }}/SMM/{{ os_version }}/{{ smm_rest_major_version }}.x/BUILDS/SMM-{{ smm_rest_version }}
+
+- hosts: repo
+  become: true
+  tags:
+    - dlm
+    - app
+
+  tasks:
+    - name: Install the Repo for DLM APP Version {{ dlm_app_version }}
+      yum_repository:
+        name: DLM-APP-{{ dlm_app_version }}
+        description: DLM APP Repo {{ dlm_app_version }}
+        baseurl: '{{ dlm_app_repo_base_url}}/{{ dlm_app_version }}'
+        gpgkey: '{{ dlm_app_repo_base_url}}/{{ dlm_app_version }}/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins'
+
+    - name: Sync DLM APP Repo {{ dlm_app_version }}
+      shell: reposync --repoid=DLM-APP-{{ dlm_app_version }} --download_path={{ local_repo_base_dir }}/DLM-APP/{{ os_version }}/{{ dlm_app_major_version }}.x/BUILDS
+
+    - name: Create DLM APP Repo {{ dlm_app_version }}
+      shell: createrepo -v {{ local_repo_base_dir }}/DLM-APP/{{ os_version }}/{{ dlm_app_major_version }}.x/BUILDS/DLM-APP-{{ dlm_app_version }}
+
+    - name: Get DLM Beacon Ambari Pack
+      get_url:
+        url: '{{ dlm_repo_base_url}}/{{ dlm_version }}/tars/beacon/beacon-ambari-mpack-{{ dlm_version }}.tar.gz'
+        dest: '{{ local_repo_base_dir }}/DLM/{{ os_version }}/{{ dlm_major_version }}.x/BUILDS/DLM-{{ dlm_version }}/beacon/beacon-ambari-mpack-{{ dlm_version }}.tar.gz'
+        mode: 0644
+
+- hosts: repo
+  become: true
+  tags:
+    - das
+    - app
+
+  tasks:
+    - name: Install the Repo for DAS Version {{ das_version }}
+      yum_repository:
+        name: DAS-{{ das_version }}
+        description: DAS Repo {{ das_version }}
+        baseurl: '{{ das_repo_base_url}}/{{ das_version }}'
+        gpgkey: '{{ das_repo_base_url}}/{{ das_version }}/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins'
+
+    - name: Sync DAS Repo {{ das_version }}
+      shell: reposync --repoid=DAS-{{ das_version }} --download_path={{ local_repo_base_dir }}/DAS/{{ os_version }}/{{ das_major_version }}.x/BUILDS
+
+    - name: Create DAS Repo {{ das_version }}
+      shell: createrepo -v {{ local_repo_base_dir }}/DAS/{{ os_version }}/{{ das_major_version }}.x/BUILDS/DAS-{{ das_version }}
+
+    - name: Get DAS Ambari mpack {{ das_version }}
+      get_url:
+        url: '{{ das_repo_base_url}}/{{ das_version }}/tars/data_analytics_studio/data-analytics-studio-mpack-{{ das_mid_version}}.{{ das_version }}.tar.gz'
+        dest: '{{ local_repo_base_dir }}/DAS/{{ os_version }}/{{ das_major_version }}.x/BUILDS/DAS-{{ das_version }}/data_analytics_studio-mpack-{{ das_mid_version }}.{{ das_version }}.tar.gz'
+        mode: 0644
