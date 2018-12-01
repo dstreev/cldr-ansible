@@ -21,11 +21,13 @@
 #        baseurl: http://s3.amazonaws.com/dev.hortonworks.com/DAS/centos7/1.x/updates/1.2.0.0
         baseurl: '{{ das_repo_base_url }}'
         gpgcheck: no
-
-    - name: Install DAS-App
-      yum:
-        name: data_analytics_studio
-        state: latest
+      tags:
+        - das
+          
+#    - name: Install DAS-App
+#      yum:
+#        name: data_analytics_studio
+#        state: latest
 
 #  tasks:
 #    - name: Get Repo for DPS
