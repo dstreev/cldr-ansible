@@ -12,9 +12,19 @@ This project is a framework for building HDP/HDF clusters on bare metal hardware
 
 ### Build out Docker Swarm
 
+
+
 All hosts information and deployments are captured [here](./config/readme.markdown)
 
-Docker Swarm and the base network is created [here](./infrastructure/docker-init-swarm.sh).  After the Docker Swarm environment has been created, [assign docker node labels](./infrastructure/docker-node-labels.yaml) with this ansible playbook.
+Docker Swarm and the base network is created [here](./infrastructure/docker-init-swarm.sh).  
+
+Once the Swarm has been initialized, each host needs to [join it](./infrastructure/docker-join-swarm.sh).
+
+After the Docker Swarm environment has been created, [assign docker node labels](./infrastructure/docker-node-labels.yaml) with this ansible playbook.
+
+### Install Portainer for Docker Visibility
+
+https://portainer.readthedocs.io/en/stable/
 
 
 ### Initialize the Infrastructure Containers

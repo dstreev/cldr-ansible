@@ -12,3 +12,10 @@ docker run -idt --name meamsets2 -p 18631:18630 \
 --hostname=`hostname` \
 --entrypoint=/sbin/init \
 meamsets
+
+# Security for sshd
+
+I've removed the embedded keys to avoid issues with a shared key providing access to all containers.
+
+Mount the /root/.ssh directory to a location on the baremetal host that has 'your' keys.
+

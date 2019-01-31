@@ -46,8 +46,9 @@
         name:        smartsense-hst
         state:       latest
         update_only: yes
-# - hosts:             ambari
-#   become:            true
-#   tasks:
-#     - name:          Upgrade the Ambari SmartSense Views
-#       shell:         hst upgrade-ambari-service -u {{ ambari_admin_user }} -p {{ ambari_port }} -H {{ ambari_server }} -P {{ ambari_admin_ldap_password }}
+        
+- hosts:             ambari
+  become:            true
+  tasks:
+    - name:          Upgrade the Ambari SmartSense Views
+      shell:         hst upgrade-ambari-service -u {{ ambari_admin_user }} -p {{ ambari_port }} -H {{ ambari_server }} -P {{ ambari_admin_password }}

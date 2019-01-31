@@ -8,4 +8,4 @@ ansible os01 -b -a 'docker info'
 # This network is used by all of the built clusters.  Since each cluster is attached
 # to this network, they can all see each other, which is important to support
 # cross cluster efforts.
-ansible os01 -b -a 'docker network create --driver=overlay --gateway 192.168.50.1 --subnet 192.168.50.0/22 --attachable hdp_base'
+ansible os01 -b -a 'docker network create --driver=overlay --gateway 192.168.50.1 --subnet 192.168.50.0/22 --attachable hwx'

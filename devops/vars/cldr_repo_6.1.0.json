@@ -1,0 +1,18 @@
+base_repo: private-repo-1
+#base_repo: public-repo-1
+#base_repo: dev
+
+local_repo_base_dir: "/var/www/html/repo"
+
+os_version: "redhat7"
+version_subdir: "yum"
+
+repo_base_url: "https://archive.cloudera.com/"
+
+cm_version: "6.1.0"
+cm_major_version: "cm6"
+
+cdh_version: "6.1.0"
+cdh_major_version: "cdh6"
+
+dest_dir: "/tmp"

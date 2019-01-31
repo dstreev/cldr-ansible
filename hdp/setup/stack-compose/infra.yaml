@@ -1,61 +1,82 @@
 version: '3.6'
 services:
-  db:
-    hostname: db.hwx
-    image: mariadb:10.2
-    ports:
-      - target: 3306
-        published: 33306
-        protocol: tcp
-        mode: host
-    volumes:
-      - type: volume
-        source: mariadb
-        target: /var/lib/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: hortonworks
-      MYSQL_USER: ambari
-      MYSQL_PASSWORD: hortonworks
-    networks:
-      hwx:
-        aliases:
-          - db.hwx
-    deploy:
-      mode: global
-      endpoint_mode: dnsrr
-      placement:
-        constraints:
-          - node.labels.hdp.db == true
-  repo:
-    hostname: repo.hwx
-    image: dstreev/hdp-repo:latest
-    ports:
-      - target: 80
-        published: 38000
-        protocol: tcp
-        mode: host
-    volumes:
-      - type: bind
-        source: /var/www/html
-        target: /www
-    networks:
-      hwx:
-        aliases:
-          - repo.hwx
-    deploy:
-      mode: global
-      endpoint_mode: dnsrr
-      placement:
-        constraints:
-          - node.labels.hdp.repo == true
+#  db:
+#    hostname: db.hwx
+#    image: mariadb:10.2
+#    ports:
+#      - target: 3306
+#        published: 33306
+#        protocol: tcp
+#        mode: host
+#    volumes:
+#      - type: volume
+#        source: mariadb
+#        target: /var/lib/mysql
+#    environment:
+#      MYSQL_ROOT_PASSWORD: hortonworks
+#      MYSQL_USER: ambari
+#      MYSQL_PASSWORD: hortonworks
+#    networks:
+#      hwx:
+#        aliases:
+#          - db.hwx
+#    deploy:
+#      mode: global
+#      endpoint_mode: dnsrr
+#      placement:
+#        constraints:
+#          - node.labels.hdp.db == true
+#  repo:
+#    hostname: repo.hwx
+#    image: dstreev/hdp-repo:latest
+#    ports:
+#      - target: 80
+#        published: 38000
+#        protocol: tcp
+#        mode: host
+#    volumes:
+#      - type: bind
+#        source: /var/www/html
+#        target: /www
+#    networks:
+#      hwx:
+#        aliases:
+#          - repo.hwx
+#    deploy:
+#      mode: global
+#      endpoint_mode: dnsrr
+#      placement:
+#        constraints:
+#          - node.labels.hdp.repo == true
   proxy:
     hostname: proxy.hwx
-    image: dstreev/centos7_sshd:108
+    image: dstreev/centos7_sshd:109
     ports:
       - target: 22
         published: 22199
         protocol: tcp
         mode: host
+    extra_hosts:
+      - "os01.streever.local:10.0.1.11"
+      - "os02.streever.local:10.0.1.12"
+      - "os03.streever.local:10.0.1.13"
+      - "os04.streever.local:10.0.1.14"
+      - "os05.streever.local:10.0.1.15"
+      - "os06.streever.local:10.0.1.16"
+      - "os07.streever.local:10.0.1.17"
+      - "os10.streever.local:10.0.1.20"
+      - "os11.streever.local:10.0.1.21"
+      - "os12.streever.local:10.0.1.22"
+      - "os13.streever.local:10.0.1.23"
+      - "os14.streever.local:10.0.1.24"
+      - "os15.streever.local:10.0.1.25"
+      - "os16.streever.local:10.0.1.26"
+      - "os17.streever.local:10.0.1.27"
+      - "os18.streever.local:10.0.1.28"
+      - "os19.streever.local:10.0.1.29"
+      - "os20.streever.local:10.0.1.30"
+      - "repo.hdp.local:10.0.1.14"
+      - "db.hdp.local:10.0.1.11"
     volumes:
       - type: volume
         source: hadoop
@@ -63,6 +84,9 @@ services:
       - type: volume
         source: hwxlog
         target: /var/log
+      - type: bind
+        source: /root/.ssh
+        target: /root/.ssh
       - type: bind
         source: /var/lib/sss/pipes/
         target: /var/lib/sss/pipes/

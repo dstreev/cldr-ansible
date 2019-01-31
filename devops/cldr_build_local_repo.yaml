@@ -1,0 +1,77 @@
+# Build out the CLDR Repos
+- hosts:                repo
+  become:               true
+  tasks:
+    - name: Install yum utils
+      yum:
+        name: yum-utils
+        state: present
+    - name: Install createrepo utils
+      yum:
+        name: createrepo
+        state: present
+
+- hosts: repo
+  become: true
+  tags:
+    - cm
+
+  tasks:
+    - name: Install the Repo for CM Version {{ cm_version }}
+      yum_repository:
+        name: cm-{{ cm_version }}
+        description: CM Repo {{ cm_version }}
+        baseurl: '{{ repo_base_url}}/{{ cm_major_version }}/{{ cm_version }}/{{ os_version }}/{{ version_subdir }}'
+        gpgkey: '{{ repo_base_url}}/{{ cm_major_version }}/{{ cm_version }}/{{ os_version }}/{{ version_subdir }}/RPM-GPG-KEY-cloudera'
+
+    - name: Sync CM Repo {{ cm_version }}
+      shell: reposync --repoid=cm-{{ cm_version }} --download_path=/tmp
+
+    - name: Create CM Repo {{ cm_version }}
+      shell: createrepo -v /tmp/cm-{{ cm_version }}
+
+    - name: Mkdir
+      file:
+        path: "{{ local_repo_base_dir }}/{{ cm_major_version }}/{{ cm_version }}/{{ os_version }}/{{ version_subdir }}"
+        state: directory
+        owner: root
+        group: root
+        mode: 0775
+        
+    - name: Copy to Repo Location
+      shell: mv /tmp/cm-{{ cm_version }}/* {{ local_repo_base_dir }}/{{ cm_major_version }}/{{ cm_version }}/{{ os_version }}/{{ version_subdir }}
+      tags:
+        - move
+        
+- hosts: repo
+  become: true
+  tags:
+    - cdh
+
+  tasks:
+    - name: Install the Repo for CDH Version {{ cdh_version }}
+      yum_repository:
+        name: cdh-{{ cdh_version }}
+        description: CDH Repo {{ cdh_version }}
+        baseurl: '{{ repo_base_url}}/{{ cdh_major_version }}/{{ cdh_version }}/{{ os_version }}/{{ version_subdir }}'
+        gpgkey: '{{ repo_base_url}}/{{ cdh_major_version }}/{{ cdh_version }}/{{ os_version }}/{{ version_subdir }}/RPM-GPG-KEY-cloudera'
+
+    - name: Sync CDH Repo {{ cdh_version }}
+      shell: reposync --repoid=cdh-{{ cdh_version }} --download_path=/tmp
+
+    - name: Create CDH Repo {{ cdh_version }}
+      shell: createrepo -v /tmp/cdh-{{ cdh_version }}
+      #{{ local_repo_base_dir }}/{{ cdh_major_version }}/{{ cdh_version }}/{{ os_version }}/{{ version_subdir }}
+
+    - name: Mkdir
+      file:
+        path: "{{ local_repo_base_dir }}/{{ cdh_major_version }}/{{ cdh_version }}/{{ os_version }}/{{ version_subdir }}"
+        state: directory
+        owner: root
+        group: root
+        mode: 0775
+
+    - name: Copy to Repo Location
+      shell: mv /tmp/cdh-{{ cdh_version }}/* {{ local_repo_base_dir }}/{{ cdh_major_version }}/{{ cdh_version }}/{{ os_version }}/{{ version_subdir }}
+      tags:
+        - move

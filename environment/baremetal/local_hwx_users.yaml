@@ -45,7 +45,9 @@
         - kms
         - streamline
         - registry
+        - streamsmsgmgr
         - superset
         - nifiregistry
+        - ozone
       tags:
         - local

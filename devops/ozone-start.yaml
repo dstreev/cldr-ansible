@@ -1,0 +1,29 @@
+- hosts: scm
+  become: true
+  become_user: ozone
+
+  tasks:
+    - name: Start SCM
+      shell: nohup /usr/ozone/current/ozone/bin/ozone --config /etc/ozone/conf --daemon start scm
+      tags:
+        - scm
+
+- hosts: om
+  become: true
+  become_user: ozone
+
+  tasks:
+    - name: Start OM
+      shell: nohup /usr/ozone/current/ozone/bin/ozone --config /etc/ozone/conf --daemon start om
+      tags:
+        - om
+
+- hosts: datanode
+  become: true
+  become_user: ozone
+
+  tasks:
+    - name: Start Datanodes
+      shell: nohup /usr/ozone/current/ozone/bin/ozone --config /etc/ozone/conf --daemon start datanode
+      tags:
+        - datanode

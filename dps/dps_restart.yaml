@@ -1,0 +1,6 @@
+- hosts: dps
+  become: true
+
+  tasks:
+    - name: Stop DPS
+      

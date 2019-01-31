@@ -1,0 +1,31 @@
+- hosts: datanode
+  become: true
+  become_user: ozone
+
+  tasks:
+    - name: Stop Datanodes
+      shell: /usr/ozone/current/ozone/bin/ozone --config /etc/ozone/conf --daemon stop datanode
+      tags:
+        - datanode
+
+- hosts: om
+  become: true
+  become_user: ozone
+
+  tasks:
+    - name: Stop OM
+      shell: /usr/ozone/current/ozone/bin/ozone --config /etc/ozone/conf --daemon stop om
+      tags:
+        - om
+
+- hosts: scm
+  become: true
+  become_user: ozone
+
+  tasks:
+    - name: Stop SCM
+      shell: /usr/ozone/current/ozone/bin/ozone --config /etc/ozone/conf --daemon stop scm
+      tags:
+        - scm
+
+

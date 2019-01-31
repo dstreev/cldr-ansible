@@ -47,14 +47,14 @@ all:
       vars:
         ambari_server:                      {{ ambari_server }}
         zookeeper_server:                   {{ zookeeper_server }}
-        repo_server:                        repo.hwx
+        repo_server:                        {{ repo.server.url }}
 
       hosts:
         OS06-MASTER-5:
           ansible_host:                     os06.streever.local
           ansible_network_os: ios
-        # OS07-MASTER-6:
-        #   ansible_host:                     os07.streever.local
+        OS07-MASTER-6:
+           ansible_host:                    os07.streever.local
         OS10-WORKER-01:
           ansible_host:                     os10.streever.local
           ansible_network_os: ios
@@ -124,7 +124,7 @@ all:
           vars:
             ambari_url_base:                http://{{ ambari_server }}:{{ ambari_port }}
             ambari_port:                    {{ ambari_port }}
-            ambari_admin_user:             {{ ambari_admin_user }}
+            ambari_admin_user:              {{ ambari_admin_user }}
             ambari_admin_password:          {{ ambari_admin_password }}
             ambari_admin_ldap_password:     {{ ambari_admin_ldap_password }}
             hdp_stack:                      {{ hdp_stack }}

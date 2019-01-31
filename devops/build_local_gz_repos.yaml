@@ -217,3 +217,19 @@
         state:          absent
       tags:
         - hdf
+    - name:             Make tars Directory for MPack
+      file:
+        path:           '{{ local_repo_base_dir }}/HDF/{{ os_version }}/{{ hdf_major_version }}.x/{{ version_subdir }}/{{ hdf_version }}/tars/hdf_ambari_mp'
+        state:          directory
+        mode:           0755
+      tags:
+        - hdf
+        - mpack
+    - name: Get Mpack
+      get_url:
+        url:            'https://{{ base_repo }}.hortonworks.com/HDF/{{ os_version }}/{{ hdf_major_version }}.x/{{ version_subdir }}/{{ hdf_version }}/tars/hdf_ambari_mp/hdf-ambari-mpack-{{ hdf_mpack_version }}.tar.gz'
+        dest:           '{{ local_repo_base_dir }}/HDF/{{ os_version }}/{{ hdf_major_version }}.x/{{ version_subdir }}/{{ hdf_version }}/tars/hdf_ambari_mp/hdf-ambari-mpack-{{ hdf_mpack_version }}.tar.gz'
+        mode:           0644
+      tags:
+        - hdf
+        - mpack

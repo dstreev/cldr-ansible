@@ -53,8 +53,8 @@
 # Rerun Ambari Configurations
 - import_playbook:     ambari_configure.yaml
 
-# Post Upgrade Steps
-- import_playbook:     ambari_post_upgrade.yaml
+# Post Upgrade Steps  (only to be done AFTER HDP Upgrade)
+#- import_playbook:     ambari_post_upgrade.yaml
 
 # Fix SSL Agents issues
 #- import_playbook:    fix_agent_ssl.yaml

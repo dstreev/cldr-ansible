@@ -1,0 +1,30 @@
+# Assign labels to the hardware docker nodes to assist with component
+# placement.
+- hosts: docker_manager
+  become: true
+
+  tasks:
+    - name: Set Label for Master01
+      shell: docker node update --label-add m01.{{ env_instance }}=true {{ master01 }}.streever.local
+
+    - name: Set Label for Master02
+      shell: docker node update --label-add m02.{{ env_instance }}=true {{ master02 }}.streever.local
+
+    - name: Set Label for Master03
+      shell: docker node update --label-add m03.{{ env_instance }}=true {{ master03 }}.streever.local
+
+    - name: Set Label for Master04
+      shell: docker node update --label-add m04.{{ env_instance }}=true {{ master04 }}.streever.local
+
+    - name: Set Label for Worker01
+      shell: docker node update --label-add w01.{{ env_instance }}=true {{ worker01 }}.streever.local
+
+    - name: Set Label for Worker02
+      shell: docker node update --label-add w02.{{ env_instance }}=true {{ worker02 }}.streever.local
+
+    - name: Set Label for Worker03
+      shell: docker node update --label-add w03.{{ env_instance }}=true {{ worker03 }}.streever.local
+
+    - name: Set Label for Worker04
+      shell: docker node update --label-add w04.{{ env_instance }}=true {{ worker04 }}.streever.local
+

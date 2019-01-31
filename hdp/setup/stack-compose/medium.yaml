@@ -1,0 +1,481 @@
+version: '3.6'
+services:
+  master01:
+    hostname: master01-{{ env_instance }}.{{ root_domain }}
+    image: dstreev/centos7_sshd:{{ image_tag }}
+    privileged: true
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    ports:
+      - target: 22
+        published: 220{{ env_instance }}
+        protocol: tcp
+        mode: host
+    extra_hosts:
+      - "os01.streever.local:10.0.1.11"
+      - "os02.streever.local:10.0.1.12"
+      - "os03.streever.local:10.0.1.13"
+      - "os04.streever.local:10.0.1.14"
+      - "os05.streever.local:10.0.1.15"
+      - "os06.streever.local:10.0.1.16"
+      - "os07.streever.local:10.0.1.17"
+      - "os10.streever.local:10.0.1.20"
+      - "os11.streever.local:10.0.1.21"
+      - "os12.streever.local:10.0.1.22"
+      - "os13.streever.local:10.0.1.23"
+      - "os14.streever.local:10.0.1.24"
+      - "os15.streever.local:10.0.1.25"
+      - "os16.streever.local:10.0.1.26"
+      - "os17.streever.local:10.0.1.27"
+      - "os18.streever.local:10.0.1.28"
+      - "os19.streever.local:10.0.1.29"
+      - "os20.streever.local:10.0.1.30"
+      - "repo.hdp.local:10.0.1.14"
+      - "db.hdp.local:10.0.1.11"
+    volumes:
+      - type: volume
+        source: hadoop
+        target: /hadoop
+      - type: volume
+        source: hwxlog
+        target: /var/log
+      - type: bind
+        source: /root/.ssh
+        target: /root/.ssh
+      - type: bind
+        source: /var/lib/sss/pipes/
+        target: /var/lib/sss/pipes/
+      - type: bind
+        source: /var/lib/sss/mc/
+        target: /var/lib/sss/mc/
+    networks:
+      hwx:
+        aliases:
+          - master01-{{ env_instance }}.{{ root_domain }}
+          - ambari-{{ env_instance }}.{{ root_domain }}
+    deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+          - node.labels.m01.{{ env_instance }} == true
+
+  master02:
+    hostname: master02-{{ env_instance }}.{{ root_domain }}
+    image: dstreev/centos7_sshd:{{ image_tag }}
+    privileged: true
+    ports:
+      - target: 22
+        published: 220{{ env_instance }}
+        protocol: tcp
+        mode: host
+    extra_hosts:
+      - "os01.streever.local:10.0.1.11"
+      - "os02.streever.local:10.0.1.12"
+      - "os03.streever.local:10.0.1.13"
+      - "os04.streever.local:10.0.1.14"
+      - "os05.streever.local:10.0.1.15"
+      - "os06.streever.local:10.0.1.16"
+      - "os07.streever.local:10.0.1.17"
+      - "os10.streever.local:10.0.1.20"
+      - "os11.streever.local:10.0.1.21"
+      - "os12.streever.local:10.0.1.22"
+      - "os13.streever.local:10.0.1.23"
+      - "os14.streever.local:10.0.1.24"
+      - "os15.streever.local:10.0.1.25"
+      - "os16.streever.local:10.0.1.26"
+      - "os17.streever.local:10.0.1.27"
+      - "os18.streever.local:10.0.1.28"
+      - "os19.streever.local:10.0.1.29"
+      - "os20.streever.local:10.0.1.30"
+      - "repo.hdp.local:10.0.1.14"
+      - "db.hdp.local:10.0.1.11"
+    volumes:
+      - type: volume
+        source: hadoop
+        target: /hadoop
+      - type: volume
+        source: hwxlog
+        target: /var/log
+      - type: bind
+        source: /root/.ssh
+        target: /root/.ssh
+      - type: bind
+        source: /var/lib/sss/pipes/
+        target: /var/lib/sss/pipes/
+      - type: bind
+        source: /var/lib/sss/mc/
+        target: /var/lib/sss/mc/
+    networks:
+      hwx:
+        aliases:
+          - master02-{{ env_instance }}.{{ root_domain }}
+    deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+          - node.labels.m02.{{ env_instance }} == true
+
+  master03:
+    hostname: master03-{{ env_instance }}.{{ root_domain }}
+    image: dstreev/centos7_sshd:{{ image_tag }}
+    privileged: true
+    ports:
+      - target: 22
+        published: 220{{ env_instance }}
+        protocol: tcp
+        mode: host
+    extra_hosts:
+      - "os01.streever.local:10.0.1.11"
+      - "os02.streever.local:10.0.1.12"
+      - "os03.streever.local:10.0.1.13"
+      - "os04.streever.local:10.0.1.14"
+      - "os05.streever.local:10.0.1.15"
+      - "os06.streever.local:10.0.1.16"
+      - "os07.streever.local:10.0.1.17"
+      - "os10.streever.local:10.0.1.20"
+      - "os11.streever.local:10.0.1.21"
+      - "os12.streever.local:10.0.1.22"
+      - "os13.streever.local:10.0.1.23"
+      - "os14.streever.local:10.0.1.24"
+      - "os15.streever.local:10.0.1.25"
+      - "os16.streever.local:10.0.1.26"
+      - "os17.streever.local:10.0.1.27"
+      - "os18.streever.local:10.0.1.28"
+      - "os19.streever.local:10.0.1.29"
+      - "os20.streever.local:10.0.1.30"
+      - "repo.hdp.local:10.0.1.14"
+      - "db.hdp.local:10.0.1.11"
+    volumes:
+      - type: volume
+        source: hadoop
+        target: /hadoop
+      - type: volume
+        source: hwxlog
+        target: /var/log
+      - type: bind
+        source: /root/.ssh
+        target: /root/.ssh
+      - type: bind
+        source: /var/lib/sss/pipes/
+        target: /var/lib/sss/pipes/
+      - type: bind
+        source: /var/lib/sss/mc/
+        target: /var/lib/sss/mc/
+    networks:
+      hwx:
+        aliases:
+          - master03-{{ env_instance }}.{{ root_domain }}
+    deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+          - node.labels.m03.{{ env_instance }} == true
+
+  master04:
+    hostname: master04-{{ env_instance }}.{{ root_domain }}
+    image: dstreev/centos7_sshd:{{ image_tag }}
+    privileged: true
+    ports:
+      - target: 22
+        published: 220{{ env_instance }}
+        protocol: tcp
+        mode: host
+    extra_hosts:
+      - "os01.streever.local:10.0.1.11"
+      - "os02.streever.local:10.0.1.12"
+      - "os03.streever.local:10.0.1.13"
+      - "os04.streever.local:10.0.1.14"
+      - "os05.streever.local:10.0.1.15"
+      - "os06.streever.local:10.0.1.16"
+      - "os07.streever.local:10.0.1.17"
+      - "os10.streever.local:10.0.1.20"
+      - "os11.streever.local:10.0.1.21"
+      - "os12.streever.local:10.0.1.22"
+      - "os13.streever.local:10.0.1.23"
+      - "os14.streever.local:10.0.1.24"
+      - "os15.streever.local:10.0.1.25"
+      - "os16.streever.local:10.0.1.26"
+      - "os17.streever.local:10.0.1.27"
+      - "os18.streever.local:10.0.1.28"
+      - "os19.streever.local:10.0.1.29"
+      - "os20.streever.local:10.0.1.30"
+      - "repo.hdp.local:10.0.1.14"
+      - "db.hdp.local:10.0.1.11"
+    volumes:
+      - type: volume
+        source: hadoop
+        target: /hadoop
+      - type: volume
+        source: hwxlog
+        target: /var/log
+      - type: bind
+        source: /root/.ssh
+        target: /root/.ssh
+      - type: bind
+        source: /var/lib/sss/pipes/
+        target: /var/lib/sss/pipes/
+      - type: bind
+        source: /var/lib/sss/mc/
+        target: /var/lib/sss/mc/
+    networks:
+      hwx:
+        aliases:
+          - master04-{{ env_instance }}.{{ root_domain }}
+    deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+          - node.labels.m04.{{ env_instance }} == true
+
+  worker01:
+    hostname: worker01-{{ env_instance }}.{{ root_domain }}
+    image: dstreev/centos7_sshd:{{ image_tag }}
+    privileged: true
+    ports:
+      - target: 22
+        published: 220{{ env_instance }}
+        protocol: tcp
+        mode: host
+    extra_hosts:
+      - "os01.streever.local:10.0.1.11"
+      - "os02.streever.local:10.0.1.12"
+      - "os03.streever.local:10.0.1.13"
+      - "os04.streever.local:10.0.1.14"
+      - "os05.streever.local:10.0.1.15"
+      - "os06.streever.local:10.0.1.16"
+      - "os07.streever.local:10.0.1.17"
+      - "os10.streever.local:10.0.1.20"
+      - "os11.streever.local:10.0.1.21"
+      - "os12.streever.local:10.0.1.22"
+      - "os13.streever.local:10.0.1.23"
+      - "os14.streever.local:10.0.1.24"
+      - "os15.streever.local:10.0.1.25"
+      - "os16.streever.local:10.0.1.26"
+      - "os17.streever.local:10.0.1.27"
+      - "os18.streever.local:10.0.1.28"
+      - "os19.streever.local:10.0.1.29"
+      - "os20.streever.local:10.0.1.30"
+      - "repo.hdp.local:10.0.1.14"
+      - "db.hdp.local:10.0.1.11"
+    volumes:
+      - type: volume
+        source: hadoop
+        target: /hadoop
+      - type: volume
+        source: hwxlog
+        target: /var/log
+      - type: bind
+        source: /root/.ssh
+        target: /root/.ssh
+      - type: bind
+        source: /var/lib/sss/pipes/
+        target: /var/lib/sss/pipes/
+      - type: bind
+        source: /var/lib/sss/mc/
+        target: /var/lib/sss/mc/
+    networks:
+      hwx:
+        aliases:
+          - worker01-{{ env_instance }}.{{ root_domain }}
+    deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+          - node.labels.w01.{{ env_instance }} == true
+
+  worker02:
+    hostname: worker02-{{ env_instance }}.{{ root_domain }}
+    image: dstreev/centos7_sshd:{{ image_tag }}
+    privileged: true
+    ports:
+      - target: 22
+        published: 220{{ env_instance }}
+        protocol: tcp
+        mode: host
+    extra_hosts:
+      - "os01.streever.local:10.0.1.11"
+      - "os02.streever.local:10.0.1.12"
+      - "os03.streever.local:10.0.1.13"
+      - "os04.streever.local:10.0.1.14"
+      - "os05.streever.local:10.0.1.15"
+      - "os06.streever.local:10.0.1.16"
+      - "os07.streever.local:10.0.1.17"
+      - "os10.streever.local:10.0.1.20"
+      - "os11.streever.local:10.0.1.21"
+      - "os12.streever.local:10.0.1.22"
+      - "os13.streever.local:10.0.1.23"
+      - "os14.streever.local:10.0.1.24"
+      - "os15.streever.local:10.0.1.25"
+      - "os16.streever.local:10.0.1.26"
+      - "os17.streever.local:10.0.1.27"
+      - "os18.streever.local:10.0.1.28"
+      - "os19.streever.local:10.0.1.29"
+      - "os20.streever.local:10.0.1.30"
+      - "repo.hdp.local:10.0.1.14"
+      - "db.hdp.local:10.0.1.11"
+    volumes:
+      - type: volume
+        source: hadoop
+        target: /hadoop
+      - type: volume
+        source: hwxlog
+        target: /var/log
+      - type: bind
+        source: /root/.ssh
+        target: /root/.ssh
+      - type: bind
+        source: /var/lib/sss/pipes/
+        target: /var/lib/sss/pipes/
+      - type: bind
+        source: /var/lib/sss/mc/
+        target: /var/lib/sss/mc/
+    networks:
+      hwx:
+        aliases:
+          - worker02-{{ env_instance }}.{{ root_domain }}
+    deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+          - node.labels.w02.{{ env_instance }} == true
+
+  worker03:
+    hostname: worker03-{{ env_instance }}.{{ root_domain }}
+    image: dstreev/centos7_sshd:{{ image_tag }}
+    privileged: true
+    ports:
+      - target: 22
+        published: 220{{ env_instance }}
+        protocol: tcp
+        mode: host
+    extra_hosts:
+      - "os01.streever.local:10.0.1.11"
+      - "os02.streever.local:10.0.1.12"
+      - "os03.streever.local:10.0.1.13"
+      - "os04.streever.local:10.0.1.14"
+      - "os05.streever.local:10.0.1.15"
+      - "os06.streever.local:10.0.1.16"
+      - "os07.streever.local:10.0.1.17"
+      - "os10.streever.local:10.0.1.20"
+      - "os11.streever.local:10.0.1.21"
+      - "os12.streever.local:10.0.1.22"
+      - "os13.streever.local:10.0.1.23"
+      - "os14.streever.local:10.0.1.24"
+      - "os15.streever.local:10.0.1.25"
+      - "os16.streever.local:10.0.1.26"
+      - "os17.streever.local:10.0.1.27"
+      - "os18.streever.local:10.0.1.28"
+      - "os19.streever.local:10.0.1.29"
+      - "os20.streever.local:10.0.1.30"
+      - "repo.hdp.local:10.0.1.14"
+      - "db.hdp.local:10.0.1.11"
+    volumes:
+      - type: volume
+        source: hadoop
+        target: /hadoop
+      - type: volume
+        source: hwxlog
+        target: /var/log
+      - type: bind
+        source: /root/.ssh
+        target: /root/.ssh
+      - type: bind
+        source: /var/lib/sss/pipes/
+        target: /var/lib/sss/pipes/
+      - type: bind
+        source: /var/lib/sss/mc/
+        target: /var/lib/sss/mc/
+    networks:
+      hwx:
+        aliases:
+          - worker03-{{ env_instance }}.{{ root_domain }}
+    deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+          - node.labels.w03.{{ env_instance }} == true
+
+  worker04:
+    hostname: worker04-{{ env_instance }}.{{ root_domain }}
+    image: dstreev/centos7_sshd:{{ image_tag }}
+    privileged: true
+    ports:
+      - target: 22
+        published: 220{{ env_instance }}
+        protocol: tcp
+        mode: host
+    extra_hosts:
+      - "os01.streever.local:10.0.1.11"
+      - "os02.streever.local:10.0.1.12"
+      - "os03.streever.local:10.0.1.13"
+      - "os04.streever.local:10.0.1.14"
+      - "os05.streever.local:10.0.1.15"
+      - "os06.streever.local:10.0.1.16"
+      - "os07.streever.local:10.0.1.17"
+      - "os10.streever.local:10.0.1.20"
+      - "os11.streever.local:10.0.1.21"
+      - "os12.streever.local:10.0.1.22"
+      - "os13.streever.local:10.0.1.23"
+      - "os14.streever.local:10.0.1.24"
+      - "os15.streever.local:10.0.1.25"
+      - "os16.streever.local:10.0.1.26"
+      - "os17.streever.local:10.0.1.27"
+      - "os18.streever.local:10.0.1.28"
+      - "os19.streever.local:10.0.1.29"
+      - "os20.streever.local:10.0.1.30"
+      - "repo.hdp.local:10.0.1.14"
+      - "db.hdp.local:10.0.1.11"
+    volumes:
+      - type: volume
+        source: hadoop
+        target: /hadoop
+      - type: volume
+        source: hwxlog
+        target: /var/log
+      - type: bind
+        source: /root/.ssh
+        target: /root/.ssh
+      - type: bind
+        source: /var/lib/sss/pipes/
+        target: /var/lib/sss/pipes/
+      - type: bind
+        source: /var/lib/sss/mc/
+        target: /var/lib/sss/mc/
+    networks:
+      hwx:
+        aliases:
+          - worker04-{{ env_instance }}.{{ root_domain }}
+    deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+          - node.labels.w04.{{ env_instance }} == true
+
+
+networks:
+  {{ root_domain }}:
+    external: true
+    driver: overlay
+    attachable: true
+volumes:
+  hadoop:
+    driver: local
+  hwxlog:
+    driver: local

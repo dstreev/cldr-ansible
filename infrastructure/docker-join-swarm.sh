@@ -18,4 +18,4 @@ ansible os01 -b -a 'docker node ls'
 #ansible working -b -a 'mkdir -p /data /data_1'
 
 # Cycle docker
-ansible-playbook ../environment/bare_metal/restart_docker.yaml
+ansible-playbook ../environment/baremetal/docker_restart.yaml

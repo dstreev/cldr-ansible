@@ -1,0 +1,26 @@
+- hosts: scm
+  become: true
+  become_user: ozone
+
+  tasks:
+    - name: Init SCM
+      shell: nohup /usr/ozone/current/ozone/bin/ozone --config /etc/ozone/conf scm --init
+
+    - name: Start SCM
+      shell: nohup /usr/ozone/current/ozone/bin/ozone --config /etc/ozone/conf --daemon start scm
+
+- hosts: om
+  become: true
+  become_user: ozone
+
+  tasks:
+    - name: Init OM
+      shell: nohup /usr/ozone/current/ozone/bin/ozone --config /etc/ozone/conf om --init
+
+- hosts: scm
+  become: true
+  become_user: ozone
+
+  tasks:
+    - name: Stop SCM
+      shell: nohup /usr/ozone/current/ozone/bin/ozone --config /etc/ozone/conf --daemon stop scm

@@ -11,6 +11,8 @@
         name: createrepo
         state: present
 
+# Data Plane Services
+
 - hosts: repo
   become: true
   tags:
@@ -30,6 +32,8 @@
     - name: Create DP Repo {{ dp_version }}
       shell: createrepo -v {{ local_repo_base_dir }}/DP/{{ os_version }}/{{ dp_major_version }}.x/BUILDS/DP-{{ dp_version }}
         
+# SMM Repos
+
 - hosts: repo
   become: true
   tags:
@@ -70,6 +74,21 @@
     - name: Create SMM REST Repo {{ smm_rest_version }}
       shell: createrepo -v {{ local_repo_base_dir }}/SMM/{{ os_version }}/{{ smm_rest_major_version }}.x/BUILDS/SMM-{{ smm_rest_version }}
 
+    - name: Make tars Directory for MPack
+      file:
+        path: '{{ local_repo_base_dir }}/SMM/{{ os_version }}/{{ smm_rest_major_version }}.x/BUILDS/SMM-{{ smm_rest_version }}/tars'
+        state: directory
+        mode: 0755
+
+    - name: Get SMM Ambari mpack {{ smm_rest_version }}
+      get_url:
+        url: '{{ smm_rest_repo_base_url}}/{{ smm_rest_version }}/tars/streams_messaging_manager/smm-ambari-mpack-{{ smm_rest_mid_version}}.{{ smm_rest_version }}.tar.gz'
+        dest: '{{ local_repo_base_dir }}/SMM/{{ os_version }}/{{ smm_rest_major_version }}.x/BUILDS/SMM-{{ smm_rest_version }}/tars/smm-ambari-mpack-{{ smm_rest_mid_version }}.{{ smm_rest_version }}.tar.gz'
+        mode: 0644
+
+
+# DLM Repos
+
 - hosts: repo
   become: true
   tags:
@@ -96,6 +115,8 @@
         dest: '{{ local_repo_base_dir }}/DLM/{{ os_version }}/{{ dlm_major_version }}.x/BUILDS/DLM-{{ dlm_version }}/beacon/beacon-ambari-mpack-{{ dlm_version }}.tar.gz'
         mode: 0644
 
+# DAS Repos
+
 - hosts: repo
   become: true
   tags:
@@ -116,8 +137,14 @@
     - name: Create DAS Repo {{ das_version }}
       shell: createrepo -v {{ local_repo_base_dir }}/DAS/{{ os_version }}/{{ das_major_version }}.x/BUILDS/DAS-{{ das_version }}
 
+    - name: Make tars Directory for MPack
+      file:
+        path: '{{ local_repo_base_dir }}/DAS/{{ os_version }}/{{ das_major_version }}.x/BUILDS/DAS-{{ das_version }}/tars'
+        state: directory
+        mode: 0755
+
     - name: Get DAS Ambari mpack {{ das_version }}
       get_url:
-        url: '{{ das_repo_base_url}}/{{ das_version }}/tars/data_analytics_studio/data-analytics-studio-mpack-{{ das_mid_version}}.{{ das_version }}.tar.gz'
-        dest: '{{ local_repo_base_dir }}/DAS/{{ os_version }}/{{ das_major_version }}.x/BUILDS/DAS-{{ das_version }}/data_analytics_studio-mpack-{{ das_mid_version }}.{{ das_version }}.tar.gz'
+        url: '{{ das_repo_base_url}}/{{ das_version }}/tars/hdp3_data_analytics_studio/hdp3-data-analytics-studio-mpack-{{ das_mid_version}}.{{ das_version }}.tar.gz'
+        dest: '{{ local_repo_base_dir }}/DAS/{{ os_version }}/{{ das_major_version }}.x/BUILDS/DAS-{{ das_version }}/tars/hdp3-data-analytics-studio-mpack-{{ das_mid_version }}.{{ das_version }}.tar.gz'
         mode: 0644

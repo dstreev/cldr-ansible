@@ -1,0 +1,19 @@
+- hosts: ozone
+  become: true
+
+  tasks:
+    - name: Remove Ozone Dir
+      file:
+        path: /usr/ozone
+        state: absent
+
+    - name: Remove Config Directory
+      file:
+        path: /etc/ozone/{{ ozone_version }}
+        state: absent
+
+    - name: Remove Data Directories
+      file:
+        path: /hwx_data/01/ozone
+        state: absent
+

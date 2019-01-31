@@ -1,0 +1,136 @@
+- hosts: ozone
+  become: true
+
+  tasks:
+    - name: Make Ozone Dir
+      file:
+        path: /usr/ozone/current
+        state: directory
+        mode: 0775
+        owner: ozone
+        group: ozone
+
+    - name: Get Ozone Binaries
+      get_url:
+        url: 'http://apache.mirrors.tds.net/hadoop/ozone/ozone-{{ ozone_version }}/hadoop-ozone-{{ ozone_version }}.tar.gz'
+        dest: /usr/ozone/hadoop-ozone-{{ ozone_version }}.tar.gz
+        mode: 0774
+        owner: ozone
+        group: ozone
+
+    - name: Decompress Archive
+      unarchive:
+        src: /usr/ozone/hadoop-ozone-{{ ozone_version }}.tar.gz
+        dest: /usr/ozone
+        remote_src: yes
+
+    - name: Ownership
+      file:
+        path: /usr/ozone/ozone-{{ ozone_version }}
+        recurse: yes
+        owner: ozone
+        group: ozone
+        mode: 0775
+
+    - name: Move Default Configs
+      shell: mv /usr/ozone/ozone-{{ ozone_version }}/etc/hadoop /usr/ozone/ozone-{{ ozone_version }}/etc/hadoop.default
+
+    - name: Create Config Directory
+      file:
+        path: /etc/ozone
+        state: directory
+        owner: ozone
+        group: ozone
+        mode: 0775
+
+    - name: Link to Current
+      file:
+        src: /usr/ozone/ozone-{{ ozone_version }}
+        dest: /usr/ozone/current/ozone
+        state: link
+
+    - name: Create Log Directory
+      file:
+        path: /var/log/ozone
+        state: directory
+        owner: ozone
+        group: ozone
+
+#    - name: Link Log Directory
+#      file:
+#        src: /var/log/ozone
+#        dest: /usr/ozone/ozone-{{ ozone_version }}/logs
+#        state: link
+        
+    - name: Create Data Directories
+      file:
+        path: /hwx_data/01/ozone/meta
+        state: directory
+        mode: 0770
+        owner: ozone
+        group: ozone
+
+    - name: Link Ozone Directory
+      file:
+        src: /hwx_data/01/ozone
+        dest: /ozone
+        state: link
+
+    - name: Create Config Directories
+      file:
+        path: /etc/ozone
+        state: directory
+        mode: 0775
+        owner: ozone
+        group: ozone
+      tags:
+        - conf
+
+    - name: Create Config Directories
+      file:
+        path: /usr/ozone/ozone-{{ ozone_version }}/etc/hadoop
+        state: directory
+        mode: 0775
+        owner: ozone
+        group: ozone
+      tags:
+        - conf
+
+    - name: Copy Configuration to each Server
+      copy:
+        src: "{{ lookup('env', 'HWX_CFG_DIR' ) }}/config/ozone/"
+        dest: /usr/ozone/ozone-{{ ozone_version }}/etc/hadoop
+        directory_mode: yes
+        owner: ozone
+        group: ozone
+        mode: 0775
+      tags:
+        - conf
+
+    - name: Link Conf Directory
+      file:
+        src: /usr/ozone/ozone-{{ ozone_version }}/etc/hadoop
+        dest: /etc/ozone/conf
+        state: link
+      tags:
+        - conf
+
+    - name: Copy bin
+      copy:
+        src: ./support/ozone
+        dest: /usr/bin/ozone
+        owner: ozone
+        group: ozone
+        mode: 0775
+      tags:
+        - link
+
+    - name: ulimits
+      copy:
+        src: ./limits.d/ozone.conf
+        dest: /etc/security/limits.d/ozone.conf
+        mode: 0644
+        owner: root
+        group: root
+      tags:
+        - limits

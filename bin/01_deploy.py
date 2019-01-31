@@ -35,7 +35,7 @@ class Deployment(object):
         env_set = cfgYaml["env_set"]
 
         # TODO: Check to see if the INFRA stack has been deployed.
-        docker_stack = 'hdp'+str(instance)
+        docker_stack = 'hwx'+str(instance)
         print ("Checking if Stack " + docker_stack + " has already been deployed")
         check_stack = False
         out = subprocess.check_output(['docker', '-H', 'os01:2375', 'stack', 'ls'])
@@ -47,7 +47,7 @@ class Deployment(object):
         if ( not check_stack ):
             # Environment Set which location
             env_set = cfgYaml["env_set"]
-            docker_stack = 'hdp' + str(instance)
+            # docker_stack = 'hwx' + str(instance)
 
             env = Environment(
                 loader = FileSystemLoader('../hdp/setup/stack-compose')
@@ -61,16 +61,20 @@ class Deployment(object):
             text_file.write(instance_cfg)
             text_file.close()
 
+            # Need to assign labels to hosts to match deployment.
+            config_vars = '@'+os.environ['HWX_CFG_DIR']+'/config/' + str(instance) + '.yaml'
+            subprocess.call(['ansible-playbook', '--extra-vars', config_vars, '../infrastructure/docker-node-labels-' + env_set + '.yaml'])
+
             # Now Deploy
             print('Deploy Docker Stack '+ docker_stack + ' with compose file (' + env_set + ')')
-            # subprocess.call(['docker','-H','os01:2375','stack','deploy','--compose-file','/tmp/resolved_'+env_set + '.yaml', docker_stack], stderr=subprocess.STDOUT)
-
-            print('Pause for 25 seconds while the docker services start')
-            # time.sleep(25)
-
-            # Populate Deployment readme.md
-            print('Set Readme Docs.')
-            subprocess.call(['ansible-playbook', '--extra-vars','@'+cfg_file, '-e', 'cfg_path='+cfg_path, '--tags', 'add', '../config/config-dictionary.yaml'], stderr=subprocess.STDOUT)
+            subprocess.call(['docker','-H','os01:2375','stack','deploy','--compose-file','/tmp/resolved_'+env_set + '.yaml', docker_stack], stderr=subprocess.STDOUT)
+            #
+            # print('Pause for 25 seconds while the docker services start')
+            # # time.sleep(25)
+            #
+            # # Populate Deployment readme.md
+            # print('Set Readme Docs.')
+            # subprocess.call(['ansible-playbook', '--extra-vars','@'+cfg_file, '-e', 'cfg_path='+cfg_path, '--tags', 'add', '../config/config-dictionary.yaml'], stderr=subprocess.STDOUT)
 
         else:
             print('Stack has already been deployed.')

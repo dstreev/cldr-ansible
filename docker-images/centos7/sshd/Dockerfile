@@ -25,6 +25,9 @@ RUN yum -y install chrony
 RUN yum -y install which
 RUN yum -y install sudo
 
+RUN wget https://download.docker.com/linux/centos/docker-ce.repo -O /etc/yum.repos.d/docker-ce.repo
+RUN yum -y install docker-ce
+
 # To support SSSD Bindings to underlying baremetal host.
 RUN yum install -y sssd-client sssd-krb5-common sudo libsss_idmap libsss_nss_idmap libsss_sudo sssd-common krb5-workstation krb5-lib
 
@@ -55,10 +58,6 @@ WORKDIR /root
 RUN mkdir .ssh
 RUN chmod 600 .ssh
 
-COPY ./keys/id_rsa .ssh/
-COPY ./keys/id_rsa.pub .ssh/
-COPY ./keys/id_rsa.pub .ssh/authorized_keys
-
 # Supervisord Config
 COPY ./init/supervisord.ini /etc/supervisord.d/hdp.ini
 # Try to fix timeout issues in docker overlay network.
@@ -66,6 +65,8 @@ COPY ./init/50_net.conf /etc/sysctl.d/50_net.conf
 
 EXPOSE 22
 
-VOLUME ["/var/lib/sss/pipes","/var/lib/sss/mc","/hadoop","/var/log"]
+# Mount the root/.ssh directory to a baremetal host mount.
+
+VOLUME ["/var/lib/sss/pipes","/var/lib/sss/mc","/hadoop","/var/log", "/root/.ssh"]
 
 CMD ["/usr/bin/supervisord","-c","/etc/supervisord.d/hdp.ini"]

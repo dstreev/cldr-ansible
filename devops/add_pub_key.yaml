@@ -1,0 +1,20 @@
+- hosts: os
+  become: true
+
+  tasks:
+    - name: Gen Key
+      shell: ssh-keygen -N "" -f /root/.ssh/test2
+      
+    - name: Gen File
+      file:
+        path: /root/.ssh/authorized_keys
+        state: touch
+        owner: root
+        mode: 0644
+        
+    - name: Add Pub Key to Root
+      lineinfile:
+        path: /root/.ssh/authorized_keys
+        line: '{{ public_key }}'
+        owner: root
+        mode: 0644
