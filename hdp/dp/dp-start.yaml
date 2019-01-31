@@ -1,0 +1,8 @@
+- hosts: dp
+  become: true
+  
+  tasks:
+
+    - name: Start Data Plane
+      shell: /usr/dp/current/core/bin/dpdeploy.sh start
+      
