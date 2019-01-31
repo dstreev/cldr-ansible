@@ -1,0 +1,14 @@
+- hosts: os06
+  vars:
+    crt_file: knox
+    truststore_password: hortonworks
+    truststore_file: knox_certs.jks
+
+  tasks:
+
+    - name: Extract SSL cert from Knox
+      shell: knoxserver=$(hostname -f); openssl s_client -connect ${knoxserver}:8443 <<<'' | openssl x509 -out {{ crt_file }}.crt
+
+    - name: Build Keystore from crt
+      shell:  /usr/lib/jvm/java-1.8.0-openjdk/bin/keytool -import -trustcacerts -keystore {{ truststore_file }} -storepass {{ truststore_password }} -alias Root -import -file {{ crt_file }}.crt -noprompt
+
