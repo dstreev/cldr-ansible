@@ -1,0 +1,22 @@
+- hosts:               hdp
+  become:              true
+  vars:
+    hwc_version: 1.0.0
+    hdp_version: 3.1.0.0-78
+
+  tasks:
+
+    - name:            Install / Upgrade HWC Libraries
+      yum:
+        name:          hive_warehouse_connector
+        state:         latest
+
+
+    - name:   Establish General Symlinks for HWC Libs
+      file:
+        src: /usr/hdp/{{ hdp_version }}/hive_warehouse_connector/{{ item.base }}-{{ hwc_version }}.{{ hdp_version}}.{{ item.ext }}
+        dest: /usr/hdp/{{ hdp_version }}/hive_warehouse_connector/{{ item.base }}.{{ item.ext }}
+        state: link
+      with_items:
+        - { base: 'pyspark_hwc', ext: 'zip' }
+        - { base: 'hive-warehouse-connector-assembly', ext: 'jar' }

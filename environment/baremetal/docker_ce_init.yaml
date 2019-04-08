@@ -2,7 +2,7 @@
 # Used to install the basics on a new CentOS7 hosts
 ####################
 
-- hosts:               k8s
+- hosts:               os
   become:              true
 
   tasks:
@@ -45,21 +45,21 @@
       systemd:
         name:          docker
         enabled:       yes
-#    - name:            Create Docker Service Init Directory
-#      file:
-#        path:          /etc/systemd/system/docker.service.d
-#        state:         directory
-#        owner:         root
-#        group:         root
-#        mode:          0744
-#    - name:            Copy Docker Configuration File
-#      copy:
-#        src:           /Users/dstreev/projects/david/hwx-ansible/environment/support/docker.conf
-#        dest:          /etc/systemd/system/docker.service.d/docker.conf
-#        owner:         root
-#        group:         root
-#        mode:          0644
-#        backup:        yes
+    - name:            Create Docker Service Init Directory
+      file:
+        path:          /etc/systemd/system/docker.service.d
+        state:         directory
+        owner:         root
+        group:         root
+        mode:          0744
+    - name:            Copy Docker Configuration File
+      copy:
+        src:           /Users/dstreev/projects/david/hwx-ansible/environment/support/docker.conf
+        dest:          /etc/systemd/system/docker.service.d/docker.conf
+        owner:         root
+        group:         root
+        mode:          0644
+        backup:        yes
     - name:            Restart Systemd daemon
       systemd:
         daemon_reload: yes
@@ -67,7 +67,7 @@
     - name:            Start docker
       systemd:
         name:          docker
-        state:         started
+        state:         restarted
 
 
 #    - name:            Install Kubernetes GPG Keys

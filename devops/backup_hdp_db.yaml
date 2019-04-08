@@ -1,4 +1,5 @@
-- hosts: sdlc
+- hosts: db_backup
+  become: true
 
   tasks:
     - name: Create Backup Directory

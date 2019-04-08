@@ -1,15 +1,18 @@
 # HDP Environment 01 Servers
 all:
   vars:
+    repo_server_url:                        {{ repo_server_url }}
+
     ambari_version:                         {{ ambari_version }}
     ambari_major_version:                   {{ ambari_major_version }}
-    ambari_repo:                            {{ ambari_repo }}
+    ambari_repo:                            {{ repo_server_url }}/ambari/{{ os_version }}/{{ ambari_version_path }}/updates/{{ ambari_version }}
+
     hdp_version:                            {{ hdp_version }}
     env_set:                                full
     image_tag:                              {{ image_tag }}
     env_instance:                           '{{ env_instance }}'
     cluster_name:                           BM{{ env_instance }}
-    mysql_backup_dir:                       /hadoop/mysql_backups
+    mysql_backup_dir:                       {{ mysql_backup_base_dir }}/BM{{ env_instance }}
     db_type:                                mysql
     db_host:                                {{ db_host }}
     db_user:                                {{ db_user }}
@@ -47,46 +50,51 @@ all:
       vars:
         ambari_server:                      {{ ambari_server }}
         zookeeper_server:                   {{ zookeeper_server }}
-        repo_server:                        {{ repo.server.url }}
 
       hosts:
         OS06-MASTER-5:
-          ansible_host:                     os06.streever.local
-          ansible_network_os: ios
+          ansible_host:                     {{ master_05 }}
+          ansible_network_os:               ios
         OS07-MASTER-6:
-           ansible_host:                    os07.streever.local
+          ansible_host:                     {{ master_06 }}
+          ansible_network_os:               ios
         OS10-WORKER-01:
-          ansible_host:                     os10.streever.local
-          ansible_network_os: ios
+          ansible_host:                     {{ worker_01 }}
+          ansible_network_os:               ios
         OS11-WORKER-02:
-          ansible_host:                     os11.streever.local
-          ansible_network_os: ios
+          ansible_host:                     {{ worker_02 }}
+          ansible_network_os:               ios
         OS12-WORKER-03:
-          ansible_host:                     os12.streever.local
-          ansible_network_os: ios
+          ansible_host:                     {{ worker_03 }}
+          ansible_network_os:               ios
         OS13-WORKER-04:
-          ansible_host:                     os13.streever.local
-          ansible_network_os: ios
+          ansible_host:                     {{ worker_04 }}
+          ansible_network_os:               ios
         OS14-WORKER-05:
-          ansible_host:                     os14.streever.local
-          ansible_network_os: ios
+          ansible_host:                     {{ worker_05 }}
+          ansible_network_os:               ios
         OS15-WORKER-06:
-          ansible_host:                     os15.streever.local
-          ansible_network_os: ios
+          ansible_host:                     {{ worker_06 }}
+          ansible_network_os:               ios
         OS16-WORKER-07:
-          ansible_host:                     os16.streever.local
-          ansible_network_os: ios
+          ansible_host:                     {{ worker_07 }}
+          ansible_network_os:               ios
         OS17-WORKER-08:
-          ansible_host:                     os17.streever.local
-          ansible_network_os: ios
+          ansible_host:                     {{ worker_08 }}
+          ansible_network_os:               ios
         OS18-WORKER-09:
-          ansible_host:                     os18.streever.local
-          ansible_network_os: ios
+          ansible_host:                     {{ worker_09 }}
+          ansible_network_os:               ios
         OS19-WORKER-10:
-          ansible_host:                     os19.streever.local
-          ansible_network_os: ios
+          ansible_host:                     {{ worker_10 }}
+          ansible_network_os:               ios
 
       children:
+        db_backup:
+          hosts:
+            OS02-MASTER-1:
+              ansible_hosts:                {{ db_backup }}
+              ansible_network_os:           ios
         edge:
           vars:
             hadoop_cli_bin_link:            {{ hadoop_cli_bin_link }}
@@ -94,11 +102,11 @@ all:
 
           hosts:
             OS03-MASTER-2:
-              ansible_host:                 os03.streever.local
-              ansible_network_os: ios
+              ansible_host:                 {{ master_02 }}
+              ansible_network_os:           ios
             OS04-MASTER-3:
-              ansible_host:                 os04.streever.local
-              ansible_network_os: ios
+              ansible_host:                 {{ master_03 }}
+              ansible_network_os:           ios
           children:
             sdlc:
               vars:
@@ -117,8 +125,8 @@ all:
                 hive_superuser_password:    {{ hive_superuser_password }}
               hosts:
                 OS05-MASTER-4:
-                  ansible_host:             os05.streever.local
-                  ansible_network_os: ios
+                  ansible_host:             {{ master_04 }}
+                  ansible_network_os:       ios
 
         ambari:
           vars:
@@ -160,4 +168,4 @@ all:
           hosts:
             OS02-MASTER-1:
               ansible_host:                 {{ ambari_server }}
-              ansible_network_os: ios
+              ansible_network_os:           ios

@@ -13,7 +13,7 @@
         description:   Install the Ambari Repo from our Local Repo Server.
         state:         absent
         baseurl:       '{{ ambari_repo }}'
-        #baseurl:      http://{{ repo_server }}/repo/ambari/{{ os_version }}/{{ ambari_major_version }}.x/updates/{{ ambari_version }}
+        #baseurl:      http://{{ repo_server_url }}/repo/ambari/{{ os_version }}/{{ ambari_major_version }}.x/updates/{{ ambari_version }}
         repo_gpgcheck: no
         gpgcheck:      no
       tags:

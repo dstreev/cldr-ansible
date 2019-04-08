@@ -34,17 +34,23 @@ class Deployment(object):
         # Environment Set which location
         env_set = cfgYaml["env_set"]
 
+        docker_swarm_mngr = os.environ['DOCKER_SWARM_MANAGER']
+
         # TODO: Check to see if the INFRA stack has been deployed.
         docker_stack = 'hwx'+str(instance)
         print ("Checking if Stack " + docker_stack + " has already been deployed")
         check_stack = False
-        out = subprocess.check_output(['docker', '-H', 'os01:2375', 'stack', 'ls'])
+        out = subprocess.check_output(['docker', '-H', docker_swarm_mngr, 'stack', 'ls'])
         for line in out.splitlines():
             # print('Line: '+ line.decode('utf-8'))
             if (re.search(docker_stack, str(line))):
                 check_stack = True
 
+        print('Build the Host File for instance: '+ str(instance))
+        subprocess.call(['./build-host-yaml.py','-i',str(instance)], stderr=subprocess.STDOUT)
+
         if ( not check_stack ):
+            print('Stack: ' + docker_stack + ' hasn''t been deployed yet. Doing it now.')
             # Environment Set which location
             env_set = cfgYaml["env_set"]
             # docker_stack = 'hwx' + str(instance)
@@ -67,7 +73,7 @@ class Deployment(object):
 
             # Now Deploy
             print('Deploy Docker Stack '+ docker_stack + ' with compose file (' + env_set + ')')
-            subprocess.call(['docker','-H','os01:2375','stack','deploy','--compose-file','/tmp/resolved_'+env_set + '.yaml', docker_stack], stderr=subprocess.STDOUT)
+            subprocess.call(['docker', '-H', docker_swarm_mngr, 'stack', 'deploy', '--compose-file','/tmp/resolved_'+env_set + '.yaml', docker_stack], stderr=subprocess.STDOUT)
             #
             # print('Pause for 25 seconds while the docker services start')
             # # time.sleep(25)
@@ -80,8 +86,6 @@ class Deployment(object):
             print('Stack has already been deployed.')
             print('   True up configurations...')
 
-        print('Build the Host File for instance: '+ str(instance))
-        subprocess.call(['./build-host-yaml.py','-i',str(instance)], stderr=subprocess.STDOUT)
 
         # echo "OS Prep"
         print('OS Prep')

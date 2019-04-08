@@ -15,7 +15,7 @@
         mode:           0755
     - name:             Get the HDP Binaries
       get_url:
-        url:            https://{{ base_repo }}.hortonworks.com/HDP/{{ os_version }}/{{ hdp_major_version }}.x/{{ version_subdir }}/{{ hdp_version }}/HDP-{{ hdp_version }}-{{ os_version }}-rpm.tar.gz
+        url:            https://{{ hdp_base_repo }}.hortonworks.com/HDP/{{ os_version }}/{{ hdp_version_path }}/{{ version_subdir }}/{{ hdp_version }}/HDP-{{ hdp_version }}-{{ os_version }}-rpm.tar.gz
         dest:           "{{ dest_dir }}/HDP-{{ hdp_version }}-{{ os_version }}-rpm.tar.gz"
         force:          no
         validate_certs: false
@@ -36,18 +36,18 @@
       tags:
         - hdp
     - name:             Remove previous HDP version
-      shell:            rm -rf {{ local_repo_base_dir }}/HDP/{{ os_version }}/{{ hdp_major_version }}.x/updates/{{ hdp_version }}
+      shell:            rm -rf {{ local_repo_base_dir }}/HDP/{{ os_version }}/{{ hdp_version_path }}/updates/{{ hdp_version }}
       tags:
         - hdp
     - name:             Create Repo Directory for HDP
       file:
-        path:           "{{ local_repo_base_dir }}/HDP/{{ os_version }}/{{ hdp_major_version }}.x/updates/{{ hdp_version }}"
+        path:           "{{ local_repo_base_dir }}/HDP/{{ os_version }}/{{ hdp_version_path }}/updates/{{ hdp_version }}"
         state:          directory
         mode:           0755
       tags:
         - hdp
     - name:             Move HDP package to httpd www dir
-      shell:            mv -f {{ dest_dir }}/packages/HDP-{{ hdp_version }}/HDP/{{ os_version }}/{{ hdp_version }}*/* {{ local_repo_base_dir }}/HDP/{{ os_version }}/{{ hdp_major_version }}.x/updates/{{ hdp_version }}
+      shell:            mv -f {{ dest_dir }}/packages/HDP-{{ hdp_version }}/HDP/{{ os_version }}/{{ hdp_version }}*/* {{ local_repo_base_dir }}/HDP/{{ os_version }}/{{ hdp_version_path }}/updates/{{ hdp_version }}
       tags:
         - hdp
     - name:             Remove remnant package location
