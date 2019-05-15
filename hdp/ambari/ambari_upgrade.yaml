@@ -51,7 +51,7 @@
       shell:           ambari-server upgrade -s
 
 # Rerun Ambari Configurations
-- import_playbook:     ambari_configure.yaml
+#- import_playbook:     ambari_configure.yaml
 
 # Post Upgrade Steps  (only to be done AFTER HDP Upgrade)
 #- import_playbook:     ambari_post_upgrade.yaml
