@@ -2,7 +2,7 @@
   become:              true
   vars:
     hwc_version: 1.0.0
-    hdp_version: 3.1.0.0-78
+    hdp_version: 3.1.0.41-5
 
   tasks:
 
@@ -20,3 +20,21 @@
       with_items:
         - { base: 'pyspark_hwc', ext: 'zip' }
         - { base: 'hive-warehouse-connector-assembly', ext: 'jar' }
+
+- hosts: ambari
+  become: true
+
+  vars:
+    ambari_config: /var/lib/ambari-server/resources/scripts/configs.py
+
+  tasks:
+
+# Spark Configurations:
+#    spark.sql.hive.hiveserver2.jdbc.url
+#    spark.datasource.hive.warehouse.metastoreUri
+#    spark.datasource.hive.warehouse.load.staging.dir
+#    spark.hadoop.hive.llap.daemon.service.hosts
+#    spark.hadoop.hive.zookeeper.quorum
+
+    - name: Configure ...
+      shell:

@@ -88,6 +88,15 @@ all:
         OS19-WORKER-10:
           ansible_host:                     {{ worker_10 }}
           ansible_network_os:               ios
+        OS30-MASTER-30:
+          ansible_host:                     {{ master_30 }}
+          ansible_network_os:               ios
+        OS31-MASTER-31:
+          ansible_host:                     {{ master_31 }}
+          ansible_network_os:               ios
+        OS32-MASTER-32:
+          ansible_host:                     {{ master_32 }}
+          ansible_network_os:               ios
 
       children:
         db_backup:

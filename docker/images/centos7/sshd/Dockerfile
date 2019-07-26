@@ -58,6 +58,10 @@ WORKDIR /root
 RUN mkdir .ssh
 RUN chmod 600 .ssh
 
+COPY ./keys/id_rsa .ssh/
+COPY ./keys/id_rsa.pub .ssh/
+COPY ./keys/id_rsa.pub .ssh/authorized_keys
+
 # Supervisord Config
 COPY ./init/supervisord.ini /etc/supervisord.d/hdp.ini
 # Try to fix timeout issues in docker overlay network.
@@ -67,6 +71,6 @@ EXPOSE 22
 
 # Mount the root/.ssh directory to a baremetal host mount.
 
-VOLUME ["/var/lib/sss/pipes","/var/lib/sss/mc","/hadoop","/var/log", "/root/.ssh"]
+VOLUME ["/var/lib/sss/pipes","/var/lib/sss/mc","/hadoop","/var/log"]
 
 CMD ["/usr/bin/supervisord","-c","/etc/supervisord.d/hdp.ini"]

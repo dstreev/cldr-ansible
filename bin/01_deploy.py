@@ -33,6 +33,7 @@ class Deployment(object):
         print("Swarm Deployment............." + cfgYaml["env_set"])
         # Environment Set which location
         env_set = cfgYaml["env_set"]
+        env_type = cfgYaml["env_type"]
 
         docker_swarm_mngr = os.environ['DOCKER_SWARM_MANAGER']
 
@@ -52,31 +53,31 @@ class Deployment(object):
         if ( not check_stack ):
             print('Stack: ' + docker_stack + ' hasn''t been deployed yet. Doing it now.')
             # Environment Set which location
-            env_set = cfgYaml["env_set"]
+            # env_set = cfgYaml["env_set"]
             # docker_stack = 'hwx' + str(instance)
 
             env = Environment(
-                loader = FileSystemLoader('../hdp/setup/stack-compose')
+                loader = FileSystemLoader('../docker/deployment/swarm/stack-compose/'+env_type)
             )
 
             template = env.get_template(env_set + '.yaml')
             instance_cfg = template.render(cfgYaml)
 
             # With the compose template, create a qualified composefile and save to tmp.
-            text_file = open('/tmp/resolved_'+env_set + '.yaml', 'w')
+            text_file = open('/tmp/resolved_'+env_type+'_'+env_set + '.yaml', 'w')
             text_file.write(instance_cfg)
             text_file.close()
 
             # Need to assign labels to hosts to match deployment.
             config_vars = '@'+os.environ['HWX_CFG_DIR']+'/config/' + str(instance) + '.yaml'
-            subprocess.call(['ansible-playbook', '--extra-vars', config_vars, '../infrastructure/docker-node-labels-' + env_set + '.yaml'])
+            # subprocess.call(['ansible-playbook', '--extra-vars', config_vars, '../infrastructure/docker-node-labels-' + env_set + '.yaml'])
 
             # Now Deploy
-            print('Deploy Docker Stack '+ docker_stack + ' with compose file (' + env_set + ')')
-            subprocess.call(['docker', '-H', docker_swarm_mngr, 'stack', 'deploy', '--compose-file','/tmp/resolved_'+env_set + '.yaml', docker_stack], stderr=subprocess.STDOUT)
+            print('Deploy Docker Stack '+ docker_stack + ' with compose file (' + env_type + '_' + env_set + ')')
+            subprocess.call(['docker', '-H', docker_swarm_mngr, 'stack', 'deploy', '--compose-file','/tmp/resolved_'+env_type+'_'+env_set + '.yaml', docker_stack], stderr=subprocess.STDOUT)
             #
-            # print('Pause for 25 seconds while the docker services start')
-            # # time.sleep(25)
+            print('Pause for 25 seconds while the docker services start')
+            time.sleep(25)
             #
             # # Populate Deployment readme.md
             # print('Set Readme Docs.')
@@ -88,18 +89,20 @@ class Deployment(object):
 
 
         # echo "OS Prep"
-        print('OS Prep')
-        # subprocess.call(['ansible-playbook', '-i', host_file,'--extra-vars','@'+cfg_file, '../hdp/setup/hdp_os_prep.yaml'], stderr=subprocess.STDOUT)
+        # Handled in Docker Image   
+        # print('OS Prep')
+        # subprocess.call(['ansible-playbook', '-i', host_file,'--extra-vars','@'+cfg_file, '../environment/baremetal/os_pre_reqs.yaml'], stderr=subprocess.STDOUT)
 
-        print('Edge Node Config')
-        # subprocess.call(['ansible-playbook', '-i', host_file,'--extra-vars','@'+cfg_file, '../hdp/setup/edge_node_config.yaml'], stderr=subprocess.STDOUT)
+        if ( env_type == 'hdp' ):
+            print('Edge Node Config')
+            subprocess.call(['ansible-playbook', '-i', host_file,'--extra-vars','@'+cfg_file, '../hdp/setup/edge_node_config.yaml', '-vvv'], stderr=subprocess.STDOUT)
 
-        print('Ambari Install Playbook')
-        # subprocess.call(['ansible-playbook', '-i', host_file,'--extra-vars','@'+cfg_file, '../hdp/ambari/ambari_install.yaml'], stderr=subprocess.STDOUT)
+            print('Ambari Install Playbook')
+            subprocess.call(['ansible-playbook', '-i', host_file,'--extra-vars','@'+cfg_file, '../hdp/ambari/ambari_install.yaml'], stderr=subprocess.STDOUT)
 
-        if (args.bp):
-            print('Ambari Blueprint Install Playbook')
-            subprocess.call(['ansible-playbook', '-i', host_file,'--extra-vars','@'+cfg_file, '../hdp/ambari/ambari_blueprint_install.yaml'], stderr=subprocess.STDOUT)
+            if (args.bp):
+                print('Ambari Blueprint Install Playbook')
+                subprocess.call(['ansible-playbook', '-i', host_file,'--extra-vars','@'+cfg_file, '../hdp/ambari/ambari_blueprint_install.yaml'], stderr=subprocess.STDOUT)
 
     def baremetal(self, cfgYaml):
         print ("Bare metal Deployment......... ")

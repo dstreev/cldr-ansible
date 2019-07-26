@@ -1,0 +1,9 @@
+# Goal here is to remove logs older than 'x' days.
+
+- hosts: hdp
+  become: true
+
+  tasks:
+    - name: Do some Shell Command
+#      For example: ansible-playbook --extra-vars "shell_command='sss_cache -E'"
+      shell: "{{ shell_command }}"

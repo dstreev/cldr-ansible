@@ -1,0 +1,146 @@
+version: '3.6'
+services:
+  master01:
+    hostname: {{ master_01_host }}-{{ env_instance }}.hwx
+    image: dstreev/centos7_sshd:{{ image_tag }}
+    privileged: true
+    ports:
+      - target: 22
+        published: 220{{ env_instance }}
+        protocol: tcp
+        mode: host
+    volumes:
+      - type: volume
+        source: hadoop
+        target: /hadoop
+      - type: volume
+        source: hwxlog
+        target: /var/log
+      - type: bind
+        source: /var/lib/sss/pipes/
+        target: /var/lib/sss/pipes/
+      - type: bind
+        source: /var/lib/sss/mc/
+        target: /var/lib/sss/mc/
+    networks:
+      hwx:
+        aliases:
+          - {{ master_01_host }}-{{ env_instance }}.hwx
+    deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+          - node.labels.hdp.host == {{ master_01_host }}
+  master02:
+    hostname: {{ master_02_host }}-{{ env_instance }}.hwx
+    image: dstreev/centos7_sshd:{{ image_tag }}
+    privileged: true
+    ports:
+      - target: 22
+        published: 220{{ env_instance }}
+        protocol: tcp
+        mode: host
+    volumes:
+      - type: volume
+        source: hadoop
+        target: /hadoop
+      - type: volume
+        source: hwxlog
+        target: /var/log
+      - type: bind
+        source: /var/lib/sss/pipes/
+        target: /var/lib/sss/pipes/
+      - type: bind
+        source: /var/lib/sss/mc/
+        target: /var/lib/sss/mc/
+    networks:
+      hwx:
+        aliases:
+          - {{ master_02_host }}-{{ env_instance }}.hwx
+    deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+          - node.labels.hdp.host == {{ master_02_host }}
+  worker01:
+    hostname: {{ worker_01_host }}-{{ env_instance }}.hwx
+    image: dstreev/centos7_sshd:{{ image_tag }}
+    privileged: true
+    ports:
+      - target: 22
+        published: 220{{ env_instance }}
+        protocol: tcp
+        mode: host
+    volumes:
+      - type: volume
+        source: hadoop
+        target: /hadoop
+      - type: volume
+        source: hwxlog
+        target: /var/log
+      - type: bind
+        source: /var/lib/sss/pipes/
+        target: /var/lib/sss/pipes/
+      - type: bind
+        source: /var/lib/sss/mc/
+        target: /var/lib/sss/mc/
+    networks:
+      hwx:
+        aliases:
+          - {{ worker_01_host }}-{{ env_instance }}.hwx
+    deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+          - node.labels.hdp.host == {{ worker_01_host }}
+  worker02:
+    hostname: {{ worker_02_host }}-{{ env_instance }}.hwx
+    image: dstreev/centos7_sshd:{{ image_tag }}
+    privileged: true
+    ports:
+      - target: 22
+        published: 220{{ env_instance }}
+        protocol: tcp
+        mode: host
+    volumes:
+      - type: volume
+        source: hadoop
+        target: /hadoop
+      - type: volume
+        source: hwxlog
+        target: /var/log
+      - type: bind
+        source: /var/lib/sss/pipes/
+        target: /var/lib/sss/pipes/
+      - type: bind
+        source: /var/lib/sss/mc/
+        target: /var/lib/sss/mc/
+    networks:
+      hwx:
+        aliases:
+          - {{ worker_02_host }}-{{ env_instance }}.hwx
+    deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+          - node.labels.hdp.host == {{ worker_02_host }}
+
+networks:
+  hwx:
+    external: true
+    driver: overlay
+    attachable: true
+    name: hwx
+volumes:
+  hadoop:
+    driver: local
+  hwxlog:
+    driver: local

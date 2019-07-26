@@ -5,16 +5,16 @@
 
   tasks:
     - name: Set Labels on the Docker Node
-      shell: docker node update --label-add hdp.ambari=true os01.streever.local
+      shell: docker node update --label-add hdp.ambari=true {{ ambari_host }}
 
     - name: Set Labels on the Docker Node
-      shell: docker node update --label-add hdp.db=true os01.streever.local
+      shell: docker node update --label-add hdp.db=true {{ db_host }}
 
     - name: Set Labels on the Docker Node
-      shell: docker node update --label-add hdp.repo=true os04.streever.local
+      shell: docker node update --label-add hdp.repo=true {{ repo_host }}
 
     - name: Set Labels on the Docker Node
-      shell: docker node update --label-add hdp.host={{ item }} {{ item }}.streever.local
+      shell: docker node update --label-add hdp.host={{ item }} {{ item }}.{{ domain }}
       loop:
         - os01
         - os02
@@ -34,3 +34,6 @@
         - os18
         - os19
         - os20
+        - os30
+        - os31
+        - os32

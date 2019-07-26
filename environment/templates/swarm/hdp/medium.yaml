@@ -5,13 +5,14 @@ all:
     ambari_major_version:                {{ ambari_major_version }}
     ambari_repo:                         {{ ambari_repo }}
     hdp_version:                         {{ hdp_version }}
-    env_set:                             left
+    env_set:                             medium
+    hosts:                               {{ env_type }}
     image_tag:                           {{ image_tag }}
     env_instance:                        '{{ env_instance }}'
     cluster_name:                        DK{{ env_instance }}
     mysql_backup_dir:                    /hadoop/mysql_backups
     db_type:                             mysql
-    db_host:                             db.hwx
+    db_host:                             {{ db_host_fqdn }}
     db_user:                             root
     db_password:                         hortonworks
     db_ambari_name:                      ambari_{{ env_instance }}
@@ -28,36 +29,36 @@ all:
     hdp:
       vars:
         ambari_server:                   ambari-{{ env_instance }}.hwx
-        zookeeper_server:                os05-{{ env_instance }}.hwx
-        repo_server:                     repo.hwx
+        zookeeper_server:                {{ master_01_host }}-{{ env_instance }}.hwx
+        repo_server:                     {{ repo_host }}
 
       hosts:
-        OS16-WORKER-01:
-          ansible_host:                  dos16
+        WORKER-01:
+          ansible_host:                  d{{ worker_01_host }}
           ansible_port:                  220{{ env_instance }}
           ansible_user:                  root
-        OS17-WORKER-02:
-          ansible_host:                  dos17
+        WORKER-02:
+          ansible_host:                  d{{ worker_02_host }}
           ansible_port:                  220{{ env_instance }}
           ansible_user:                  root
-        OS18-WORKER-03:
-          ansible_host:                  dos18
+        WORKER-03:
+          ansible_host:                  d{{ worker_03_host }}
           ansible_port:                  220{{ env_instance }}
           ansible_user:                  root
-        OS19-WORKER-04:
-          ansible_host:                  dos19
+        WORKER-04:
+          ansible_host:                  d{{ worker_04_host }}
           ansible_port:                  220{{ env_instance }}
           ansible_user:                  root
 
       children:
         edge:
           hosts:
-            OS06-MASTER-2:
-              ansible_host:              dos06
+            MASTER-1:
+              ansible_host:              d{{ master_01_host }}
               ansible_port:              220{{ env_instance }}
               ansible_user:              root
-            OS07-MASTER-3:
-              ansible_host:              dos07
+            MASTER-2:
+              ansible_host:              d{{ master_02_host }}
               ansible_port:              220{{ env_instance }}
               ansible_user:              root
           children:
@@ -76,8 +77,8 @@ all:
                 hadoop_cli_bin_link:     {{ hadoop_cli_bin_link }}
                 hadoop_cli_version:      {{ hadoop_cli_version }}
               hosts:
-                OS05-MASTER-1:
-                  ansible_host:          dos05
+                MASTER-3:
+                  ansible_host:          d{{ master_03_host }}
                   ansible_port:          220{{env_instance}}
                   ansible_user:          root
 
@@ -117,7 +118,7 @@ all:
             ldap_referral:               {{ ldap_referral }}
             ldap_bind_anonym:            {{ ldap_bind_anonym }}
           hosts:
-            OS01-AMBARI:
-              ansible_host:              dos01
+            AMBARI:
+              ansible_host:              d{{ ambari_host }}
               ansible_port:              220{{ env_instance }}
               ansible_user:              root

@@ -26,31 +26,31 @@ services:
 #      placement:
 #        constraints:
 #          - node.labels.hdp.db == true
-#  repo:
-#    hostname: repo.hwx
-#    image: dstreev/hdp-repo:latest
-#    ports:
-#      - target: 80
-#        published: 38000
-#        protocol: tcp
-#        mode: host
-#    volumes:
-#      - type: bind
-#        source: /var/www/html
-#        target: /www
-#    networks:
-#      hwx:
-#        aliases:
-#          - repo.hwx
-#    deploy:
-#      mode: global
-#      endpoint_mode: dnsrr
-#      placement:
-#        constraints:
-#          - node.labels.hdp.repo == true
+ # repo:
+ #   hostname: repo.hwx
+ #   image: dstreev/hdp-repo:latest
+ #   ports:
+ #     - target: 80
+ #       published: 38000
+ #       protocol: tcp
+ #       mode: host
+ #   volumes:
+ #     - type: bind
+ #       source: /var/www/html
+ #       target: /www
+ #   networks:
+ #     hwx:
+ #       aliases:
+ #         - repo.hwx
+ #   deploy:
+ #     mode: global
+ #     endpoint_mode: dnsrr
+ #     placement:
+ #       constraints:
+ #         - node.labels.hdp.repo == true
   proxy:
     hostname: proxy.hwx
-    image: dstreev/centos7_sshd:109
+    image: dstreev/centos7_sshd:110
     ports:
       - target: 22
         published: 22199
@@ -75,6 +75,9 @@ services:
       - "os18.streever.local:10.0.1.28"
       - "os19.streever.local:10.0.1.29"
       - "os20.streever.local:10.0.1.30"
+      - "os30.streever.local:10.0.1.40"
+      - "os31.streever.local:10.0.1.41"
+      - "os32.streever.local:10.0.1.42"
       - "repo.hdp.local:10.0.1.14"
       - "db.hdp.local:10.0.1.11"
     volumes:
@@ -84,9 +87,6 @@ services:
       - type: volume
         source: hwxlog
         target: /var/log
-      - type: bind
-        source: /root/.ssh
-        target: /root/.ssh
       - type: bind
         source: /var/lib/sss/pipes/
         target: /var/lib/sss/pipes/

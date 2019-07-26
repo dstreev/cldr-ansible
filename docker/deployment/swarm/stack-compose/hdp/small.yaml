@@ -34,8 +34,8 @@ services:
         constraints:
           - node.labels.hdp.ambari == true
 
-  os04:
-    hostname: os04-{{ env_instance }}.hwx
+  master01:
+    hostname: {{ master_01_host }}-{{ env_instance }}.hwx
     image: dstreev/centos7_sshd:{{ image_tag }}
     privileged: true
     ports:
@@ -59,16 +59,16 @@ services:
     networks:
       hwx:
         aliases:
-          - os04-{{ env_instance }}.hwx
+          - {{ master_01_host }}-{{ env_instance }}.hwx
     deploy:
       mode: replicated
       replicas: 1
       endpoint_mode: dnsrr
       placement:
         constraints:
-          - node.labels.hdp.host == os04
-  os05:
-    hostname: os05-{{ env_instance }}.hwx
+          - node.labels.hdp.host == {{ master_01_host }}
+  master02:
+    hostname: {{ master_02_host }}-{{ env_instance }}.hwx
     image: dstreev/centos7_sshd:{{ image_tag }}
     privileged: true
     ports:
@@ -92,16 +92,16 @@ services:
     networks:
       hwx:
         aliases:
-          - os05-{{ env_instance }}.hwx
+          - {{ master_02_host }}-{{ env_instance }}.hwx
     deploy:
       mode: replicated
       replicas: 1
       endpoint_mode: dnsrr
       placement:
         constraints:
-          - node.labels.hdp.host == os05
-  os06:
-    hostname: os06-{{ env_instance }}.hwx
+          - node.labels.hdp.host == {{ master_02_host }}
+  worker01:
+    hostname: {{ worker_01_host }}-{{ env_instance }}.hwx
     image: dstreev/centos7_sshd:{{ image_tag }}
     privileged: true
     ports:
@@ -125,16 +125,16 @@ services:
     networks:
       hwx:
         aliases:
-          - os06-{{ env_instance }}.hwx
+          - {{ worker_01_host }}-{{ env_instance }}.hwx
     deploy:
       mode: replicated
       replicas: 1
       endpoint_mode: dnsrr
       placement:
         constraints:
-          - node.labels.hdp.host == os06
-  os13:
-    hostname: os13-{{ env_instance }}.hwx
+          - node.labels.hdp.host == {{ worker_01_host }}
+  worker02:
+    hostname: {{ worker_02_host }}-{{ env_instance }}.hwx
     image: dstreev/centos7_sshd:{{ image_tag }}
     privileged: true
     ports:
@@ -158,119 +158,21 @@ services:
     networks:
       hwx:
         aliases:
-          - os13-{{ env_instance }}.hwx
+          - {{ worker_02_host }}-{{ env_instance }}.hwx
     deploy:
       mode: replicated
       replicas: 1
       endpoint_mode: dnsrr
       placement:
         constraints:
-          - node.labels.hdp.host == os13
-  os14:
-    hostname: os14-{{ env_instance }}.hwx
-    image: dstreev/centos7_sshd:{{ image_tag }}
-    privileged: true
-    ports:
-      - target: 22
-        published: 220{{ env_instance }}
-        protocol: tcp
-        mode: host
-    volumes:
-      - type: volume
-        source: hadoop
-        target: /hadoop
-      - type: volume
-        source: hwxlog
-        target: /var/log
-      - type: bind
-        source: /var/lib/sss/pipes/
-        target: /var/lib/sss/pipes/
-      - type: bind
-        source: /var/lib/sss/mc/
-        target: /var/lib/sss/mc/
-    networks:
-      hwx:
-        aliases:
-          - os14-{{ env_instance }}.hwx
-    deploy:
-      mode: replicated
-      replicas: 1
-      endpoint_mode: dnsrr
-      placement:
-        constraints:
-          - node.labels.hdp.host == os14
-  os15:
-    hostname: os15-{{ env_instance }}.hwx
-    image: dstreev/centos7_sshd:{{ image_tag }}
-    privileged: true
-    ports:
-      - target: 22
-        published: 220{{ env_instance }}
-        protocol: tcp
-        mode: host
-    volumes:
-      - type: volume
-        source: hadoop
-        target: /hadoop
-      - type: volume
-        source: hwxlog
-        target: /var/log
-      - type: bind
-        source: /var/lib/sss/pipes/
-        target: /var/lib/sss/pipes/
-      - type: bind
-        source: /var/lib/sss/mc/
-        target: /var/lib/sss/mc/
-    networks:
-      hwx:
-        aliases:
-          - os15-{{ env_instance }}.hwx
-    deploy:
-      mode: replicated
-      replicas: 1
-      endpoint_mode: dnsrr
-      placement:
-        constraints:
-          - node.labels.hdp.host == os15
-  os16:
-    hostname: os16-{{ env_instance }}.hwx
-    image: dstreev/centos7_sshd:{{ image_tag }}
-    privileged: true
-    ports:
-      - target: 22
-        published: 220{{ env_instance }}
-        protocol: tcp
-        mode: host
-    volumes:
-      - type: volume
-        source: hadoop
-        target: /hadoop
-      - type: volume
-        source: hwxlog
-        target: /var/log
-      - type: bind
-        source: /var/lib/sss/pipes/
-        target: /var/lib/sss/pipes/
-      - type: bind
-        source: /var/lib/sss/mc/
-        target: /var/lib/sss/mc/
-    networks:
-      hwx:
-        aliases:
-          - os16-{{ env_instance }}.hwx
-    deploy:
-      mode: replicated
-      replicas: 1
-      endpoint_mode: dnsrr
-      placement:
-        constraints:
-          - node.labels.hdp.host == os16
+          - node.labels.hdp.host == {{ worker_02_host }}
 
 networks:
   hwx:
     external: true
     driver: overlay
     attachable: true
+    name: hwx
 volumes:
   hadoop:
     driver: local

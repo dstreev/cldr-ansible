@@ -32,12 +32,14 @@ if (os.path.isfile(cfg_yaml_file_ref)):
     # Environment Set which location
     deploy_type = cfgYaml["deploy_type"]
     env_set = cfgYaml["env_set"]
+    env_type = cfgYaml["env_type"]
+
     print ("Env_Set: " + env_set)
     env = Environment(
-        loader = FileSystemLoader('../environment/templates/'+deploy_type)
+        loader = FileSystemLoader('../environment/templates/'+deploy_type+'/'+env_type)
     )
     # loader = FileSystemLoader('../environment/hosts/host-template_" + env_set + ".yaml')
-    template = env.get_template('ansible-template_' + env_set + '.yaml')
+    template = env.get_template(env_set + '.yaml')
     # template = Template(open("../environment/hosts/host-template_" + env_set + ".yaml"))
     instance_cfg = template.render(cfgYaml)
 
