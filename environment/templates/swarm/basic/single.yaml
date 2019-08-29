@@ -1,0 +1,35 @@
+# HDP Environment 01 Servers
+all:
+  vars:
+    env_set:                             small
+    hosts:                               {{ env_type }}
+    image_tag:                           {{ image_tag }}
+    env_instance:                        '{{ env_instance }}'
+    cluster_name:                        DK{{ env_instance }}
+    mysql_backup_dir:                    /hadoop/mysql_backups
+    db_type:                             mysql
+    db_host:                             {{ db_host_fqdn }}
+    db_user:                             root
+    db_password:                         hortonworks
+    db_cm_name:                          cm_{{ env_instance }}
+    db_ambari_name:                      ambari_{{ env_instance }}
+    db_hive_name:                        hive_{{ env_instance }}
+    db_oozie_name:                       oozie_{{ env_instance }}
+    db_ranger_name:                      ranger_{{ env_instance }}
+    db_ranger_kms_name:                  rangerkms_{{ env_instance }}
+    db_druid_name:                       druid_{{ env_instance }}
+    db_superset_name:                    superset_{{ env_instance }}
+    db_registry_name:                    registry_{{ env_instance }}
+    db_streamline_name:                  streamline_{{ env_instance }}
+    manager_repo:                        {{ manager_repo }}
+    
+  children:
+    basic:
+
+      children:
+        manager:
+          hosts:
+            MASTER-1:
+              ansible_host:              d{{ master_01_host }}
+              ansible_port:              220{{ env_instance }}
+              ansible_user:              root

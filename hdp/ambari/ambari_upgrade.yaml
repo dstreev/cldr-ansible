@@ -34,6 +34,8 @@
       yum:
         name:          ambari-agent
         state:         latest
+      tags:
+        - agent
 
 # Install/Update JDBC Drivers
 - import_playbook:     jdbc_setup.yaml
@@ -43,12 +45,18 @@
   tasks:
     - name:            Stop Ambari Server
       shell:           ambari-server stop
+      tags:
+        - server
     - name:            Upgrade Ambari
       yum:
         name:          ambari-server
         state:         latest
+      tags:
+        - server
     - name:            Upgrade Ambari Server
       shell:           ambari-server upgrade -s
+      tags:
+        - server
 
 # Rerun Ambari Configurations
 #- import_playbook:     ambari_configure.yaml
@@ -65,11 +73,18 @@
   tasks:
     - name:            Reset Ambari Agents
       shell:           ambari-agent reset {{ ambari_server }}
+      tags:
+        - agent
     - name:            Start Ambari Agents
       shell:           ambari-agent start
+      tags:
+        - agent
 
 - hosts:               ambari
   become:              true
   tasks:
     - name:            Start Ambari Server
       shell:           ambari-server start
+      tags:
+        - server
+

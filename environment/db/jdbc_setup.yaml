@@ -1,0 +1,48 @@
+# Install JDBC Drivers for MySQL and MariaDB to a default locate and provide
+# common symlinks
+- hosts:                  all
+  become:                 true
+  vars:
+    # Druid has issues with new driver.
+    mysql_jdbc_version: 8.0.13
+#    mysql_jdbc_version:   5.1.46
+    mariadb_jdbc_version: 2.3.0
+
+  tasks:
+    # Setup the JDBC Drivers for MySQL and MariaDB (assumes MySQL is target db)
+    - name:               Ensure Share Directory is present
+      file:
+        path:             /usr/share/java
+        state:            directory
+        mode:             0755
+    - name:               Fetch the MySQL JDBC Drivers for DB Access
+      get_url:
+        url:              https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-{{ mysql_jdbc_version }}.tar.gz
+        dest:             /tmp/mysql-connector-java.tar.gz
+        force:            yes
+    - name:               Unarchive MySQL Driver
+      unarchive:
+        src:              /tmp/mysql-connector-java.tar.gz
+        dest:             /tmp
+        remote_src:       yes
+    - name:               Copy MySQL Driver from Archive
+      copy:
+        src:              /tmp/mysql-connector-java-{{ mysql_jdbc_version }}/mysql-connector-java-{{ mysql_jdbc_version }}.jar
+        dest:             /usr/share/java/mysql-connector-java-{{ mysql_jdbc_version }}.jar
+        remote_src:       yes
+    - name:               Symlink the MySQL Driver
+      file:
+        src:              /usr/share/java/mysql-connector-java-{{ mysql_jdbc_version }}.jar
+        dest:             /usr/share/java/mysql-connector-java.jar
+        force:            yes
+        state:            link
+    - name:               Get MariaDB Client JDBC Driver
+      get_url:
+        url:              https://downloads.mariadb.com/Connectors/java/connector-java-{{ mariadb_jdbc_version }}/mariadb-java-client-{{ mariadb_jdbc_version }}.jar
+        dest:             /usr/share/java/mariadb-java-client-{{ mariadb_jdbc_version }}.jar
+        force:            yes
+    - name:               Symlink MariaDB Client JDBC Driver jar
+      file:
+        src:              /usr/share/java/mariadb-java-client-{{ mariadb_jdbc_version }}.jar
+        dest:             /usr/share/java/mariadb-java-client.jar
+        state:            link

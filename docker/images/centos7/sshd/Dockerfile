@@ -11,7 +11,7 @@ RUN yum -y install less
 RUN yum -y install net-tools
 RUN yum -y install iproute
 RUN yum -y install openssl openssh-server openssh-clients passwd
-RUN yum -y install supervisor
+#RUN yum -y install supervisor
 RUN yum -y install ntp
 RUN yum -y install ansible
 RUN yum -y install pdsh
@@ -63,7 +63,7 @@ COPY ./keys/id_rsa.pub .ssh/
 COPY ./keys/id_rsa.pub .ssh/authorized_keys
 
 # Supervisord Config
-COPY ./init/supervisord.ini /etc/supervisord.d/hdp.ini
+#COPY ./init/supervisord.ini /etc/supervisord.d/sshd.ini
 # Try to fix timeout issues in docker overlay network.
 COPY ./init/50_net.conf /etc/sysctl.d/50_net.conf
 
@@ -73,4 +73,5 @@ EXPOSE 22
 
 VOLUME ["/var/lib/sss/pipes","/var/lib/sss/mc","/hadoop","/var/log"]
 
-CMD ["/usr/bin/supervisord","-c","/etc/supervisord.d/hdp.ini"]
+#CMD ["/usr/bin/supervisord","-c","/etc/supervisord.d/sshd.ini"]
+CMD ["/usr/sbin/sshd", "-D"]
