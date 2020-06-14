@@ -1,0 +1,71 @@
+- hosts: '{{ hosts }}'
+  become: true
+
+  tasks:
+    - name: Backup passwd
+      copy:
+        src: /etc/passwd
+        dest: /etc/passwd.{{ ansible_date_time.iso8601_basic_short }}
+        remote_src: yes
+    - name: Backup group
+      copy:
+        src: /etc/group
+        dest: /etc/group.{{ ansible_date_time.iso8601_basic_short }}
+        remote_src: yes
+    - name:
+      lineinfile:
+        path: /etc/passwd
+        regex: '^{{ item.user }}'
+        state: absent
+      with_items:
+        - { user: 'hdfs' }
+        - { user: 'yarn' }
+        - { user: 'zookeeper' }
+        - { user: 'oozie' }
+        - { user: 'hbase' }
+        - { user: 'sqoop' }
+        - { user: 'impala' }
+        - { user: 'kafka' }
+        - { user: 'hive' }
+    - name:
+      lineinfile:
+        path: /etc/group
+        regex: '^{{ item.group }}'
+        state: absent
+      with_items:
+        - { group: 'hadoop' }
+        - { group: 'hdfs'}
+        - { group: 'yarn' }
+        - { group: 'zookeeper' }
+        - { group: 'oozie' }
+        - { group: 'hbase' }
+        - { group: 'sqoop' }
+        - { group: 'impala' }
+        - { group: 'kafka' }
+        - { group: 'hive' }
+
+    - name: Reset File permissions
+      file:
+        path: '{{ item.directory}}'
+        owner: '{{ item.owner }}'
+        group: '{{ item.group }}'
+        recurse: yes
+      with_items:
+        - { directory: '/hadoop/hdfs', owner: 'hdfs', group: 'hadoop' }
+        - { directory: '/hadoop/yarn', owner: 'yarn', group: 'hadoop' }
+        - { directory: '/hadoop/zookeeper', owner: 'zookeeper', group: 'hadoop' }
+        - { directory: '/hadoop/kafka-logs', owner: 'zookeeper', group: 'hadoop' }
+        - { directory: '/var/log/hadoop/hdfs', owner: 'hdfs', group: 'hadoop' }
+        - { directory: '/var/log/hadoop-yarn', owner: 'yarn', group: 'hadoop' }
+        - { directory: '/var/log/oozie', owner: 'oozie', group: 'hadoop' }
+        - { directory: '/var/log/kafka', owner: 'kafka', group: 'hadoop' }
+        - { directory: '/var/log/zookeeper', owner: 'zookeeper', group: 'hadoop' }
+        - { directory: '/var/log/hive', owner: 'hive', group: 'hadoop' }
+        - { directory: '/var/log/hive2', owner: 'hive', group: 'hadoop' }
+        - { directory: '/var/log/hbase', owner: 'hbase', group: 'hadoop' }
+        - { directory: '/var/log/zookeeper', owner: 'zookeeper', group: 'hadoop' }
+        - { directory: '/usr/hdp/current/hadoop-client/conf', owner: 'hdfs', group: 'hadoop' }
+        - { directory: '/usr/hdp/current/zookeeper-client/conf', owner: 'zookeeper', group: 'hadoop' }
+        - { directory: '/usr/hdp/current/oozie-client/conf', owner: 'oozie', group: 'hadoop' }
+        - { directory: '/usr/hdp/current/hbase-client/conf', owner: 'hbase', group: 'hadoop' }
+        - { directory: '/usr/hdp/current/sqoop-client/conf', owner: 'sqoop', group: 'hadoop' }

@@ -1,0 +1,64 @@
+- import_playbook: ambari_blueprint.yaml
+
+- hosts: edge_primary
+
+  tasks:
+    - name: Refresh Files
+      file:
+        path: './am2cm-conversion/{{ item.file }}'
+        state: absent
+      with_items:
+        - { file: '{{ ambari_cluster_name }}-cm_template.json' }
+        - { file: 'cm_migration.log' }
+        - { file: 'configs_summary.log' }
+      tags:
+        - build
+        - submit
+
+      # Can't run this yet until a 'silent' option is available.
+    - name: Build CM Template with AM2CM Tool
+      shell:
+        cmd: ./{{ am2cm_archive.split(".tar")[0] }}/am2cm.sh -s -bp ./am2cm-conversion/{{ ambari_cluster_name }}-blueprint.json -dt ./am2cm-conversion/{{ ambari_cluster_name }}-cm_template.json
+      tags:
+        - build
+
+- import_playbook: am2cm_configure.yaml
+
+- hosts: edge_primary
+  vars_prompt:
+    - name:   am2cm_run
+      prompt: "Manually run AM2CM, (y) to continue."
+      tags:
+        - submit
+
+  tasks:
+    - name: Apply Template to CM
+      uri:
+        url: '{{ cm_server_protocol }}://{{ cm_server }}:{{ cm_server_port }}/api/v41/cm/deployment'
+        method: PUT
+        src: ./am2cm-conversion/{{ ambari_cluster_name }}-cm_template.json
+        remote_src: yes
+        body_format: json
+        force_basic_auth: yes
+        validate_certs: no
+        headers:
+          Content-Type: application/json
+        user: '{{ cm_admin_username }}'
+        password: '{{ cm_admin_password }}'
+      register: template_submission
+      when:
+        - am2cm_run == 'y'
+      tags:
+        - submit
+
+    - debug: msg='{{ template_submission }}'
+      when:
+        - am2cm_run == 'y'
+      tags:
+        - submit
+
+    - debug: msg='Template NOT created.'
+      when:
+        - am2cm_run != 'y'
+      tags:
+        - submit

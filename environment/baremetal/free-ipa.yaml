@@ -1,0 +1,9 @@
+- hosts: ipa
+  become: true
+
+  tasks:
+
+    - name: Install Server
+      yum:
+        name: ipa-server ipa-server-dns
+        statu: latest

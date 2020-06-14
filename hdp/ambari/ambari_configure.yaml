@@ -15,18 +15,23 @@
       shell: ambari-server setup --database={{ db_type }} --databasehost={{ db_host }} --databaseport=3306 --databaseusername={{ db_user }} --databasepassword={{ db_password }} --databasename={{ db_ambari_name }} --enable-lzo-under-gpl-license --java-home=/usr/lib/jvm/java-1.8.0-openjdk -s
       tags:
         - server
+    - name: Set Ambari UI Port
+      lineinfile:
+        path: /etc/ambari-server/conf/ambari.properties
+        line: client.api.port={{ ambari_server_port }}
+        insertafter: '^client\.threadpool.* '
     - name: Start (if not running) Ambari Server
       shell: ambari-server start
       tags:
         - server
     - name: Configure Ambari 2.7+ Server LDAP Integration
-      shell: ambari-server setup-ldap --ldap-primary-host={{ ldap_primary_host }} --ldap-primary-port={{ ldap_primary_port }} --ldap-secondary-host={{ ldap_secondary_host }}  --ldap-secondary-port={{ ldap_secondary_port }}  --ldap-ssl=false --ldap-user-class={{ ldap_user_class }} --ldap-user-attr={{ ldap_user_attr }} --ldap-group-class={{ ldap_group_class }} --ldap-group-attr={{ ldap_group_attr }} --ldap-member-attr={{ ldap_member_attr }} --ldap-dn={{ ldap_dn }} --ldap-base-dn={{ ldap_base_dn }} --ldap-manager-dn={{ ldap_manager_dn }} --ldap-manager-password={{ ldap_manager_password }} --ldap-referral=ignore --ldap-bind-anonym=false --ldap-save-settings --ambari-admin-username={{ ambari_admin_user }} --ambari-admin-password={{ ambari_admin_password }} --ldap-sync-username-collisions-behavior=convert --ldap-force-setup --ldap-force-lowercase-usernames=true --ldap-pagination-enabled=true --verbose
+      shell: ambari-server setup-ldap --ldap-primary-host={{ ldap_primary_host }} --ldap-primary-port={{ ldap_primary_port }} --ldap-secondary-host={{ ldap_secondary_host }}  --ldap-secondary-port={{ ldap_secondary_port }}  --ldap-ssl=false --ldap-user-class={{ ldap_user_class }} --ldap-user-attr={{ ldap_user_attr }} --ldap-group-class={{ ldap_group_class }} --ldap-group-attr={{ ldap_group_attr }} --ldap-member-attr={{ ldap_member_attr }} --ldap-dn={{ ldap_dn }} --ldap-base-dn={{ ldap_base_dn }} --ldap-manager-dn={{ ldap_bind_dn }} --ldap-manager-password={{ ldap_bind_password }} --ldap-referral=ignore --ldap-bind-anonym=false --ldap-save-settings --ambari-admin-username={{ ambari_admin_user }} --ambari-admin-password={{ ambari_admin_password }} --ldap-sync-username-collisions-behavior=convert --ldap-force-setup --ldap-force-lowercase-usernames=true --ldap-pagination-enabled=true --verbose
       when: ambari_major_version >= 2.7
       tags:
         - server
         - ldap
     - name: Configure Ambari 2.6 and below Server LDAP Integration
-      shell: ambari-server setup-ldap --ldap-url={{ ldap_primary_host }}:{{ ldap_primary_port }} --ldap-secondary-url={{ ldap_secondary_host }}:{{ ldap_secondary_port }}  --ldap-ssl=false --ldap-user-class={{ ldap_user_class }} --ldap-user-attr={{ ldap_user_attr }} --ldap-group-class={{ ldap_group_class }} --ldap-group-attr={{ ldap_group_attr }} --ldap-member-attr={{ ldap_member_attr }} --ldap-dn={{ ldap_dn }} --ldap-base-dn={{ ldap_base_dn }} --ldap-manager-dn={{ ldap_manager_dn }} --ldap-manager-password={{ ldap_manager_password }} --ldap-referral=ignore --ldap-bind-anonym=false --ldap-save-settings --ldap-sync-admin-name={{ ambari_admin_user }} --ldap-manager-password={{ ambari_admin_password }} --ldap-sync-username-collisions-behavior=skip --verbose
+      shell: ambari-server setup-ldap --ldap-url={{ ldap_primary_host }}:{{ ldap_primary_port }} --ldap-secondary-url={{ ldap_secondary_host }}:{{ ldap_secondary_port }}  --ldap-ssl=false --ldap-user-class={{ ldap_user_class }} --ldap-user-attr={{ ldap_user_attr }} --ldap-group-class={{ ldap_group_class }} --ldap-group-attr={{ ldap_group_attr }} --ldap-member-attr={{ ldap_member_attr }} --ldap-dn={{ ldap_dn }} --ldap-base-dn={{ ldap_base_dn }} --ldap-manager-dn={{ ldap_bind_dn }} --ldap-manager-password={{ ldap_bind_password }} --ldap-referral=ignore --ldap-bind-anonym=false --ldap-save-settings --ldap-sync-admin-name={{ ambari_admin_user }} --ldap-manager-password={{ ambari_admin_password }} --ldap-sync-username-collisions-behavior=skip --verbose
       when: ambari_major_version <= 2.6
       tags:
         - server

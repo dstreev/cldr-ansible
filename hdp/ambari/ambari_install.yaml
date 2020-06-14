@@ -4,7 +4,7 @@
 # MOVED THE IMAGE
 #- import_playbook:    ../setup/openjdk_install.yaml
 
-- hosts:               hdp
+- hosts:               ambari,ambari_agent
   become:              true
   tasks:
     - name:            Uninstall the Ambari Repo
@@ -43,15 +43,15 @@
         - server
 
 # Required to run db client to init the Database
-- import_playbook:     ambari_mysql_client.yaml
+- import_playbook:     ../../environment/db/mariadb_client.yaml
 
 # Create DB Instance
-- import_playbook:     ambari_mysql_setup.yaml
+- import_playbook:     ambari_mariadb_setup.yaml
 
 # Install JDBC Drivers
-- import_playbook:     jdbc_setup.yaml
+- import_playbook:     ../../environment/db/jdbc_setup.yaml
 
-- hosts:               hdp
+- hosts:               ambari_agent
   become:              true
   tasks:
     - name:            Install Ambari Agents
@@ -64,7 +64,7 @@
 - import_playbook:     fix_agent_ssl.yaml
 
 # Configuration and Start Agents for Manual Registration
-- hosts:               hdp
+- hosts:               ambari_agent
   become:              true
   tasks:
     - name:            Stop Ambari Agents

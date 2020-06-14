@@ -1,0 +1,24 @@
+- hosts:     manager
+  become:    true
+  tasks:
+
+    - name:  Build CM Schema
+      shell: /opt/cloudera/cm/schema/scm_prepare_database.sh -h {{ db_host }} -u {{ db_user }} -p{{ db_password }} {{ db_type }} {{ db_cm_name }} {{ db_user }} {{ db_password }}
+      args:
+        creates: /hadoop/CM_SCHEMA_BUILT
+      tags:
+        - db
+    - name: Create Schema Created Marker File
+      file:
+        path: /hadoop/CM_SCHEMA_BUILT
+        owner: root
+        mode: 0644
+        state: touch
+      tags:
+        - db
+    - name:  Report Manager Database (Create)
+      shell: mysql -h {{ db_host }} -u {{ db_user }} --password={{ db_password }} -e "CREATE DATABASE IF NOT EXISTS {{ db_report_manager_name }}";
+
+    - name:  Report Manager Database (Create)
+      shell: mysql -h {{ db_host }} -u {{ db_user }} --password={{ db_password }} -e "CREATE DATABASE IF NOT EXISTS {{ db_hue_name }}";
+

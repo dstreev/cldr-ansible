@@ -1,0 +1,19 @@
+- hosts: edge_primary
+
+  tasks:
+    - name: Create Tooling Directory
+      file:
+        path: ./cm-transition
+        state: directory
+
+    - name: Get Ranger Migration Script
+      get_url:
+        url:  '{{ ranger_migration_tool_url }}'
+        dest: ./cm-transition/ranger_policy_migration.py
+        mode: 0755
+        force: yes
+
+    - name: Install Required Libs
+      shell:
+        cmd: pip install requests
+

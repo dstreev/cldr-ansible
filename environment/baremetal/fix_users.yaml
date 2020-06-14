@@ -1,0 +1,116 @@
+- hosts: '{{ hosts }}'
+  become: true
+
+  tasks:
+    - name: Fix Hadoop Users
+      file:
+        path: /home/{{ item.user }}
+        recurse: yes
+        owner: '{{ item.user }}'
+        group: '{{ item.group }}'
+        mode: 0770
+      tags:
+        - home
+      with_items:
+        - { user: accumulo, group: hadoop }
+        - { user: activity_analyzer, group: hadoop }
+        - { user: ams, group: hadoop }
+        - { user: atlas, group: hadoop }
+        - { user: ambari-qa, group: hadoop }
+        - { user: druid, group: hadoop }
+        - { user: falcon, group: hadoop }
+        - { user: hdfs, group: hadoop }
+        - { user: hbase, group: hadoop }
+        - { user: hive, group: hadoop }
+        - { user: infra-solr, group: hadoop }
+        - { user: kafka, group: hadoop }
+        - { user: log_search, group: hadoop }
+        - { user: kms, group: kms }
+        - { user: knox, group: knox }
+        - { user: livy, group: livy }
+        - { user: mahout, group: hadoop }
+        - { user: mapred, group: mapred }
+        - { user: nifi, group: hadoop }
+        - { user: nifiregistry, group: hadoop }
+        - { user: oozie, group: hadoop }
+        - { user: registry, group: hadoop }
+        - { user: ranger, group: ranger }
+        - { user: slider, group: hadoop }
+        - { user: storm, group: hadoop }
+        - { user: streamline, group: hadoop }
+        - { user: streamsmsgmgr, group: hadoop }
+        - { user: spark, group: spark }
+        - { user: sqoop, group: hadoop }
+        - { user: superset, group: hadoop }
+        - { user: tez, group: hadoop }
+        - { user: yarn, group: hadoop }
+        - { user: yarn-ats, group: hadoop }
+        - { user: zeppelin, group: zeppelin }
+        - { user: zookeeper, group: hadoop }
+        - { user: arya, group: arya }
+        - { user: anakin, group: anakin }
+        - { user: bammbamm, group: bammbamm }
+        - { user: barney, group: barney }
+        - { user: bedrock, group: bedrock }
+        - { user: betty, group: betty }
+        - { user: cersei, group: cersei }
+        - { user: coruscant, group: coruscant }
+        - { user: daenerys, group: daenerys }
+        - { user: fred, group: fred }
+        - { user: hansolo, group: hansolo }
+        - { user: jonsnow, group: jonsnow }
+        - { user: kingslanding, group: kingslanding }
+        - { user: leia, group: leia }
+        - { user: luke, group: luke }
+        - { user: padme, group: padme }
+        - { user: pebbles, group: pebbles }
+        - { user: sansa, group: sansa }
+        - { user: tatooine, group: tatooine }
+        - { user: tyrion, group: tyrion }
+        - { user: wilma, group: wilma }
+        - { user: winterfell, group: winterfell }
+        - { user: yarn-ats, group: hadoop }
+        - { user: yoda, group: yoda }
+
+    - name: reset user group ids
+      user:
+        name: '{{ item.user }}'
+        group: '{{ item.group }}'
+      tags:
+        - group
+      with_items:
+        - { user: accumulo, group: hadoop }
+        - { user: activity_analyzer, group: hadoop }
+        - { user: ams, group: hadoop }
+        - { user: atlas, group: hadoop }
+        - { user: ambari-qa, group: hadoop }
+        - { user: druid, group: hadoop }
+        - { user: falcon, group: hadoop }
+        - { user: hdfs, group: hadoop }
+        - { user: hbase, group: hadoop }
+        - { user: hive, group: hadoop }
+        - { user: infra-solr, group: hadoop }
+        - { user: kafka, group: hadoop }
+        - { user: log_search, group: hadoop }
+        - { user: kms, group: kms }
+        - { user: knox, group: knox }
+        - { user: livy, group: livy }
+        - { user: mahout, group: hadoop }
+        - { user: mapred, group: mapred }
+        - { user: nifi, group: hadoop }
+        - { user: nifiregistry, group: hadoop }
+        - { user: oozie, group: hadoop }
+        - { user: registry, group: hadoop }
+        - { user: ranger, group: ranger }
+        - { user: slider, group: hadoop }
+        - { user: storm, group: hadoop }
+        - { user: streamline, group: hadoop }
+        - { user: streamsmsgmgr, group: hadoop }
+        - { user: spark, group: spark }
+        - { user: sqoop, group: hadoop }
+        - { user: superset, group: hadoop }
+        - { user: tez, group: hadoop }
+        - { user: yarn, group: hadoop }
+        - { user: yarn-ats, group: hadoop }
+        - { user: zeppelin, group: zeppelin }
+        - { user: zookeeper, group: hadoop }

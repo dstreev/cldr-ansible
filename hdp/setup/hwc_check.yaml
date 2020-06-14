@@ -1,0 +1,19 @@
+- hosts: all
+  become: true
+
+  vars:
+    hwc_version: 1.0.0
+
+  tasks:
+    - name: Check Version of HWC Installed
+      shell: hdp-select status hive_warehouse_connector
+      register: hwc_status
+
+    - name: Check for HWC Connector v. {{ hdp_version }}
+      stat:
+        path: /usr/hdp/{{ hwc_status.stdout.split(" - ")[1] }}/hive_warehouse_connector
+      register: file_details
+
+    - debug:
+        msg: HWC Installed and Selected with v.{{ hwc_status.stdout.split(" - ")[1] }}
+      when: file_details.stat.exists and hwc_status.stdout.split(" - ")[1] != 'None'

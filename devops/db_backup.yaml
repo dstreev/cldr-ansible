@@ -1,0 +1,43 @@
+- hosts:  db_backup_server
+  become: true
+  vars:
+    hosts: db_back_server
+
+  tasks:
+    - name: Create Backup Directory
+      file:
+        path:  '{{ mysql_backup_dir }}/{{ ansible_date_time.iso8601_basic_short }}'
+        state: directory
+      tags:
+        - blueprint
+        - db
+
+    - name:  Backup Databases
+      shell: mysqldump -h {{ db_host }} -u {{ db_user }} --password={{ db_password }} {{ item.db }} | gzip -c > {{ mysql_backup_dir }}/{{ ansible_date_time.iso8601_basic_short }}/{{ item.db }}.sql.gz
+      with_items:
+        - { db: '{{ db_ambari_name }}' }
+        - { db: '{{ db_hive_name }}' }
+        - { db: '{{ db_oozie_name }}' }
+        - { db: '{{ db_ranger_name }}' }
+        - { db: '{{ db_ranger_kms_name }}' }
+        - { db: '{{ db_registry_name }}' }
+        - { db: '{{ db_druid_name }}' }
+        - { db: '{{ db_cm_name }}' }
+        - { db: '{{ db_report_manager_name }}' }
+        - { db: '{{ db_hue_name }}' }
+      tags:
+        - db
+
+    - name: Get Ambari Blueprint
+      uri:
+        url:              'http://{{ ambari_server }}:{{ ambari_server_port }}/api/v1/clusters/{{ ambari_cluster_name }}?format=blueprint_with_hosts'
+        method:           GET
+        force_basic_auth: yes
+        headers:
+          X-Requested-By: Ansible-Ambari
+        dest:             '{{ mysql_backup_dir }}/{{ ansible_date_time.iso8601_basic_short }}/{{ ambari_cluster_name }}-blueprint.json'
+        user:             '{{ ambari_admin_user }}'
+        password:         '{{ ambari_admin_password }}'
+        return_content:   yes
+      tags:
+        - blueprint

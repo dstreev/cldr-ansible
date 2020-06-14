@@ -1,0 +1,25 @@
+- hosts:               hdp
+  become:              true
+  vars:
+    hwc_version: 1.0.0
+
+  tasks:
+    - name: Check Version of HWC Installed
+      shell: hdp-select status hive_warehouse_connector
+      register: hwc_status
+
+    - debug:
+        msg: HWC Installed and Selected with v.{{ hwc_status.stdout.split(" - ")[1] }}
+      when: hwc_status.stdout.split(" - ")[1] != 'None'
+      
+
+    - name:   Establish General Symlinks for HWC Libs
+      file:
+        src: /usr/hdp/{{ hwc_status.stdout.split(" - ")[1] }}/hive_warehouse_connector/{{ item.base }}-{{ hwc_version }}.{{ hwc_status.stdout.split(" - ")[1] }}.{{ item.ext }}
+        dest: /usr/hdp/{{ hwc_status.stdout.split(" - ")[1] }}/hive_warehouse_connector/{{ item.base }}.{{ item.ext }}
+        state: link
+      with_items:
+        - { base: 'pyspark_hwc', ext: 'zip' }
+        - { base: 'hive-warehouse-connector-assembly', ext: 'jar' }
+      when: hwc_status.stdout.split(" - ")[1] != 'None'
+

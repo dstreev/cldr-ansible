@@ -1,0 +1,33 @@
+- hosts: localhost
+
+  tasks:
+    - name: Clean up old installation
+      file:
+        path:  '{{ am2cm_tool_location }}'
+        state: absent
+
+    - name: Git Clone Repo
+      git:
+        repo:    '{{ am2cm_git_repo }}'
+        dest:    '{{ am2cm_tool_location }}'
+        version: '{{ am2cm_branch }}'
+
+    - name: Build AM2CM
+      shell:
+        cmd: mvn clean install package
+        chdir: '{{ am2cm_tool_location }}'
+
+- hosts: repo
+  become: true
+
+  tasks:
+    - name: Ensure am2cm repo path
+      file:
+        path: '{{ am2cm_local_repo_path }}'
+        state: directory
+
+    - name: Publish AM2CM Tool to my Repo
+      copy:
+        src: '{{ am2cm_tool_location }}/target/am2cm-{{ am2cm_version }}.tar.gz'
+        dest: '{{ am2cm_local_repo_path }}/'
+        backup: yes

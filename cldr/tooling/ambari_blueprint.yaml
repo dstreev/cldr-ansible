@@ -1,0 +1,31 @@
+- hosts: edge_primary
+
+  tasks:
+    - name: AM2CM Conversion Directory
+      file:
+        path: am2cm-conversion
+        state: directory
+      tags:
+        - build
+        - submit
+    - name: Refresh Files
+      file:
+        path: './am2cm-conversion/{{ item.file }}'
+        state: absent
+      with_items:
+        - { file: '{{ ambari_cluster_name }}-blueprint.json' }
+
+    - name: Get Ambari Blueprint
+      uri:
+        url: 'http://{{ ambari_server }}:{{ ambari_server_port }}/api/v1/clusters/{{ ambari_cluster_name }}?format=blueprint_with_hosts'
+        method: GET
+        force_basic_auth: yes
+        headers:
+          X-Requested-By: Ansible-Ambari
+        dest: './am2cm-conversion/{{ ambari_cluster_name }}-blueprint.json'
+        user: '{{ ambari_admin_user }}'
+        password: '{{ ambari_admin_password }}'
+        return_content: yes
+      tags:
+        - build
+        - submit

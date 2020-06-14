@@ -1,0 +1,62 @@
+# Install this to support the construction of the DB and Schema,
+# after Ambari has been installed.
+- hosts:              db2
+  become:             true
+  tasks:
+    - name: Exclude PostgreSQL from Base Repos
+      lineinfile:
+        path: /etc/yum.repos.d/CentOS-Base.repo
+        insertafter: \[base\]
+        line: exclude=postgresql*
+        owner: root
+        group: root
+    - name: Exclude PostgreSQL from Base Repos
+      lineinfile:
+        path: /etc/yum.repos.d/CentOS-Base.repo
+        insertafter: \[updates\]
+        line: exclude=postgresql*
+        owner: root
+        group: root
+
+    - name:           Add PostgreSQL repo
+      yum:
+        name: yum install https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+        state: present
+
+    - name: Install PostgreSQL Server
+      yum:
+        name: postgresql10-server
+        state: latest
+
+    - name: Install PostgreSQL Client
+      yum:
+        name: postgresql10
+        state: latest
+
+- hosts:              db_client
+  become:             true
+  tasks:
+    - name: Exclude PostgreSQL from Base Repos
+      lineinfile:
+        path: /etc/yum.repos.d/CentOS-Base.repo
+        insertafter: \[base\]
+        line: exclude=postgresql*
+        owner: root
+        group: root
+    - name: Exclude PostgreSQL from Base Repos
+      lineinfile:
+        path: /etc/yum.repos.d/CentOS-Base.repo
+        insertafter: \[updates\]
+        line: exclude=postgresql*
+        owner: root
+        group: root
+
+    - name:           Add PostgreSQL repo
+      yum:
+        name: yum install https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+        state: present
+
+    - name: Install PostgreSQL Client
+      yum:
+        name: postgresql10
+        state: latest

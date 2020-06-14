@@ -6,7 +6,7 @@
       tags:
         - server
 
-- hosts: hdp
+- hosts: ambari_agent
   become: true
   tasks:
     - name: Stop Ambari Agents

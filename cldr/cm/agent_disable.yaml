@@ -1,0 +1,11 @@
+- hosts: agent
+  become: true
+
+  tasks:
+
+    # This alone wasn't capturing all configs to stop and disable
+    - name: Stop and Disable CM Agent
+      service:
+        name: cloudera-scm-agent
+        enabled: no
+        state: stopped

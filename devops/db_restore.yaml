@@ -1,0 +1,15 @@
+- hosts: db_backup_server
+  become: true
+
+  tasks:
+    - name: Drop Database
+      shell: mysql -h {{ db_host }} -u {{ db_user }} --password={{ db_password }} -e "DROP DATABASE IF EXISTS {{ target_db }}";
+
+    - name: Restore Databases (Create)
+      shell: mysql -h {{ db_host }} -u {{ db_user }} --password={{ db_password }} -e "CREATE DATABASE IF NOT EXISTS {{ target_db }}";
+
+    - name: Unpack DB
+      shell: gunzip < {{ mysql_backup_dir }}/{{ restore_dir }}/{{ target_db }}.sql.gz > {{ mysql_backup_dir }}/{{ restore_dir }}/{{ target_db }}.sql
+
+    - name: Restore Databases (Load)
+      shell: mysql -h {{ db_host }} -u {{ db_user }} --password={{ db_password }} {{ target_db }} < {{ mysql_backup_dir }}/{{ restore_dir }}/{{ target_db }}.sql

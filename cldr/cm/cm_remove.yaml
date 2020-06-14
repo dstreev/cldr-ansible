@@ -1,0 +1,144 @@
+- import_playbook:    ../../devops/db_backup.yaml
+
+- hosts:               manager
+  become:              true
+
+  tasks:
+    - name:  Stop Cloudera SCM Server
+      service:
+        name:    cloudera-scm-server
+        enabled: no
+        state:   stopped
+      ignore_errors: yes
+      tags:
+        - server
+    - name: Stop Cloudera SCM SupervisorD
+      service:
+        name:    cloudera-scm-supervisord
+        enabled: no
+        state:   stopped
+      ignore_errors: yes
+      tags:
+        - server
+
+    - name:            Remove Clouder Manager Server
+      yum:
+        name:          cloudera-manager-server
+        state:         absent
+      ignore_errors: yes
+      tags:
+        - server
+    - name:            Remove Clouder Manager Daemons
+      yum:
+        name:          cloudera-manager-daemons
+        state:         absent
+      ignore_errors: yes
+      tags:
+        - server
+
+    - name:     /var/lib/cloudera-scm-server directory Clean up.
+      file:
+        path:  /var/lib/cloudera-scm-server
+        state: absent
+      ignore_errors: yes
+      tags:
+        - server
+
+    - name:     Clean up Ranger Policy Caches
+      file:
+        path:  /var/lib/ranger
+        state: absent
+      ignore_errors: yes
+      tags:
+        - server
+
+    - name:     /var/run/cloudera-scm-server directory Clean up.
+      file:
+        path:  /var/run/cloudera-scm-server
+        state: absent
+      ignore_errors: yes
+      tags:
+        - server
+
+    - name: /etc/cloudera-scm-server directory Clean up.
+      file:
+        path:  /etc/cloudera-scm-server
+        state: absent
+      ignore_errors: yes
+      tags:
+        - server
+
+- import_playbook: db_drop.yaml
+
+- hosts:               agent
+  become:              true
+  tasks:
+    - name:  Stop Cloudera SCM Agent
+      service:
+        name:    cloudera-scm-agent
+        enabled: no
+        state:   stopped
+      ignore_errors: yes
+      tags:
+        - agent
+
+    - name:  Stop Cloudera SCM Supervisord
+      service:
+        name:    cloudera-scm-supervisord
+        enabled: no
+        state:   stopped
+      ignore_errors: yes
+      tags:
+        - agent
+
+    - name:            Remove Clouder Manager Daemons
+      yum:
+        name:          cloudera-manager-daemons
+        state:         absent
+      ignore_errors: yes
+      tags:
+        - agent
+
+    - name:            Remove Cloudera Manager Agents
+      yum:
+        name:          cloudera-manager-agent
+        state:         absent
+      ignore_errors: yes
+      tags:
+        - agent
+
+    - name:            /var/lib/cloudera-scm-agent directory Clean up.
+      file:
+        path:  /var/lib/cloudera-scm-agent
+        state: absent
+      ignore_errors: yes
+      tags:
+        - agent
+        - dirs
+
+    - name: /var/run/cloudera-scm-agent directory Clean up.
+      file:
+        path:  /var/run/cloudera-scm-agent
+        force: yes
+        state: absent
+      ignore_errors: yes
+      tags:
+        - agent
+        - dirs
+
+    - name: /etc/cloudera-scm-agent directory Clean up.
+      file:
+        path:  /etc/cloudera-scm-agent
+        state: absent
+      ignore_errors: yes
+      tags:
+        - agent
+        - dirs
+
+    - name: Remove Cloudera Opt's
+      file:
+        path:  /opt/cloudera
+        state: absent
+      ignore_errors: yes
+      tags:
+        - dirs

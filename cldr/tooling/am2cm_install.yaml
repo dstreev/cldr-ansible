@@ -1,0 +1,26 @@
+- hosts: edge_primary
+
+  tasks:
+    - name: Get AM2CM Tool
+      get_url:
+        url: '{{ am2cm_url }}/{{ am2cm_archive }}'
+        dest: .
+        force: yes
+
+    - name: Clean up old installation
+      file:
+        path: ./{{ am2cm_archive.split(".")[0] }}
+        state: absent
+
+#    - name: Decompress Tool
+#      unarchive:
+#        src: './{{ am2cm_archive }}'
+#        dest: ./am2cm
+#        remote_src: yes
+    - name: Decompress
+      shell: tar zxf {{ am2cm_archive }}
+
+    - name: Make Am2CM Script Runable
+      file:
+        path: ./{{ am2cm_archive.split(".tar")[0] }}/am2cm.sh
+        mode: 0755

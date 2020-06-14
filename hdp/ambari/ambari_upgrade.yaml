@@ -1,4 +1,4 @@
-- hosts:               hdp
+- hosts:               ambari_agent,ambari
   become:              true
   tasks:
 
@@ -38,7 +38,7 @@
         - agent
 
 # Install/Update JDBC Drivers
-- import_playbook:     jdbc_setup.yaml
+- import_playbook:     ../../environment/db/jdbc_setup.yaml
 
 - hosts:               ambari
   become:              true
@@ -68,7 +68,7 @@
 #- import_playbook:    fix_agent_ssl.yaml
 
 # Configuration and Start Agents for Manual Registration
-- hosts:               hdp
+- hosts:               ambari_agent
   become:              true
   tasks:
     - name:            Reset Ambari Agents

@@ -1,0 +1,33 @@
+- hosts: agent
+  become: true
+
+  vars_prompt:
+    - name: namespace_saved
+      prompt: "Save HDFS Namespace. (y) to continue"
+    - name: services_stopped
+      prompt: "Go into Ambari and Stop ALL services. (y) to continue"
+
+  tasks:
+
+    # This alone wasn't capturing all configs to stop and disable
+    - name: Stop and Disable Ambari Agent
+      service:
+        name: ambari-agent
+        enabled: no
+        state: stopped
+      when:
+        - namespace_saved == 'y' and services_stopped == 'y'
+
+    - name: Stop Ambari
+      shell: ambari-agent stop
+      when:
+        - namespace_saved == 'y' and services_stopped == 'y'
+
+    - name: Disable Ambari
+      shell: systemctl disable ambari-agent
+      when:
+        - namespace_saved == 'y' and services_stopped == 'y'
+
+    - debug: msg="Need to complete above request and try again. Namespace Saved - ({{ namespace_saved}}) and Services Stopped - ({{ services_stopped }})"
+      when:
+        - namespace_saved != 'y' or services_stopped != 'y'

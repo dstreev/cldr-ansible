@@ -1,0 +1,18 @@
+- hosts:               hdp
+  become:              true
+  vars:
+    hwc_version: 1.0.0
+
+  tasks:
+
+    - name:            Install / Upgrade HWC Libraries
+      yum:
+        name:          hive_warehouse_connector
+        state:         latest
+
+    - name: Get HDP Versions
+      shell: hdp-select versions
+      register: hdp_versions
+
+    - debug:
+        var: hdp_versions

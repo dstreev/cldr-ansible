@@ -1,0 +1,64 @@
+- hosts:  all
+  become: true
+
+  tasks:
+    - name:            Uninstall the Cloudera Manager Repo
+      yum_repository:
+        name:          cldr
+        description:   Install the CM Repo from our Local Repo Server.
+        state:         absent
+        baseurl:       '{{ cm_repo }}'
+        repo_gpgcheck: no
+        gpgcheck:      no
+      tags:
+        - agent
+        - server
+    - name:            Uninstall the Cloudera Manager Repo
+      yum_repository:
+        name:          cloudera-manager
+        description:   Install the CM Repo from our Local Repo Server.
+        state:         absent
+        baseurl:       '{{ cm_repo }}'
+        repo_gpgcheck: no
+        gpgcheck:      no
+      tags:
+        - agent
+        - server
+
+- hosts:  manager
+  become: true
+
+  tasks:
+    - name:            Install the Cloudera Manager Repo
+      yum_repository:
+        name:          cloudera-manager
+        description:   Cloudera Manager {{ cm_cluster_full_version }}
+        state:         present
+        baseurl:       '{{ cm_repo }}'
+        gpgkey:        '{{ cm_repo_gpg }}'
+        username:      '{{ cdp_repo_username }}'
+        password:      '{{ cdp_repo_password }}'
+        repo_gpgcheck: yes
+        gpgcheck:      yes
+      when:
+        - local_repo == False
+      tags:
+        - agent
+        - server
+        - repo
+
+    - name:            Install the Cloudera Manager Repo
+      yum_repository:
+        name:          cloudera-manager
+        description:   Cloudera Manager {{ cm_cluster_full_version }}
+        state:         present
+        baseurl:       '{{ cm_local_repo }}'
+        repo_gpgcheck: no
+        gpgcheck:      no
+      when:
+        - local_repo == True
+      tags:
+        - agent
+        - server
+        - repo
+

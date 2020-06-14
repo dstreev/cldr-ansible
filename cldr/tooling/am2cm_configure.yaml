@@ -1,0 +1,34 @@
+- hosts: edge_primary
+
+  tasks:
+    - name: Set user-settings
+      lineinfile:
+        path: './{{ am2cm_archive.split(".tar")[0] }}/conf/user-settings.ini'
+        regexp: '{{ item.regexp }}'
+        line: '{{ item.line }}'
+      with_items:
+        - { regexp: '^parcels.0.version', line: 'parcels.0.version={{ parcel_version }}' }
+        - { regexp: '^parcels.0.clusterRef.clusterName', line: 'parcels.0.clusterRef.clusterName={{ cm_cluster_name }}'}
+        - { regexp: '^parcels.0.clusterRef.displayName', line: 'parcels.0.clusterRef.displayName={{ cm_cluster_display_name }}'}
+        - { regexp: '^cluster.name', line: 'cluster.name={{ cm_cluster_name }}'}
+        - { regexp: '^cluster.displayname', line: 'cluster.displayname={{ cm_cluster_display_name }}'}
+        - { regexp: '^cluster.fullversion', line: 'cluster.fullversion={{ cm_cluster_full_version }}'}
+        - { regexp: '^SERVICE_OOZIE_oozie_database_password', line: 'SERVICE_OOZIE_oozie_database_password={{ db_password }}' }
+        - { regexp: '^SERVICE_HIVE_hive_metastore_database_password', line: 'SERVICE_HIVE_hive_metastore_database_password={{ db_password }}' }
+        - { regexp: '^SERVICE_KNOX_gateway_master_secret', line: 'SERVICE_KNOX_gateway_master_secret={{ db_password }}' }
+        - { regexp: '^SERVICE_HIVE_hive_jdbc_url_override', line: 'SERVICE_HIVE_hive_jdbc_url_override=jdbc:{{ db_type }}://{{ db_host }}:{{ db_port }}/{{ db_hive_name }}' }
+        - { regexp: '^SERVICE_OOZIE_oozie_service_JPAService_jdbc_url', line: 'SERVICE_OOZIE_oozie_service_JPAService_jdbc_url=jdbc:{{ db_type }}://{{ db_host }}:{{ db_port }}/{{ db_oozie_name }}' }
+      tags:
+        - build
+        - submit
+
+    - name: Tweak Custom Mappings
+      lineinfile:
+        path: './{{ am2cm_archive.split(".tar")[0] }}/conf/cm-config-mapping-custom.ini'
+        regexp: '{{ item.regexp }}'
+        line: '{{ item.line }}'
+      with_items:
+        - { regexp: '^yarn-hierarchy', line: '#yarn-hierarchy=yarn.nodemanager.linux-container-executor.cgroups.hierarchy' }
+      tags:
+        - build
+        - submit

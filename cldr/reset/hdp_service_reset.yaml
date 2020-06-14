@@ -1,0 +1,35 @@
+- import_playbook:     zookeeper_reset.yaml
+- import_playbook:     kafka_reset.yaml
+- import_playbook:     hdp_env_reset.yaml
+
+- hosts: edge_primary
+  become: yes
+  become_user: hdfs
+
+  vars_prompt:
+    - name:   zk_started
+      prompt: "Start the Zookeeper Service, y to continue"
+
+  tasks:
+    - name:  Remove Hadoop HA ZNode
+      shell: zookeeper-client -server {{ zookeeper_server }} deleteall /hadoop-ha
+
+- hosts: namenode
+  become: yes
+  become_user: hdfs
+  tasks:
+    - name:  Format ZKFC
+      shell: hdfs zkfc -formatZK
+
+- hosts: all
+  become: yes
+
+  tasks:
+    - name: Clean up yarn directories
+      file:
+        path: '{{ item.path }}'
+        state: absent
+      ignore_errors: yes
+      with_items:
+        - { path: '/hadoop/yarn/local' }
+        - { path: '/hadoop/yarn/log' }

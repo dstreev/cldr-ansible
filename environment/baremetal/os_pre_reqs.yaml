@@ -26,7 +26,6 @@
         - passwd
         - ntp
         - lsof
-        - ansible
         - nscd
         - bind-utils
         - java-1.8.0-openjdk
@@ -37,29 +36,98 @@
         - sudo
         - tmux
         - bash-completion
+      tags:
+        - utils
 
     # - name:      Start nscd
     #   shell:     nscd
 
     - name:      Set Swappiness
       shell:     sysctl vm.swappiness=1
+      tags:
+        - env
+
+    - name:
+      file:
+        path: /etc/sysctl.d/cdp-settings.conf
+        state: touch
+        owner: root
+        group: root
+        mode: 0744
+
+    - name:      Persist Swappiness
+      lineinfile:
+        path: /etc/sysctl.d/cdp-settings.conf
+        regex: '^vm.swappiness'
+        line: vm.swappiness=1
+      tags:
+        - env
 
     - name:      Set somaxconn
       shell:     sysctl -w net.core.somaxconn=16384
+      tags:
+        - env
+
+    - name:      Persist somaxconn
+      lineinfile:
+        path: /etc/sysctl.d/cdp-settings.conf
+        regex: '^net.core.somaxconn'
+        line: net.core.somaxconn=16384
+      tags:
+        - env
 
     - name:      Disable Firewalls
       systemd:
         name:    firewalld
         enabled: no
+      tags:
+        - env
 
     - name:      Stop Firewalls
       systemd:
         name:    firewalld
         state:   stopped
+      tags:
+        - env
 
     - name:      Disable SELINUX
       selinux:
         state:   disabled
+      tags:
+        - env
+
+    - name: Disable THP DeFrag
+      shell: echo never > /sys/kernel/mm/transparent_hugepage/defrag
+      tags:
+        - env
+
+    - name: Disable THP
+      shell: echo never > /sys/kernel/mm/transparent_hugepage/enabled
+      tags:
+        - env
+
+    # Will keep activating THP, so disable it.
+    - name: Turn off tuned
+      service:
+        name: tuned
+        state: stopped
+        enabled: no
+
+    - name: Persist THP Defrag Disabled
+      lineinfile:
+        path: /etc/rc.local
+        regex: '\/sys\/kernel\/mm\/transparent_hugepage\/defrag'
+        line: echo never > /sys/kernel/mm/transparent_hugepage/defrag
+      tags:
+        - env
+
+    - name: Persist THP Disabled
+      lineinfile:
+        path: /etc/rc.local
+        regex: '\/sys\/kernel\/mm\/transparent_hugepage\/enabled'
+        line: echo never > /sys/kernel/mm/transparent_hugepage/enabled
+      tags:
+        - env
 
     # - name:    Disable THP
 

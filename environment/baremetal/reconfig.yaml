@@ -1,0 +1,22 @@
+- hosts: '{{ host }}'
+
+  tasks:
+    - name: Set IP Address
+      lineinfile:
+        path: /etc/sysconfig/network-scripts/ifcfg-eno1
+        regex: '^IPADDR'
+        line: IPADDR="{{ new_ip }}"
+        owner: root
+        group: root
+#    - name: Set DNS
+#      lineinfile:
+#        path: /etc/sysconfig/network-scripts/ifcfg-eno1
+#        regex: '^DNS1'
+#        line: DNS1="{{ new_dns }}"
+#        owner: root
+#        group: root
+    - name: Set Hostname
+      hostname:
+        name: '{{ new_hostname }}'
+    - name: Reboot Host
+      reboot:

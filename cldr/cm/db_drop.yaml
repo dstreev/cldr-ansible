@@ -1,0 +1,18 @@
+- hosts:     manager
+  become:    true
+  tasks:
+
+    - name: Remove marker file for schema creation
+      file:
+        path:  /hadoop/CM_SCHEMA_BUILT
+        state: absent
+      tags:
+        - server
+
+    - name:  Report Manager Database (Create)
+      shell: mysql -h {{ db_host }} -u {{ db_user }} --password={{ db_password }} -e "DROP DATABASE IF EXISTS {{ item.db }}";
+      with_items:
+        - { db: '{{ db_cm_name }}' }
+        - { db: '{{ db_report_manager_name }}' }
+
+

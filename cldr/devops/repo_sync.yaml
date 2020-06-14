@@ -1,0 +1,26 @@
+- hosts: repo
+  become: true
+
+  tasks:
+
+    - name: Create target directories
+      file:
+        path: '{{ item }}'
+        state: directory
+      with_items:
+        - '{{ repo_base_dir }}/cdh7/{{ cdh_version}}/parcels'
+        - '{{ repo_base_dir }}/cm7/{{ cm_cluster_full_version }}/redhat7'
+
+    - name: Get CDP Parcels
+      get_url:
+        url: '{{ item.link }}'
+        dest: '{{ item.dest }}'
+        username: '{{ cdp_repo_username }}'
+        password: '{{ cdp_repo_password }}'
+        force: yes
+      with_items:
+        - { link: '{{ cm_tarball }}', dest: '{{ repo_base_dir }}/cm7/{{ cm_cluster_full_version }}/redhat7' }
+        - { link: '{{ cdh_parcel }}', dest: '{{ repo_base_dir }}/cdh7/{{ cdh_version}}/parcels' }
+        - { link: '{{ cdh_parcel }}.sha256', dest: '{{ repo_base_dir }}/cdh7/{{ cdh_version}}/parcels' }
+        - { link: '{{ cdh_parcel_manifest }}', dest: '{{ repo_base_dir }}/cdh7/{{ cdh_version }}/parcels' }
+

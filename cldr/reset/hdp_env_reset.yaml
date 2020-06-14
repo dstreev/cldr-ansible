@@ -1,0 +1,39 @@
+- hosts: agent
+  become: true
+
+  tasks:
+    - name:  Reset Links for HDP
+      shell: hdp-select set all {{ hdp_version }}
+      ignore_errors: yes
+
+    - name: Configuration Reset
+      file:
+        src: '{{ item.source }}'
+        dest: '{{ item.destination }}'
+        state: link
+      ignore_errors: yes
+      with_items:
+        - { source: '/usr/hdp/current/hadoop-client/conf', destination: '/etc/hadoop/conf' }
+        - { source: '/usr/hdp/current/spark2-client/conf', destination: '/etc/spark2/conf' }
+        - { source: '/usr/hdp/current/tez-client/conf', destination: '/etc/tez/conf' }
+        - { source: '/usr/hdp/current/zeppelin-server/conf', destination: '/etc/zeppelin/conf' }
+        - { source: '/usr/hdp/current/zookeeper-client/conf', destination: '/etc/zookeeper/conf' }
+        - { source: '/usr/hdp/current/hive-client/conf', destination: '/etc/hive/conf' }
+        - { source: '/usr/hdp/current/hbase-client/conf', destination: '/etc/hbase/conf' }
+        - { source: '/usr/hdp/current/atlas-client/conf', destination: '/etc/atlas/conf' }
+        - { source: '/usr/hdp/current/druid-client/conf', destination: '/etc/druid/conf' }
+        - { source: '/usr/hdp/current/ranger-admin/conf', destination: '/etc/ranger/admin/conf' }
+        - { source: '/usr/hdp/current/ranger-tagsync/conf', destination: '/etc/ranger/tagsync/conf' }
+        - { source: '/usr/hdp/current/ranger-usersync/conf', destination: '/etc/ranger/usersync/conf' }
+        - { source: '/usr/hdp/current/kafka-broker/conf', destination: '/etc/kafka/conf' }
+      tags:
+        - conf
+
+    - name: Clean up yarn directories
+      file:
+        path: '{{ item.path }}'
+        state: absent
+      ignore_errors: yes
+      with_items:
+        - { path: '/hadoop/yarn/local' }
+        - { path: '/hadoop/yarn/log' }

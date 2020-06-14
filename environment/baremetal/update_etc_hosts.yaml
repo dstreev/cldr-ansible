@@ -1,4 +1,4 @@
-- hosts: os
+- hosts: '{{ hosts }}'
   become: true
 
   tasks:

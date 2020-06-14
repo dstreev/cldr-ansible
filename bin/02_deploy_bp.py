@@ -78,7 +78,7 @@ if (os.path.isfile(cfgPath)):
     subprocess.call(['ansible-playbook', '-i', '../environment/hosts/'+str(instance)+'.yaml','--extra-vars','@../config/'+str(instance)+'.yaml', '../hdp/setup/hdp_os_prep.yaml'], stderr=subprocess.STDOUT)
 
     print('Edge Node Config')
-    subprocess.call(['ansible-playbook', '-i', '../environment/hosts/'+str(instance)+'.yaml','--extra-vars','@../config/'+str(instance)+'.yaml', '../hdp/setup/edge_node_config.yaml'], stderr=subprocess.STDOUT)
+    subprocess.call(['ansible-playbook', '-i', '../environment/hosts/'+str(instance)+'.yaml','--extra-vars','@../config/'+str(instance)+'.yaml', '../hdp/setup/hadoopcli.yaml'], stderr=subprocess.STDOUT)
 
     print('Ambari Install Playbook')
     subprocess.call(['ansible-playbook', '-i', '../environment/hosts/'+str(instance)+'.yaml','--extra-vars','@../config/'+str(instance)+'.yaml', '../hdp/ambari/ambari_install.yaml'], stderr=subprocess.STDOUT)

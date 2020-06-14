@@ -1,4 +1,4 @@
-- hosts: edge
+- hosts: '{{ host }}'
   become: true
 
   tasks:

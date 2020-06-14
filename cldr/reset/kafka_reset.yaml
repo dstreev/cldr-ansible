@@ -1,0 +1,26 @@
+- hosts:  kafka
+  become: true
+
+  tasks:
+    - find:
+        paths:    '{{ data_root_dir }}/kafka-logs'
+        patterns: 'meta.properties'
+      ignore_errors: yes
+      register: find_results
+
+    - debug: msg='{{ find_results }}'
+
+    - name:       Backup Kafka meta.properties
+      copy:
+        src:        "{{ item['path'] }}"
+        dest:       '{{ data_root_dir }}/kafka-logs/meta.properties.{{ ansible_date_time.iso8601_basic_short }}'
+        remote_src: yes
+      ignore_errors: yes
+      with_items: "{{ find_results['files'] }}"
+
+    - name:       Delete meta.properties
+      file:
+        path:  '{{ data_root_dir }}/kafka-logs/meta.properties'
+        state: absent
+      ignore_errors: yes
+      with_items: "{{ find_results['files'] }}"

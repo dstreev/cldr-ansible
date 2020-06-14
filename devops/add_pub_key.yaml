@@ -1,17 +1,27 @@
-- hosts: os
+- hosts: all
   become: true
 
   tasks:
-    - name: Gen Key
-      shell: ssh-keygen -N "" -f /root/.ssh/test2
-      
+#    - name: Gen Key
+#      shell: ssh-keygen -N "" -f /root/.ssh/test2
+
+    - name: Gen File
+      file:
+        path: /root/.ssh
+        state: directory
+        owner: root
+        group: root
+        recurse: yes
+        mode: 0700
+
     - name: Gen File
       file:
         path: /root/.ssh/authorized_keys
         state: touch
         owner: root
+        group: root
         mode: 0644
-        
+
     - name: Add Pub Key to Root
       lineinfile:
         path: /root/.ssh/authorized_keys

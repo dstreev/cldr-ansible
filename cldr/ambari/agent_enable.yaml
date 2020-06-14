@@ -1,0 +1,11 @@
+- hosts: agent
+  become: true
+
+  tasks:
+
+    - name: Enable and Start Ambari Agent
+      service:
+        name: ambari-agent
+        enabled: yes
+        state: started
+

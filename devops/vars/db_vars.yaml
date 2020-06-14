@@ -1,0 +1,3 @@
+vars:
+
+  hosts: db_backup_server

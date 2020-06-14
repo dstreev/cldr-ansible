@@ -1,0 +1,16 @@
+- hosts:  zk
+  become: true
+
+  tasks:
+    - name: Backup ZooKeeper Node Id (myid)
+      copy:
+        src:        '{{ data_root_dir }}/zookeeper/myid'
+        dest:       '{{ data_root_dir }}/zookeeper/myid.{{ ansible_date_time.iso8601_basic_short }}'
+        remote_src: yes
+      ignore_errors: yes
+
+    - name: Delete Zookeeper Node Id (myid)
+      file:
+        path:  '{{ data_root_dir }}/zookeeper/myid'
+        state: absent
+      ignore_errors: yes

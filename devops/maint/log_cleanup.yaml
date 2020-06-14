@@ -1,6 +1,6 @@
 # Goal here is to remove logs older than 'x' days.
 
-- hosts: hdp
+- hosts: all
   become: true
   vars:
     days_old: 5

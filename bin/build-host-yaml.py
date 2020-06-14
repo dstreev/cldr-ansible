@@ -27,7 +27,7 @@ cfg_yaml_file_ref = os.environ['HWX_CFG_DIR']+'/config/'+str(instance)+'.yaml'
 print (instance)
 # cfgPath = '../config/' + str(instance) + '.yaml'
 if (os.path.isfile(cfg_yaml_file_ref)):
-    cfgYaml = yaml.load(open(cfg_yaml_file_ref))
+    cfgYaml = yaml.load(open(cfg_yaml_file_ref), Loader=yaml.FullLoader)
     # print(cfgYaml)
     # Environment Set which location
     deploy_type = cfgYaml["deploy_type"]

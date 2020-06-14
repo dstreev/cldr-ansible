@@ -1,0 +1,9 @@
+- hosts: manager
+  become: true
+
+  tasks:
+    - name: Enable/Start Cloudera Manager
+      service:
+        name: cloudera-scm-server
+        state: started
+        enabled: yes

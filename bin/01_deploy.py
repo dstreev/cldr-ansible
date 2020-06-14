@@ -95,7 +95,7 @@ class Deployment(object):
 
         if ( env_type == 'hdp' ):
             print('Edge Node Config')
-            subprocess.call(['ansible-playbook', '-i', host_file,'--extra-vars','@'+cfg_file, '../hdp/setup/edge_node_config.yaml', '-vvv'], stderr=subprocess.STDOUT)
+            subprocess.call(['ansible-playbook', '-i', host_file,'--extra-vars','@'+cfg_file, '../hdp/setup/hadoopcli.yaml', '-vvv'], stderr=subprocess.STDOUT)
 
             print('Ambari Install Playbook')
             subprocess.call(['ansible-playbook', '-i', host_file,'--extra-vars','@'+cfg_file, '../hdp/ambari/ambari_install.yaml'], stderr=subprocess.STDOUT)
@@ -134,7 +134,7 @@ class Deployment(object):
         # subprocess.call(['ansible-playbook', '-i', host_file,'--extra-vars','@'+cfg_file, '../environment/baremetal/local_hwx_users.yaml'], stderr=subprocess.STDOUT)
 
         print('Edge Node Config')
-        subprocess.call(['ansible-playbook', '-i', host_file,'--extra-vars','@'+cfg_file, '../hdp/setup/edge_node_config.yaml'], stderr=subprocess.STDOUT)
+        subprocess.call(['ansible-playbook', '-i', host_file,'--extra-vars','@'+cfg_file, '../hdp/setup/hadoopcli.yaml'], stderr=subprocess.STDOUT)
 
         print('Ambari Install Playbook')
         subprocess.call(['ansible-playbook', '-i', host_file,'--extra-vars','@'+cfg_file, '../hdp/ambari/ambari_install.yaml'], stderr=subprocess.STDOUT)
