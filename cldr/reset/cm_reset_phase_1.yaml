@@ -1,3 +1,0 @@
-- import_playbook: kafka_reset.yaml
-
-- import_playbook: zookeeper_reset.yaml
