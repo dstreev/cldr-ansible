@@ -22,5 +22,18 @@ function color_my_prompt {
 
 color_my_prompt
 
-export HWX_CFG_DIR=$HOME/hwx-configs
-export ANSIBLE_INVENTORY=$HOME/bin/ansible_hosts.yaml
+# Test for Interactive mode
+test -t 0
+if [ $? -eq 0 ]
+then
+    # interactive
+    if [ -d "$HOME/.bash.d" ]
+    then
+        for i in `ls $HOME/.bash.d`
+        do
+            # Echo to STD_ERR.  STD_OUT will cause SCP to fail if run in non-iteractive.
+            echo "-> Initializing: ${i}" >&2
+            . $HOME/.bash.d/$i
+        done
+    fi
+fi

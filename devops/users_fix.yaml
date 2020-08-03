@@ -27,6 +27,8 @@
         - { user: 'impala' }
         - { user: 'kafka' }
         - { user: 'hive' }
+        - { user: 'streamsmsgmgr' }
+        - { user: 'streamsrepmgr' }
     - name:
       lineinfile:
         path: /etc/group
@@ -43,6 +45,8 @@
         - { group: 'impala' }
         - { group: 'kafka' }
         - { group: 'hive' }
+        - { group: 'streamsmsgmgr' }
+        - { group: 'streamsrepmgr' }
 
     - name: Reset File permissions
       file:

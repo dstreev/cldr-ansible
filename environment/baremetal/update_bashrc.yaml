@@ -2,7 +2,7 @@
   become: true
 
   tasks:
-    - name: Copy out new bashprofile file
+    - name: Copy out new bash profile file
       copy:
         src: ../support/bash_profile
         dest: /home/{{ user }}/.bash_profile
@@ -22,6 +22,16 @@
       tags:
         - user
 
+    - name: Copy out new bashrc.d directory contents
+      copy:
+        src: "{{ lookup('env', 'HWX_CFG_DIR' ) }}/support/.bash.d"
+        dest: /home/{{ user }}/
+        owner: '{{ user }}'
+        group: '{{ user }}'
+        mode: 0700
+      tags:
+        - user
+
     - name: Copy out new bashrc file (root)
       copy:
         src: ../support/bashrc
@@ -31,3 +41,13 @@
         mode: 0600
       tags:
         - root
+
+    - name: Copy out new bashrc.d directory contents
+      copy:
+        src: "{{ lookup('env', 'HWX_CFG_DIR' ) }}/support/.bash.d"
+        dest: /root
+        owner: '{{ user }}'
+        group: '{{ user }}'
+        mode: 0700
+      tags:
+        - user

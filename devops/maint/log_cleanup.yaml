@@ -9,6 +9,7 @@
   tasks:
     - name: Clean up old logs
       shell: find {{ log_dir_base }}/{{ item }}* -mtime +{{ days_old }} -exec rm -f {} \;
+      ignore_errors: true
       loop:
         - accumulo
         - ambari-agent
@@ -41,3 +42,11 @@
         - storm
         - zeppelin
         - zookeeper
+
+    - name: Clean up /tmp
+      shell: find /tmp/{{ item }}* -mtime +2 -exec rm -f {} \;
+      ignore_errors: true
+      loop:
+        - mgmt_mgmt
+      tags:
+        - tmp
