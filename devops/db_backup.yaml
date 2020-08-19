@@ -1,7 +1,6 @@
 - hosts:  db_backup_server
   become: true
   vars:
-    hosts: db_back_server
 
   tasks:
     - name: Create Backup Directory

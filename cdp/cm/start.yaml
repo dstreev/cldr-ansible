@@ -1,0 +1,17 @@
+- hosts: all
+  become: true
+
+  tasks:
+    - name: Start Cloudera Manager Agents
+      service:
+        name: cloudera-scm-agent
+        state: started
+
+- hosts: manager
+  become: true
+
+  tasks:
+    - name: Start Cloudera Manager Service
+      service:
+        name: cloudera-scm-server
+        state: started
