@@ -4,16 +4,18 @@
 
 # Setup for KNOX Proxy with Basic Auth
 # export OOZIE_URL="<the knox proxy url>"
-# export OOZIE_AUTH=BASIC
-# export PROXY_USER=${USER}
-# export PROXY_USER_PASSWORD=<pw>
+# export KNOX_PROXY_USER=${USER}
+# export KNOX_PROXY_USER_PASSWORD=<pw>
 
-alias ooziejobs='oozie -Djavax.net.ssl.trustStore=${TRUST_STORE_FILE} -Djavax.net.ssl.trustStorePassword=${TRUST_STORE_PASSWORD} jobs -username=${PROXY_USER} -password=${PROXY_USER_PASSWORD}'
-alias ooziejob='oozie -Djavax.net.ssl.trustStore=${TRUST_STORE_FILE} -Djavax.net.ssl.trustStorePassword=${TRUST_STORE_PASSWORD} job -username=${PROXY_USER} -password=${PROXY_USER_PASSWORD}'
-alias oozieadmin='oozie -Djavax.net.ssl.trustStore=${TRUST_STORE_FILE} -Djavax.net.ssl.trustStorePassword=${TRUST_STORE_PASSWORD} admin -username=${PROXY_USER} -password=${PROXY_USER_PASSWORD}'
-alias oozievalidate='oozie -Djavax.net.ssl.trustStore=${TRUST_STORE_FILE} -Djavax.net.ssl.trustStorePassword=${TRUST_STORE_PASSWORD} validate -username=${PROXY_USER} -password=${PROXY_USER_PASSWORD}'
-alias ooziesla='oozie -Djavax.net.ssl.trustStore=${TRUST_STORE_FILE} -Djavax.net.ssl.trustStorePassword=${TRUST_STORE_PASSWORD} sla -username=${PROXY_USER} -password=${PROXY_USER_PASSWORD}'
-alias ooziehive='oozie -Djavax.net.ssl.trustStore=${TRUST_STORE_FILE} -Djavax.net.ssl.trustStorePassword=${TRUST_STORE_PASSWORD} hive -username=${PROXY_USER} -password=${PROXY_USER_PASSWORD}'
-alias ooziesqoop='oozie -Djavax.net.ssl.trustStore=${TRUST_STORE_FILE} -Djavax.net.ssl.trustStorePassword=${TRUST_STORE_PASSWORD} sqoop -username=${PROXY_USER} -password=${PROXY_USER_PASSWORD}'
-alias oozieinfo='oozie -Djavax.net.ssl.trustStore=${TRUST_STORE_FILE} -Djavax.net.ssl.trustStorePassword=${TRUST_STORE_PASSWORD} info'
-alias ooziemapreduce='oozie -Djavax.net.ssl.trustStore=${TRUST_STORE_FILE} -Djavax.net.ssl.trustStorePassword=${TRUST_STORE_PASSWORD} mapreduce -username=${PROXY_USER} -password=${PROXY_USER_PASSWORD}'
+export OOZIE_AUTH=BASIC
+
+export OOZIE_CLIENT_OPTS="-Djavax.net.ssl.trustStore=${TRUST_STORE_FILE} -Djavax.net.ssl.trustStorePassword=${TRUST_STORE_PASSWORD}"
+
+alias ooziejobs='oozie jobs -username=${KNOX_PROXY_USER} -password=${KNOX_PROXY_USER_PASSWORD}'
+alias ooziejob='oozie job -username=${KNOX_PROXY_USER} -password=${KNOX_PROXY_USER_PASSWORD}'
+alias oozieadmin='oozie admin -username=${KNOX_PROXY_USER} -password=${KNOX_PROXY_USER_PASSWORD}'
+alias oozievalidate='oozie validate -username=${KNOX_PROXY_USER} -password=${KNOX_PROXY_USER_PASSWORD}'
+alias ooziesla='oozie sla -username=${KNOX_PROXY_USER} -password=${KNOX_PROXY_USER_PASSWORD}'
+alias ooziehive='oozie hive -username=${KNOX_PROXY_USER} -password=${KNOX_PROXY_USER_PASSWORD}'
+alias ooziesqoop='oozie sqoop -username=${KNOX_PROXY_USER} -password=${KNOX_PROXY_USER_PASSWORD}'
+alias ooziemapreduce='oozie mapreduce -username=${KNOX_PROXY_USER} -password=${KNOX_PROXY_USER_PASSWORD}'
