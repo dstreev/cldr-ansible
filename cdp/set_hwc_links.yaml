@@ -1,0 +1,43 @@
+- hosts: edge
+  become: true
+
+  tasks:
+    - name: Set a common HWC Assembly Symlink
+      find:
+        paths: /opt/cloudera/parcels/CDH/jars
+        patterns: "hive-warehouse-connector-assembly-*.jar"
+        file_type: file
+      register: hwc_assembly
+
+    - name: Debug List hwx assembly
+      debug:
+        msg: '{{ item.path }}'
+      with_items: '{{ hwc_assembly.files }}'
+
+    - name: Link HWC Assembly
+      file:
+        path: /opt/cloudera/parcels/CDH/lib/hive_warehouse_connector/hive-warehouse-connector-assembly.jar
+        src: '{{ item.path }}'
+        state: link
+        force: yes
+      with_items: '{{ hwc_assembly.files }}'
+
+    - name: Set a common HWC pyspark Symlink
+      find:
+        paths: /opt/cloudera/parcels/CDH/lib/hive_warehouse_connector
+        patterns: "pyspark_hwc-*.zip"
+        file_type: file
+      register: hwc_pyspark
+
+    - name: Debug List pyspark lib
+      debug:
+        msg: '{{ item.path }}'
+      with_items: '{{ hwc_pyspark.files }}'
+
+    - name: Link HWC pyspark
+      file:
+        path: /opt/cloudera/parcels/CDH/lib/hive_warehouse_connector/hwc_pyspark.zip
+        src: '{{ item.path }}'
+        state: link
+        force: yes
+      with_items: '{{ hwc_pyspark.files }}'

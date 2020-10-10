@@ -1,4 +1,4 @@
-- hosts: '{{ hosts }}'
+- hosts: '{{ target_hosts }}'
   become: true
 
   tasks:
@@ -24,7 +24,17 @@
 
     - name: Copy out new bashrc.d directory contents
       copy:
-        src: "{{ lookup('env', 'HWX_CFG_DIR' ) }}/support/.bash.d"
+        src: "../../cdp/support/.bash.d"
+        dest: /home/{{ user }}/
+        owner: '{{ user }}'
+        group: '{{ user }}'
+        mode: 0700
+      tags:
+        - user
+
+    - name: Copy out new USER bashrc.d directory contents
+      copy:
+        src: "{{ lookup('env', 'CLDR_CFG_DIR' ) }}/support/.bash.d"
         dest: /home/{{ user }}/
         owner: '{{ user }}'
         group: '{{ user }}'
@@ -42,12 +52,12 @@
       tags:
         - root
 
-    - name: Copy out new bashrc.d directory contents
-      copy:
-        src: "{{ lookup('env', 'HWX_CFG_DIR' ) }}/support/.bash.d"
-        dest: /root
-        owner: '{{ user }}'
-        group: '{{ user }}'
-        mode: 0700
-      tags:
-        - user
+#    - name: Copy out new bashrc.d directory contents
+#      copy:
+#        src: "{{ lookup('env', 'CLDR_CFG_DIR' ) }}/support/.bash.d"
+#        dest: /root
+#        owner: root
+#        group: root
+#        mode: 0700
+#      tags:
+#        - user

@@ -1,7 +1,7 @@
 # Fix Agent SSL Connection Issue.
 # Result of upgrading to Python v2.7.5-58+
 # https://community.hortonworks.com/articles/188269/javapython-updates-and-ambari-agent-tls-settings.html
-- hosts:             hdp
+- hosts:             all
   become:            true
   tasks:
     - name:          Ensure Line in Ambari Agent INI.

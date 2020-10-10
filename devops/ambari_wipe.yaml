@@ -4,17 +4,21 @@
 # MOVED THE IMAGE
 #- import_playbook:  ../setup/openjdk_install.yaml
 
-- hosts:             '{{ hosts }}'
+- hosts:             '{{ target_hosts }}'
   become:            true
   tasks:
     - name:          Stop Ambari Agents
       shell:         ambari-agent stop
+      ignore_errors: yes
       tags:
         - stop
+
     - name:          Stop Ambari Server
       shell:         ambari-server stop
+      ignore_errors: yes
       tags:
         - stop
+
     - name:          Remove Ambari
       yum:
         name:        '{{ item }}'
@@ -49,6 +53,7 @@
       with_items:    "{{ find_repos['files'] }}"
       tags:
         - repo
+
     - name:  Remove residual Ambari directories
       file:
         path: "{{ item }}"
@@ -61,3 +66,27 @@
         - /var/lib/ambari-metrics-collector
         - /var/lib/ambari-metrics-grafana
         - /var/lib/ambari-metrics-monitor
+
+- hosts: ambari
+  become: true
+
+  tasks:
+    - name: Remove marker file for schema creation
+      file:
+        path:  /hadoop/AMBARI_SCHEMA_BUILT
+        state: absent
+      tags:
+        - server
+
+    - name:  Report Manager Database (Create)
+      shell: mysql -h {{ db_host }} -u {{ db_user }} --password={{ db_password }} -e "DROP DATABASE IF EXISTS {{ item.db }}";
+      with_items:
+        - { db: '{{ db_ambari_name }}' }
+        - { db: '{{ db_hive_name }}' }
+        - { db: '{{ db_oozie_name }}' }
+        - { db: '{{ db_ranger_name }}' }
+        - { db: '{{ db_ranger_kms_name }}' }
+        - { db: '{{ db_druid_name }}' }
+        - { db: '{{ db_superset_name }}' }
+        - { db: '{{ db_registry_name }}' }
+        - { db: '{{ db_streamline_name }}' }

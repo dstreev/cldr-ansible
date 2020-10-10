@@ -1,0 +1,47 @@
+- hosts: ambari
+  become: true
+
+  tasks:
+    - name: Stop Ambari Server
+      shell: ambari-agent stop
+      ignore_errors: yes
+      tags:
+        - server
+
+    - name: Uninstall Ambari Server
+      yum:
+        name: ambari-server
+        state: absent
+      ignore_errors: yes
+      tags:
+        - servers
+
+    - name: Cleanup Ambari Server Files
+      file:
+        path: /var/lib/ambari-server
+        state: absent
+
+- hosts:  ambari_agent
+  become: true
+
+  tasks:
+    - name:  Stop Ambari Agents
+      shell: ambari-agent stop
+      ignore_errors: yes
+      tags:
+        - agent
+
+    - name: Uninstall Ambari Agents
+      yum:
+        name:  ambari-agent
+        state: absent
+      ignore_errors: yes
+      tags:
+        - agent
+
+    - name: Remove Ambari Agent Data
+      file:
+        path: /var/lib/ambari-agent
+        state: absent
+      tags:
+        - agent

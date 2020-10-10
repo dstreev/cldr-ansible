@@ -10,10 +10,8 @@
     - name:            Uninstall the Ambari Repo
       yum_repository:
         name:          ambari
-        description:   Install the Ambari Repo from our Local Repo Server.
         state:         absent
-        baseurl:       '{{ ambari_repo }}'
-        #baseurl:      http://{{ repo_server_url }}/repo/ambari/{{ os_version }}/{{ ambari_major_version }}.x/updates/{{ ambari_version }}
+        baseurl:       '{{ ambari_repo }}/{{ ambari_version }}'
         repo_gpgcheck: no
         gpgcheck:      no
       tags:
@@ -22,10 +20,9 @@
     - name:            Install the Ambari Repo
       yum_repository:
         name:          ambari
-        description:   Install the Ambari Repo from our Local Repo Server.
+        description:   Updates-Ambari-{{ ambari_version }}
         state:         present
-        baseurl:       '{{ ambari_repo }}'
-        #baseurl:      http://{{ repo_server }}/repo/ambari/{{ os_version }}/{{ ambari_major_version }}.x/updates/{{ ambari_version }}
+        baseurl:       '{{ ambari_repo }}/{{ ambari_version }}'
         repo_gpgcheck: no
         gpgcheck:      no
       tags:

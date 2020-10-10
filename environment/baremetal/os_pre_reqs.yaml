@@ -5,7 +5,7 @@
 # Disable THP
 # Set somaxconn
 # And other LLAP specifics
-- hosts:         '{{ hosts }}'
+- hosts:         '{{ all_target }}'
   become:        true
   tasks:
     - name:      Yum Installs

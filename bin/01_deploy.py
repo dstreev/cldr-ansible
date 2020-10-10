@@ -124,7 +124,7 @@ class Deployment(object):
 
         # Link Directories
         print('Switching Data Dir Link /hadoop to /hwx_data/' + str(cfgYaml['env_instance']) + '/' + cfgYaml['hdp_version'])
-        subprocess.call(['ansible-playbook', '-i', host_file,'--extra-vars','@'+cfg_file, '../environment/baremetal/set_hwx_dirs.yaml'], stderr=subprocess.STDOUT)
+        subprocess.call(['ansible-playbook', '-i', host_file,'--extra-vars','@'+cfg_file, '../environment/baremetal/set_cldr_dirs.yaml'], stderr=subprocess.STDOUT)
 
         # echo "OS Prep"
         # print('OS Prep')

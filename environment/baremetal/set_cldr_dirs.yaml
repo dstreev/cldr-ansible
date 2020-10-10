@@ -1,10 +1,10 @@
-- hosts:         hdp
+- hosts:         all
   become:        true
 
   tasks:
     - name:      Create Hadoop Data Directories
       file:
-        path:    /hwx_data/{{ cluster_name }}
+        path:    /cluster_data/{{ cluster_name }}
         state:   directory
         owner:   root
         mode:    755
@@ -12,15 +12,14 @@
 
     - name:      Set Permissions
       file:
-        path:    /hwx_data
+        path:    /cluster_data
         state:   directory
         recurse: yes
-        mode:    7
-        55
+        mode:    755
 
     - name:      Create Symlink for Hadoop Directories
       file:
-        src:     /hwx_data/{{ cluster_name }}
+        src:     /cluster_data/{{ cluster_name }}
         dest:    /hadoop
         owner:   root
         group:   root

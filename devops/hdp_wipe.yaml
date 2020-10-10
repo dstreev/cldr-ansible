@@ -10,7 +10,7 @@
 # MOVED THE IMAGE
 #- import_playbook:  ../setup/openjdk_install.yaml
 
-- hosts:             '{{ hosts }}'
+- hosts:             '{{ target_hosts }}'
   become:            true
   vars:
     # Use '_''s as delimiter to match the 'yum' version details
@@ -26,6 +26,7 @@
       loop:
         - accumulo_{{ hdp_version }}
         - atlas-metadata_{{ hdp_version }}
+        - atlas-metadata_{{ hdp_version }}-hbase-plugin
         - atlas-metadata_{{ hdp_version }}-falcon-plugin
         - atlas-metadata_{{ hdp_version }}-hive-plugin
         - atlas-metadata_{{ hdp_version }}-sqoop-plugin
@@ -145,5 +146,9 @@
         - /etc/hadoop
         - /etc/druid
         - /etc/zookeeper
+        - /var/lib/flume
+        - /var/lib/hadoop-hdfs
+        - /var/lib/ranger
+        - /var/lib/ambari-metrics-monitor
       tags:
         - dir

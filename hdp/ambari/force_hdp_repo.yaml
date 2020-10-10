@@ -1,0 +1,39 @@
+- hosts: all
+  become: true
+
+  tasks:
+    - name: Install Ambari-HDP Repo
+      yum_repository:
+        name:          ambari-hdp-1
+        description: HDP-2.6.2.2
+        state:         present
+        baseurl:       http://repo.streever.local/repo/HDP/centos7/2.x/updates/2.6.5.1175
+        repo_gpgcheck: no
+        gpgcheck:      no
+      tags:
+        - agent
+        - server
+
+    - name: Install Ambari-HDP-GL Repo
+      yum_repository:
+        name:          ambari-hdp-gpl-1
+        description: HDP-GPL-2.6.2.2
+        state:         present
+        baseurl:       http://repo.streever.local/repo/HDP-GPL/centos7/2.x/updates/2.6.5.1175/
+        repo_gpgcheck: no
+        gpgcheck:      no
+      tags:
+        - agent
+        - server
+
+    - name: Install Ambari-HDP-Utils Repo
+      yum_repository:
+        name:          ambari-hdp-utils-1
+        description: HDP-UTILS-2.6.2.2
+        state:         present
+        baseurl:       http://repo.streever.local/repo/HDP-UTILS-1.1.0.22/repos/centos7/
+        repo_gpgcheck: no
+        gpgcheck:      no
+      tags:
+        - agent
+        - server
