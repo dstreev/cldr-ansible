@@ -8,42 +8,6 @@
 - hosts:         '{{ all_target }}'
   become:        true
   tasks:
-    - name:      Yum Installs
-      yum:
-        name:    '{{ item }}'
-        state:   latest
-      loop:
-        - yum-utils
-        - unzip
-        - wget
-        - gettext
-        - less
-        - net-tools
-        - iproute
-        - openssl
-        - openssh-server
-        - openssh-clients
-        - passwd
-        - ntp
-        - lsof
-        - nscd
-        - bind-utils
-        - java-1.8.0-openjdk
-        - java-1.8.0-openjdk-devel
-        - git
-        - chrony
-        - which
-        - sudo
-        - tmux
-        - bash-completion
-      tags:
-        - utils
-
-    # - name:      Start nscd
-    #   shell:     nscd
-
-    - import_playbook: jdk_kerb_referalls.yaml
-
     - name:      Set Swappiness
       shell:     sysctl vm.swappiness=1
       tags:
@@ -98,38 +62,15 @@
       tags:
         - env
 
-    - name: Distribute disable-thp.service
-      copy:
-        src:   ../support/disable-thp.service
-        dest:  /etc/systemd/system/disable-thp.service
-        owner: root
-        group: root
+    - name: Disable THP DeFrag
+      shell: echo never > /sys/kernel/mm/transparent_hugepage/defrag
       tags:
-        thp
+        - env
 
     - name: Disable THP
-      service:
-        name: disable-thp
-        enabled: yes
+      shell: echo never > /sys/kernel/mm/transparent_hugepage/enabled
       tags:
-        thp
-
-    - name: Disable THP
-      service:
-        name: disable-thp
-        state: started
-      tags:
-        thp
-
-#    - name: Disable THP DeFrag
-#      shell: echo never > /sys/kernel/mm/transparent_hugepage/defrag
-#      tags:
-#        - env
-#
-#    - name: Disable THP
-#      shell: echo never > /sys/kernel/mm/transparent_hugepage/enabled
-#      tags:
-#        - env
+        - env
 
     # Will keep activating THP, so disable it.
     - name: Turn off tuned

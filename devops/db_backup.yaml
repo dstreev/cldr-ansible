@@ -27,16 +27,16 @@
       tags:
         - db
 
-    - name: Get Ambari Blueprint
-      uri:
-        url:              'http://{{ ambari_server }}:{{ ambari_server_port }}/api/v1/clusters/{{ ambari_cluster_name }}?format=blueprint_with_hosts'
-        method:           GET
-        force_basic_auth: yes
-        headers:
-          X-Requested-By: Ansible-Ambari
-        dest:             '{{ mysql_backup_dir }}/{{ ansible_date_time.iso8601_basic_short }}/{{ ambari_cluster_name }}-blueprint.json'
-        user:             '{{ ambari_admin_user }}'
-        password:         '{{ ambari_admin_password }}'
-        return_content:   yes
-      tags:
-        - blueprint
+#    - name: Get Ambari Blueprint
+#      uri:
+#        url:              'http://{{ ambari_server }}:{{ ambari_server_port }}/api/v1/clusters/{{ ambari_cluster_name }}?format=blueprint_with_hosts'
+#        method:           GET
+#        force_basic_auth: yes
+#        headers:
+#          X-Requested-By: Ansible-Ambari
+#        dest:             '{{ mysql_backup_dir }}/{{ ansible_date_time.iso8601_basic_short }}/{{ ambari_cluster_name }}-blueprint.json'
+#        user:             '{{ ambari_admin_user }}'
+#        password:         '{{ ambari_admin_password }}'
+#        return_content:   yes
+#      tags:
+#        - blueprint

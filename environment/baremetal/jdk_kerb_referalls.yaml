@@ -1,0 +1,10 @@
+- hosts:         '{{ all_target }}'
+  become:        true
+
+  tasks:
+#    KB Article: https://my.cloudera.com/knowledge/Servers-with-Kerberos-enabled-fail-with-OpenJDK-18u242-1106?id=290921
+    - name:      Disable Kerberos Referrals for OpenJDK
+      lineinfile:
+        path: /usr/lib/jvm/java-openjdk/jre/lib/security/java.security
+        regex: '^sun.security.krb5.disableReferrals'
+        line: sun.security.krb5.disableReferrals=true

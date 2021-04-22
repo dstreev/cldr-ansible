@@ -4,7 +4,7 @@
   tasks:
     - name: Copy out new etc_hosts file
       copy:
-        src: "{{ lookup('env', 'HWX_CFG_DIR' ) }}/support/etc_hosts"
+        src: "{{ lookup('env', 'CLDR_CFG_DIR' ) }}/support/etc_hosts"
         dest: /etc/hosts
         owner: root
         group: root

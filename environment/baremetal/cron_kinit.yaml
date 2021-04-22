@@ -1,0 +1,9 @@
+- hosts: '{{ target_hosts }}'
+
+  tasks:
+    - name: Add kinit to cron
+      cron:
+        name: "User kinit"
+        minute: "0"
+        hour: "0"
+        job: "echo $(cat ./cluster_pw) | kinit"
