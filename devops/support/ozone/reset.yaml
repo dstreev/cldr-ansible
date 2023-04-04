@@ -1,0 +1,22 @@
+# Move current dirs to an archive area.
+# Ozone Hosts
+
+# MV dir to archive location.
+
+- hosts:             '{{ hosts }}'
+  become:            true
+
+  tasks:
+#    - name: Archive Directories
+#      copy:
+#        remote_src: true
+#        src: '{{ source_dir }}'
+#        dest: '{{ target_dir }}'
+
+#    - name: Remove Dir
+#      file:
+#        path: '{{ source_dir }} '
+#        state: absent
+
+    - name: Remove Dir
+      command: 'rm -rf {{ source_dir }}'

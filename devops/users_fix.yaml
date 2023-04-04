@@ -1,4 +1,4 @@
-- hosts: '{{ hosts }}'
+- hosts: "{{ hosts }}"
   become: true
 
   tasks:
@@ -7,46 +7,104 @@
         src: /etc/passwd
         dest: /etc/passwd.{{ ansible_date_time.iso8601_basic_short }}
         remote_src: yes
+      tags:
+        - ids
     - name: Backup group
       copy:
         src: /etc/group
         dest: /etc/group.{{ ansible_date_time.iso8601_basic_short }}
         remote_src: yes
+      tags:
+        - ids
     - name:
       lineinfile:
         path: /etc/passwd
         regex: '^{{ item.user }}'
         state: absent
       with_items:
-        - { user: 'hdfs' }
-        - { user: 'yarn' }
-        - { user: 'zookeeper' }
-        - { user: 'oozie' }
+        - { user: 'accumulo' }
+        - { user: 'atlas' }
+        - { user: 'das' }
+        - { user: 'druid' }
         - { user: 'hbase' }
-        - { user: 'sqoop' }
+        - { user: 'hdfs' }
+        - { user: 'hive' }
+        - { user: 'hue' }
         - { user: 'impala' }
         - { user: 'kafka' }
-        - { user: 'hive' }
-        - { user: 'streamsmsgmgr' }
-        - { user: 'streamsrepmgr' }
+        - { user: 'kms' }
+        - { user: 'knox' }
+        - { user: 'kudu' }
+        - { user: 'livy' }
+        - { user: 'mapred' }
+        - { user: 'nifi' }
+        - { user: 'oozie' }
+        - { user: 'ozone' }
+        - { user: 'phoenix' }
+        - { user: 'queryprocessor' }
+        - { user: 'ranger' }
+        - { user: 'rangerkms' }
+        - { user: 'rangerraz' }
+        - { user: 'registry' }
+        - { user: 'schemaregistry' }
+        - { user: 'spark' }
+        - { user: 'sqoop' }
+        - { user: 'tez' }
+        - { user: 'yarn' }
+        - { user: 'yarn-ats' }
+        - { user: 'zeppelin' }
+        - { user: 'zookeeper' }
+      tags:
+        - ids
+
     - name:
       lineinfile:
         path: /etc/group
         regex: '^{{ item.group }}'
         state: absent
       with_items:
-        - { group: 'hadoop' }
-        - { group: 'hdfs'}
-        - { group: 'yarn' }
-        - { group: 'zookeeper' }
-        - { group: 'oozie' }
+        - { group: 'accumulo' }
+        - { group: 'atlas' }
+        - { group: 'das' }
+        - { group: 'druid' }
         - { group: 'hbase' }
-        - { group: 'sqoop' }
+        - { group: 'hdfs' }
+        - { group: 'hive' }
+        - { group: 'hue' }
         - { group: 'impala' }
         - { group: 'kafka' }
-        - { group: 'hive' }
-        - { group: 'streamsmsgmgr' }
-        - { group: 'streamsrepmgr' }
+        - { group: 'kms' }
+        - { group: 'knox' }
+        - { group: 'kudu' }
+        - { group: 'livy' }
+        - { group: 'mapred' }
+        - { group: 'nifi' }
+        - { group: 'oozie' }
+        - { group: 'ozone' }
+        - { group: 'phoenix' }
+        - { group: 'queryprocessor' }
+        - { group: 'ranger' }
+        - { group: 'rangerkms' }
+        - { group: 'rangerraz' }
+        - { group: 'registry' }
+        - { group: 'schemaregistry' }
+        - { group: 'spark' }
+        - { group: 'sqoop' }
+        - { group: 'tez' }
+        - { group: 'yarn' }
+        - { group: 'yarn-ats' }
+        - { group: 'zeppelin' }
+        - { group: 'zookeeper' }
+        - { group: 'hadoop' }
+      tags:
+        - ids
+
+    - name: Clear sss_cache
+      command: "sss_cache -E"
+      tags:
+        - ids
+        - cache
+        - perms
 
     - name: Reset File permissions
       file:
@@ -56,20 +114,157 @@
         recurse: yes
       with_items:
         - { directory: '/hadoop/hdfs', owner: 'hdfs', group: 'hadoop' }
+        - { directory: '/hadoop/atlas', owner: 'atlas', group: 'hadoop' }
+        - { directory: '/hadoop/ozone', owner: 'hdfs', group: 'hdfs' }
+        - { directory: '/hadoop/mapreduce', owner: 'mapred', group: 'hadoop' }
         - { directory: '/hadoop/yarn', owner: 'yarn', group: 'hadoop' }
         - { directory: '/hadoop/zookeeper', owner: 'zookeeper', group: 'hadoop' }
-        - { directory: '/hadoop/kafka-logs', owner: 'zookeeper', group: 'hadoop' }
-        - { directory: '/var/log/hadoop/hdfs', owner: 'hdfs', group: 'hadoop' }
+        - { directory: '/hadoop/kafka-logs', owner: 'kafka', group: 'kafka' }
+        - { directory: '/hadoop/impala', owner: 'impala', group: 'impala' }
+        - { directory: '/var/lib/hadoop-hdfs', owner: 'hdfs', group: 'hdfs' }
+        - { directory: '/var/lib/hadoop-mapreduce', owner: 'yarn', group: 'hadoop' }
+        - { directory: '/var/lib/hadoop-ozone', owner: 'hdfs', group: 'hdfs' }
+        - { directory: '/var/lib/hadoop-yarn', owner: 'yarn', group: 'yarn' }
+        - { directory: '/var/lib/hue-httpd', owner: 'hue', group: 'hue' }
+        - { directory: '/var/lib/knox', owner: 'knox', group: 'knox' }
+        - { directory: '/var/lib/oozie', owner: 'oozie', group: 'oozie' }
+        - { directory: '/var/lib/ranger', owner: 'ranger', group: 'ranger' }
+        - { directory: '/var/lib/rangerraz', owner: 'ranger', group: 'ranger' }
+        - { directory: '/var/lib/spark2', owner: 'spark', group: 'spark' }
+        - { directory: '/var/lib/zookeeper', owner: 'zookeeper', group: 'zookeeper' }
+        - { directory: '/var/lib/schemaregistry', owner: 'schemaregistry', group: 'schemaregistry' }
+        - { directory: '/var/log/atlas', owner: 'atlas', group: 'hadoop' }
+        - { directory: '/var/log/hadoop', owner: 'hdfs', group: 'hadoop' }
+        - { directory: '/var/log/hadoop-ozone', owner: 'hdfs', group: 'hdfs' }
+        - { directory: '/var/log/hadoop-hdfs', owner: 'hdfs', group: 'hadoop' }
         - { directory: '/var/log/hadoop-yarn', owner: 'yarn', group: 'hadoop' }
+        - { directory: '/var/log/hadoop-mapreduce', owner: 'mapred', group: 'hadoop' }
+        - { directory: '/var/log/catalogd', owner: 'impala', group: 'hadoop' }
+        - { directory: '/var/log/impalad', owner: 'impala', group: 'hadoop' }
+        - { directory: '/var/log/statestore', owner: 'impala', group: 'hadoop' }
+        - { directory: '/var/log/hue', owner: 'hue', group: 'hue' }
+        - { directory: '/var/log/hue-httpd', owner: 'hue', group: 'hue' }
         - { directory: '/var/log/oozie', owner: 'oozie', group: 'hadoop' }
         - { directory: '/var/log/kafka', owner: 'kafka', group: 'hadoop' }
         - { directory: '/var/log/zookeeper', owner: 'zookeeper', group: 'hadoop' }
         - { directory: '/var/log/hive', owner: 'hive', group: 'hadoop' }
-        - { directory: '/var/log/hive2', owner: 'hive', group: 'hadoop' }
+        - { directory: '/var/log/hcatalog', owner: 'hive', group: 'hadoop' }
         - { directory: '/var/log/hbase', owner: 'hbase', group: 'hadoop' }
+        - { directory: '/var/log/ranger', owner: 'ranger', group: 'hadoop' }
+        - { directory: '/var/log/knox', owner: 'knox', group: 'hadoop' }
         - { directory: '/var/log/zookeeper', owner: 'zookeeper', group: 'hadoop' }
-        - { directory: '/usr/hdp/current/hadoop-client/conf', owner: 'hdfs', group: 'hadoop' }
-        - { directory: '/usr/hdp/current/zookeeper-client/conf', owner: 'zookeeper', group: 'hadoop' }
-        - { directory: '/usr/hdp/current/oozie-client/conf', owner: 'oozie', group: 'hadoop' }
-        - { directory: '/usr/hdp/current/hbase-client/conf', owner: 'hbase', group: 'hadoop' }
-        - { directory: '/usr/hdp/current/sqoop-client/conf', owner: 'sqoop', group: 'hadoop' }
+        - { directory: '/tmp/hive', owner: 'hive', group: 'hive' }
+      tags:
+        - perms
+
+    - name:
+      file:
+        path: '/home/{{ item.user}}'
+        owner: '{{ item.user }}'
+        group: '{{ item.user }}'
+        recurse: yes
+      with_items:
+        - { user: 'accumulo' }
+        - { user: 'das' }
+        - { user: 'druid' }
+        - { user: 'hbase' }
+        - { user: 'hdfs' }
+        - { user: 'hive' }
+        - { user: 'hue' }
+        - { user: 'impala' }
+        - { user: 'kafka' }
+        - { user: 'kms' }
+        - { user: 'knox' }
+        - { user: 'kudu' }
+        - { user: 'livy' }
+        - { user: 'mapred' }
+        - { user: 'nifi' }
+        - { user: 'oozie' }
+        - { user: 'ozone' }
+        - { user: 'phoenix' }
+        - { user: 'queryprocessor' }
+        - { user: 'ranger' }
+        - { user: 'rangerkms' }
+        - { user: 'rangerraz' }
+        - { user: 'registry' }
+        - { user: 'schemaregistry' }
+        - { user: 'spark' }
+        - { user: 'sqoop' }
+        - { user: 'tez' }
+        - { user: 'yarn' }
+        - { user: 'yarn-ats' }
+        - { user: 'zeppelin' }
+        - { user: 'zookeeper' }
+      tags:
+        - perms
+
+    - name: Reset Temp
+      file:
+        path: '{{ item.file}}'
+        state: absent
+      with_items:
+        - { file: '/tmp/hadoop-hdfs-journalnode.pid'}
+        - { file: '/tmp/hadoop-hdfs-namenode.pid'}
+        - { file: '/tmp/hadoop-hdfs-zkfc.pid'}
+        - { file: '/tmp/hadoop-hdfs-datanode.pid' }
+        - { file: '/tmp/hadoop-yarn-nodemanager.pid' }
+        - { file: '/tmp/hadoop-mapred-historyserver.pid'}
+        - { file: '/tmp/ozone-hdds-hdfs-recon.pid'}
+        - { file: '/tmp/ozone-hdds-hdfs-om.pid'}
+        - { file: '/tmp/ozone-hdds-hdfs-datanode.pid'}
+        - { file: '/tmp/hadoop-yarn-resourcemanager.pid'}
+        - { file: '/tmp/hadoop-yarn-yarn'}
+        - { file: '/tmp/hsperfdata_hdfs'}
+        - { file: '/tmp/hsperfdata_hive'}
+        - { file: '/tmp/hsperfdata_yarn'}
+        - { file: '/tmp/hsperfdata_zookeeper'}
+        - { file: '/tmp/hsperfdata_mapred' }
+        - { file: '/tmp/hadoop-yarn' }
+        - { file: '/tmp/container-copy'}
+        - { file: '/tmp/hsperfdata_hbase'}
+        - { file: '/tmp/hsperfdata_impala'}
+        - { file: '/tmp/hsperfdata_kafka'}
+        - { file: '/tmp/hsperfdata_phoenix'}
+        - { file: '/tmp/hsperfdata_zeppelin'}
+        - { file: '/tmp/ozone-hdds-hdfs-s3g.pid'}
+        - { file: '/tmp/ozone-hdds-hdfs-scm.pid'}
+        - { file: '/tmp/knox-support-bundle'}
+        - { file: '/tmp/hsperfdata_knox'}
+        - { file: '/tmp/hsperfdata_livy'}
+        - { file: '/tmp/hive'}
+        - { file: '/tmp/qm-support-bundle'}
+        - { file: '/tmp/hsperfdata_spark'}
+        - { file: '/tmp/hsperfdata_oozie'}
+#        - { file: '/etc/ranger'}
+      tags:
+        - pids
+        - tmp
+
+    - name: Reset Keytab File permissions
+      file:
+        path: '/etc/security/keytabs/{{ item.file}}'
+        owner: '{{ item.owner }}'
+        group: '{{ item.group }}'
+      with_items:
+        - { file: 'hdfs.headless.keytab', owner: 'hdfs', group: 'hadoop' }
+        - { file: 'hdfs.service.keytab', owner: 'hdfs', group: 'hadoop' }
+        - { file: 'hive.service.keytab', owner: 'hive', group: 'hadoop' }
+        - { file: 'jn.service.keytab', owner: 'hdfs', group: 'hadoop' }
+        - { file: 'dn.service.keytab', owner: 'hdfs', group: 'hadoop' }
+        - { file: 'nn.service.keytab', owner: 'hdfs', group: 'hadoop' }
+        - { file: 'nm.service.keytab', owner: 'hdfs', group: 'hadoop' }
+        - { file: 'rm.service.keytab', owner: 'yarn', group: 'hadoop' }
+        - { file: 'smokeuser.headless.keytab', owner: 'ambari-qa', group: ' hadoop' }
+        - { file: 'spark.headless.keytab', owner: 'spark', group: 'hadoop' }
+        - { file: 'spnego.service.keytab', owner: 'root', group: 'hadoop' }
+        - { file: 'zk.service.keytab', owner: 'zookeeper', group: 'hadoop' }
+        - { file: 'jhs.service.keytab', owner: 'mapred', group: 'hadoop' }
+        - { file: 'oozie.service.keytab', owner: 'oozie', group: 'hadoop' }
+        - { file: 'yarn.service.keytab', owner: 'yarn', group: 'hadoop' }
+        - { file: 'ams.collector.keytab', owner: 'ams', group: 'hadoop' }
+        - { file: 'ams-hbase.master.keytab', owner: 'ams', group: 'hadoop' }
+        - { file: 'ams-hbase.regionserver.keytab', owner: 'ams', group: 'hadoop' }
+        - { file: 'ams-zk.service.keytab', owner: 'ams', group: 'hadoop' }
+      tags:
+        - hdp-security
+

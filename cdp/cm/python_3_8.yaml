@@ -1,0 +1,53 @@
+# Installing Python 3.8 for CDP 7.1.8+ on All hosts.
+# docs: https://docs.cloudera.com/cdp-private-cloud-upgrade/latest/upgrade-cdp/topics/cdpdc-install-python-3-centos.html
+
+- hosts: all
+  become: yes
+  become_user: root
+
+  tasks:
+    - name: Install Python Pre-Reqs
+      yum:
+        name:  gcc,openssl-devel,bzip2-devel,libffi-devel,zlib-devel
+        state: latest
+
+    - name: Get Python Package
+      ansible.builtin.get_url:
+        url:  https://www.python.org/ftp/python/3.8.12/Python-3.8.12.tgz
+        dest: /opt/Python-3.8.12.tgz
+        mode: '0755'
+
+    - name: Remove Old Python
+      ansible.builtin.file:
+        path: /opt/Python-3.8.12
+        state: absent
+
+    - name: Extract Python
+      ansible.builtin.unarchive:
+        src: /opt/Python-3.8.12.tgz
+        dest: /opt
+        remote_src: yes
+
+    - name: Configure Python
+      ansible.builtin.command:
+        cmd: ./configure --enable-shared
+        chdir: /opt/Python-3.8.12
+
+    - name: Make Python
+      ansible.builtin.command:
+        cmd: make
+        chdir: /opt/Python-3.8.12
+
+    - name: Install Python
+      ansible.builtin.command:
+        cmd: make install
+        chdir: /opt/Python-3.8.12
+
+    - name: Copy Python Libs
+      ansible.builtin.command:
+        cmd: cp --no-clobber ./libpython3.8.so* /lib64/
+        chdir: /opt/Python-3.8.12
+
+    - name: Chmod Python Libs
+      ansible.builtin.command:
+        cmd: chmod 755 /lib64/libpython3.8.so*
