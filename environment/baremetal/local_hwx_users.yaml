@@ -1,4 +1,4 @@
-- hosts: working
+- hosts: hdp
   become: true
 
   tasks:

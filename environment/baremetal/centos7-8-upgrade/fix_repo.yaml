@@ -1,0 +1,11 @@
+- hosts: '{{ hosts }}'
+  become: true
+
+  tasks:
+    - name: Fix Repo Locations (Centos 7 Repos Moved)
+      copy:
+        src: "{{ lookup('env', 'CLDR_CFG_DIR' ) }}/support/etc_hosts"
+        dest: /etc/hosts
+        owner: root
+        group: root
+        mode: 0644

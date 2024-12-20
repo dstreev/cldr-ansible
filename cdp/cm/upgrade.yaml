@@ -1,39 +1,37 @@
 # Based on: https://docs.cloudera.com/cdp-private-cloud/latest/upgrade-cdh/topics/ug_cm_upgrade_server.html
 #- import_playbook: ../../devops/db_backup.yaml
 
-## Create / Update CM Repo
-- hosts: repo
-  become: true
-
-  vars:
-    #https://archive.cloudera.com/p/cm7/7.7.1/redhat7/yum
-    cm_remote_repo: '{{ cm_remote_repo }}'
-    remote_repo_username: '{{ remote_repo_username }}'
-    remote_repo_password: '{{ remote_repo_password }}'
-    cm_version: 7.7.1
-    cm_os: redhat7
-
-  tasks:
-    - name: Sync Repo
-
 - hosts: all
   become: true
-
-  vars:
-    cm_repo: http://repo.streever.local/repo/cm7/7.7.1/
 
   tasks:
     - name: Remove CM Repos
       yum_repository:
         name: cloudera-manager
         state: absent
+      tags:
+        - repo
+
+#    - name: Add CM Repo from Cloudera Repo File
+#      get_url:
+#        url: '{{ cm_remote_repo_file }}'
+#        dest: /etc/yum.repos.d/cloudera-manager.repo
+#        url_username: '{{ remote_repo_username }}'
+#        url_password: '{{ remote_repo_password }}'
+#      tags:
+#        - repo
 
     - name: Add New CM Repos
       yum_repository:
         name: cloudera-manager
-        description: Cloudera Manager
-        baseurl: '{{ cm_repo }}'
+        description: "Cloudera Manager {{ cm_version }}"
+        baseurl: '{{ cm_remote_repo }}'
         gpgcheck: no
+#        gpgkey: '{{ cm_remote_repo }}/RPM-GPG-KEY-cloudera'
+        username: '{{ remote_repo_username }}'
+        password: '{{ remote_repo_password }}'
+      tags:
+        - repo
 
     - name: Stop the Cloudera Manager Agents
       service:
@@ -48,14 +46,20 @@
       service:
         name: cloudera-scm-server
         state: stopped
+      tags:
+        - server
     - name: Upgrade Cloudera Manager
       yum:
-        name: cloudera-manager-server,cloudera-manager-daemons
+        name: cloudera-manager-server,cloudera-manager-agent,cloudera-manager-server-db-2
         state: latest
+      tags:
+        - server
     - name: Start Cloudera Manager
       service:
         name: cloudera-scm-server
         state: started
+      tags:
+        - server
 
 - hosts: all
   become: true
@@ -63,12 +67,17 @@
   tasks:
     - name: Upgrade Cloudera Manager Agents
       yum:
-        name: cloudera-manager-agent,cloudera-manager-daemons
+        name: cloudera-manager-agent
+#        name: cloudera-manager-agent,cloudera-manager-daemons
         state: latest
+      tags:
+        - agent
     - name: Start Cloudera Manager Agents
       service:
         name: cloudera-scm-agent
         state: started
+      tags:
+        - agent
 
 
 
